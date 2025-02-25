@@ -12,8 +12,9 @@
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
+  --fw-black: 900;
 
-  --ff-accent: "Libre Baskerville", sans-serif;
+  --ff-accent: "Baskervville", sans-serif;
   --ff-base: "Poppins", sans-serif;
 
   --spacing-50: 0.25rem;
