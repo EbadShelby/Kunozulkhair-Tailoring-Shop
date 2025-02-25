@@ -35,7 +35,7 @@
   text-transform: uppercase;
   font-size: var(--size-base);
   font-weight: var(--fw-black);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-align: start;
 }
 .header__logo-text span {
