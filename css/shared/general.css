@@ -1,0 +1,88 @@
+/* ======================================= */
+/* ========|| Custom Properties ||======== */
+/* ======================================= */
+:root {
+  --clr-primary: hsl(50, 91%, 52%);
+  --clr-secondary: hsl(160, 13%, 33%);
+
+  --clr-neutral-100: hsl(200, 18%, 97%);
+  --clr-neutral-400: hsl(220, 4%, 28%);
+  --clr-neutral-900: hsl(0, 0%, 2%);
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  --ff-accent: "Libre Baskerville", sans-serif;
+  --ff-base: "Poppins", sans-serif;
+
+  --spacing-50: 0.25rem;
+  --spacing-100: 0.5rem;
+  --spacing-150: 0.75rem;
+  --spacing-200: 1rem;
+  --spacing-250: 1.25rem;
+  --spacing-300: 1.5rem;
+  --spacing-350: 1.75rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-700: 3.75rem;
+  --spacing-800: 6.25rem;
+  --spacing-900: 10rem;
+  --spacing-1000: 15rem;
+  --spacing-1100: 18.75rem;
+  --spacing-1200: 25rem;
+
+  /* sizes */
+  --size-xxs: 0.5rem;
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size-base: 1rem;
+  --size-lg: 1.125rem;
+  --size-xl: 1.25rem;
+  --size-2xl: 1.5rem;
+  --size-3xl: 1.875rem;
+  --size-4xl: 2.25rem;
+  --size-5xl: 3rem;
+  --size-6xl: 3.75rem;
+  --size-7xl: 4.5rem;
+  --size-8xl: 6rem;
+  --size-9xl: 8rem;
+  --size-10xl: 10rem;
+}
+
+/* ======================================= */
+/* ========|| General Styling ||========== */
+/* ======================================= */
+body {
+  font-family: var(--ff-base);
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-neutral-900);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-accent);
+}
+/* ======================================= */
+/* ===========|| Main Style ||============ */
+/* ======================================= */
+
+main {
+  padding-top: var(--spacing-900);
+}
+
+/* button shadow  left-right/ down-up/ blur/ spread */
+/* box-shadow: inset 0px -2px 0px 1px rgba(0,0,0,0.4); */
+
+/* 
+[cl] console.log
+[qs] querySelector
+[qsa] querySelectorAll
+[js] JSON.stringify
+[jp] JSON.parse
+*/
