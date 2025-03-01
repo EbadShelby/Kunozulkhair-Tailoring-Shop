@@ -64,6 +64,7 @@
             </svg>
           </button>
         </div>
+
         <div class="header__icons">
           <button class="header__icon">
             <svg
@@ -118,11 +119,13 @@
       <nav class="header__nav">
         <ul class="header__nav-links">
           <li><a class="header__link" href="">Home</a></li>
-          <li><a class="header__link" href="">Services</a></li>
           <li><a class="header__link" href="">Shop</a></li>
-          <li><a class="header__link" href="">New Arrivals</a></li>
-          <li><a class="header__link" href="">Help & Support</a></li>
+          <li><a class="header__link" href="">Services</a></li>
+          <li><a class="header__link" href="">Appointments</a></li>
+          <li><a class="header__link" href="">Orders</a></li>
           <li><a class="header__link" href="">About Us</a></li>
+          <li><a class="header__link" href="">Contact</a></li>
+          <li><a class="header__link" href="">Help & Support</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -222,88 +225,34 @@
         </div>
       </div>
 
-      <!-- SERVICES/COLLECTIONS SECTION -->
-      <section class="services-section">
-        <!-- Reusable section class -->
+      <section class="featured-categories">
         <div class="container">
-          <!-- Match your carousel's container class -->
-          <div class="services-grid">
-            <!-- Grid wrapper -->
-            <!-- Grid Item 1: Tailoring -->
-            <article class="services-grid__item">
-              <!-- BEM-like naming -->
-              <a href="/tailoring" class="services-grid__link">
-                <!-- Wrap entire card in link if clickable -->
-                <div class="services-grid__content">
-                  <h2 class="services-grid__heading">MASTER TAILORING CRAFT</h2>
-                  <p class="services-grid__subhead">
-                    Precision Stitching for Perfect Fits
-                  </p>
-                </div>
-                <button
-                  class="services-grid__cta"
-                  aria-label="Explore Tailoring Services"
-                >
-                  Discover More
-                </button>
-              </a>
-            </article>
-
-            <!-- Grid Item 2: Embroidery -->
-            <article class="services-grid__item">
-              <a href="embroidery.html" class="services-grid__link">
-                <div class="services-grid__content">
-                  <h2 class="services-grid__heading">EMBROIDERY ARTISTRY</h2>
-                  <p class="services-grid__subhead">
-                    Transform Fabrics with Timeless Designs
-                  </p>
-                </div>
-                <button
-                  class="services-grid__cta"
-                  aria-label="View Embroidery Gallery"
-                >
-                  Explore Designs
-                </button>
-              </a>
-            </article>
-
-            <!-- Grid Item 3: Alterations -->
-            <article class="services-grid__item">
-              <a href="/alterations" class="services-grid__link">
-                <div class="services-grid__content">
-                  <h2 class="services-grid__heading">INSTANT ALTERATIONS</h2>
-                  <p class="services-grid__subhead">
-                    Same-Day Fixes for Your Favorite Outfits
-                  </p>
-                </div>
-                <button
-                  class="services-grid__cta"
-                  aria-label="Book Alteration Appointment"
-                >
-                  Schedule Now
-                </button>
-              </a>
-            </article>
-
-            <!-- Grid Item 4: Dress Shop -->
-            <article class="services-grid__item">
-              <a href="/dresses" class="services-grid__link">
-                <div class="services-grid__content">
-                  <h2 class="services-grid__heading">THE DRESS COLLECTION</h2>
-                  <p class="services-grid__subhead">
-                    Curated Styles for Every Occasion
-                  </p>
-                </div>
-                <button
-                  class="services-grid__cta"
-                  aria-label="Browse Dress Collection"
-                >
-                  Shop Now
-                </button>
-              </a>
-            </article>
+          <h2 class="section-title">Explore Our Services</h2>
+          <div class="categories-grid">
+            <a href="shop.html" class="category-card">
+              <img src="assets/images/logo.jpg" alt="Shop Now" />
+              <span>Shop Now</span>
+            </a>
+            <a href="tailoring.html" class="category-card">
+              <img src="assets/images/logo.jpg" alt="Custom Tailoring" />
+              <span>Custom Tailoring</span>
+            </a>
+            <a href="appointment.html" class="category-card">
+              <img src="assets/images/logo.jpg" alt="Book an Appointment" />
+              <span>Book an Appointment</span>
+            </a>
+            <a href="new-arrivals.html" class="category-card">
+              <img src="assets/images/logo.jpg" alt="New Arrivals" />
+              <span>New Arrivals</span>
+            </a>
+            <a href="best-sellers.html" class="category-card">
+              <img src="assets/images/logo.jpg" alt="Best Sellers" />
+              <span>Best Sellers</span>
+            </a>
           </div>
         </div>
+
+        
       </section>
     </main>
     <footer></footer>

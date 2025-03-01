@@ -108,7 +108,6 @@
   .header__nav-links {
     display: flex;
     align-items: center;
-    padding-inline: var(--spacing-150);
     gap: var(--spacing-500);
   }
 
