@@ -269,3 +269,44 @@
   border-radius: var(--spacing-100);
   text-decoration: none;
 }
+
+/* ===============|| Testimonials ||============= */
+.why-choose-us {
+  padding: var(--spacing-500) 0;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-300);
+  justify-content: center;
+  margin-top: var(--spacing-300);
+}
+
+/* Reason Card */
+.reason-card {
+  background: var(--clr-neutral-100);
+  padding: var(--spacing-200);
+  border-radius: var(--spacing-100);
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reason-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-bottom: var(--spacing-150);
+}
+
+.reason-card h3 {
+  font-size: var(--size-lg);
+  font-family: var(--ff-base);
+  color: var(--clr-secondary);
+}
+
+.reason-card p {
+  font-size: var(--size-base);
+  color: var(--clr-neutral-400);
+  margin-top: var(--spacing-50);
+}
