@@ -106,7 +106,7 @@
   justify-items: center;
   padding: 15px;
   background: #f8f8f8;
-  border-radius: .625rem;
+  border-radius: 0.625rem;
   text-decoration: none;
   color: #333;
 }
@@ -119,4 +119,99 @@
 .category-card span {
   font-size: var(--size-lg);
   font-weight: var(--fw-bold);
+}
+
+/* ===============|| Featured Products ||============= */
+
+.featured-products {
+  padding: var(--spacing-500) 0;
+}
+
+.section-title {
+  font-size: var(--size-3xl);
+  font-family: var(--ff-accent);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-400);
+  color: var(--clr-secondary);
+}
+
+/* Carousel Container */
+.product-carousel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Track (Slides Container) */
+.product-track-container {
+  overflow: hidden;
+  width: 80%;
+}
+
+.product-track {
+  display: flex;
+  gap: var(--spacing-200);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Individual Product Slide */
+.product-slide {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  justify-items: center;
+  background: var(--clr-neutral-100);
+  padding: var(--spacing-200);
+  border-radius: var(--spacing-100);
+  min-width: 200px;
+}
+
+.product-slide img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: var(--spacing-100);
+}
+
+.product-slide h3 {
+  font-size: var(--size-lg);
+  font-family: var(--ff-base);
+  color: var(--clr-neutral-400);
+}
+
+.product-slide .price {
+  font-size: var(--size-base);
+  font-weight: var(--fw-medium);
+  color: var(--clr-secondary);
+  margin-bottom: var(--spacing-100);
+}
+
+/* Add to Cart Button */
+.btn-cart {
+  background: var(--clr-primary);
+  color: var(--clr-neutral-900);
+  font-weight: var(--fw-bold);
+  padding: var(--spacing-100) var(--spacing-200);
+  border-radius: var(--spacing-100);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Carousel Buttons */
+.carousel-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-100);
+}
+
+.carousel-button svg {
+  width: var(--size-3xl);
+  height: var(--size-3xl);
+  color: var(--clr-neutral-400);
+}
+
+.carousel-button:hover svg {
+  color: var(--clr-primary);
 }
