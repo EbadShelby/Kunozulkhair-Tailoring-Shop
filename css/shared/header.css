@@ -97,12 +97,6 @@
   text-decoration: none;
 }
 
-.icon {
-  color: var(--clr-neutral-900);
-  width: 2rem;
-  height: 2rem;
-}
-
 /* xs */
 /* @media (min-width: 475px) {} */
 
