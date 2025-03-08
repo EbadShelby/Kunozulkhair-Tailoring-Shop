@@ -134,7 +134,7 @@
 .section-title {
   font-size: var(--size-3xl);
   font-family: var(--ff-accent);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   margin-bottom: var(--spacing-400);
   color: var(--clr-secondary);
 }
@@ -151,7 +151,6 @@
 /* Track (Slides Container) */
 .product-track-container {
   overflow: hidden;
-  width: 80%;
 }
 
 .product-track {
@@ -186,7 +185,7 @@
 
 .product-slide .price {
   font-size: var(--size-base);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-bold);
   color: var(--clr-secondary);
   margin-bottom: var(--spacing-100);
 }
@@ -195,7 +194,7 @@
 .btn-cart {
   background: var(--clr-primary);
   color: var(--clr-neutral-900);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   padding: var(--spacing-100) var(--spacing-200);
   border-radius: var(--spacing-100);
   cursor: pointer;
@@ -268,7 +267,7 @@
   display: inline-block;
   background: var(--clr-primary);
   color: var(--clr-neutral-900);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   padding: var(--spacing-100) var(--spacing-200);
   border-radius: var(--spacing-100);
   text-decoration: none;
