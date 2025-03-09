@@ -59,6 +59,7 @@ body {
   font-family: var(--ff-base);
   background-color: var(--clr-neutral-100);
   color: var(--clr-neutral-900);
+  padding-bottom: 5em; /*temp*/
 }
 
 h1,
