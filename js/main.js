@@ -82,5 +82,9 @@ dotsNav.addEventListener("click", (e) => {
 });
 
 
+const featured_track = document.querySelector(".ads-carousel__track");
+const featured_slides = Array.from(track.children);
+const featured_nextButton = document.querySelector(".ads-carousel__button--right");
+const featured_prevButton = document.querySelector(".ads-carousel__button--left");
 
-
+const featured_slideWidth = slides[0].getBoundingClientRect().width;
