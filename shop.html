@@ -108,7 +108,7 @@
       </div>
       <nav class="header__nav container">
         <ul class="header__nav-links">
-          <li><a class="header__link" href="">Home</a></li>
+          <li><a class="header__link" href="index.html">Home</a></li>
           <li><a class="header__link" href="">Shop</a></li>
           <li><a class="header__link" href="">Services</a></li>
           <li><a class="header__link" href="">Appointments</a></li>
@@ -135,6 +135,7 @@
       </nav>
     </header>
     <main>
+      <!-- Shop Hero Section -->
       <section class="shop-hero container">
         <div class="shop-hero__content">
           <h1 class="shop-hero__title">Discover Your Perfect Outfit!</h1>
@@ -143,7 +144,126 @@
           </p>
         </div>
       </section>
+
+      <!-- Shop Layout (Filters + Products) -->
+      <section class="shop-layout container">
+        <!-- Left: Filters -->
+        <aside class="shop-filters">
+          <h2 class="shop-filters__title">Filter by</h2>
+          <div class="shop-filters__group">
+            <h3>Category</h3>
+            <label><input type="checkbox" /> Dresses</label>
+            <label><input type="checkbox" /> Tops</label>
+            <label><input type="checkbox" /> Bottoms</label>
+            <label><input type="checkbox" /> Accessories</label>
+          </div>
+
+          <div class="shop-filters__group">
+            <h3>Price Range</h3>
+            <input type="range" min="0" max="500" step="10" />
+          </div>
+        </aside>
+
+        <!-- Right: Products Grid -->
+        <section class="shop-products">
+          <article class="product-card">
+            <img src="assets/images/product1.jpg" alt="Product 1" />
+            <h3>Elegant Dress</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+          </article>
+
+          <article class="product-card">
+            <img src="assets/images/product2.jpg" alt="Product 2" />
+            <h3>Stylish Top</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+          </article>
+
+          <article class="product-card">
+            <img src="assets/images/product3.jpg" alt="Product 3" />
+            <h3>Classic Pants</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+          </article>
+
+          <article class="product-card">
+            <img src="assets/images/product4.jpg" alt="Product 4" />
+            <h3>Chic Handbag</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+          </article>
+        </section>
+      </section>
     </main>
+
+    <main>
+      <section class="shop-hero container">
+        <div class="shop-hero__content">
+          <h1 class="shop-hero__title">Discover Your Perfect Outfit!</h1>
+          <p class="shop-hero__subtitle">
+            Handcrafted clothing with precision and care.
+          </p>
+        </div>
+      </section>
+    
+      <section class="shop-layout container">
+        <!-- Left: Filters -->
+        <aside class="shop-filters">
+          <h2 class="filters-title">Filter by:</h2>
+    
+          <!-- Category Filter -->
+          <div class="filter-group">
+            <h3>Category</h3>
+            <label><input type="checkbox" /> Dresses</label>
+            <label><input type="checkbox" /> Tops</label>
+            <label><input type="checkbox" /> Bottoms</label>
+            <label><input type="checkbox" /> Outerwear</label>
+          </div>
+    
+          <!-- Size Filter -->
+          <div class="filter-group">
+            <h3>Size</h3>
+            <label><input type="checkbox" /> XS</label>
+            <label><input type="checkbox" /> S</label>
+            <label><input type="checkbox" /> M</label>
+            <label><input type="checkbox" /> L</label>
+            <label><input type="checkbox" /> XL</label>
+          </div>
+    
+          <!-- Price Filter -->
+          <div class="filter-group">
+            <h3>Price Range</h3>
+            <input type="range" min="0" max="200" value="100" />
+            <p>Max: <span id="price-value">$100</span></p>
+          </div>
+        </aside>
+    
+        <!-- Right: Product Grid -->
+        <section class="shop-products">
+          <div class="product-card">
+            <img src="assets/images/dress1.jpg" alt="Dress 1" />
+            <h3>Elegant Evening Dress</h3>
+            <p>$59.99</p>
+            <button>Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/dress2.jpg" alt="Dress 2" />
+            <h3>Casual Summer Dress</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/dress3.jpg" alt="Dress 3" />
+            <h3>Chic Party Dress</h3>
+            <p>$49.99</p>
+            <button>Add to Cart</button>
+          </div>
+        </section>
+      </section>
+    </main>
+    
+
     <footer></footer>
   </body>
 </html>
