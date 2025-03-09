@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>services</title>
+
+    <link rel="stylesheet" href="css/pages/services.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
@@ -136,8 +138,154 @@
         </button>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <section class="hero">
+        <div class="hero__content container">
+          <h1 class="hero__title">
+            Tailoring Services – Crafted Just for You!
+          </h1>
+          <p class="hero__description">
+            Get high-quality custom dressmaking, alterations, and embroidery
+            services tailored to your needs.
+          </p>
+          <a href="appointments.html" class="hero__btn">Book an Appointment</a>
+        </div>
+      </section>
+
+      <section class="services-overview container">
+        <h2 class="services-overview__title">Our Tailoring Services</h2>
+        <div class="services-overview__grid">
+          <div class="service-card">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Custom Dressmaking"
+              class="service-card__img"
+            />
+            <h3 class="service-card__title">Custom Dressmaking</h3>
+            <p class="service-card__description">
+              Get a dress made just for you with the perfect fit and design.
+            </p>
+            <a href="services.html#custom-dressmaking" class="service-card__btn"
+              >Learn More</a
+            >
+          </div>
+
+          <div class="service-card">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Alterations & Repairs"
+              class="service-card__img"
+            />
+            <h3 class="service-card__title">Alterations & Repairs</h3>
+            <p class="service-card__description">
+              Make your old clothes fit perfectly again with our expert
+              tailoring.
+            </p>
+            <a href="services.html#alterations" class="service-card__btn"
+              >Learn More</a
+            >
+          </div>
+
+          <div class="service-card">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Embroidery Services"
+              class="service-card__img"
+            />
+            <h3 class="service-card__title">Embroidery Services</h3>
+            <p class="service-card__description">
+              Add a personal touch to your outfits with custom embroidery.
+            </p>
+            <a href="services.html#embroidery" class="service-card__btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works container">
+        <h2 class="how-it-works__title">How It Works</h2>
+        <div class="how-it-works__steps">
+          
+          <div class="step-card">
+            <div class="step-card__number">1</div>
+            <h3 class="step-card__title">Choose Your Service</h3>
+            <p class="step-card__description">
+              Select from custom dressmaking, alterations, or embroidery services.
+            </p>
+          </div>
+      
+          <div class="step-card">
+            <div class="step-card__number">2</div>
+            <h3 class="step-card__title">Book an Appointment</h3>
+            <p class="step-card__description">
+              Schedule a fitting or consultation online or visit our shop.
+            </p>
+          </div>
+      
+          <div class="step-card">
+            <div class="step-card__number">3</div>
+            <h3 class="step-card__title">Get Your Perfect Fit</h3>
+            <p class="step-card__description">
+              Our skilled tailors will craft or alter your clothes to perfection.
+            </p>
+          </div>
+          
+        </div>
+      </section>
+      
+      <section class="faq container">
+        <h2 class="faq__title">Frequently Asked Questions</h2>
+        <div class="faq__list">
+          
+          <div class="faq__item">
+            <button class="faq__question">How long does a custom dress take? <span class="faq__icon">+</span></button>
+            <div class="faq__answer">
+              <p>Custom dresses typically take 2-4 weeks, depending on design complexity and fabric availability.</p>
+            </div>
+          </div>
+      
+          <div class="faq__item">
+            <button class="faq__question">Do you accept rush orders? <span class="faq__icon">+</span></button>
+            <div class="faq__answer">
+              <p>Yes, we offer rush services for an additional fee. Please contact us for availability.</p>
+            </div>
+          </div>
+      
+          <div class="faq__item">
+            <button class="faq__question">Can I bring my own fabric? <span class="faq__icon">+</span></button>
+            <div class="faq__answer">
+              <p>Absolutely! You can bring your own fabric, and we’ll craft your dress accordingly.</p>
+            </div>
+          </div>
+      
+          <div class="faq__item">
+            <button class="faq__question">What types of alterations do you offer? <span class="faq__icon">+</span></button>
+            <div class="faq__answer">
+              <p>We offer resizing, hemming, zipper replacements, and other alterations to make your clothes fit perfectly.</p>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+
+      <section class="contact-cta container">
+        <div class="contact-cta__content">
+          <h2 class="contact-cta__title">Ready to Get Started?</h2>
+          <p class="contact-cta__text">
+            Have questions or need a custom dress made? Contact us today or book an appointment to get started!
+          </p>
+          <div class="contact-cta__buttons">
+            <a href="contact.html" class="btn btn--primary">Contact Us</a>
+            <a href="appointments.html" class="btn btn--secondary">Book an Appointment</a>
+          </div>
+        </div>
+      </section>
+      
+    </main>
 
     <footer></footer>
+
+    <script src="js/services.js"></script>
   </body>
 </html>
