@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.container {
+    display: flex;
+    width: 850px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.image-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-container {
+    flex: 1;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+
+h2 {
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
+p {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.actions a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+button {
+    padding: 12px;
+    background: #FFD700;
+    color: #333;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffcc00;
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-icons img {
+    width: 40px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.register {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register a {
+    color: #FFD700;
+    text-decoration: none;
+}
