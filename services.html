@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>services</title>
 
-    <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/shared/footer.css" />
     <link rel="stylesheet" href="css/pages/services.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
@@ -113,7 +113,14 @@
         <ul class="header__nav-links">
           <li><a class="header__link" href="index.html">Home</a></li>
           <li><a class="header__link" href="shop.html">Shop</a></li>
-          <li><a class="header__link" href="services.html">Services</a></li>
+          <li class="header__dropdown">
+            <a class="header__link" href="services.html">Services</a>
+            <ul class="header__dropdown-menu">
+              <li><a href="embroidery.html">Embroidery Services</a></li>
+              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
+              <li><a href="alterations.html">Alterations & Repairs</a></li>
+            </ul>
+          </li>
           <li>
             <a class="header__link" href="appointments.html">Appointments</a>
           </li>
@@ -207,15 +214,15 @@
       <section class="how-it-works container">
         <h2 class="how-it-works__title">How It Works</h2>
         <div class="how-it-works__steps">
-          
           <div class="step-card">
             <div class="step-card__number">1</div>
             <h3 class="step-card__title">Choose Your Service</h3>
             <p class="step-card__description">
-              Select from custom dressmaking, alterations, or embroidery services.
+              Select from custom dressmaking, alterations, or embroidery
+              services.
             </p>
           </div>
-      
+
           <div class="step-card">
             <div class="step-card__number">2</div>
             <h3 class="step-card__title">Book an Appointment</h3>
@@ -223,50 +230,70 @@
               Schedule a fitting or consultation online or visit our shop.
             </p>
           </div>
-      
+
           <div class="step-card">
             <div class="step-card__number">3</div>
             <h3 class="step-card__title">Get Your Perfect Fit</h3>
             <p class="step-card__description">
-              Our skilled tailors will craft or alter your clothes to perfection.
+              Our skilled tailors will craft or alter your clothes to
+              perfection.
             </p>
           </div>
-          
         </div>
       </section>
-      
+
       <section class="faq container">
         <h2 class="faq__title">Frequently Asked Questions</h2>
         <div class="faq__list">
-          
           <div class="faq__item">
-            <button class="faq__question">How long does a custom dress take? <span class="faq__icon">+</span></button>
+            <button class="faq__question">
+              How long does a custom dress take?
+              <span class="faq__icon">+</span>
+            </button>
             <div class="faq__answer">
-              <p>Custom dresses typically take 2-4 weeks, depending on design complexity and fabric availability.</p>
+              <p>
+                Custom dresses typically take 2-4 weeks, depending on design
+                complexity and fabric availability.
+              </p>
             </div>
           </div>
-      
+
           <div class="faq__item">
-            <button class="faq__question">Do you accept rush orders? <span class="faq__icon">+</span></button>
+            <button class="faq__question">
+              Do you accept rush orders? <span class="faq__icon">+</span>
+            </button>
             <div class="faq__answer">
-              <p>Yes, we offer rush services for an additional fee. Please contact us for availability.</p>
+              <p>
+                Yes, we offer rush services for an additional fee. Please
+                contact us for availability.
+              </p>
             </div>
           </div>
-      
+
           <div class="faq__item">
-            <button class="faq__question">Can I bring my own fabric? <span class="faq__icon">+</span></button>
+            <button class="faq__question">
+              Can I bring my own fabric? <span class="faq__icon">+</span>
+            </button>
             <div class="faq__answer">
-              <p>Absolutely! You can bring your own fabric, and we’ll craft your dress accordingly.</p>
+              <p>
+                Absolutely! You can bring your own fabric, and we’ll craft your
+                dress accordingly.
+              </p>
             </div>
           </div>
-      
+
           <div class="faq__item">
-            <button class="faq__question">What types of alterations do you offer? <span class="faq__icon">+</span></button>
+            <button class="faq__question">
+              What types of alterations do you offer?
+              <span class="faq__icon">+</span>
+            </button>
             <div class="faq__answer">
-              <p>We offer resizing, hemming, zipper replacements, and other alterations to make your clothes fit perfectly.</p>
+              <p>
+                We offer resizing, hemming, zipper replacements, and other
+                alterations to make your clothes fit perfectly.
+              </p>
             </div>
           </div>
-      
         </div>
       </section>
 
@@ -274,15 +301,17 @@
         <div class="contact-cta__content">
           <h2 class="contact-cta__title">Ready to Get Started?</h2>
           <p class="contact-cta__text">
-            Have questions or need a custom dress made? Contact us today or book an appointment to get started!
+            Have questions or need a custom dress made? Contact us today or book
+            an appointment to get started!
           </p>
           <div class="contact-cta__buttons">
             <a href="contact.html" class="btn btn--primary">Contact Us</a>
-            <a href="appointments.html" class="btn btn--secondary">Book an Appointment</a>
+            <a href="appointments.html" class="btn btn--secondary"
+              >Book an Appointment</a
+            >
           </div>
         </div>
       </section>
-      
     </main>
 
     <footer class="site-footer">
