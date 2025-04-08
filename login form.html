@@ -1,44 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/shared/login form.css" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="css/shared/login form.css">
-</head>
-<body>
-    <div class="container">
-        <div class="image-container">
-            <img src="assets/images/Banner logo 2.0.jpg" alt="Decorative Image">
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>or use your email for registration</span>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        <form>
+          <h1>Sign In</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>or use your email password</span>
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <a href="#">Forget Your Password?</a>
+          <button>Sign In</button>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome to your Perfect Fit!</h1>
+            <p
+            >Enter your personal details to use all of site features
+            </p>
+            <button class="hidden" id="login">Sign In</button>
+            <h6>
+             <br>
+             Already have an account? Sign In Now!
+            </h6>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Welcome Back, Trendsetter!</h1>
+            <p>
+              Register with your personal details to use all of site features
+            </p>
+            <button class="hidden" id="register">Sign Up</button>
+            <h6>
+             <br>
+             Don't have an account? Sign Up Now!
+            </h6>
+          </div>
         </div>
-        <div class="login-container">
-            <h2>Welcome Back!</h2>
-            <p>Please enter your credentials to continue.</p>
-            <form>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
-                
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-
-                <div class="actions">
-                    <a href="#">Forgot Password?</a>
-                </div>
-
-                <button type="submit">Sign In</button>
-
-                <div class="social-login">
-                    <p>Or sign in with</p>
-                    <div class="social-icons">
-                        <img src="google-icon.png" alt="Google">
-                        <img src="facebook-icon.png" alt="Facebook">
-                        <img src="twitter-icon.png" alt="Twitter">
-                    </div>
-                </div>
-
-                <p class="register">Don't have an account? <a href="#">Create one</a></p>
-            </form>
-        </div>
+      </div>
     </div>
-</body>
+
+    <script src="js/login form.js"></script>
+  </body>
 </html>
