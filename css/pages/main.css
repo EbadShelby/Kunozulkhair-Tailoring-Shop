@@ -146,6 +146,7 @@
 
 .featured-products {
   padding: var(--spacing-500) 0;
+  background-color: darkred;
 }
 
 .section-title {
@@ -157,27 +158,29 @@
 }
 
 /* Carousel Container */
-.product-carousel {
+.featured-product-carousel {
   display: flex;
   align-items: center;
   gap: var(--spacing-200);
+  height: 300px;
   overflow: hidden;
   position: relative;
+  background-color: red;
 }
 
 /* Track (Slides Container) */
-.product-track-container {
+.featured-product-track-container {
   overflow: hidden;
 }
 
-.product-track {
+.featured-product-track {
   display: flex;
   gap: var(--spacing-200);
   transition: transform 0.3s ease-in-out;
 }
 
 /* Individual Product Slide */
-.product-slide {
+.featured-product-slide {
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 3;
@@ -186,21 +189,26 @@
   padding: var(--spacing-200);
   border-radius: var(--spacing-100);
   min-width: 200px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 
-.product-slide img {
+.featured-product-slide img {
   width: 100%;
   max-width: 180px;
   border-radius: var(--spacing-100);
 }
 
-.product-slide h3 {
+.featured-product-slide h3 {
   font-size: var(--size-lg);
   font-family: var(--ff-base);
   color: var(--clr-neutral-400);
 }
 
-.product-slide .price {
+.featured-product-slide .price {
   font-size: var(--size-base);
   font-weight: var(--fw-bold);
   color: var(--clr-secondary);
