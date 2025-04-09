@@ -92,7 +92,7 @@
   /* max-width: 60em; */
   display: grid;
   margin-inline: auto;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
 }
 
@@ -103,16 +103,34 @@
   grid-row: span 2;
   align-items: center;
   justify-items: center;
+
+  position: relative;
+
   padding: 15px;
-  background: #f8f8f8;
   border-radius: 0.625rem;
+  background: #f8f8f8;
+
   text-decoration: none;
   color: #333;
-  position: relative;
+}
+
+.category-card:nth-child(1) {
+  grid-column: span 2;
+}
+.category-card:nth-child(2) {
+  grid-column: span 2;
+}
+.category-card:nth-child(3) {
+  grid-column: span 2;
+}
+.category-card:nth-child(4) {
+  grid-column: 2 / 4;
+}
+.category-card:nth-child(5) {
+  grid-column: 4 / 6;
 }
 
 .category-card img {
-  /* width: 3.125em; */
   aspect-ratio: 1/1;
 }
 
@@ -123,7 +141,6 @@
   background-color: #f8f8f8;
   bottom: 10%;
 }
-
 
 /* ===============|| Featured Products ||============= */
 
