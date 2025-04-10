@@ -227,21 +227,35 @@
 }
 
 /* Carousel Buttons */
-.carousel-button {
+.featured-product_carousel-button {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: var(--spacing-100);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
-.carousel-button svg {
+.featured-product_carousel-button svg {
   width: var(--size-3xl);
   height: var(--size-3xl);
   color: var(--clr-neutral-400);
 }
 
-.carousel-button:hover svg {
+.featured-product_carousel-button:hover svg {
   color: var(--clr-primary);
+}
+
+.featured-product_carousel-button--right {
+
+  right: var(--spacing-200);
+
+}
+.featured-product_carousel-button--left {
+
+  left: var(--spacing-200);
 }
 
 /* ===============|| Tailoring Services ||============= */
