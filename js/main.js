@@ -82,3 +82,11 @@ dotsNav.addEventListener("click", (e) => {
 });
 
 // featured products carousel
+const featuredTrack = document.querySelector(".ads-carousel__track");
+const featuredSlides = Array.from(track.children);
+const featuredNextButton = document.querySelector(
+  ".ads-carousel__button--right"
+);
+const featuredPrevButton = document.querySelector(
+  ".ads-carousel__button--left"
+);
