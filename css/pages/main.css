@@ -146,7 +146,7 @@
 
 .featured-products {
   padding: var(--spacing-500) 0;
-  background-color: darkred;
+  /* background-color: darkred; */
 }
 
 .section-title {
