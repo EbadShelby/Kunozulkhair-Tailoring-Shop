@@ -244,7 +244,8 @@
 .featured-product_carousel-button svg {
   width: var(--size-3xl);
   height: var(--size-3xl);
-  color: var(--clr-neutral-400);
+  color: var(--clr-neutral-900);
+  
 }
 
 .featured-product_carousel-button:hover svg {
