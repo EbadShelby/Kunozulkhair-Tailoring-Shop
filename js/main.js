@@ -81,12 +81,51 @@ dotsNav.addEventListener("click", (e) => {
   hideShowArrows(slides, prevButton, nextButton, targetIndex);
 });
 
+
 // featured products carousel
-const featuredTrack = document.querySelector(".ads-carousel__track");
-const featuredSlides = Array.from(track.children);
-const featuredNextButton = document.querySelector(
-  ".ads-carousel__button--right"
-);
-const featuredPrevButton = document.querySelector(
-  ".ads-carousel__button--left"
-);
+
+const featuredTrack = document.querySelector(".featured-product-track");
+const featuredSlides = Array.from(featuredTrack.children);
+const featuredNextButton = document.querySelector(".featured-product_carousel-button--right");
+const featuredPrevButton = document.querySelector(".featured-product_carousel-button--left");
+
+let currentIndex = 0;
+const visibleSlides = 6;
+const totalSlides = featuredSlides.length;
+const featuredSlideWidth = featuredSlides[0].getBoundingClientRect().width;
+const maxIndex = Math.ceil(totalSlides / visibleSlides) - 1;
+
+// featuredNextButton.addEventListener("click", () => {
+//   const remainingSlides = totalSlides - currentIndex * visibleSlides - visibleSlides;
+
+//   if (remainingSlides > 0) {
+//     // if more than visibleSlides left — move by visibleSlides
+//     if (remainingSlides >= visibleSlides) {
+//       currentIndex++;
+//     } else {
+//       // move just enough for the remaining slides
+//       currentIndex += remainingSlides / visibleSlides;
+//     }
+//     moveFeaturedTrack();
+//   }
+// });
+
+
+featuredNextButton.addEventListener("click", () => {
+  if (currentIndex < maxIndex) {
+    currentIndex++;
+    moveFeaturedTrack();
+  }
+});
+
+featuredPrevButton.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    moveFeaturedTrack();
+  }
+});
+
+function moveFeaturedTrack() {
+  const amountToMove = featuredSlideWidth * visibleSlides * currentIndex;
+  featuredTrack.style.transform = `translateX(-${amountToMove}px)`;
+}
