@@ -231,7 +231,9 @@
 
 /* Carousel Buttons */
 .featured-product_carousel-button {
-  background: transparent;
+  background: rgba(255, 255, 255, .5);
+  padding: 5px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
   padding: var(--spacing-100);
@@ -245,7 +247,7 @@
   width: var(--size-3xl);
   height: var(--size-3xl);
   color: var(--clr-neutral-900);
-  
+  /* stroke: #fff; */
 }
 
 .featured-product_carousel-button:hover svg {
