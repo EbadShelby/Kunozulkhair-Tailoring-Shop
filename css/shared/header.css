@@ -94,6 +94,23 @@
   color: var(--clr-neutral-900);
   text-transform: uppercase;
   text-decoration: none;
+  position: relative;
+}
+
+.header__link.active {
+  color: var(--clr-primary);
+}
+
+.header__link.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: var(--clr-primary);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  border-radius: 2px;
 }
 
 /* Dropdown Container */
