@@ -132,14 +132,27 @@
 
 .category-card img {
   aspect-ratio: 1/1;
+  border-radius: .5em;
 }
 
 .category-card span {
   font-size: var(--size-lg);
   font-weight: var(--fw-bold);
   position: absolute;
-  background-color: #f8f8f8;
+  background-color: rgba(248, 248, 248, 0.9);
   bottom: 10%;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1;
+}
+
+.category-card:hover span {
+  transform: translateY(-5px);
+  background-color: var(--clr-primary);
+  color: var(--clr-neutral-900);
 }
 
 /* ===============|| Featured Products ||============= */

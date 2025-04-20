@@ -354,6 +354,25 @@
   color: #444;
 }
 
+.cart-item span {
+  font-size: var(--size-base);
+  font-weight: var(--fw-medium);
+  color: var(--clr-neutral-900);
+  flex: 1;
+  text-align: left;
+  padding: 0.5em;
+}
+
+.quantity-control span {
+  display: inline-block;
+  min-width: 1.5em;
+  text-align: center;
+  font-weight: var(--fw-bold);
+  padding: 0.25em;
+  background-color: var(--clr-neutral-100);
+  border-radius: 4px;
+}
+
 .checkout-btn {
   width: 100%;
   padding: 10px;
