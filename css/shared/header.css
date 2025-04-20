@@ -82,6 +82,14 @@
   align-items: center;
   gap: var(--spacing-300);
 }
+.header__icons .cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 
 .header__nav-links {
   display: none;
