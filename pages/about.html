@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shop - Kunozulkhair Tailoring Shop </title>
-    <link rel="stylesheet" href="css/pages/shop.css" />
+    <title>About Us - Kunozulkhair Tailoring Shop</title>
+
+    <link rel="stylesheet" href="css/shared/footer.css" />
+    <link rel="stylesheet" href="css/pages/about.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
 
+    <!-- linked google fonts  -->
     <link
       href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -17,9 +20,6 @@
 
     <link rel="icon" href="assets/images/logo.jpg" type="image/png">
   </head>
-  
-  
-  
   <body>
     <header class="header">
       <div class="header__top container">
@@ -108,39 +108,6 @@
               />
             </svg>
           </a>
-
-          <!-- Cart Icon -->
-          <div class="cart-icon" id="cart-icon">
-            <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke-width="1.5" 
-            stroke="currentColor"
-            >
-            <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.3 6.3A1 1 0 0 0 6.7 21h10.6a1 1 0 0 0 1-.7L21 13H7z" 
-            />
-            </svg>
-            
-            <span class="cart-count" id="cart-count">0</span>
-          </div>
-        </div>
-
-        <!-- Cart Sidebar -->
-        <div class="cart-sidebar" id="cart-sidebar">
-          <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button id="close-cart">&times;</button>
-          </div>
-          <div class="cart-items" id="cart-items"></div>
-          <div class="cart-footer">
-          <p>Total: ₱<span id="cart-total">0</span></p>
-          <button class="checkout-btn">Checkout</button>
-          </div>
-          </div>
         </div>
       </div>
       <nav class="header__nav container">
@@ -184,143 +151,99 @@
       </nav>
     </header>
     <main>
-      <!-- Shop Hero Section -->
-      <section class="shop-hero container">
-        <div class="shop-hero__content">
-          <h1 class="shop-hero__title">Discover Your Perfect Outfit!</h1>
-          <p class="shop-hero__subtitle">
-            Handcrafted clothing with precision and care.
+      <section class="about-hero">
+        <div class="about-hero__content">
+          <h1 class="about-hero__title">Crafting Elegance, Stitch by Stitch</h1>
+          <p class="about-hero__description">
+            We create high-quality, custom-made dresses and offer expert
+            tailoring services to bring your fashion dreams to life.
           </p>
+          <a href="shop.html" class="btn btn-primary">Explore Our Collection</a>
         </div>
       </section>
 
-      <!-- Shop Layout (Filters + Products) -->
-      <section class="shop-layout container">
-        <aside class="shop-filters">
-          <!-- Size Filter -->
-          <div class="filter-group">
-            <h4>Size</h4>
-            <ul>
-              <li>
-                <input type="checkbox" id="xs" /> <label for="xs">XS</label>
-              </li>
-              <li><input type="checkbox" id="s" /> <label for="s">S</label></li>
-              <li><input type="checkbox" id="m" /> <label for="m">M</label></li>
-              <li><input type="checkbox" id="l" /> <label for="l">L</label></li>
-              <li>
-                <input type="checkbox" id="xl" /> <label for="xl">XL</label>
-              </li>
-            </ul>
+      <section class="mission-values">
+        <div class="mission">
+          <h2 class="mission__title">Our Mission</h2>
+          <p class="mission__description">
+            At KunoZulkhair Tailoring & Dress Shop, our mission is to craft
+            high-quality, custom-made dresses and provide expert tailoring
+            services that empower confidence and self-expression.
+          </p>
+        </div>
+
+        <div class="values">
+          <h2 class="values__title">Our Core Values</h2>
+          <div class="values__grid">
+            <div class="value-card">
+              <img
+                src="assets/images/logo.jpg"
+                alt="Quality Icon"
+                class="value-card__icon"
+              />
+              <h3 class="value-card__title">Quality Craftsmanship</h3>
+              <p class="value-card__description">
+                Every stitch is made with precision and care.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <img
+                src="assets/images/logo.jpg"
+                alt="Affordability Icon"
+                class="value-card__icon"
+              />
+              <h3 class="value-card__title">Affordability</h3>
+              <p class="value-card__description">
+                Premium quality at prices that fit your budget.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <img
+                src="assets/images/logo.jpg"
+                alt="Reliability Icon"
+                class="value-card__icon"
+              />
+              <h3 class="value-card__title">Reliability</h3>
+              <p class="value-card__description">
+                Timely service you can count on.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <img
+                src="assets/images/logo.jpg"
+                alt="Customer Satisfaction Icon"
+                class="value-card__icon"
+              />
+              <h3 class="value-card__title">Customer Satisfaction</h3>
+              <p class="value-card__description">
+                We put our customers at the heart of everything.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Color Filter -->
-          <div class="filter-group">
-            <h4>Color</h4>
-            <ul>
-              <li>
-                <input type="checkbox" id="black" />
-                <label for="black">Black</label>
-              </li>
-              <li>
-                <input type="checkbox" id="white" />
-                <label for="white">White</label>
-              </li>
-              <li>
-                <input type="checkbox" id="red" /> <label for="red">Red</label>
-              </li>
-              <li>
-                <input type="checkbox" id="blue" />
-                <label for="blue">Blue</label>
-              </li>
-              <li>
-                <input type="checkbox" id="green" />
-                <label for="green">Green</label>
-              </li>
-            </ul>
+      <section class="cta">
+        <div class="cta__content">
+          <h2 class="cta__title">
+            Experience Custom Tailoring Like Never Before
+          </h2>
+          <p class="cta__description">
+            Whether you need a custom dress, expert alterations, or beautiful
+            embroidery, we're here to bring your vision to life. Let's create
+            something amazing together!
+          </p>
+          <div class="cta__buttons">
+            <a href="contact.html" class="btn btn-primary">Get Started</a>
+            <a href="services.html" class="btn btn-secondary">Learn More</a>
           </div>
-
-          <!-- Price Filter -->
-          <div class="filter-group">
-            <h4>Price Range</h4>
-            <input type="range" min="20" max="200" step="5" value="50" />
-            <p>Up to: <span id="price-value">₱3000</span></p>
-          </div>
-
-          <!-- Sorting -->
-          <div class="filter-group">
-            <h4>Sort By</h4>
-            <select>
-              <option value="best-selling">Best Selling</option>
-              <option value="newest">Newest Arrivals</option>
-              <option value="low-to-high">Price: Low to High</option>
-              <option value="high-to-low">Price: High to Low</option>
-              <option value="top-rated">Highest Rated</option>
-            </select>
-          </div>
-        </aside>
-
-        <!-- Right: Products Grid -->
-        <section class="shop-products">
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 1" />
-            <h3>Dress</h3>
-            <p>₱49</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 2" />
-            <h3>Stylish Top</h3>
-            <p>₱29</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 3" />
-            <h3>Dress</h3>
-            <p>₱39</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 4" />
-            <h3>Dress</h3>
-            <p>₱59</p>
-            <button>Add to Cart</button>
-          </article>
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 1" />
-            <h3>Dress</h3>
-            <p>₱49</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 2" />
-            <h3>Dress</h3>
-            <p>₱29</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 3" />
-            <h3>Dress</h3>
-            <p>₱39</p>
-            <button>Add to Cart</button>
-          </article>
-
-          <article class="product-card">
-            <img src="assets/images/logo.jpg" alt="Product 4" />
-            <h3>Dress</h3>
-            <p>₱59</p>
-            <button>Add to Cart</button>
-          </article>
-        </section>
+        </div>
       </section>
     </main>
-
-
-      <footer class="site-footer">
+    <footer class="site-footer">
       <div class="container footer-grid">
         <!-- Contact Info -->
         <div class="footer-section">
@@ -358,8 +281,6 @@
         <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
       </div>
     </footer>
-    
-    <script src="js/shop.js"></script>
     <script src="js/header.js"></script>
   </body>
 </html>
