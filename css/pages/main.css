@@ -132,6 +132,8 @@
 
 .category-card img {
   aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: cover;
   border-radius: .5em;
 }
 
@@ -175,7 +177,6 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-200);
-  height: 300px;
   overflow: hidden;
   position: relative;
   /* background-color: red; */
@@ -188,10 +189,12 @@
 
 .featured-product-track {
   display: flex;
-  gap: var(--spacing-200);
+  gap: var(--spacing-400);
   transition: transform 0.3s ease-in-out;
   /* position: relative; */
   height: 100%;
+  padding: var(--spacing-500) 0;
+
 }
 
 /* Individual Product Slide */
@@ -202,8 +205,9 @@
   justify-items: center;
   background: var(--clr-neutral-100);
   padding: var(--spacing-200);
-  border-radius: var(--spacing-100);
-  min-width: 200px;
+  border-radius: var(--size-xs);
+  max-width: 240px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   flex: 0 0 auto;
   /* position: absolute;
@@ -214,30 +218,32 @@
 
 .featured-product-slide img {
   width: 100%;
-  max-width: 180px;
+  /* max-width: 240px; */
+  aspect-ratio: 3/4;
   border-radius: var(--spacing-100);
+  object-fit: cover;
+  margin-bottom: var(--spacing-200);
 }
 
 .featured-product-slide h3 {
   font-size: var(--size-lg);
-  font-family: var(--ff-base);
-  color: var(--clr-neutral-400);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--spacing-100);
 }
 
 .featured-product-slide .price {
   font-size: var(--size-base);
-  font-weight: var(--fw-bold);
   color: var(--clr-secondary);
-  margin-bottom: var(--spacing-100);
+  margin-bottom: var(--spacing-200);
 }
 
 /* Add to Cart Button */
 .btn-cart {
   background: var(--clr-primary);
   color: var(--clr-neutral-900);
-  font-weight: var(--fw-medium);
   padding: var(--spacing-100) var(--spacing-200);
-  border-radius: var(--spacing-100);
+  border: none;
+  border-radius: var(--size-xs);
   cursor: pointer;
   transition: background 0.3s ease;
 }
