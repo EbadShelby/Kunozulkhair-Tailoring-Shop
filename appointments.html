@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
     <link rel="stylesheet" href="css/pages/shop.css">
+    <link rel="stylesheet" href="css/pages/appointment.css">
 
     <!-- linked google fonts  -->
     <link
@@ -151,8 +152,87 @@
         </button>
       </nav>
     </header>
-    <main><h1>SOON...</h1></main>
-    <footer></footer>
+    
+    
+    <main>
+      <div class="appointment-container">
+        <div class="appointment-page">
+        <section>
+          <div class="header_appointment">
+            <h1>Book an Appointment</h1>
+          </div>
+          <form class="appointment-form" id="appointment-form">
+            <label for="name">Full Name:</label>
+              <input 
+              type="text" 
+              id="name" 
+              name="name"
+              placeholder="Enter you full name"
+              required 
+              />
+
+            <label for="email">Email Address:</label>
+              <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="Enter your email address"
+              required 
+              />
+
+              <label for="phone">Phone Number:</label>
+              <input 
+              type="tel"
+              id="phone" 
+              name="phone" 
+              placeholder="Enter your phone number"
+              required 
+              />
+
+              <label for="service">Select Service:</label>
+              
+               <select 
+               id="service" 
+               name="service" 
+               required
+               >
+              <option value="">-- Select a Service --</option>
+                <option value="embroidery">Embroidery Services</option>
+                <option value="custom-dressmaking">Custom Dressmaking</option>
+                <option value="alterations">Alterations & Repairs</option>
+                <option value="bridal">Bridal & Formal Wear</option>
+                <option value="curtains">Curtains & Home Textiles</option>
+                <option value="casual">Casual & Everyday Dresses</option>
+                </select>
+                
+              <label for="date">Preferred Date:</label>
+              <input 
+              type="date" 
+              id="date" 
+              name="date" 
+              required 
+              />
+              <label for="time">Preferred Time:</label>
+              <input 
+              type="time" 
+              id="time" 
+              name="time"
+              required 
+              />
+
+              <label for="notes">Additional Notes:</label>
+              <textarea 
+              id="notes" 
+              name="notes" 
+              rows="4"
+              placeholder="Pleave leave your notes here.."
+              >
+              </textarea>
+
+          <button type="submit">Book Appointment</button>
+          </form>
+        </section>
+    </main>
 
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cart-sidebar">
@@ -169,5 +249,6 @@
 
     <script src="js/header.js"></script>
     <script src="js/shop.js"></script>
+    <script src="appointment.js"></script>
   </body>
 </html>

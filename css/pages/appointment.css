@@ -1,0 +1,59 @@
+/* appointmement.css */
+
+.appointment-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.header_appointment h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background-color: black;
+  background: linear-gradient(to left, hsl(50, 91%, 52%), black);
+  font-size: 2rem;
+  color: white;
+  padding: 10px 0px 10px 0px;
+  border: none;
+  border-radius: 10px;
+}
+
+.appointment-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.appointment-form input,
+.appointment-form select,
+.appointment-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.appointment-form button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: hsl(50, 91%, 52%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.appointment-form button:hover {
+  background-color: bl;
+}
