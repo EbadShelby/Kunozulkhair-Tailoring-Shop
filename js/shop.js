@@ -33,12 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Function to add product to cart - now exposed globally so products.js can access it
 function addToCart(productName, price) {
+  // Convert price to number if it's a string
+  const priceValue = typeof price === 'string' ? parseFloat(price.replace('₱', '')) : price;
+  
   const existing = cart.find(item => item.name === productName);
   if (existing) {
     existing.quantity++;
   } else {
-    cart.push({ name: productName, price: parseFloat(price), quantity: 1 });
+    cart.push({ name: productName, price: priceValue, quantity: 1 });
   }
   updateCart();
 }
@@ -90,4 +94,5 @@ function decreaseQuantity(name) {
 document.querySelector('.cart-toggle-btn')?.addEventListener('click', function () {
   document.querySelector('.cart')?.classList.toggle('show-cart');
 });
+
 
