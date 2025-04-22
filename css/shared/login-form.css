@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+.login-page .login-main{
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-page .login-main h1,
+.login-page .login-main h6,
+.login-page .login-main p {
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
     background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background: linear-gradient(to bottom, #e2e2e2, black);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +19,7 @@ body{
     height: 100vh;
 }
 
-.container{
+.container_lf{
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -28,26 +30,26 @@ body{
     min-height: 480px;
 }
 
-.container p{
+.container_lf p{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
 }
 
-.container span{
+.container_lf span{
     font-size: 12px;
 }
 
-.container a{
+.container_lf a{
     color: #333;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
-.container button{
-    background-color: #2da0a8;
+.container_lf button{
+    background-color: hsl(50, 91%, 52%);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -60,12 +62,12 @@ body{
     cursor: pointer;
 }
 
-.container button.hidden{
+.container_lf button.hidden{
     background-color: transparent;
     border-color: #fff;
 }
 
-.container form{
+.container_lf form{
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -75,7 +77,7 @@ body{
     height: 100%;
 }
 
-.container input{
+.container_lf input{
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -110,7 +112,7 @@ body{
     z-index: 1;
 }
 
-.container.active .sign-up{
+.container_lf.active .sign-up{
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -155,15 +157,15 @@ body{
     z-index: 1000;
 }
 
-.container.active .toggle-container{
+.container_lf.active .toggle-container{
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
 
 .toggle{
-    background-color: #2da0a8;
+    background-color: black;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #2da0a8);
+    background: linear-gradient(to top, hsl(50, 91%, 52%), black);
     color: #fff;
     position: relative;
     left: -100%;
@@ -173,7 +175,7 @@ body{
     transition: all 0.6s ease-in-out;
 }
 
-.container.active .toggle{
+.container_lf.active .toggle{
     transform: translateX(50%);
 }
 
@@ -185,7 +187,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 30px;
+    padding: 30px 30px;
     text-align: center;
     top: 0;
     transform: translateX(0);
@@ -196,7 +198,7 @@ body{
     transform: translateX(-200%);
 }
 
-.container.active .toggle-left{
+.container_lf.active .toggle-left{
     transform: translateX(0);
 }
 
@@ -205,6 +207,6 @@ body{
     transform: translateX(0);
 }
 
-.container.active .toggle-right{
+.container_lf.active .toggle-right{
     transform: translateX(200%);
 }
