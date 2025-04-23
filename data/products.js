@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     id: 1,
     name: "Light blue dress",
@@ -64,49 +64,3 @@ const products = [
     description: "Stylish cocktail dress for parties and events",
   },
 ];
-
-// Function to render products to the shop page
-document.addEventListener("DOMContentLoaded", () => {
-  const productsContainer = document.querySelector(".shop-products");
-  let html = "";
-  
-  // Clear any existing products
-  if (productsContainer) {
-    productsContainer.innerHTML = "";
-
-    // Render each product
-    products.forEach((product) => {
-      html = `
-        <article class="product-card" data-product-id="${product.id}">
-          <img src="${product.image}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>₱${product.price}</p>
-          <button>Add to Cart</button>
-        </article>
-        `;
-
-      productsContainer.innerHTML += html;
-    });
-
-    // Add event listeners to all "Add to Cart" buttons
-    // document.querySelectorAll(".product-card button").forEach((button) => {
-    //   button.addEventListener("click", () => {
-    //     const product = button.closest(".product-card");
-    //     const productId = product.dataset.productId;
-    //     const foundProduct = products.find((p) => p.id == productId);
-
-    //     if (foundProduct) {
-    //       const name = foundProduct.name;
-    //       const price = foundProduct.price;
-
-    //       // Call the addToCart function from shop.js
-    //       if (typeof addToCart === "function") {
-    //         addToCart(name, price);
-    //       } else {
-    //         console.error("addToCart function not found");
-    //       }
-    //     }
-    //   });
-    // });
-  }
-});
