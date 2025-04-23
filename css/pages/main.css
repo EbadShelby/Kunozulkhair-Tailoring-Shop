@@ -239,13 +239,19 @@
 
 /* Add to Cart Button */
 .btn-cart {
-  background: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #ffd700 100%);
   color: var(--clr-neutral-900);
   padding: var(--spacing-100) var(--spacing-200);
   border: none;
   border-radius: var(--size-xs);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.btn-cart:hover {
+  background: linear-gradient(135deg, #ffd700 0%, var(--clr-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Carousel Buttons */
@@ -326,12 +332,19 @@
 /* Learn More Button */
 .btn-learn {
   display: inline-block;
-  background: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #ffd700 100%);
   color: var(--clr-neutral-900);
   font-weight: var(--fw-medium);
   padding: var(--spacing-100) var(--spacing-200);
   border-radius: var(--spacing-100);
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-learn:hover {
+  background: linear-gradient(135deg, #ffd700 0%, var(--clr-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* ===============|| Testimonials ||============= */

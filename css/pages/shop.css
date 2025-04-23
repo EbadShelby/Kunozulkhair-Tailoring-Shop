@@ -192,18 +192,20 @@
 }
 
 .product-card button {
-  background: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #ffd700 100%);
   color: var(--clr-neutral-900);
   padding: var(--spacing-100) var(--spacing-200);
   border: none;
   border-radius: var(--size-xs);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .product-card button:hover {
-  background: var(--clr-secondary);
-  color: var(--clr-neutral-100);
+  background: linear-gradient(135deg, #ffd700 0%, var(--clr-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: var(--clr-neutral-900);
 }
 
 /* ===============|| Footer ||============= */
@@ -394,12 +396,20 @@
 .checkout-btn {
   width: 100%;
   padding: 12px;
-  background: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #ffd700 100%);
   border: none;
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
+  transition: all 0.3s ease;
+  color: var(--clr-neutral-900);
+}
+
+.checkout-btn:hover {
+  background: linear-gradient(135deg, #ffd700 0%, var(--clr-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Style for the cart icon */
