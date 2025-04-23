@@ -301,56 +301,11 @@
 
             
             <div class="featured-product-track-container">
-              <ul class="featured-product-track">
-                <li class="featured-product-slide featured-product__current-slide">
-                  <img src="assets/images/logo.jpg" alt="Casual Shirt" />
-                  <h3>Dress</h3>
-                  <p class="price">1 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/dress 7.jpeg" alt="Summer Dress" />
-                  <h3>Dress</h3>
-                  <p class="price">2 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Leather Jacket" />
-                  <h3>Dress</h3>
-                  <p class="price">3 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Denim Jeans" />
-                  <h3>Dress</h3>
-                  <p class="price">4 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Casual Shirt" />
-                  <h3>Dress</h3>
-                  <p class="price">1 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Summer Dress" />
-                  <h3>Dress</h3>
-                  <p class="price">1 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Leather Jacket" />
-                  <h3>Dress</h3>
-                  <p class="price">1 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-                <li class="featured-product-slide">
-                  <img src="assets/images/logo.jpg" alt="Denim Jeans" />
-                  <h3>Dress</h3>
-                  <p class="price">1 PHP</p>
-                  <button class="btn-cart">Add to Cart</button>
-                </li>
-              </ul>
+              <div class="featured-product-track-container">
+                <section class="featured-product-track">
+                  <div id="loading-products">Loading products...</div>
+                </section>
+              </div>
             </div>
 
             <button
@@ -487,8 +442,9 @@
       </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="data/products.js"></script>
+    <script type="module" src="js/shop.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script src="js/header.js"></script>
-    <script src="js/shop.js"></script>
   </body>
 </html>

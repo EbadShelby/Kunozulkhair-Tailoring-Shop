@@ -1,3 +1,5 @@
+import { products } from '../data/products.js';
+
 // set up the carousel
 const track = document.querySelector(".ads-carousel__track");
 const slides = Array.from(track.children);
@@ -81,51 +83,85 @@ dotsNav.addEventListener("click", (e) => {
   hideShowArrows(slides, prevButton, nextButton, targetIndex);
 });
 
+// Function to render products to the shop page
+document.addEventListener("DOMContentLoaded", () => {
+  const productsContainer = document.querySelector(".featured-product-track");
+  let html = "";
+  
+  // Clear any existing products
+  if (productsContainer) {
+    productsContainer.innerHTML = "";
 
-// featured products carousel
+    // Render each product
+    products.forEach((product) => {
+      html = `
+        <article class="featured-product-slide" data-product-id="${product.id}">
+          <img src="${product.image}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>₱${product.price}</p>
+          <button class="btn-cart">Add to Cart</button>
+        </article>
+        `;
 
-const featuredTrack = document.querySelector(".featured-product-track");
-const featuredSlides = Array.from(featuredTrack.children);
-const featuredNextButton = document.querySelector(".featured-product_carousel-button--right");
-const featuredPrevButton = document.querySelector(".featured-product_carousel-button--left");
+      productsContainer.innerHTML += html;
+    });
 
-let currentIndex = 0;
-const visibleSlides = 6;
-const totalSlides = featuredSlides.length;
-const featuredSlideWidth = featuredSlides[0].getBoundingClientRect().width;
-const maxIndex = Math.ceil(totalSlides / visibleSlides) - 1;
+    // Initialize featured products carousel AFTER products are rendered
+    const featuredTrack = document.querySelector(".featured-product-track");
+    const featuredSlides = Array.from(featuredTrack.children);
+    const featuredNextButton = document.querySelector(".featured-product_carousel-button--right");
+    const featuredPrevButton = document.querySelector(".featured-product_carousel-button--left");
 
-// featuredNextButton.addEventListener("click", () => {
-//   const remainingSlides = totalSlides - currentIndex * visibleSlides - visibleSlides;
+    let currentIndex = 0;
+    const visibleSlides = 4; // Reduced from 6 to 4 for better visibility
+    const totalSlides = featuredSlides.length;
+    const featuredSlideWidth = featuredSlides[0].getBoundingClientRect().width;
+    const maxIndex = Math.ceil(totalSlides / visibleSlides) - 1;
 
-//   if (remainingSlides > 0) {
-//     // if more than visibleSlides left — move by visibleSlides
-//     if (remainingSlides >= visibleSlides) {
-//       currentIndex++;
-//     } else {
-//       // move just enough for the remaining slides
-//       currentIndex += remainingSlides / visibleSlides;
-//     }
-//     moveFeaturedTrack();
-//   }
-// });
+    featuredNextButton.addEventListener("click", () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        moveFeaturedTrack();
+      }
+    });
 
+    featuredPrevButton.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        moveFeaturedTrack();
+      }
+    });
 
-featuredNextButton.addEventListener("click", () => {
-  if (currentIndex < maxIndex) {
-    currentIndex++;
-    moveFeaturedTrack();
+    function moveFeaturedTrack() {
+      const amountToMove = featuredSlideWidth * visibleSlides * currentIndex;
+      featuredTrack.style.transform = `translateX(-${amountToMove}px)`;
+    }
   }
 });
 
-featuredPrevButton.addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    moveFeaturedTrack();
-  }
-});
 
-function moveFeaturedTrack() {
-  const amountToMove = featuredSlideWidth * visibleSlides * currentIndex;
-  featuredTrack.style.transform = `translateX(-${amountToMove}px)`;
-}
+
+
+
+
+
+// Add event listeners to all "Add to Cart" buttons
+    // document.querySelectorAll(".product-card button").forEach((button) => {
+    //   button.addEventListener("click", () => {
+    //     const product = button.closest(".product-card");
+    //     const productId = product.dataset.productId;
+    //     const foundProduct = products.find((p) => p.id == productId);
+
+    //     if (foundProduct) {
+    //       const name = foundProduct.name;
+    //       const price = foundProduct.price;
+
+    //       // Call the addToCart function from shop.js
+    //       if (typeof addToCart === "function") {
+    //         addToCart(name, price);
+    //       } else {
+    //         console.error("addToCart function not found");
+    //       }
+    //     }
+    //   });
+    // });
