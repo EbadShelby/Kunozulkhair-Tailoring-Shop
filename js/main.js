@@ -1,4 +1,6 @@
-import { products } from '../data/products.js';
+import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
+import { addToCart } from "./shop.js";
 
 // set up the carousel
 const track = document.querySelector(".ads-carousel__track");
@@ -87,7 +89,7 @@ dotsNav.addEventListener("click", (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   const productsContainer = document.querySelector(".featured-product-track");
   let html = "";
-  
+
   // Clear any existing products
   if (productsContainer) {
     productsContainer.innerHTML = "";
@@ -106,11 +108,36 @@ document.addEventListener("DOMContentLoaded", () => {
       productsContainer.innerHTML += html;
     });
 
+    // Add event listeners to all "Add to Cart" buttons
+    document.querySelectorAll(".btn-cart").forEach((button) => {
+      button.addEventListener("click", () => {
+        const product = button.closest(".featured-product-slide");
+        const productId = product.dataset.productId;
+        const foundProduct = products.find((p) => p.id == productId);
+
+        if (foundProduct) {
+          const name = foundProduct.name;
+          const price = foundProduct.price;
+
+          // Call the addToCart function from shop.js
+          if (typeof addToCart === "function") {
+            addToCart(name, price);
+          } else {
+            console.error("addToCart function not found");
+          }
+        }
+      });
+    });
+
     // Initialize featured products carousel AFTER products are rendered
     const featuredTrack = document.querySelector(".featured-product-track");
     const featuredSlides = Array.from(featuredTrack.children);
-    const featuredNextButton = document.querySelector(".featured-product_carousel-button--right");
-    const featuredPrevButton = document.querySelector(".featured-product_carousel-button--left");
+    const featuredNextButton = document.querySelector(
+      ".featured-product_carousel-button--right"
+    );
+    const featuredPrevButton = document.querySelector(
+      ".featured-product_carousel-button--left"
+    );
 
     let currentIndex = 0;
     const visibleSlides = 4; // Reduced from 6 to 4 for better visibility
@@ -138,30 +165,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
-
-
-
-
-
-
-// Add event listeners to all "Add to Cart" buttons
-    // document.querySelectorAll(".product-card button").forEach((button) => {
-    //   button.addEventListener("click", () => {
-    //     const product = button.closest(".product-card");
-    //     const productId = product.dataset.productId;
-    //     const foundProduct = products.find((p) => p.id == productId);
-
-    //     if (foundProduct) {
-    //       const name = foundProduct.name;
-    //       const price = foundProduct.price;
-
-    //       // Call the addToCart function from shop.js
-    //       if (typeof addToCart === "function") {
-    //         addToCart(name, price);
-    //       } else {
-    //         console.error("addToCart function not found");
-    //       }
-    //     }
-    //   });
-    // });
