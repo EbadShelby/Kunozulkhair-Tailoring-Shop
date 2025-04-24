@@ -94,6 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const checkoutBtn = document.querySelector('.checkout-btn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      window.location.href = 'checkout.html';
+    });
+  }
+
   // Attach to all product buttons
   document.querySelectorAll('.product-card button').forEach(button => {
     button.addEventListener('click', () => {
