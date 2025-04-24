@@ -1,6 +1,6 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
-import { addToCart } from "./shop.js";
+import { addToCart } from "../data/cart.js";
 
 // set up the carousel
 const track = document.querySelector(".ads-carousel__track");
