@@ -142,7 +142,7 @@
 .contact-form__button {
   display: inline-block;
   background: var(--clr-primary);
-  color: white;
+  color: black;
   padding: var(--spacing-200) var(--spacing-300);
   font-size: var(--size-base);
   font-weight: var(--fw-bold);
