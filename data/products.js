@@ -4,7 +4,7 @@ export const products = [
     name: "Light blue dress",
     price: 749,
     rating: { rate: 4.5, count: 100 },
-    image: "assets/images/dress 1.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Elegant light blue dress perfect for summer occasions",
   },
   {
@@ -12,7 +12,7 @@ export const products = [
     name: "Red dress",
     price: 749,
     rating: { rate: 4.5, count: 100 },
-    image: "assets/images/dress 2.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Stunning red dress for formal events",
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     name: "Floral summer dress",
     price: 599,
     rating: { rate: 4.2, count: 78 },
-    image: "assets/images/dress 1.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Light and breezy floral pattern dress for summer",
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     name: "Evening gown",
     price: 1299,
     rating: { rate: 4.8, count: 56 },
-    image: "assets/images/dress 2.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Elegant evening gown for special occasions",
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     name: "Casual denim dress",
     price: 499,
     rating: { rate: 4.0, count: 122 },
-    image: "assets/images/dress 1.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Comfortable denim dress for everyday wear",
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     name: "Office pencil dress",
     price: 899,
     rating: { rate: 4.6, count: 87 },
-    image: "assets/images/dress 2.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Professional pencil dress for office wear",
   },
   {
@@ -52,7 +52,7 @@ export const products = [
     name: "Wedding dress",
     price: 2499,
     rating: { rate: 4.9, count: 43 },
-    image: "assets/images/dress 1.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Beautiful white wedding dress with lace details",
   },
   {
@@ -60,7 +60,7 @@ export const products = [
     name: "Cocktail dress",
     price: 899,
     rating: { rate: 4.3, count: 65 },
-    image: "assets/images/dress 2.jpeg",
+    image: "assets/images/logo.jpg",
     description: "Stylish cocktail dress for parties and events",
   },
 ];
