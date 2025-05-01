@@ -96,12 +96,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render each product
     products.forEach((product) => {
+      // Convert 5-star rating to 10-point scale
+      const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
+      
       html = `
         <article class="featured-product-slide" data-product-id="${product.id}">
           <img src="${product.image}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>₱${product.price}</p>
-          <button class="btn-cart">Add to Cart</button>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="product-price">₱${product.price.toLocaleString()}</div>
+            <div class="product-meta">
+              <div class="product-rating">
+                ⭐${ratingOutOf10}
+              </div>
+              <button class="btn-cart" data-product-id="${product.id}">Add to Cart</button>
+            </div>
+          </div>
         </article>
         `;
 
@@ -111,8 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add event listeners to all "Add to Cart" buttons
     document.querySelectorAll(".btn-cart").forEach((button) => {
       button.addEventListener("click", () => {
-        const product = button.closest(".featured-product-slide");
-        const productId = product.dataset.productId;
+        const productId = button.dataset.productId;
         const foundProduct = products.find((p) => p.id == productId);
 
         if (foundProduct) {
@@ -122,6 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
           // Call the addToCart function from shop.js
           if (typeof addToCart === "function") {
             addToCart(name, price);
+            
+            // Add visual feedback
+            const originalText = button.innerText;
+            button.innerText = "Added!";
+            button.classList.add("added-to-cart");
+            
+            // Reset button after 1.5 seconds
+            setTimeout(() => {
+              button.innerText = originalText;
+              button.classList.remove("added-to-cart");
+            }, 1500);
           } else {
             console.error("addToCart function not found");
           }
