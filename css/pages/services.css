@@ -318,8 +318,8 @@
 .contact-cta {
   text-align: center;
   padding: var(--spacing-800) var(--spacing-200);
-  background: var(--clr-neutral-400);
-  color: var(--clr-neutral-900);
+  background: var(--clr-secondary);
+  color: var(--clr-neutral-100);
   border-radius: var(--size-xs);
 }
 
@@ -356,19 +356,21 @@
 .btn--primary {
   background: var(--clr-neutral-900);
   color: var(--clr-neutral-100);
+  border: 2px solid var(--clr-neutral-900);
 }
 
 .btn--primary:hover {
   background: var(--clr-secondary);
+  color: var(--clr-neutral-900);
 }
 
 .btn--secondary {
   background: var(--clr-neutral-100);
   color: var(--clr-neutral-900);
-  border: 2px solid var(--clr-neutral-900);
+  border: 2px solid var(--clr-neutral-100);
 }
 
 .btn--secondary:hover {
-  background: var(--clr-neutral-400);
+  background: var(--clr-secondary);
   color: var(--clr-neutral-100);
 }
