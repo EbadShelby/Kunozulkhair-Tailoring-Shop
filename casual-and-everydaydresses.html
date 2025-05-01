@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
-    <link rel="stylesheet" href="css/pages/shop.css">
+    <link rel="stylesheet" href="css/shared/footer.css" />
+    <link rel="stylesheet" href="css/pages/service-detail.css" />
 
     <!-- linked google fonts  -->
     <link
@@ -113,17 +114,16 @@
         </div>
       </div>
       
-          <!-- Cart Sidebar -->
-        <div class="cart-sidebar" id="cart-sidebar">
-          <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button id="close-cart">&times;</button>
-          </div>
-          <div class="cart-items" id="cart-items"></div>
-          <div class="cart-footer">
-            <p>Total: ₱<span id="cart-total">0</span></p>
-            <button class="checkout-btn">Checkout</button>
-          </div>
+      <!-- Cart Sidebar -->
+      <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+          <h2>Your Cart</h2>
+          <button id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+          <p>Total: ₱<span id="cart-total">0</span></p>
+          <button class="checkout-btn">Checkout</button>
         </div>
       </div>
       
@@ -168,13 +168,283 @@
       </nav>
       
     </header>
-    <main><h1>Casual and Everyday Dresses Soon...</h1></main>
+    
+    <main>
+      <!-- Hero Section -->
+      <section class="service-hero" style="background-image: url('assets/images/logo.jpg');">
+        <div class="container">
+          <h1 class="service-hero__title">Casual & Everyday Dresses</h1>
+          <p class="service-hero__subtitle">Stylish, comfortable, and versatile dresses for your everyday wardrobe, designed to fit perfectly and suit your lifestyle.</p>
+        </div>
+      </section>
 
+      <!-- Overview Section -->
+      <section class="service-overview container">
+        <h2 class="service-overview__title">Our Casual Dressmaking Services</h2>
+        <div class="service-overview__content">
+          <div class="service-overview__text">
+            <p>At Kunozulkhair Tailoring Shop, we create comfortable yet stylish casual dresses that are perfect for everyday wear, from office to leisure activities.</p>
+            <p>Our skilled tailors craft casual dresses that fit your unique body shape, ensuring both comfort and style without compromising on quality or durability.</p>
+            <p>Whether you need versatile dresses for work, weekend outings, or casual gatherings, our everyday dress collection offers practical, comfortable options that adapt to your lifestyle.</p>
+          </div>
+          <div class="service-overview__image">
+            <img src="assets/images/logo.jpg" alt="Casual dress designs">
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="service-features">
+        <div class="container">
+          <h2 class="service-features__title">Why Choose Our Casual Dresses</h2>
+          <div class="service-features__grid">
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <h3 class="feature-card__title">Comfort-First Design</h3>
+              <p class="feature-card__description">Easy-to-wear dresses that prioritize comfort without sacrificing style for your everyday activities.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <h3 class="feature-card__title">Versatile Styles</h3>
+              <p class="feature-card__description">Adaptable designs that transition seamlessly from casual to semi-formal occasions.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+              <h3 class="feature-card__title">Durable Materials</h3>
+              <p class="feature-card__description">Quality fabrics selected for everyday wear and easy maintenance.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <h3 class="feature-card__title">Customizable Options</h3>
+              <p class="feature-card__description">Personalize necklines, sleeves, lengths, and details to suit your personal style.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class="service-process">
+        <div class="container">
+          <h2 class="service-process__title">Our Casual Dress Creation Process</h2>
+          <div class="service-process__steps">
+            <div class="process-step">
+              <div class="process-step__number">1</div>
+              <h3 class="process-step__title">Style Consultation</h3>
+              <p class="process-step__description">Discuss your lifestyle, preferences, and wardrobe needs with our style experts.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">2</div>
+              <h3 class="process-step__title">Design Selection</h3>
+              <p class="process-step__description">Choose from our dress designs or customize your own with our guidance.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">3</div>
+              <h3 class="process-step__title">Measurements</h3>
+              <p class="process-step__description">Precise measurements taken to ensure your dress fits perfectly.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">4</div>
+              <h3 class="process-step__title">Fitting & Delivery</h3>
+              <p class="process-step__description">Final fitting to ensure comfort and proper fit before delivery.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Material Selection Section -->
+      <section class="material-selection">
+        <div class="container">
+          <h2 class="material-selection__title">Fabrics for Everyday Comfort</h2>
+          <div class="material-selection__grid">
+            <div class="material-card">
+              <img src="assets/images/logo.jpg" alt="Cotton Jersey" class="material-card__image">
+              <h3 class="material-card__title">Cotton Jersey</h3>
+              <p class="material-card__description">Soft, stretchy and breathable - perfect for comfortable everyday dresses.</p>
+            </div>
+            <div class="material-card">
+              <img src="assets/images/logo.jpg" alt="Cotton Blends" class="material-card__image">
+              <h3 class="material-card__title">Cotton Blends</h3>
+              <p class="material-card__description">Easy-care fabrics that combine comfort with durability and wrinkle resistance.</p>
+            </div>
+            <div class="material-card">
+              <img src="assets/images/logo.jpg" alt="Linen Blends" class="material-card__image">
+              <h3 class="material-card__title">Linen Blends</h3>
+              <p class="material-card__description">Lightweight, breathable fabric perfect for hot weather and casual elegance.</p>
+            </div>
+            <div class="material-card">
+              <img src="assets/images/logo.jpg" alt="Ponte Knit" class="material-card__image">
+              <h3 class="material-card__title">Ponte Knit</h3>
+              <p class="material-card__description">Structured yet comfortable fabric that holds shape while allowing movement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="service-pricing">
+        <div class="container">
+          <h2 class="service-pricing__title">Casual Dress Pricing</h2>
+          <table class="service-pricing__table">
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Description</th>
+                <th>Starting Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Simple A-line Dress</td>
+                <td>Versatile, flattering silhouette for everyday wear</td>
+                <td>₱1,800</td>
+              </tr>
+              <tr>
+                <td>Shift Dress</td>
+                <td>Comfortable, straight-cut dress for work or casual events</td>
+                <td>₱1,900</td>
+              </tr>
+              <tr>
+                <td>Wrap Dress</td>
+                <td>Adjustable fit, flattering for all body types</td>
+                <td>₱2,100</td>
+              </tr>
+              <tr>
+                <td>Shirt Dress</td>
+                <td>Classic button-down style, versatile for office or casual wear</td>
+                <td>₱2,200</td>
+              </tr>
+              <tr>
+                <td>Casual Maxi Dress</td>
+                <td>Floor-length comfort for elegant everyday style</td>
+                <td>₱2,500</td>
+              </tr>
+              <tr>
+                <td>Custom Design</td>
+                <td>Your unique design with personalized details</td>
+                <td>₱2,800+</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="text-align: center; margin-top: 20px; font-style: italic;">* Prices vary based on design complexity, fabric choice, and additional details. Quantity discounts available.</p>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="service-faq">
+        <div class="container">
+          <h2 class="service-faq__title">Frequently Asked Questions</h2>
+          <div class="service-faq__list">
+            <div class="faq-item">
+              <button class="faq-question">
+                How long does it take to make a casual dress?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Most casual dresses take 1-2 weeks to complete from consultation to final delivery. Simple designs may be completed faster, while more complex styles might require additional time. We'll provide you with a specific timeline during your consultation.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Can I wash my custom casual dresses at home?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes! We select fabrics for our casual dresses that are easy to care for. Most can be machine washed on a gentle cycle with mild detergent. We'll provide specific care instructions for your garment based on the fabric and design details.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Do you offer ready-made casual dresses or only custom-made?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>We offer both options. We have a selection of ready-made casual dresses in our shop in standard sizes that you can purchase immediately. We also provide fully custom dresses tailored to your measurements and style preferences.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Can I bring pictures of styles I like?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Absolutely! We encourage you to bring pictures from magazines, social media, or websites that show styles you like. Our designers can use these as inspiration to create a dress that captures the elements you love while ensuring it's perfectly fitted to you.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Do you offer adjustments after the dress is made?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes, we provide minor adjustments within 14 days of delivery at no extra cost. We want to ensure your dress fits perfectly and you're completely satisfied with your purchase.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="service-cta">
+        <div class="container">
+          <h2 class="service-cta__title">Ready for Your Perfect Everyday Dress?</h2>
+          <p class="service-cta__text">Schedule an appointment with our style experts to create comfortable, flattering casual dresses tailored just for you.</p>
+          <a href="appointments.html" class="service-cta__btn">Book Your Consultation</a>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>📍 Datu Liwa Candao Street, Cotabato City</p>
+          <p>📞 +639111111</p>
+          <p>📧 KunoZulkhair@gmail.com</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61575972894049"
+            target="_blank"><img src="assets/images/Fb.jpg" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/tailorshopdresses?igsh=MWt1d3QxeWpkdGRiNA=="
+            target="_blank"><img src="assets/images/Instagram.jpg" alt="Instagram" /></a>
+            <a href="https://x.com/Shopdress12?t=kadWcD_XQNlPQtizwPtjHQ&s=09"><img src="assets/images/twitter.jpg" alt="Twitter" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script src="js/header.js"></script>
+    <script src="js/service-detail.js"></script>
     <script type="module" src="data/products.js"></script>
     <script type="module" src="js/shop.js"></script>
   </body>
-  
-  <footer></footer>
 </html>

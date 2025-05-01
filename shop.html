@@ -181,71 +181,188 @@
       <!-- Shop Layout (Filters + Products) -->
       <section class="shop-layout container">
         <aside class="shop-filters">
-          <!-- Size Filter -->
-          <div class="filter-group">
-            <h4>Size</h4>
-            <ul>
-              <li>
-                <input type="checkbox" id="xs" /> <label for="xs">XS</label>
-              </li>
-              <li><input type="checkbox" id="s" /> <label for="s">S</label></li>
-              <li><input type="checkbox" id="m" /> <label for="m">M</label></li>
-              <li><input type="checkbox" id="l" /> <label for="l">L</label></li>
-              <li>
-                <input type="checkbox" id="xl" /> <label for="xl">XL</label>
-              </li>
-            </ul>
+          <div class="filter-header">
+            <h3>Filter Products</h3>
+            <button id="toggle-filters" class="filter-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+            </button>
           </div>
+          
+          <div class="filter-content">
+            <!-- Category Filter -->
+            <div class="filter-group">
+              <h4>Category</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="dresses" name="category" value="dresses" />
+                  <label for="dresses">Dresses</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="formal" name="category" value="formal" />
+                  <label for="formal">Formal Wear</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="casual" name="category" value="casual" />
+                  <label for="casual">Casual Wear</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="traditional" name="category" value="traditional" />
+                  <label for="traditional">Traditional Clothing</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="accessories" name="category" value="accessories" />
+                  <label for="accessories">Accessories</label>
+                </li>
+              </ul>
+            </div>
 
-          <!-- Color Filter -->
-          <div class="filter-group">
-            <h4>Color</h4>
-            <ul>
-              <li>
-                <input type="checkbox" id="black" />
-                <label for="black">Black</label>
-              </li>
-              <li>
-                <input type="checkbox" id="white" />
-                <label for="white">White</label>
-              </li>
-              <li>
-                <input type="checkbox" id="red" /> <label for="red">Red</label>
-              </li>
-              <li>
-                <input type="checkbox" id="blue" />
-                <label for="blue">Blue</label>
-              </li>
-              <li>
-                <input type="checkbox" id="green" />
-                <label for="green">Green</label>
-              </li>
-            </ul>
-          </div>
+            <!-- Fabric Filter -->
+            <div class="filter-group">
+              <h4>Fabric Type</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="cotton" name="fabric" value="cotton" />
+                  <label for="cotton">Cotton</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="silk" name="fabric" value="silk" />
+                  <label for="silk">Silk</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="linen" name="fabric" value="linen" />
+                  <label for="linen">Linen</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="polyester" name="fabric" value="polyester" />
+                  <label for="polyester">Polyester</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="wool" name="fabric" value="wool" />
+                  <label for="wool">Wool</label>
+                </li>
+              </ul>
+            </div>
 
-          <!-- Price Filter -->
-          <div class="filter-group">
-            <h4>Price Range</h4>
-            <input type="range" min="20" max="200" step="5" value="50" />
-            <p>Up to: <span id="price-value">₱3000</span></p>
-          </div>
+            <!-- Color Filter -->
+            <div class="filter-group">
+              <h4>Color</h4>
+              <div class="color-options">
+                <div class="color-option">
+                  <input type="checkbox" id="black" name="color" value="black" />
+                  <label for="black" style="background-color: #000;"></label>
+                  <span>Black</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="white" name="color" value="white" />
+                  <label for="white" style="background-color: #fff; border: 1px solid #ddd;"></label>
+                  <span>White</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="red" name="color" value="red" />
+                  <label for="red" style="background-color: #e74c3c;"></label>
+                  <span>Red</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="blue" name="color" value="blue" />
+                  <label for="blue" style="background-color: #3498db;"></label>
+                  <span>Blue</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="green" name="color" value="green" />
+                  <label for="green" style="background-color: #2ecc71;"></label>
+                  <span>Green</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="yellow" name="color" value="yellow" />
+                  <label for="yellow" style="background-color: #f1c40f;"></label>
+                  <span>Yellow</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="purple" name="color" value="purple" />
+                  <label for="purple" style="background-color: #9b59b6;"></label>
+                  <span>Purple</span>
+                </div>
+              </div>
+            </div>
 
-          <!-- Sorting -->
-          <div class="filter-group">
-            <h4>Sort By</h4>
-            <select>
-              <option value="best-selling">Best Selling</option>
-              <option value="newest">Newest Arrivals</option>
-              <option value="low-to-high">Price: Low to High</option>
-              <option value="high-to-low">Price: High to Low</option>
-              <option value="top-rated">Highest Rated</option>
-            </select>
+            <!-- Size Filter -->
+            <div class="filter-group">
+              <h4>Size</h4>
+              <div class="size-options">
+                <button class="size-btn" data-size="xs">XS</button>
+                <button class="size-btn" data-size="s">S</button>
+                <button class="size-btn" data-size="m">M</button>
+                <button class="size-btn" data-size="l">L</button>
+                <button class="size-btn" data-size="xl">XL</button>
+                <button class="size-btn" data-size="xxl">XXL</button>
+              </div>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="filter-group price-filter">
+              <h4>Price Range</h4>
+              <div class="price-inputs">
+                <div class="price-input">
+                  <span>₱</span>
+                  <input type="number" id="min-price" placeholder="Min" min="0" />
+                </div>
+                <div class="price-separator">-</div>
+                <div class="price-input">
+                  <span>₱</span>
+                  <input type="number" id="max-price" placeholder="Max" min="0" />
+                </div>
+              </div>
+              <div class="price-slider">
+                <input type="range" id="price-range" min="0" max="5000" step="100" value="2500" />
+                <div class="price-value">Up to: ₱<span id="price-value">2500</span></div>
+              </div>
+            </div>
+            
+            <!-- Reset button -->
+            <button id="reset-filters" class="reset-filters">Reset All Filters</button>
           </div>
         </aside>
 
-        <!-- Right: Products Grid -->
-        <section class="shop-products">
-          <div id="loading-products">Loading products...</div>
+        <!-- Right: Products Section -->
+        <section class="shop-products-section">
+          <div class="shop-controls">
+            <div class="shop-sorting">
+              <label for="sort-by">Sort By:</label>
+              <select id="sort-by" class="sort-select">
+                <option value="default">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name-az">Name: A to Z</option>
+                <option value="name-za">Name: Z to A</option>
+                <option value="newest">Newest First</option>
+                <option value="popularity">Popularity</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Products Grid -->
+          <div class="shop-products" id="shop-products">
+            <div id="loading-products">Loading products...</div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="pagination-btn" id="prev-page" disabled>Previous</button>
+            <div class="page-numbers" id="page-numbers">
+              <button class="page-number active">1</button>
+            </div>
+            <button class="pagination-btn" id="next-page">Next</button>
+          </div>
         </section>
       </section>
     </main>
