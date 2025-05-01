@@ -41,12 +41,6 @@
   background: hsl(50, 91%, 45%);
 }
 
-
-
-
-
-
-
 .mission-values {
   text-align: center;
   padding: var(--spacing-700) var(--spacing-400);
@@ -99,12 +93,6 @@
   font-size: var(--size-base);
   color: var(--clr-neutral-400);
 }
-
-
-
-
-
-
 
 .cta {
   background: var(--clr-secondary);
@@ -162,4 +150,144 @@
 .btn-secondary:hover {
   background: var(--clr-white);
   color: var(--clr-primary);
+}
+
+/* Journey Slideshow Section */
+.journey-slideshow {
+  padding: var(--spacing-700) var(--spacing-400);
+  text-align: center;
+  background-color: var(--clr-neutral-100);
+}
+
+.journey-slideshow__title {
+  font-size: var(--size-4xl);
+  font-weight: var(--fw-black);
+  color: var(--clr-neutral-900);
+  margin-bottom: var(--spacing-200);
+}
+
+.journey-slideshow__description {
+  font-size: var(--size-lg);
+  max-width: 50rem;
+  margin: 0 auto var(--spacing-400);
+  color: var(--clr-secondary);
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 800px;
+  position: relative;
+  margin: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: var(--spacing-100);
+  overflow: hidden;
+  min-height: 450px; /* Ensure minimum height even without images */
+}
+
+/* Hide the slides by default */
+.slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 450px;
+  background-color: #f0f0f0; /* Light background if image fails to load */
+}
+
+/* Slide image */
+.slide img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block; /* Ensures no extra space */
+}
+
+/* Caption text */
+.slide__caption {
+  color: var(--clr-primary);
+  font-size: var(--size-base);
+  padding: var(--spacing-200) 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Number text */
+.slide__number {
+  color: var(--clr-white);
+  font-size: var(--size-sm);
+  padding: var(--spacing-100) var(--spacing-200);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius: var(--spacing-100);
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: var(--spacing-300) var(--spacing-400);
+  color: var(--clr-white);
+  font-weight: var(--fw-black);
+  font-size: var(--size-3xl);
+  transition: 0.3s ease;
+  border-radius: 5px;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 10px;
+}
+
+/* Position the "previous button" to the left */
+.prev {
+  left: 10px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--clr-primary);
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slideshow-container {
+    max-width: 95%;
+  }
+  
+  .slide img {
+    height: 350px;
+  }
+  
+  .prev, .next {
+    padding: var(--spacing-200);
+    font-size: var(--size-2xl);
+  }
 }
