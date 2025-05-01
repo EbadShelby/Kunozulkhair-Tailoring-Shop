@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
-    <link rel="stylesheet" href="css/pages/shop.css">
+    <link rel="stylesheet" href="css/shared/footer.css" />
+    <link rel="stylesheet" href="css/pages/service-detail.css" />
 
     <!-- linked google fonts  -->
     <link
@@ -22,7 +23,7 @@
   <body>
     <header class="header">
       <div class="header__top container">
-        <a class="header__logo" href="#">
+        <a class="header__logo" href="index.html">
           <img
             class="header__logo-img"
             src="assets/images/logo.jpg"
@@ -113,17 +114,16 @@
         </div>
       </div>
       
-          <!-- Cart Sidebar -->
-        <div class="cart-sidebar" id="cart-sidebar">
-          <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button id="close-cart">&times;</button>
-          </div>
-          <div class="cart-items" id="cart-items"></div>
-          <div class="cart-footer">
-            <p>Total: ₱<span id="cart-total">0</span></p>
-            <button class="checkout-btn">Checkout</button>
-          </div>
+      <!-- Cart Sidebar -->
+      <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+          <h2>Your Cart</h2>
+          <button id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+          <p>Total: ₱<span id="cart-total">0</span></p>
+          <button class="checkout-btn">Checkout</button>
         </div>
       </div>
       
@@ -168,13 +168,259 @@
       </nav>
       
     </header>
-    <main><h1>Alterations and Repair Soon...</h1></main>
+    
+    <main>
+      <!-- Hero Section -->
+      <section class="service-hero" style="background-image: url('assets/images/logo.jpg');">
+        <div class="container">
+          <h1 class="service-hero__title">Alterations & Repairs</h1>
+          <p class="service-hero__subtitle">Give your favorite garments new life with our expert alterations and repair services.</p>
+        </div>
+      </section>
 
+      <!-- Overview Section -->
+      <section class="service-overview container">
+        <h2 class="service-overview__title">Expert Garment Alterations & Repairs</h2>
+        <div class="service-overview__content">
+          <div class="service-overview__text">
+            <p>At Kunozulkhair Tailoring Shop, we understand that clothing isn't just about fashion—it's about fit, comfort, and preserving your favorite pieces.</p>
+            <p>Our skilled tailors specialize in precise alterations to ensure your garments fit perfectly, as well as expert repairs that extend the life of your wardrobe investments.</p>
+            <p>From simple hemming and zipper replacements to complex resizing and structural repairs, we have the expertise to handle any alteration or repair need with meticulous attention to detail.</p>
+          </div>
+          <div class="service-overview__image">
+            <img src="assets/images/logo.jpg" alt="Garment alterations and repairs">
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="service-features">
+        <div class="container">
+          <h2 class="service-features__title">Why Choose Our Alteration Services</h2>
+          <div class="service-features__grid">
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              <h3 class="feature-card__title">Precision Fitting</h3>
+              <p class="feature-card__description">Expert tailors who understand how to adjust garments to flatter your unique body shape.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <h3 class="feature-card__title">Quality Repairs</h3>
+              <p class="feature-card__description">Skilled craftsmanship to fix tears, replace zippers, and restore damaged garments.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="feature-card__title">Quick Turnaround</h3>
+              <p class="feature-card__description">Efficient service with many basic alterations completed within 3-5 business days.</p>
+            </div>
+            <div class="feature-card">
+              <svg class="feature-card__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <h3 class="feature-card__title">All Fabrics & Styles</h3>
+              <p class="feature-card__description">Experience with all types of fabrics and garment styles, from formal wear to denim.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class="service-process">
+        <div class="container">
+          <h2 class="service-process__title">Our Alteration Process</h2>
+          <div class="service-process__steps">
+            <div class="process-step">
+              <div class="process-step__number">1</div>
+              <h3 class="process-step__title">Consultation</h3>
+              <p class="process-step__description">Discuss your needs and assess the garment to determine the best approach.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">2</div>
+              <h3 class="process-step__title">Fitting</h3>
+              <p class="process-step__description">Try on the garment for precise measurements and marking of adjustments.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">3</div>
+              <h3 class="process-step__title">Alteration</h3>
+              <p class="process-step__description">Skilled tailors perform the necessary alterations or repairs with precision.</p>
+            </div>
+            <div class="process-step">
+              <div class="process-step__number">4</div>
+              <h3 class="process-step__title">Final Fitting</h3>
+              <p class="process-step__description">Try on the altered garment to ensure perfect fit and satisfaction.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="service-pricing">
+        <div class="container">
+          <h2 class="service-pricing__title">Our Alteration & Repair Pricing</h2>
+          <table class="service-pricing__table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Description</th>
+                <th>Starting Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hem Adjustment</td>
+                <td>Shorten or lengthen pants, skirts, dresses</td>
+                <td>₱350</td>
+              </tr>
+              <tr>
+                <td>Waist Adjustment</td>
+                <td>Take in or let out waistband</td>
+                <td>₱450</td>
+              </tr>
+              <tr>
+                <td>Zipper Replacement</td>
+                <td>Replace broken or damaged zippers</td>
+                <td>₱400</td>
+              </tr>
+              <tr>
+                <td>Sleeve Adjustment</td>
+                <td>Shorten or lengthen sleeves</td>
+                <td>₱300</td>
+              </tr>
+              <tr>
+                <td>Resizing</td>
+                <td>Adjust garment size (take in/let out)</td>
+                <td>₱600</td>
+              </tr>
+              <tr>
+                <td>Patch & Repair</td>
+                <td>Fix tears, holes, or damaged seams</td>
+                <td>₱250</td>
+              </tr>
+              <tr>
+                <td>Button Replacement</td>
+                <td>Replace missing or broken buttons</td>
+                <td>₱100</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="text-align: center; margin-top: 20px; font-style: italic;">* Prices may vary based on fabric type, complexity, and time required. Additional fees may apply for rush services.</p>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="service-faq">
+        <div class="container">
+          <h2 class="service-faq__title">Frequently Asked Questions</h2>
+          <div class="service-faq__list">
+            <div class="faq-item">
+              <button class="faq-question">
+                How long do alterations take?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Most basic alterations (hemming, simple repairs) are completed within 3-5 business days. More complex alterations like resizing formal wear or extensive repairs may take 7-10 days. Rush services are available for an additional fee.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Can you alter any type of garment?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>We can alter most garment types, including formal wear, everyday clothing, denim, leather, and delicate fabrics. However, some heavily structured garments or those with extensive beading may have limitations. We'll honestly advise you if a particular alteration isn't feasible.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                How many fittings will I need?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Most alterations require an initial fitting for measurements and a final fitting when the work is complete. Complex alterations like formal wear resizing may require an intermediate fitting to ensure perfect results.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Can you repair vintage or delicate items?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes, our tailors have experience with vintage and delicate garments. We take extra care with these special items, using appropriate techniques and materials to preserve their character while making necessary repairs.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Do I need an appointment for alterations?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>While we accept walk-ins for simple alterations, we recommend scheduling an appointment for the best service, especially for complex alterations or multiple garments. This ensures we can dedicate proper time for your fitting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="service-cta">
+        <div class="container">
+          <h2 class="service-cta__title">Ready to Perfect Your Fit?</h2>
+          <p class="service-cta__text">Bring your garments in today and let our expert tailors transform them to fit you perfectly!</p>
+          <a href="appointments.html" class="service-cta__btn">Schedule an Alteration</a>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>📍 Datu Liwa Candao Street, Cotabato City</p>
+          <p>📞 +639111111</p>
+          <p>📧 KunoZulkhair@gmail.com</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media Links -->
+                <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61575972894049"
+            target="_blank"><img src="assets/images/Fb.jpg" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/tailorshopdresses?igsh=MWt1d3QxeWpkdGRiNA=="
+            target="_blank"><img src="assets/images/Instagram.jpg" alt="Instagram" /></a>
+            <a href="https://x.com/Shopdress12?t=kadWcD_XQNlPQtizwPtjHQ&s=09"><img src="assets/images/twitter.jpg" alt="Twitter" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script src="js/header.js"></script>
+    <script src="js/service-detail.js"></script>
     <script type="module" src="data/products.js"></script>
     <script type="module" src="js/shop.js"></script>
   </body>
-  
-  <footer></footer>
 </html>
