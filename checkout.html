@@ -30,7 +30,24 @@
           <span>KunoZulkhair</span> Tailoring & Dress Shop
         </p>
       </a>
+      
+      <!-- Checkout Progress Indicator -->
+      <div class="checkout-progress">
+        <div class="progress-step completed">
+          <div class="step-number">1</div>
+          <div class="step-label">Shopping Cart</div>
+        </div>
+        <div class="progress-step active">
+          <div class="step-number">2</div>
+          <div class="step-label">Checkout</div>
+        </div>
+        <div class="progress-step">
+          <div class="step-number">3</div>
+          <div class="step-label">Order Complete</div>
+        </div>
+      </div>
     </header>
+    
     <main>
       <div class="checkout-container">
         <!-- Left Column - Products Section -->
@@ -50,12 +67,161 @@
                   <h3 class="product-name">Traditional Filipino Dress</h3>
                   <p class="product-variation">Size: Medium | Color: Royal Blue</p>
                   <p class="product-quantity">Quantity: 1</p>
+                  
+                  <!-- New: Customization Details -->
+                  <div class="customization-details">
+                    <div class="customization-header" id="toggle-customizations">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                      </svg>
+                      <span>Customization Details</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon chevron">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </div>
+                    <div class="customization-content" id="customization-content">
+                      <div class="customization-option">
+                        <span class="option-label">Neckline:</span>
+                        <span class="option-value">V-Neck</span>
+                      </div>
+                      <div class="customization-option">
+                        <span class="option-label">Sleeves:</span>
+                        <span class="option-value">3/4 Length</span>
+                      </div>
+                      <div class="customization-option">
+                        <span class="option-label">Embroidery:</span>
+                        <span class="option-value">Floral Pattern (Gold Thread)</span>
+                      </div>
+                      <div class="customization-option">
+                        <span class="option-label">Length:</span>
+                        <span class="option-value">Below Knee</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- New: Measurement Confirmation -->
+                  <div class="measurements-details">
+                    <div class="measurements-header" id="toggle-measurements">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
+                      </svg>
+                      <span>Measurements</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon chevron">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </div>
+                    <div class="measurements-content" id="measurements-content">
+                      <div class="measurements-grid">
+                        <div class="measurement-item">
+                          <span class="measurement-label">Bust:</span>
+                          <span class="measurement-value">36 inches</span>
+                        </div>
+                        <div class="measurement-item">
+                          <span class="measurement-label">Waist:</span>
+                          <span class="measurement-value">28 inches</span>
+                        </div>
+                        <div class="measurement-item">
+                          <span class="measurement-label">Hip:</span>
+                          <span class="measurement-value">38 inches</span>
+                        </div>
+                        <div class="measurement-item">
+                          <span class="measurement-label">Shoulder:</span>
+                          <span class="measurement-value">15 inches</span>
+                        </div>
+                        <div class="measurement-item">
+                          <span class="measurement-label">Length:</span>
+                          <span class="measurement-value">42 inches</span>
+                        </div>
+                      </div>
+                      <div class="measurements-actions">
+                        <button class="edit-measurements-btn">Edit Measurements</button>
+                        <button class="schedule-measurement-btn">Schedule Professional Measurement</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="product-price">₱2,499.00</div>
               </div>
             </div>
             <div class="message-seller">
-              <textarea placeholder="Message to seller (optional)" rows="2"></textarea>
+              <textarea placeholder="Special instructions for your order (optional)" rows="2"></textarea>
+            </div>
+          </section>
+          
+          <!-- New: Fitting Appointment Section -->
+          <section class="checkout-section">
+            <div class="section-header">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+              <h2>Fitting Appointment</h2>
+            </div>
+            <div class="fitting-options">
+              <p class="fitting-info">Schedule a fitting appointment to ensure your garment fits perfectly before completion.</p>
+              
+              <div class="appointment-toggle">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="schedule-fitting">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">I want to schedule a fitting appointment</span>
+              </div>
+              
+              <div class="appointment-details" id="appointment-details" style="display: none;">
+                <div class="appointment-dates">
+                  <h4>Select Date</h4>
+                  <div class="date-options">
+                    <label class="date-option">
+                      <input type="radio" name="fitting-date" value="2023-08-10">
+                      <span class="date-display">
+                        <span class="date-day">10</span>
+                        <span class="date-month">August</span>
+                        <span class="date-weekday">Thursday</span>
+                      </span>
+                    </label>
+                    <label class="date-option">
+                      <input type="radio" name="fitting-date" value="2023-08-11">
+                      <span class="date-display">
+                        <span class="date-day">11</span>
+                        <span class="date-month">August</span>
+                        <span class="date-weekday">Friday</span>
+                      </span>
+                    </label>
+                    <label class="date-option">
+                      <input type="radio" name="fitting-date" value="2023-08-12">
+                      <span class="date-display">
+                        <span class="date-day">12</span>
+                        <span class="date-month">August</span>
+                        <span class="date-weekday">Saturday</span>
+                      </span>
+                    </label>
+                  </div>
+                  
+                  <h4>Select Time</h4>
+                  <div class="time-options">
+                    <label class="time-option">
+                      <input type="radio" name="fitting-time" value="10:00">
+                      <span>10:00 AM</span>
+                    </label>
+                    <label class="time-option">
+                      <input type="radio" name="fitting-time" value="11:00">
+                      <span>11:00 AM</span>
+                    </label>
+                    <label class="time-option">
+                      <input type="radio" name="fitting-time" value="14:00">
+                      <span>2:00 PM</span>
+                    </label>
+                    <label class="time-option">
+                      <input type="radio" name="fitting-time" value="15:00">
+                      <span>3:00 PM</span>
+                    </label>
+                    <label class="time-option">
+                      <input type="radio" name="fitting-time" value="16:00">
+                      <span>4:00 PM</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </div>
@@ -80,20 +246,48 @@
             </div>
           </section>
 
-          <!-- Shipping Section -->
+          <!-- Shipping Section (Updated) -->
           <section class="checkout-section">
             <div class="section-header">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
               </svg>
-              <h2>Shipping Option</h2>
+              <h2>Delivery Options</h2>
             </div>
-            <div class="shipping-option">
-              <div class="shipping-details">
-                <span class="shipping-name">Standard Local Delivery</span>
-                <span class="shipping-info">Receive by 3-5 days</span>
-              </div>
-              <div class="shipping-price">₱40</div>
+            
+            <div class="delivery-options">
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="standard" checked>
+                <div class="option-content">
+                  <div>
+                    <div class="option-name">Standard Delivery</div>
+                    <div class="option-description">Receive in 3-5 business days</div>
+                  </div>
+                  <div class="option-price">₱40</div>
+                </div>
+              </label>
+              
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="express">
+                <div class="option-content">
+                  <div>
+                    <div class="option-name">Express Delivery</div>
+                    <div class="option-description">Receive in 1-2 business days</div>
+                  </div>
+                  <div class="option-price">₱150</div>
+                </div>
+              </label>
+              
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="pickup">
+                <div class="option-content">
+                  <div>
+                    <div class="option-name">Store Pickup</div>
+                    <div class="option-description">Pick up at our shop when ready</div>
+                  </div>
+                  <div class="option-price">Free</div>
+                </div>
+              </label>
             </div>
           </section>
 
@@ -105,9 +299,28 @@
               </svg>
               <h2>Shop Voucher</h2>
             </div>
-            <div class="voucher-section">
-              <span>Select voucher</span>
-              <button class="change-btn">Select</button>
+            <div class="voucher-input">
+              <input type="text" placeholder="Enter voucher code" id="voucher-code">
+              <button class="apply-btn">Apply</button>
+            </div>
+            <div class="available-vouchers">
+              <h4>Available Vouchers</h4>
+              <div class="voucher-list">
+                <div class="voucher-item">
+                  <div class="voucher-details">
+                    <div class="voucher-name">NEW10</div>
+                    <div class="voucher-description">10% off for new customers</div>
+                  </div>
+                  <button class="use-voucher-btn" data-code="NEW10">Use</button>
+                </div>
+                <div class="voucher-item">
+                  <div class="voucher-details">
+                    <div class="voucher-name">WEDDING50</div>
+                    <div class="voucher-description">₱50 off on wedding dress orders</div>
+                  </div>
+                  <button class="use-voucher-btn" data-code="WEDDING50">Use</button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -122,41 +335,145 @@
             <div class="payment-methods">
               <label class="payment-method">
                 <input type="radio" name="payment" value="cash" checked>
-                <div class="payment-method-details">Cash on Delivery</div>
+                <div class="payment-method-details">
+                  <div class="method-icon cash-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                    </svg>
+                  </div>
+                  <div>Cash on Delivery</div>
+                </div>
               </label>
+              
               <label class="payment-method">
                 <input type="radio" name="payment" value="gcash">
-                <div class="payment-method-details">GCash</div>
+                <div class="payment-method-details">
+                  <div class="method-icon gcash-icon">
+                    <img src="assets/images/gcash.png" alt="GCash" onerror="this.src='assets/images/logo.jpg'; this.style.opacity='0.5';">
+                  </div>
+                  <div>GCash</div>
+                </div>
+              </label>
+              
+              <label class="payment-method">
+                <input type="radio" name="payment" value="card">
+                <div class="payment-method-details">
+                  <div class="method-icon card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                    </svg>
+                  </div>
+                  <div>Credit/Debit Card</div>
+                </div>
+              </label>
+              
+              <label class="payment-method">
+                <input type="radio" name="payment" value="deposit">
+                <div class="payment-method-details">
+                  <div class="method-icon deposit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                  </div>
+                  <div>50% Deposit (Balance on completion)</div>
+                </div>
               </label>
             </div>
           </section>
 
-          <!-- Order Summary Section -->
+          <!-- Order Summary Section (Updated) -->
           <section class="summary-section">
+            <h3>Order Summary</h3>
+            <div id="cart-items">
+              <!-- Sample cart item -->
+              <div class="summary-item">
+                <span>Traditional Filipino Dress x 1</span>
+                <span>₱2,499.00</span>
+              </div>
+            </div>
+            
             <div class="summary-row">
               <span>Subtotal:</span>
-              <span id="subtotal">₱0.00</span>
+              <span id="subtotal">₱2,499.00</span>
             </div>
             <div class="summary-row">
-              <span>Shipping Total:</span>
+              <span>Shipping:</span>
               <span id="shipping">₱40.00</span>
             </div>
             <div class="summary-row">
-              <span>Shop Voucher:</span>
-              <span id="voucher">-₱0.00</span>
+              <span>Fitting Appointment:</span>
+              <span id="fitting-fee">₱0.00</span>
+            </div>
+            <div class="summary-row discount-row" style="display: none;">
+              <span>Discount:</span>
+              <span id="discount">-₱0.00</span>
             </div>
             <div class="summary-row total">
               <span>Total Payment:</span>
-              <span id="total">₱0.00</span>
+              <span id="total">₱2,539.00</span>
+            </div>
+            <div class="delivery-estimate">
+              <div class="estimate-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                </svg>
+              </div>
+              <div class="estimate-details">
+                <div class="estimate-label">Estimated Completion:</div>
+                <div class="estimate-date" id="estimate-date">August 20, 2023</div>
+              </div>
             </div>
             <button class="place-order-btn" id="place-order-btn">Place Order</button>
+            
+            <div class="order-note">
+              <p>By placing your order, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
           </section>
         </div>
       </div>
     </main>
-    <footer></footer>
+
+    <footer class="checkout-footer">
+      <div class="container">
+        <p>© 2023 Kunozulkhair Tailoring Shop. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Return Policy</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </footer>
     
     <script src="js/header.js"></script>
     <script type="module" src="js/checkout.js"></script>
+    
+    <!-- Add custom styles for animations -->
+    <style>
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.6; }
+        100% { opacity: 1; }
+      }
+      
+      .updated {
+        animation: pulse 1s ease;
+        font-weight: bold;
+        color: #D4AF37;
+      }
+      
+      /* Progress bar animation */
+      .checkout-progress::after {
+        content: "";
+        position: absolute;
+        top: 16px;
+        left: 5%;
+        width: 45%; /* Position it between step 1 and 2 for checkout page */
+        height: 2px;
+        background-color: #D4AF37;
+        z-index: 0;
+        transition: width 0.5s ease;
+      }
+    </style>
   </body>
 </html>

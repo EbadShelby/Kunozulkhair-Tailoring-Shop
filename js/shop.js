@@ -20,9 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     sort: "default",
     pagination: {
       currentPage: 1,
-      productsPerPage: 12,
+      productsPerPage: 8,
       totalPages: 1
-    }
+    },
+    search: ""
   };
 
   // DOM Elements
@@ -47,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Setup event listeners
     setupEventListeners();
     
+    // Check for search param in URL
+    checkForSearchParam();
+    
     // Calculate total pages
     updateTotalPages();
     
@@ -57,7 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPagination();
   }
   
+  function checkForSearchParam() {
+    // Get search term from URL or session storage
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    
+    if (searchParam) {
+      state.search = decodeURIComponent(searchParam);
+    } else if (sessionStorage.getItem('searchTerm')) {
+      state.search = sessionStorage.getItem('searchTerm');
+    }
+    
+    // Clear session storage after using it
+    sessionStorage.removeItem('searchTerm');
+  }
+  
   function setupEventListeners() {
+    // Listen for search event
+    document.addEventListener('performSearch', (e) => {
+      state.search = e.detail.searchTerm;
+      state.pagination.currentPage = 1;
+      renderProducts();
+      renderPagination();
+    });
+    
     // Sort change
     if (sortSelect) {
       sortSelect.addEventListener("change", () => {
@@ -271,6 +298,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return false;
       }
       
+      // Filter by search term
+      if (state.search) {
+        const searchTerm = state.search.toLowerCase();
+        const nameMatch = product.name.toLowerCase().includes(searchTerm);
+        const descMatch = product.description && product.description.toLowerCase().includes(searchTerm);
+        const categoryMatch = product.category.toLowerCase().includes(searchTerm);
+        
+        if (!nameMatch && !descMatch && !categoryMatch) {
+          return false;
+        }
+      }
+      
       return true;
     });
   }
@@ -342,13 +381,14 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${product.image}" alt="${product.name}" />
         <div class="product-info">
           <h3>${product.name}</h3>
-          <div class="product-price">₱${product.price.toLocaleString()}</div>
           <div class="product-meta">
+            <div class="product-price">₱${product.price.toLocaleString()}</div>
             <div class="product-rating">
               ⭐${ratingOutOf10}
+              <span class="rating-count">(${product.rating.count})</span>
             </div>
-          <button data-product-id="${product.id}">Add to Cart</button>
           </div>
+          <button data-product-id="${product.id}">Add to Cart</button>
         </div>
         `;
 

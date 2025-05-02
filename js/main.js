@@ -104,13 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${product.image}" alt="${product.name}" />
           <div class="product-info">
             <h3>${product.name}</h3>
-            <div class="product-price">₱${product.price.toLocaleString()}</div>
             <div class="product-meta">
+              <div class="product-price">₱${product.price.toLocaleString()}</div>
               <div class="product-rating">
                 ⭐${ratingOutOf10}
+                <span class="rating-count">(${product.rating.count})</span>
               </div>
-              <button class="btn-cart" data-product-id="${product.id}">Add to Cart</button>
             </div>
+            <button class="btn-cart" data-product-id="${product.id}">Add to Cart</button>
           </div>
         </article>
         `;
