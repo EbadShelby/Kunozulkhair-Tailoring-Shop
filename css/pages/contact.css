@@ -1,27 +1,24 @@
 .contact-hero {
-  background: var(--clr-neutral-100);
-  padding: var(--spacing-600) 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../assets/images/logo.jpg") center/cover no-repeat;
+  color: #fff;
+  padding: 5rem 0;
   text-align: center;
+  margin-bottom: 3rem;
 }
 
 .contact-hero__title {
-  font-size: var(--size-5xl);
+  font-size: 2.5rem;
   font-weight: var(--fw-bold);
-  color: var(--clr-secondary);
+  color: var(--clr-neutral-100);
+  margin-bottom: 1rem;
 }
 
 .contact-hero__desc {
-  font-size: var(--size-lg);
-  color: var(--clr-neutral-400);
+  font-size: 1.2rem;
+  color: var(--clr-neutral-100);
   max-width: 600px;
-  margin: var(--spacing-200) auto 0;
+  margin: 0 auto;
 }
-
-
-
-
-
-
 
 .contact-info {
   background: var(--clr-neutral-100);
@@ -74,17 +71,6 @@
 .contact-info__socials a:hover {
   color: var(--clr-primary);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .contact-form {
   background: var(--clr-neutral-200);
@@ -152,13 +138,6 @@
   transition: background 0.3s ease;
 }
 
-
-
-
-
-
-
-
 .contact-location {
   background: var(--clr-neutral-200);
   padding: var(--spacing-500) 0;
@@ -183,18 +162,6 @@
   border-radius: var(--size-xs);
   overflow: hidden;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .contact-cta {
   text-align: center;

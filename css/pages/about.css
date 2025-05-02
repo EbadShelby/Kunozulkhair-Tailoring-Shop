@@ -4,26 +4,25 @@
   justify-content: center;
   text-align: center;
   padding: var(--spacing-800) var(--spacing-400);
-  background: url("assets/images/team.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../assets/images/team.jpg") center/cover no-repeat;
   color: var(--clr-neutral-100);
+  margin-bottom: 3rem;
 }
 
 .about-hero__content {
-  max-width: 50rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: var(--spacing-400);
-  border-radius: var(--spacing-100);
+  max-width: 600px;
 }
 
 .about-hero__title {
-  font-size: var(--size-5xl);
+  font-size: 2.5rem;
   font-weight: var(--fw-black);
   font-family: var(--ff-accent);
+  margin-bottom: 1rem;
 }
 
 .about-hero__description {
-  font-size: var(--size-lg);
-  margin: var(--spacing-200) 0;
+  font-size: 1.2rem;
+  margin: 0 auto 1.5rem;
 }
 
 .btn-primary {

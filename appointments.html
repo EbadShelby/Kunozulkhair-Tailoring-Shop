@@ -78,7 +78,7 @@
               <span class="cart-count" id="cart-count">0</span>
             </button>
           </div>
-          <button class="header__icon">
+          <button class="header__icon notification" id="notification-icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +87,27 @@
               stroke-width="1.5"
               stroke="currentColor"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" 
+              />
+            </svg>
+            <span class="notification-count" id="notification-count">3</span>
+          </button>
+          <button class="header__icon help" id="help-icon">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" 
               />
             </svg>
           </button>
@@ -153,85 +170,478 @@
       </nav>
     </header>
     
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notification-dropdown">
+      <div class="notification-header">
+        <h3>Notifications</h3>
+        <button id="mark-all-read">Mark all as read</button>
+      </div>
+      <div class="notification-list">
+        <div class="notification-item">
+          <div class="notification-title">Order Confirmed</div>
+          <div class="notification-message">Your order #12345 has been confirmed and is being processed.</div>
+          <div class="notification-time">2 hours ago</div>
+        </div>
+        <div class="notification-item">
+          <div class="notification-title">New Collection Available</div>
+          <div class="notification-message">Check out our latest summer collection with 20% off!</div>
+          <div class="notification-time">1 day ago</div>
+        </div>
+        <div class="notification-item">
+          <div class="notification-title">Appointment Reminder</div>
+          <div class="notification-message">Don't forget your fitting appointment tomorrow at 2 PM.</div>
+          <div class="notification-time">2 days ago</div>
+        </div>
+      </div>
+      <div class="notification-footer">
+        <a href="#">View all notifications</a>
+      </div>
+    </div>
+    
+    <!-- Help Tooltip -->
+    <div class="help-tooltip" id="help-tooltip">
+      <p>Need help with something? Try these quick options:</p>
+      <div class="quick-help-buttons">
+        <button class="quick-help-button" id="help-sizing">Sizing Guide</button>
+        <button class="quick-help-button" id="help-orders">FAQs</button>
+        <button class="quick-help-button" id="help-chat">Chat with AI</button>
+      </div>
+    </div>
     
     <main>
-      <div class="appointment-container">
-        <div class="appointment-page">
-        <section>
-          <div class="header_appointment">
-            <h1>Book an Appointment</h1>
+      <div class="appointment-hero">
+        <div class="container">
+          <h1>Book Your Tailoring Appointment</h1>
+          <p>Schedule a visit with our expert tailors to discuss your custom clothing needs</p>
+        </div>
+      </div>
+      
+      <div class="appointment-container container">
+        <!-- Appointment Flow Steps -->
+        <div class="appointment-steps">
+          <div class="step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-title">Service Selection</div>
           </div>
+          <div class="step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-title">Date & Time</div>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-title">Your Details</div>
+          </div>
+          <div class="step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-title">Measurements</div>
+          </div>
+          <div class="step" data-step="5">
+            <div class="step-number">5</div>
+            <div class="step-title">Confirmation</div>
+          </div>
+        </div>
+
+        <!-- Multi-step Form -->
           <form class="appointment-form" id="appointment-form">
-            <label for="name">Full Name:</label>
-              <input 
-              type="text" 
-              id="name" 
-              name="name"
-              placeholder="Enter you full name"
-              required 
-              />
-
-            <label for="email">Email Address:</label>
-              <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              placeholder="Enter your email address"
-              required 
-              />
-
-              <label for="phone">Phone Number:</label>
-              <input 
-              type="tel"
-              id="phone" 
-              name="phone" 
-              placeholder="Enter your phone number"
-              required 
-              />
-
-              <label for="service">Select Service:</label>
+          <!-- Step 1: Service Selection -->
+          <div class="form-step active" id="step-1">
+            <h2>Select Your Service</h2>
+            
+            <div class="service-cards">
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/custom-dress.svg" alt="Custom Dressmaking" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Custom Dressmaking</h3>
+                <p>From concept to creation, we'll craft your dream outfit</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="custom-dressmaking" required>
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
               
-               <select 
-               id="service" 
-               name="service" 
-               required
-               >
-              <option value="">-- Select a Service --</option>
-                <option value="embroidery">Embroidery Services</option>
-                <option value="custom-dressmaking">Custom Dressmaking</option>
-                <option value="alterations">Alterations & Repairs</option>
-                <option value="bridal">Bridal & Formal Wear</option>
-                <option value="curtains">Curtains & Home Textiles</option>
-                <option value="casual">Casual & Everyday Dresses</option>
-                </select>
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/alterations.svg" alt="Alterations" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Alterations & Repairs</h3>
+                <p>Perfect fit adjustments and skilled clothing repairs</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="alterations">
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/embroidery.svg" alt="Embroidery" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Embroidery Services</h3>
+                <p>Beautiful custom embroidery to enhance your garments</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="embroidery">
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/bridal.svg" alt="Bridal Services" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Bridal & Formal Wear</h3>
+                <p>Elegant attire for your special occasions</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="bridal">
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/curtains.svg" alt="Home Textiles" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Curtains & Home Textiles</h3>
+                <p>Custom home decor pieces tailored to your specifications</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="home">
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-icon">
+                  <img src="assets/images/icons/casual.svg" alt="Casual Wear" onerror="this.src='assets/images/logo.jpg'">
+                </div>
+                <h3>Casual & Everyday Dresses</h3>
+                <p>Comfortable and stylish everyday clothing options</p>
+                <label class="service-select">
+                  <input type="radio" name="service" value="casual">
+                  <span class="checkmark"></span>
+                  <span>Select</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="appointment-consultation">
+              <h3>Not sure what you need?</h3>
+              <p>Book a free consultation with our expert tailors</p>
+              <label class="consultation-select">
+                <input type="radio" name="service" value="consultation">
+                <span>Book Consultation</span>
+              </label>
+            </div>
+            
+            <div class="form-buttons">
+              <button type="button" class="next-btn">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 2: Date & Time Selection -->
+          <div class="form-step" id="step-2">
+            <h2>Choose Date & Time</h2>
+            
+            <div class="calendar-section">
+              <div class="calendar-container" id="appointment-calendar">
+                <!-- Calendar will be rendered by JavaScript -->
+              </div>
+              
+              <div class="timeslots-container">
+                <h3>Available Time Slots</h3>
+                <p class="selected-date">Please select a date first</p>
                 
-              <label for="date">Preferred Date:</label>
-              <input 
-              type="date" 
-              id="date" 
-              name="date" 
-              required 
-              />
-              <label for="time">Preferred Time:</label>
-              <input 
-              type="time" 
-              id="time" 
-              name="time"
-              required 
-              />
-
-              <label for="notes">Additional Notes:</label>
-              <textarea 
-              id="notes" 
-              name="notes" 
-              rows="4"
-              placeholder="Pleave leave your notes here.."
-              >
-              </textarea>
-
-          <button type="submit">Book Appointment</button>
+                <div class="timeslots" id="available-timeslots">
+                  <!-- Time slots will be populated by JavaScript -->
+                  <div class="timeslot-placeholder">Select a date to see available times</div>
+                </div>
+              </div>
+            </div>
+            
+            <input type="hidden" name="appointment_date" id="appointment_date">
+            <input type="hidden" name="appointment_time" id="appointment_time">
+            
+            <div class="form-buttons">
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 3: Personal Details -->
+          <div class="form-step" id="step-3">
+            <h2>Your Contact Information</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+            <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+              </div>
+            </div>
+            
+            <div class="form-row two-columns">
+              <div class="form-group">
+            <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+              </div>
+              
+              <div class="form-group">
+              <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="address">Address (optional):</label>
+              <input type="text" id="address" name="address" placeholder="Enter your address">
+            </div>
+            
+            <div class="form-group">
+              <label for="garment_description">Please describe what you need:</label>
+              <textarea id="garment_description" name="garment_description" rows="4" placeholder="Describe your garment requirements, style preferences, or any specific details you'd like to discuss..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="reference_images">Reference Images (optional):</label>
+              <div class="file-upload">
+                <input type="file" id="reference_images" name="reference_images" multiple accept="image/*">
+                <div class="upload-label">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                  </svg>
+                  <span>Upload Images</span>
+                </div>
+              </div>
+              <div id="file-preview" class="file-preview"></div>
+            </div>
+            
+            <div class="form-buttons">
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 4: Measurements -->
+          <div class="form-step" id="step-4">
+            <h2>Measurements</h2>
+            <p class="measurements-info">Please provide your measurements if available. Don't worry if you're unsure – our tailors can take your measurements during your appointment.</p>
+            
+            <div class="measurement-toggle">
+              <label class="toggle-label">
+                <input type="checkbox" id="provide-measurements" name="provide_measurements">
+                <span class="toggle-text">I want to provide my measurements now</span>
+              </label>
+            </div>
+            
+            <div class="measurements-container" id="measurements-fields" style="display: none;">
+              <div class="measurement-section">
+                <h3>Upper Body</h3>
+                <div class="measurement-grid">
+                  <div class="measurement-field">
+                    <label for="measurement_chest">Chest (inches):</label>
+                    <input type="number" id="measurement_chest" name="measurement_chest" step="0.25" min="20" max="70">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_waist">Waist (inches):</label>
+                    <input type="number" id="measurement_waist" name="measurement_waist" step="0.25" min="20" max="70">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_hip">Hip (inches):</label>
+                    <input type="number" id="measurement_hip" name="measurement_hip" step="0.25" min="20" max="70">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_shoulder">Shoulder Width (inches):</label>
+                    <input type="number" id="measurement_shoulder" name="measurement_shoulder" step="0.25" min="10" max="30">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_sleeve">Sleeve Length (inches):</label>
+                    <input type="number" id="measurement_sleeve" name="measurement_sleeve" step="0.25" min="15" max="40">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="measurement-section">
+                <h3>Lower Body</h3>
+                <div class="measurement-grid">
+                  <div class="measurement-field">
+                    <label for="measurement_inseam">Inseam (inches):</label>
+                    <input type="number" id="measurement_inseam" name="measurement_inseam" step="0.25" min="20" max="40">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_outseam">Outseam (inches):</label>
+                    <input type="number" id="measurement_outseam" name="measurement_outseam" step="0.25" min="25" max="50">
+                  </div>
+                  <div class="measurement-field">
+                    <label for="measurement_thigh">Thigh (inches):</label>
+                    <input type="number" id="measurement_thigh" name="measurement_thigh" step="0.25" min="15" max="40">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="measurement-guide">
+                <h4>Not sure how to measure?</h4>
+                <a href="#" class="measurement-guide-link" id="show-measurement-guide">View Measurement Guide</a>
+              </div>
+            </div>
+            
+            <!-- Fabric Preference Section -->
+            <div class="fabric-section">
+              <h3>Fabric Preferences (Optional)</h3>
+              <div class="fabric-options">
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_cotton" name="fabric_preference[]" value="cotton">
+                  <label for="fabric_cotton">Cotton</label>
+                </div>
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_linen" name="fabric_preference[]" value="linen">
+                  <label for="fabric_linen">Linen</label>
+                </div>
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_silk" name="fabric_preference[]" value="silk">
+                  <label for="fabric_silk">Silk</label>
+                </div>
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_wool" name="fabric_preference[]" value="wool">
+                  <label for="fabric_wool">Wool</label>
+                </div>
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_polyester" name="fabric_preference[]" value="polyester">
+                  <label for="fabric_polyester">Polyester</label>
+                </div>
+                <div class="fabric-option">
+                  <input type="checkbox" id="fabric_other" name="fabric_preference[]" value="other">
+                  <label for="fabric_other">Other</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fabric_notes">Additional fabric notes:</label>
+                <textarea id="fabric_notes" name="fabric_notes" rows="2" placeholder="Any specific fabric requirements or preferences..."></textarea>
+              </div>
+            </div>
+            
+            <div class="form-buttons">
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 5: Confirmation -->
+          <div class="form-step" id="step-5">
+            <h2>Appointment Summary</h2>
+            
+            <div class="appointment-summary">
+              <div class="summary-section">
+                <h3>Service</h3>
+                <p id="summary-service">Custom Dressmaking</p>
+              </div>
+              
+              <div class="summary-section">
+                <h3>Date & Time</h3>
+                <p id="summary-datetime">May 15, 2023 at 10:30 AM</p>
+              </div>
+              
+              <div class="summary-section">
+                <h3>Your Information</h3>
+                <p id="summary-name">John Doe</p>
+                <p id="summary-email">john@example.com</p>
+                <p id="summary-phone">(123) 456-7890</p>
+              </div>
+              
+              <div class="summary-section">
+                <h3>Your Request</h3>
+                <p id="summary-description">Custom wedding dress with lace details...</p>
+              </div>
+            </div>
+            
+            <div class="appointment-policies">
+              <h3>Appointment Policies</h3>
+              <div class="policy-item">
+                <strong>Cancellation Policy:</strong> Please notify us at least 24 hours in advance to cancel or reschedule your appointment.
+              </div>
+              <div class="policy-item">
+                <strong>Consultation Fee:</strong> Initial consultations are free. Measurement services are ₱300, which will be credited toward your order.
+              </div>
+              <div class="policy-item">
+                <strong>Deposit:</strong> Custom orders require a 50% deposit before work begins.
+              </div>
+              
+              <div class="consent-checkbox">
+                <input type="checkbox" id="policy-agreement" name="policy_agreement" required>
+                <label for="policy-agreement">I agree to the appointment policies and terms of service</label>
+              </div>
+            </div>
+            
+            <div class="form-buttons">
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="submit" class="submit-btn">Confirm Appointment</button>
+            </div>
+          </div>
           </form>
-        </section>
+        
+        <!-- Appointment Success Message (Hidden by default) -->
+        <div class="appointment-success" style="display: none;">
+          <div class="success-icon">✓</div>
+          <h2>Appointment Booked Successfully!</h2>
+          <p>We've sent a confirmation email to <span id="confirmation-email">your email</span></p>
+          <div class="appointment-details">
+            <div class="detail-item">
+              <strong>Appointment ID:</strong> <span id="appointment-id">AP12345</span>
+            </div>
+            <div class="detail-item">
+              <strong>Date & Time:</strong> <span id="appointment-datetime">May 15, 2023 at 10:30 AM</span>
+            </div>
+            <div class="detail-item">
+              <strong>Service:</strong> <span id="appointment-service">Custom Dressmaking</span>
+            </div>
+          </div>
+          <div class="success-actions">
+            <a href="appointments.html" class="btn">Book Another Appointment</a>
+            <a href="index.html" class="btn secondary">Return to Home</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Measurement Guide Modal -->
+      <div class="modal" id="measurement-modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>How to Take Your Measurements</h2>
+          <div class="measurement-guide-content">
+            <div class="measurement-item">
+              <h3>Chest/Bust</h3>
+              <p>Measure around the fullest part of your chest/bust, keeping the tape parallel to the floor.</p>
+              <img src="assets/images/measurement-chest.jpg" alt="Chest measurement" class="measurement-img">
+            </div>
+            
+            <div class="measurement-item">
+              <h3>Waist</h3>
+              <p>Measure around your natural waistline, keeping the tape comfortably loose.</p>
+              <img src="assets/images/measurement-waist.jpg" alt="Waist measurement" class="measurement-img">
+            </div>
+            
+            <div class="measurement-item">
+              <h3>Hip</h3>
+              <p>Measure around the fullest part of your hips, keeping the tape parallel to the floor.</p>
+              <img src="assets/images/measurement-hip.jpg" alt="Hip measurement" class="measurement-img">
+            </div>
+            
+            <!-- More measurement instructions can be added here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- View Previous Appointments Section -->
+      <div class="previous-appointments container">
+        <h2>Your Previous Appointments</h2>
+        <p class="login-prompt">Please <a href="login-form.html">login</a> to view your appointment history</p>
+        
+        <!-- This section would be shown when logged in -->
+        <div class="appointments-list" style="display: none;">
+          <!-- Appointment cards would be populated here -->
+        </div>
+      </div>
     </main>
 
     <!-- Cart Sidebar -->
@@ -250,6 +660,6 @@
     <script src="js/header.js"></script>
     <script type="module" src="data/products.js"></script>
     <script type="module" src="js/shop.js"></script>
-    <script src="appointment.js"></script>
+    <script src="js/appointment.js"></script>
   </body>
 </html>
