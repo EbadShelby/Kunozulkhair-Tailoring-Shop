@@ -22,18 +22,16 @@ if (notificationIcon && notificationDropdown) {
       helpTooltip.style.display = "none";
     }
   });
-  
-  if (markAllReadButton) {
-    markAllReadButton.addEventListener("click", function() {
-      // Reset notification count
-      const notificationCount = document.getElementById("notification-count");
-      if (notificationCount) {
-        notificationCount.textContent = "0";
-        notificationCount.style.display = "none";
-      }
-    });
-  }
 }
+
+// Add this to close the dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (notificationDropdown && notificationDropdown.style.display === 'block') {
+    if (!notificationDropdown.contains(e.target) && e.target !== notificationIcon) {
+      notificationDropdown.style.display = 'none';
+    }
+  }
+});
 
 // Help functionality
 const helpIcon = document.getElementById("help-icon");

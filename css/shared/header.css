@@ -324,3 +324,19 @@
 
 /* 2xl */
 /* @media (min-width: 1536px) {} */
+
+/* Add this to your header.css file if not already present */
+.notification-item.unread {
+  background-color: #f0f7ff;
+  border-left: 3px solid var(--clr-primary);
+}
+
+.notification-item.unread .notification-title {
+  font-weight: var(--fw-bold);
+}
+
+.empty-notification {
+  padding: 15px;
+  text-align: center;
+  color: #888;
+}
