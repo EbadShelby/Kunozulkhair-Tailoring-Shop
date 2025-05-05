@@ -258,6 +258,97 @@
   padding: 1rem;
 }
 
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.month-year {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.calendar-nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.calendar-nav-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #666;
+  padding: 0.5rem 0;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: default;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.day.empty {
+  background: none;
+}
+
+.day.selectable {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.day.selectable:hover {
+  background-color: #f0f0f0;
+}
+
+.day.selected {
+  background-color: var(--clr-primary);
+  color: #000;
+  font-weight: bold;
+}
+
+.day.past {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.day.weekend {
+  color: #999;
+  background-color: #f5f5f5;
+}
+
 .timeslots-container {
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -819,23 +910,23 @@
   .appointment-steps {
     display: none;
   }
-  
+
   .calendar-section {
     grid-template-columns: 1fr;
   }
-  
+
   .two-columns {
     grid-template-columns: 1fr;
   }
-  
+
   .fabric-options {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .measurement-item {
     grid-template-columns: 1fr;
   }
-  
+
   .success-actions {
     flex-direction: column;
   }
@@ -845,16 +936,16 @@
   .appointment-form {
     padding: 1.5rem;
   }
-  
+
   .service-cards {
     grid-template-columns: 1fr;
   }
-  
+
   .form-buttons {
     flex-direction: column-reverse;
     gap: 1rem;
   }
-  
+
   .prev-btn, .next-btn, .submit-btn {
     width: 100%;
   }

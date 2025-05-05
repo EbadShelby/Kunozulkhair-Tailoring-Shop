@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextButtons = document.querySelectorAll('.next-btn');
   const prevButtons = document.querySelectorAll('.prev-btn');
   const submitButton = document.querySelector('.submit-btn');
-  
+
   // Get current active step
   function getCurrentStep() {
     let currentStep = 1;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     return currentStep;
   }
-  
+
   // Navigate to specific step
   function goToStep(stepNumber) {
     formSteps.forEach((step, index) => {
@@ -28,27 +28,27 @@ document.addEventListener('DOMContentLoaded', function() {
         step.classList.add('active');
       }
     });
-    
+
     stepIndicators.forEach((indicator, index) => {
       indicator.classList.remove('active');
       if (index + 1 <= stepNumber) {
         indicator.classList.add('active');
       }
     });
-    
+
     // Scroll to top of form
     appointmentForm.scrollIntoView({ behavior: 'smooth' });
   }
-  
+
   // Next button click event
   nextButtons.forEach(button => {
     button.addEventListener('click', () => {
       const currentStep = getCurrentStep();
-      
+
       // Validate current step before proceeding
       if (validateStep(currentStep)) {
         goToStep(currentStep + 1);
-        
+
         // If moving to confirmation step, populate summary
         if (currentStep + 1 === 5) {
           populateSummary();
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+
   // Previous button click event
   prevButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       goToStep(currentStep - 1);
     });
   });
-  
+
   // Step validation logic
   function validateStep(stepNumber) {
     switch(stepNumber) {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return document.querySelector('input[name="service"]:checked') !== null;
       case 2:
         // Check if date and time are selected
-        return document.getElementById('appointment_date').value !== '' && 
+        return document.getElementById('appointment_date').value !== '' &&
                document.getElementById('appointment_time').value !== '';
       case 3:
         // Check required fields in personal info
@@ -88,41 +88,54 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
   }
-  
+
   // Calendar functionality
   const calendarContainer = document.getElementById('appointment-calendar');
   const timeslotsContainer = document.getElementById('available-timeslots');
   const selectedDateElement = document.querySelector('.selected-date');
   const appointmentDateInput = document.getElementById('appointment_date');
   const appointmentTimeInput = document.getElementById('appointment_time');
-  
-  // Initialize calendar 
+
+  // Initialize calendar
   if (calendarContainer) {
     initCalendar();
   }
-  
+
   function initCalendar() {
     const today = new Date();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
-    
+
+    // Clear any previous values
+    if (appointmentDateInput) appointmentDateInput.value = '';
+    if (appointmentTimeInput) appointmentTimeInput.value = '';
+    if (selectedDateElement) selectedDateElement.textContent = 'Select a date';
+
+    // Reset timeslots container
+    if (timeslotsContainer) {
+      timeslotsContainer.innerHTML = '<div class="timeslot-placeholder">Please select a date first</div>';
+    }
+
     renderCalendar(currentMonth, currentYear);
   }
-  
+
   function renderCalendar(month, year) {
     const today = new Date();
+    // Reset time part to compare dates correctly
+    today.setHours(0, 0, 0, 0);
+
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
     const startingDayOfWeek = firstDay.getDay();
-    
+
     // Clear previous calendar
     calendarContainer.innerHTML = '';
-    
+
     // Create calendar header
     const calendarHeader = document.createElement('div');
     calendarHeader.className = 'calendar-header';
-    
+
     // Previous month button
     const prevMonthBtn = document.createElement('button');
     prevMonthBtn.innerHTML = '&laquo;';
@@ -136,14 +149,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       renderCalendar(newMonth, newYear);
     });
-    
+
     // Current month and year display
     const monthYearDisplay = document.createElement('div');
     monthYearDisplay.className = 'month-year';
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                         'July', 'August', 'September', 'October', 'November', 'December'];
     monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
-    
+
     // Next month button
     const nextMonthBtn = document.createElement('button');
     nextMonthBtn.innerHTML = '&raquo;';
@@ -157,46 +170,49 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       renderCalendar(newMonth, newYear);
     });
-    
+
     calendarHeader.appendChild(prevMonthBtn);
     calendarHeader.appendChild(monthYearDisplay);
     calendarHeader.appendChild(nextMonthBtn);
     calendarContainer.appendChild(calendarHeader);
-    
+
     // Create weekday headers
     const weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekdaysRow = document.createElement('div');
     weekdaysRow.className = 'weekdays';
-    
+
     weekdayNames.forEach(day => {
       const dayElement = document.createElement('div');
       dayElement.className = 'weekday';
       dayElement.textContent = day;
       weekdaysRow.appendChild(dayElement);
     });
-    
+
     calendarContainer.appendChild(weekdaysRow);
-    
+
     // Create days grid
     const daysGrid = document.createElement('div');
     daysGrid.className = 'days-grid';
-    
+
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       const emptyDay = document.createElement('div');
       emptyDay.className = 'day empty';
       daysGrid.appendChild(emptyDay);
     }
-    
+
     // Add days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       const dayElement = document.createElement('div');
       const currentDate = new Date(year, month, day);
+      // Reset time part to compare dates correctly
+      currentDate.setHours(0, 0, 0, 0);
+
       dayElement.className = 'day';
       dayElement.textContent = day;
-      
+
       // Check if day is in the past
-      if (currentDate < today.setHours(0, 0, 0, 0)) {
+      if (currentDate < today) {
         dayElement.classList.add('past');
       } else {
         // Check if day is Sunday or Saturday (weekend)
@@ -205,157 +221,219 @@ document.addEventListener('DOMContentLoaded', function() {
           dayElement.classList.add('weekend');
         } else {
           dayElement.classList.add('selectable');
-          
+
           // Make day selectable
           dayElement.addEventListener('click', () => {
             // Remove selected class from all days
             document.querySelectorAll('.day').forEach(day => {
               day.classList.remove('selected');
             });
-            
+
             // Add selected class to clicked day
             dayElement.classList.add('selected');
-            
+
             // Format date for display and input
             const formattedDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const displayDate = `${monthNames[month]} ${day}, ${year}`;
-            
+
             // Update displayed selected date
             selectedDateElement.textContent = displayDate;
-            
+
             // Update hidden input
             appointmentDateInput.value = formattedDate;
-            
+
+            // Clear time input when date changes
+            appointmentTimeInput.value = '';
+
             // Generate time slots for selected date
             generateTimeSlots(currentDate);
           });
         }
       }
-      
+
       daysGrid.appendChild(dayElement);
     }
-    
+
     calendarContainer.appendChild(daysGrid);
   }
-  
+
   function generateTimeSlots(selectedDate) {
     // Clear previous time slots
     timeslotsContainer.innerHTML = '';
-    
+
+    // Get day of week (0 = Sunday, 6 = Saturday)
+    const dayOfWeek = selectedDate.getDay();
+
+    // If weekend, show message that no appointments are available
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      const noSlotsMessage = document.createElement('div');
+      noSlotsMessage.className = 'timeslot-placeholder';
+      noSlotsMessage.textContent = 'No appointments available on weekends. Please select a weekday.';
+      timeslotsContainer.appendChild(noSlotsMessage);
+      return;
+    }
+
     // Generate time slots from 9 AM to 5 PM (adjust as needed)
     const startHour = 9;
     const endHour = 17;
     const slotDuration = 60; // minutes
-    
+
+    // Get current date and time
+    const now = new Date();
+    const isToday = selectedDate.getDate() === now.getDate() &&
+                    selectedDate.getMonth() === now.getMonth() &&
+                    selectedDate.getFullYear() === now.getFullYear();
+
     // Mock unavailable slots (in a real app, these would come from the backend)
-    const unavailableSlots = [
-      '10:00', // 10 AM is booked
-      '14:00', // 2 PM is booked
-    ];
-    
+    // Different unavailable slots for different days to make it more realistic
+    let unavailableSlots = [];
+
+    // Generate some random unavailable slots based on the day
+    switch(dayOfWeek) {
+      case 1: // Monday
+        unavailableSlots = ['09:00', '13:00'];
+        break;
+      case 2: // Tuesday
+        unavailableSlots = ['11:00', '15:00'];
+        break;
+      case 3: // Wednesday
+        unavailableSlots = ['10:00', '14:00', '16:00'];
+        break;
+      case 4: // Thursday
+        unavailableSlots = ['09:00', '12:00'];
+        break;
+      case 5: // Friday
+        unavailableSlots = ['11:00', '13:00', '15:00'];
+        break;
+    }
+
+    let hasAvailableSlots = false;
+
     for (let hour = startHour; hour < endHour; hour++) {
       for (let minute = 0; minute < 60; minute += slotDuration) {
         const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
         const displayTime = formatTimeForDisplay(timeString);
-        
+
         const timeSlot = document.createElement('div');
         timeSlot.className = 'timeslot';
         timeSlot.textContent = displayTime;
-        
-        // Check if slot is unavailable
-        if (unavailableSlots.includes(timeString)) {
+
+        // Check if slot is unavailable or in the past (if today)
+        let isUnavailable = unavailableSlots.includes(timeString);
+
+        if (isToday) {
+          const slotHour = parseInt(timeString.split(':')[0]);
+          const slotMinute = parseInt(timeString.split(':')[1]);
+
+          // If the time slot is in the past, mark it as unavailable
+          if (slotHour < now.getHours() || (slotHour === now.getHours() && slotMinute <= now.getMinutes())) {
+            isUnavailable = true;
+          }
+        }
+
+        if (isUnavailable) {
           timeSlot.classList.add('unavailable');
         } else {
+          hasAvailableSlots = true;
           timeSlot.addEventListener('click', () => {
             // Remove selected class from all timeslots
             document.querySelectorAll('.timeslot').forEach(slot => {
               slot.classList.remove('selected');
             });
-            
+
             // Add selected class to clicked timeslot
             timeSlot.classList.add('selected');
-            
+
             // Update hidden input
             appointmentTimeInput.value = timeString;
           });
         }
-        
+
         timeslotsContainer.appendChild(timeSlot);
       }
     }
+
+    // If no available slots, show message
+    if (!hasAvailableSlots) {
+      timeslotsContainer.innerHTML = '';
+      const noSlotsMessage = document.createElement('div');
+      noSlotsMessage.className = 'timeslot-placeholder';
+      noSlotsMessage.textContent = 'No available time slots for this date. Please select another date.';
+      timeslotsContainer.appendChild(noSlotsMessage);
+    }
   }
-  
+
   // Format time for display (e.g. 14:00 -> 2:00 PM)
   function formatTimeForDisplay(timeString) {
     const [hours, minutes] = timeString.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
-    const displayHours = hours % 12 || 12;
+    const displayHours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
     return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
   }
-  
+
   // Measurements toggle functionality
   const provideMeasurementsCheckbox = document.getElementById('provide-measurements');
   const measurementsFields = document.getElementById('measurements-fields');
-  
+
   if (provideMeasurementsCheckbox) {
     provideMeasurementsCheckbox.addEventListener('change', () => {
       measurementsFields.style.display = provideMeasurementsCheckbox.checked ? 'block' : 'none';
     });
   }
-  
+
   // Measurement guide modal functionality
   const showMeasurementGuideBtn = document.getElementById('show-measurement-guide');
   const measurementModal = document.getElementById('measurement-modal');
   const closeModalBtn = document.querySelector('.close-modal');
-  
+
   if (showMeasurementGuideBtn) {
     showMeasurementGuideBtn.addEventListener('click', (e) => {
       e.preventDefault();
       measurementModal.style.display = 'block';
     });
   }
-  
+
   if (closeModalBtn) {
     closeModalBtn.addEventListener('click', () => {
       measurementModal.style.display = 'none';
     });
   }
-  
+
   // Close modal if clicked outside
   window.addEventListener('click', (e) => {
     if (e.target === measurementModal) {
       measurementModal.style.display = 'none';
     }
   });
-  
+
   // File upload preview functionality
   const fileInput = document.getElementById('reference_images');
   const filePreview = document.getElementById('file-preview');
-  
+
   if (fileInput) {
     fileInput.addEventListener('change', previewFiles);
   }
-  
+
   function previewFiles() {
     if (!filePreview) return;
-    
+
     // Clear preview
     filePreview.innerHTML = '';
-    
+
     if (fileInput.files.length > 0) {
       // Loop through all selected files
       for (const file of fileInput.files) {
         if (file.type.startsWith('image/')) {
           const reader = new FileReader();
-          
+
           reader.onload = function(e) {
             const thumbnail = document.createElement('div');
             thumbnail.className = 'file-thumbnail';
-            
+
             const img = document.createElement('img');
             img.src = e.target.result;
             img.alt = file.name;
-            
+
             const removeBtn = document.createElement('span');
             removeBtn.className = 'remove-file';
             removeBtn.innerHTML = '&times;';
@@ -364,35 +442,35 @@ document.addEventListener('DOMContentLoaded', function() {
               // Here we just remove the preview
               thumbnail.remove();
             });
-            
+
             thumbnail.appendChild(img);
             thumbnail.appendChild(removeBtn);
             filePreview.appendChild(thumbnail);
           };
-          
+
           reader.readAsDataURL(file);
         }
       }
     }
   }
-  
+
   // Populate summary in confirmation step
   function populateSummary() {
     const serviceValue = document.querySelector('input[name="service"]:checked').value;
     const serviceName = document.querySelector(`input[value="${serviceValue}"]`).closest('.service-card')?.querySelector('h3')?.textContent || 'Consultation';
-    
+
     const appointmentDate = document.getElementById('appointment_date').value;
     const appointmentTime = document.getElementById('appointment_time').value;
-    
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const description = document.getElementById('garment_description').value;
-    
+
     // Format date and time for display
     const formattedDate = formatDateForDisplay(appointmentDate);
     const formattedTime = formatTimeForDisplay(appointmentTime);
-    
+
     // Update summary elements
     document.getElementById('summary-service').textContent = serviceName;
     document.getElementById('summary-datetime').textContent = `${formattedDate} at ${formattedTime}`;
@@ -401,16 +479,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('summary-phone').textContent = phone;
     document.getElementById('summary-description').textContent = description || 'No specific details provided';
   }
-  
+
   // Format date for display (e.g. 2023-05-15 -> May 15, 2023)
   function formatDateForDisplay(dateString) {
     if (!dateString) return '';
-    
+
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   }
-  
+
   // Form submission
   if (appointmentForm) {
     appointmentForm.addEventListener('submit', (e) => {
@@ -419,22 +497,22 @@ document.addEventListener('DOMContentLoaded', function() {
       // In a real app, you would send the form data to the server here
       // For demo purposes, we'll just show the success message
       const formData = new FormData(appointmentForm);
-      
+
       // Hide form and show success message
       appointmentForm.style.display = 'none';
       document.querySelector('.appointment-success').style.display = 'block';
-      
+
       // Populate confirmation details
       document.getElementById('confirmation-email').textContent = formData.get('email');
       document.getElementById('appointment-id').textContent = 'AP' + Math.floor(Math.random() * 100000);
-      
+
       const appointmentDatetime = `${formatDateForDisplay(formData.get('appointment_date'))} at ${formatTimeForDisplay(formData.get('appointment_time'))}`;
       document.getElementById('appointment-datetime').textContent = appointmentDatetime;
-      
+
       const serviceValue = formData.get('service');
       const serviceName = document.querySelector(`input[value="${serviceValue}"]`).closest('.service-card')?.querySelector('h3')?.textContent || 'Consultation';
       document.getElementById('appointment-service').textContent = serviceName;
-      
+
       // Scroll to success message
       document.querySelector('.appointment-success').scrollIntoView({ behavior: 'smooth' });
     });

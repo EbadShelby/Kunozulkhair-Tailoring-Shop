@@ -16,7 +16,7 @@ if (notificationIcon && notificationDropdown) {
   notificationIcon.addEventListener("click", function(e) {
     e.stopPropagation();
     notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
-    
+
     // Hide help tooltip if open
     if (helpTooltip) {
       helpTooltip.style.display = "none";
@@ -44,31 +44,31 @@ if (helpIcon && helpTooltip) {
   helpIcon.addEventListener("click", function(e) {
     e.stopPropagation();
     helpTooltip.style.display = helpTooltip.style.display === "block" ? "none" : "block";
-    
+
     // Hide notification dropdown if open
     if (notificationDropdown) {
       notificationDropdown.style.display = "none";
     }
   });
-  
+
   if (helpSizing) {
     helpSizing.addEventListener("click", function() {
       // Redirect to sizing guide page
       openSizingGuide();
     });
   }
-  
+
   if (helpOrders) {
     helpOrders.addEventListener("click", function() {
       // Redirect to FAQs page
       openFAQs();
     });
   }
-  
+
   if (helpChat) {
-    helpChat.addEventListener("click", function() {
+    helpChat.addEventListener("click", function(e) {
       // Launch AI chat assistant
-      launchAIChat();
+      launchAIChat(e);
     });
   }
 }
@@ -97,10 +97,10 @@ if (helpTooltip) {
 }
 
 // Placeholder for AI chat functionality
-function launchAIChat() {
+function launchAIChat(e) {
   // Prevent default scrolling behavior
-  event.preventDefault();
-  
+  if (e) e.preventDefault();
+
   // Remove any existing chat popup first
   const existingPopup = document.querySelector('.ai-chat-popup');
   if (existingPopup) {
@@ -125,9 +125,13 @@ function launchAIChat() {
       <button id="send-message">Send</button>
     </div>
   `;
-  
-  document.body.appendChild(chatPopup);
-  
+
+  // Add the chat popup to the body
+  // Use requestAnimationFrame to ensure DOM is ready
+  requestAnimationFrame(() => {
+    document.body.appendChild(chatPopup);
+  });
+
   // Add event listener to close button
   const closeButton = chatPopup.querySelector(".close-chat");
   if (closeButton) {
@@ -135,12 +139,12 @@ function launchAIChat() {
       document.body.removeChild(chatPopup);
     });
   }
-  
+
   // Add event listener for sending messages
   const sendButton = chatPopup.querySelector("#send-message");
   const chatInput = chatPopup.querySelector("#chat-message-input");
   const chatMessages = chatPopup.querySelector(".chat-messages");
-  
+
   if (sendButton && chatInput) {
     // Function to handle sending messages
     const sendMessage = () => {
@@ -151,13 +155,13 @@ function launchAIChat() {
         userMessageElement.classList.add('message', 'user');
         userMessageElement.textContent = message;
         chatMessages.appendChild(userMessageElement);
-        
+
         // Clear input
         chatInput.value = '';
-        
+
         // Scroll within the chat container only
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        
+
         // Simulate AI response after a short delay
         setTimeout(() => {
           const aiResponse = generateAIResponse(message);
@@ -165,25 +169,32 @@ function launchAIChat() {
           botMessageElement.classList.add('message', 'bot');
           botMessageElement.textContent = aiResponse;
           chatMessages.appendChild(botMessageElement);
-          
+
           // Scroll within the chat container only
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }, 1000);
       }
     };
-    
+
     // Add event listeners
-    sendButton.addEventListener("click", sendMessage);
+    sendButton.addEventListener("click", function(e) {
+      e.preventDefault(); // Prevent any default behavior
+      sendMessage();
+    });
+
     chatInput.addEventListener("keypress", function(e) {
       if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent form submission behavior
         sendMessage();
       }
     });
-    
-    // Focus input when popup opens
-    chatInput.focus();
+
+    // Focus input when popup opens, but use setTimeout to prevent scrolling issues
+    setTimeout(() => {
+      chatInput.focus();
+    }, 100);
   }
-  
+
   // Add styles for the chat popup
   const styleId = 'ai-chat-styles';
   if (!document.getElementById(styleId)) {
@@ -203,8 +214,14 @@ function launchAIChat() {
         flex-direction: column;
         z-index: 1001;
         overflow: hidden;
+        animation: fadeIn 0.3s ease-out;
       }
-      
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
       .chat-header {
         display: flex;
         justify-content: space-between;
@@ -214,12 +231,12 @@ function launchAIChat() {
         color: var(--clr-neutral-900);
         border-radius: 10px 10px 0 0;
       }
-      
+
       .chat-header h3 {
         margin: 0;
         font-size: 16px;
       }
-      
+
       .close-chat {
         background: none;
         border: none;
@@ -227,7 +244,7 @@ function launchAIChat() {
         font-size: 20px;
         cursor: pointer;
       }
-      
+
       .chat-messages {
         flex-grow: 1;
         padding: 15px;
@@ -235,39 +252,39 @@ function launchAIChat() {
         display: flex;
         flex-direction: column;
       }
-      
+
       .message {
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 10px;
         max-width: 80%;
       }
-      
+
       .message.bot {
         background-color: #f0f0f0;
         align-self: flex-start;
       }
-      
+
       .message.user {
         background-color: var(--clr-primary);
         color: var(--clr-neutral-900);
         align-self: flex-end;
         margin-left: auto;
       }
-      
+
       .chat-input {
         display: flex;
         padding: 10px;
         border-top: 1px solid #eee;
       }
-      
+
       .chat-input input {
         flex-grow: 1;
         padding: 8px 12px;
         border: 1px solid #ddd;
         border-radius: 4px;
       }
-      
+
       .chat-input button {
         background-color: var(--clr-primary);
         color: var(--clr-neutral-900);
@@ -278,7 +295,7 @@ function launchAIChat() {
         cursor: pointer;
       }
     `;
-    
+
     document.head.appendChild(style);
   }
 }
@@ -286,7 +303,7 @@ function launchAIChat() {
 // Simple AI response generator (just for demonstration)
 function generateAIResponse(userMessage) {
   userMessage = userMessage.toLowerCase();
-  
+
   if (userMessage.includes('size') || userMessage.includes('measurement')) {
     return "For accurate sizing, we recommend visiting our sizing guide page. You can also book an appointment for a professional measurement session.";
   }
@@ -320,7 +337,7 @@ function openFAQs() {
   // Create FAQs modal
   const faqsModal = document.createElement("div");
   faqsModal.classList.add("faqs-modal");
-  
+
   faqsModal.innerHTML = `
     <div class="faqs-content">
       <div class="faqs-header">
@@ -334,7 +351,7 @@ function openFAQs() {
           <button class="faq-tab-btn" data-tab="orders">Orders</button>
           <button class="faq-tab-btn" data-tab="appointments">Appointments</button>
         </div>
-        
+
         <div class="faq-tab-content" id="general-content">
           <div class="faq-item">
             <div class="faq-question">What services does Kunozulkhair Tailoring Shop offer?</div>
@@ -342,28 +359,28 @@ function openFAQs() {
               <p>We offer a wide range of tailoring services including custom dressmaking, alterations and repairs, embroidery services, bridal and formal wear, curtains and home textiles, and casual and everyday dresses. Our skilled tailors can create or modify any garment to your specifications.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Where are you located?</div>
             <div class="faq-answer">
               <p>Our shop is located at Datu Liwa Candao Street, Cotabato City. You can find detailed directions on our Contact page.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">What are your business hours?</div>
             <div class="faq-answer">
               <p>We are open Monday to Saturday from 9:00 AM to 6:00 PM, and Sunday from 10:00 AM to 4:00 PM.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Do I need an appointment to visit your shop?</div>
             <div class="faq-answer">
               <p>While walk-ins are welcome for simple inquiries and small alterations, we recommend booking an appointment for custom tailoring, fittings, and consultations to ensure we can give you our full attention. You can book appointments through our website or by calling us.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">What payment methods do you accept?</div>
             <div class="faq-answer">
@@ -371,7 +388,7 @@ function openFAQs() {
             </div>
           </div>
         </div>
-        
+
         <div class="faq-tab-content" id="services-content" style="display: none;">
           <div class="faq-item">
             <div class="faq-question">How long does it take to make a custom dress?</div>
@@ -379,28 +396,28 @@ function openFAQs() {
               <p>The timeframe depends on the complexity of the design, fabric availability, and our current workload. Simple dresses typically take 1-2 weeks, while more complex designs like formal or bridal wear may take 3-6 weeks. We'll provide a specific timeline during your consultation.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Do you provide the fabric or should I bring my own?</div>
             <div class="faq-answer">
               <p>We have a selection of high-quality fabrics available in our shop, but you're also welcome to bring your own fabric. If you're looking for something specific that we don't have in stock, we can help source it for you.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">What alterations services do you offer?</div>
             <div class="faq-answer">
               <p>We offer a complete range of alterations including hemming, taking in or letting out seams, sleeve adjustments, zipper replacements, and resizing. We can alter almost any garment including dresses, pants, shirts, jackets, and formal wear.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">How much do your services cost?</div>
             <div class="faq-answer">
               <p>Our pricing varies depending on the service and complexity. Basic alterations start at ₱300, while custom dresses range from ₱1,500 for simple designs to ₱5,000+ for formal wear. Embroidery is priced based on size and complexity. We provide detailed quotes after consultation.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Can you replicate a design from a picture?</div>
             <div class="faq-answer">
@@ -408,7 +425,7 @@ function openFAQs() {
             </div>
           </div>
         </div>
-        
+
         <div class="faq-tab-content" id="orders-content" style="display: none;">
           <div class="faq-item">
             <div class="faq-question">How do I place an order?</div>
@@ -416,28 +433,28 @@ function openFAQs() {
               <p>You can place orders through our website, by visiting our shop, or by calling us. For custom garments, we recommend booking an appointment for a consultation where we can discuss your requirements in detail.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Can I make changes to my order after it's been placed?</div>
             <div class="faq-answer">
               <p>Yes, but the ability to make changes depends on the stage of production. Changes requested early in the process are usually easier to accommodate. Once cutting or sewing has begun, changes may incur additional costs or may not be possible. Please contact us as soon as possible if you need to make changes.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">What is your return/exchange policy?</div>
             <div class="faq-answer">
               <p>For ready-made items, we accept returns within 7 days of purchase if the item is unworn and in original condition with tags attached. Custom-made items cannot be returned but we offer free adjustments within 14 days of delivery if the garment doesn't fit as expected.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">How can I track my order?</div>
             <div class="faq-answer">
               <p>You can track your order status by logging into your account on our website or by contacting us directly with your order number. For custom orders, we'll keep you updated on significant milestones and notify you when your garment is ready for fitting or pickup.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Do you offer delivery services?</div>
             <div class="faq-answer">
@@ -445,7 +462,7 @@ function openFAQs() {
             </div>
           </div>
         </div>
-        
+
         <div class="faq-tab-content" id="appointments-content" style="display: none;">
           <div class="faq-item">
             <div class="faq-question">How do I schedule an appointment?</div>
@@ -453,28 +470,28 @@ function openFAQs() {
               <p>You can schedule appointments through our website's appointment booking system, by calling our shop, or by visiting us in person. Online booking is recommended as it allows you to see all available time slots.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">What should I bring to my appointment?</div>
             <div class="faq-answer">
               <p>For custom garments, bring any reference images, fabric samples, or specific ideas you have. For alterations, bring the garment that needs modification. For fittings, wear appropriate undergarments that you'll wear with the final garment. If you have a specific event date, please share this information so we can plan accordingly.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Can I reschedule or cancel my appointment?</div>
             <div class="faq-answer">
               <p>Yes, you can reschedule or cancel your appointment through our website or by calling us. We appreciate at least 24 hours' notice for cancellations to allow us to offer the time slot to other customers.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">How long does a typical appointment take?</div>
             <div class="faq-answer">
               <p>Initial consultations typically take 30-60 minutes depending on the complexity of your requirements. Fittings usually take 15-30 minutes, and final pickup appointments are typically quick, around 10-15 minutes unless additional adjustments are needed.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <div class="faq-question">Do you charge for consultations?</div>
             <div class="faq-answer">
@@ -482,7 +499,7 @@ function openFAQs() {
             </div>
           </div>
         </div>
-        
+
         <div class="faq-contact">
           <p>Didn't find what you're looking for? Contact us directly:</p>
           <a href="contact.html" class="faq-contact-btn">Contact Us</a>
@@ -490,9 +507,9 @@ function openFAQs() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(faqsModal);
-  
+
   // Add event listeners
   const closeBtn = faqsModal.querySelector('.close-faqs');
   if (closeBtn) {
@@ -500,14 +517,14 @@ function openFAQs() {
       document.body.removeChild(faqsModal);
     });
   }
-  
+
   // FAQ item toggle functionality
   const faqQuestions = faqsModal.querySelectorAll('.faq-question');
   faqQuestions.forEach(question => {
     question.addEventListener('click', function() {
       const faqItem = this.parentElement;
       faqItem.classList.toggle('active');
-      
+
       // Close other open FAQ items
       faqQuestions.forEach(q => {
         if (q !== this && q.parentElement.classList.contains('active')) {
@@ -516,35 +533,35 @@ function openFAQs() {
       });
     });
   });
-  
+
   // Tab switching functionality
   const tabBtns = faqsModal.querySelectorAll('.faq-tab-btn');
   tabBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       // Remove active class from all buttons
       tabBtns.forEach(b => b.classList.remove('active'));
-      
+
       // Add active class to clicked button
       this.classList.add('active');
-      
+
       // Hide all tab content
       document.querySelectorAll('.faq-tab-content').forEach(content => {
         content.style.display = 'none';
       });
-      
+
       // Show the corresponding tab content
       const tabToShow = this.getAttribute('data-tab');
       document.getElementById(`${tabToShow}-content`).style.display = 'block';
     });
   });
-  
+
   // Close modal when clicking outside
   faqsModal.addEventListener('click', function(e) {
     if (e.target === faqsModal) {
       document.body.removeChild(faqsModal);
     }
   });
-  
+
   // Add styles for FAQs
   const styleId = 'faqs-styles';
   if (!document.getElementById(styleId)) {
@@ -563,7 +580,7 @@ function openFAQs() {
         align-items: center;
         z-index: 2000;
       }
-      
+
       .faqs-content {
         width: 90%;
         max-width: 800px;
@@ -574,7 +591,7 @@ function openFAQs() {
         display: flex;
         flex-direction: column;
       }
-      
+
       .faqs-header {
         display: flex;
         justify-content: space-between;
@@ -583,12 +600,12 @@ function openFAQs() {
         background-color: var(--clr-primary);
         color: black;
       }
-      
+
       .faqs-header h2 {
         margin: 0;
         font-size: 1.5rem;
       }
-      
+
       .close-faqs {
         background: none;
         border: none;
@@ -596,20 +613,20 @@ function openFAQs() {
         cursor: pointer;
         color: black;
       }
-      
+
       .faqs-body {
         padding: 20px;
         overflow-y: auto;
         max-height: calc(90vh - 60px);
       }
-      
+
       .faqs-tabs {
         display: flex;
         margin-bottom: 20px;
         border-bottom: 2px solid #eee;
         flex-wrap: wrap;
       }
-      
+
       .faq-tab-btn {
         padding: 10px 15px;
         border: none;
@@ -618,19 +635,19 @@ function openFAQs() {
         font-weight: 500;
         transition: all 0.3s;
       }
-      
+
       .faq-tab-btn.active {
         color: var(--clr-primary);
         border-bottom: 2px solid var(--clr-primary);
       }
-      
+
       .faq-item {
         margin-bottom: 15px;
         border: 1px solid #eee;
         border-radius: 8px;
         overflow: hidden;
       }
-      
+
       .faq-question {
         padding: 15px;
         background-color: #f9f9f9;
@@ -639,11 +656,11 @@ function openFAQs() {
         position: relative;
         transition: background-color 0.3s;
       }
-      
+
       .faq-question:hover {
         background-color: #f0f0f0;
       }
-      
+
       .faq-question::after {
         content: '+';
         position: absolute;
@@ -653,28 +670,28 @@ function openFAQs() {
         font-size: 1.2rem;
         transition: transform 0.3s;
       }
-      
+
       .faq-item.active .faq-question::after {
         transform: translateY(-50%) rotate(45deg);
       }
-      
+
       .faq-answer {
         padding: 0;
         max-height: 0;
         overflow: hidden;
         transition: all 0.3s ease;
       }
-      
+
       .faq-item.active .faq-answer {
         padding: 15px;
         max-height: 500px;
       }
-      
+
       .faq-answer p {
         margin: 0;
         line-height: 1.6;
       }
-      
+
       .faq-contact {
         margin-top: 30px;
         text-align: center;
@@ -682,11 +699,11 @@ function openFAQs() {
         background-color: #f0f0f0;
         border-radius: 8px;
       }
-      
+
       .faq-contact p {
         margin-bottom: 10px;
       }
-      
+
       .faq-contact-btn {
         display: inline-block;
         background-color: var(--clr-primary);
@@ -696,18 +713,18 @@ function openFAQs() {
         text-decoration: none;
         font-weight: 500;
       }
-      
+
       @media (max-width: 768px) {
         .faqs-content {
           width: 95%;
         }
-        
+
         .faqs-tabs {
           justify-content: center;
         }
       }
     `;
-    
+
     document.head.appendChild(style);
   }
 }
@@ -723,7 +740,7 @@ function openSizingGuide() {
   // Create sizing guide modal
   const sizingGuideModal = document.createElement("div");
   sizingGuideModal.classList.add("sizing-guide-modal");
-  
+
   sizingGuideModal.innerHTML = `
     <div class="sizing-guide-content">
       <div class="sizing-guide-header">
@@ -732,12 +749,12 @@ function openSizingGuide() {
       </div>
       <div class="sizing-guide-body">
         <p class="sizing-intro">Use this guide to take accurate measurements for custom tailoring. For best results, have someone else measure you while standing in a natural position.</p>
-        
+
         <div class="measurement-tabs">
           <button class="tab-btn active" data-tab="women">Women</button>
           <button class="tab-btn" data-tab="men">Men</button>
         </div>
-        
+
         <div class="tab-content" id="women-content">
           <div class="size-chart">
             <h3>Women's Standard Sizes (in inches)</h3>
@@ -790,7 +807,7 @@ function openSizingGuide() {
               </tbody>
             </table>
           </div>
-          
+
           <div class="measurement-guide-section">
             <h3>How to Measure</h3>
             <div class="measurement-item">
@@ -815,7 +832,7 @@ function openSizingGuide() {
             </div>
           </div>
         </div>
-        
+
         <div class="tab-content" id="men-content" style="display: none;">
           <div class="size-chart">
             <h3>Men's Standard Sizes (in inches)</h3>
@@ -868,7 +885,7 @@ function openSizingGuide() {
               </tbody>
             </table>
           </div>
-          
+
           <div class="measurement-guide-section">
             <h3>How to Measure</h3>
             <div class="measurement-item">
@@ -893,7 +910,7 @@ function openSizingGuide() {
             </div>
           </div>
         </div>
-        
+
         <div class="measuring-tips">
           <h3>Tips for Accurate Measurements</h3>
           <ul>
@@ -904,7 +921,7 @@ function openSizingGuide() {
             <li>For the most accurate measurements, consider booking an appointment for professional measuring at our shop.</li>
           </ul>
         </div>
-        
+
         <div class="sizing-cta">
           <p>Need help with your measurements? Visit our shop or book an appointment for professional measuring!</p>
           <a href="appointments.html" class="sizing-guide-btn">Book Appointment</a>
@@ -912,9 +929,9 @@ function openSizingGuide() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(sizingGuideModal);
-  
+
   // Add event listeners
   const closeBtn = sizingGuideModal.querySelector('.close-sizing-guide');
   if (closeBtn) {
@@ -922,35 +939,35 @@ function openSizingGuide() {
       document.body.removeChild(sizingGuideModal);
     });
   }
-  
+
   // Tab switching functionality
   const tabBtns = sizingGuideModal.querySelectorAll('.tab-btn');
   tabBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       // Remove active class from all buttons
       tabBtns.forEach(b => b.classList.remove('active'));
-      
+
       // Add active class to clicked button
       this.classList.add('active');
-      
+
       // Hide all tab content
       document.querySelectorAll('.tab-content').forEach(content => {
         content.style.display = 'none';
       });
-      
+
       // Show the corresponding tab content
       const tabToShow = this.getAttribute('data-tab');
       document.getElementById(`${tabToShow}-content`).style.display = 'block';
     });
   });
-  
+
   // Close modal when clicking outside
   sizingGuideModal.addEventListener('click', function(e) {
     if (e.target === sizingGuideModal) {
       document.body.removeChild(sizingGuideModal);
     }
   });
-  
+
   // Add styles for sizing guide
   const styleId = 'sizing-guide-styles';
   if (!document.getElementById(styleId)) {
@@ -969,7 +986,7 @@ function openSizingGuide() {
         align-items: center;
         z-index: 2000;
       }
-      
+
       .sizing-guide-content {
         width: 90%;
         max-width: 800px;
@@ -980,7 +997,7 @@ function openSizingGuide() {
         display: flex;
         flex-direction: column;
       }
-      
+
       .sizing-guide-header {
         display: flex;
         justify-content: space-between;
@@ -989,12 +1006,12 @@ function openSizingGuide() {
         background-color: var(--clr-primary);
         color: black;
       }
-      
+
       .sizing-guide-header h2 {
         margin: 0;
         font-size: 1.5rem;
       }
-      
+
       .close-sizing-guide {
         background: none;
         border: none;
@@ -1002,23 +1019,23 @@ function openSizingGuide() {
         cursor: pointer;
         color: black;
       }
-      
+
       .sizing-guide-body {
         padding: 20px;
         overflow-y: auto;
         max-height: calc(90vh - 60px);
       }
-      
+
       .sizing-intro {
         margin-bottom: 20px;
       }
-      
+
       .measurement-tabs {
         display: flex;
         margin-bottom: 20px;
         border-bottom: 2px solid #eee;
       }
-      
+
       .tab-btn {
         padding: 10px 20px;
         border: none;
@@ -1027,68 +1044,68 @@ function openSizingGuide() {
         font-weight: 500;
         transition: all 0.3s;
       }
-      
+
       .tab-btn.active {
         color: var(--clr-primary);
         border-bottom: 2px solid var(--clr-primary);
       }
-      
+
       .size-chart {
         margin-bottom: 30px;
       }
-      
+
       .size-chart table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 15px;
       }
-      
+
       .size-chart table th, .size-chart table td {
         border: 1px solid #ddd;
         padding: 8px 12px;
         text-align: center;
       }
-      
+
       .size-chart table th {
         background-color: #f5f5f5;
       }
-      
+
       .measurement-guide-section {
         margin-bottom: 30px;
       }
-      
+
       .measurement-item {
         margin-bottom: 15px;
       }
-      
+
       .measurement-item h4 {
         margin-bottom: 5px;
         color: var(--clr-secondary);
       }
-      
+
       .measuring-tips {
         background-color: #f9f9f9;
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
       }
-      
+
       .measuring-tips ul {
         margin-top: 10px;
         padding-left: 20px;
       }
-      
+
       .measuring-tips li {
         margin-bottom: 8px;
       }
-      
+
       .sizing-cta {
         background-color: #f0f0f0;
         padding: 15px;
         border-radius: 8px;
         text-align: center;
       }
-      
+
       .sizing-guide-btn {
         display: inline-block;
         background-color: var(--clr-primary);
@@ -1099,22 +1116,22 @@ function openSizingGuide() {
         text-decoration: none;
         font-weight: 500;
       }
-      
+
       @media (max-width: 768px) {
         .sizing-guide-content {
           width: 95%;
         }
-        
+
         .measurement-tabs {
           flex-wrap: wrap;
         }
-        
+
         .size-chart {
           overflow-x: auto;
         }
       }
     `;
-    
+
     document.head.appendChild(style);
   }
 }
