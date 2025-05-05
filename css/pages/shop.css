@@ -377,8 +377,20 @@
 
 .product-card img {
   /* width: 100%; */
+  aspect-ratio: 3/4;
   object-fit: cover;
   border-bottom: 1px solid #f0f0f0;
+}
+
+.product-image-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-title-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .product-card .product-info {

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail - Kunozulkhair Tailoring Shop</title>
+    <link rel="stylesheet" href="css/pages/product-detail.css" />
+    <link rel="stylesheet" href="css/shared/general.css" />
+    <link rel="stylesheet" href="css/shared/header.css" />
+    <link rel="stylesheet" href="css/shared/reset.css" />
+    <link rel="stylesheet" href="css/shared/utils.css" />
+    <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/pages/shop.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="assets/images/logo.jpg" type="image/png">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__top container">
+        <a class="header__logo" href="index.html">
+          <img
+            class="header__logo-img"
+            src="assets/images/logo.jpg"
+            alt="logo"
+          />
+          <p class="header__logo-text">
+            <span>KunoZulkhair</span> Tailoring & Dress Shop
+          </p>
+        </a>
+        <div class="header__search">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            class="header__search-input"
+            placeholder="Search for products"
+          />
+          <button class="header__search--btn">
+            <svg
+              class="icon header__search-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="header__icons">
+          <button class="header__icon" id="cart-icon">
+            <svg
+              class="icon cart"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              />
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+          </button>
+          <button class="header__icon notification" id="notification-icon">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+              />
+            </svg>
+            <span class="notification-count" id="notification-count">3</span>
+          </button>
+          <button class="header__icon help" id="help-icon">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+              />
+            </svg>
+          </button>
+          <a href="login-form.html"class="header__icon">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+      <nav class="header__nav container">
+        <ul class="header__nav-links">
+          <li><a class="header__link" href="index.html">Home</a></li>
+          <li><a class="header__link" href="shop.html">Shop</a></li>
+          <li class="header__dropdown">
+            <a class="header__link" href="services.html">Services</a>
+            <ul class="header__dropdown-menu">
+              <li><a href="embroidery-services.html">Embroidery Services</a></li>
+              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
+              <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
+              <li><a href="bridal-and-formalwear.html">Bridal & Formal Wear</a></li>
+              <li><a href="curtains-and-hometextiles.html">Curtains & Home Textiles</a></li>
+              <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="header__link" href="appointments.html">Appointments</a>
+          </li>
+          <li><a class="header__link" href="orders.html">Orders</a></li>
+          <li><a class="header__link" href="about.html">About Us</a></li>
+          <li><a class="header__link" href="contact.html">Contact</a></li>
+        </ul>
+        <button class="header__nav--toggle">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notification-dropdown">
+      <div class="notification-header">
+        <h3>Notifications</h3>
+        <button id="mark-all-read">Mark all as read</button>
+      </div>
+      <div class="notification-list">
+        <!-- Notifications will be dynamically inserted here -->
+      </div>
+      <div class="notification-footer">
+        <a href="notifications.html">View all notifications</a>
+      </div>
+    </div>
+
+    <!-- Help Tooltip -->
+    <div class="help-tooltip" id="help-tooltip">
+      <p>Need help with something? Try these quick options:</p>
+      <div class="quick-help-buttons">
+        <button class="quick-help-button" id="help-sizing">Sizing Guide</button>
+        <button class="quick-help-button" id="help-orders">FAQs</button>
+        <button class="quick-help-button" id="help-chat">Chat with AI</button>
+      </div>
+    </div>
+
+    <main>
+      <!-- Breadcrumb Navigation -->
+      <div class="breadcrumb container">
+        <div class="breadcrumb-path">
+          <a href="index.html">Home</a> &gt;
+          <a href="shop.html">Shop</a> &gt;
+          <span id="product-breadcrumb">Product Detail</span>
+        </div>
+        <a href="shop.html" class="back-to-shop">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Shop
+        </a>
+      </div>
+
+      <!-- Product Detail Section -->
+      <section class="product-detail container">
+        <div class="product-detail__loading" id="product-loading">
+          <div class="loader-spinner"></div>
+          <p>Loading product details...</p>
+        </div>
+
+        <div class="product-detail__content" id="product-content">
+          <!-- Left Column: Product Images -->
+          <div class="product-detail__images">
+            <div class="product-detail__thumbnails">
+              <!-- Thumbnail images will be added here dynamically -->
+            </div>
+            <div class="product-detail__main-image">
+              <!-- Main product image will be added here dynamically -->
+            </div>
+          </div>
+
+          <!-- Right Column: Product Info -->
+          <div class="product-detail__info">
+            <h1 class="product-detail__title" id="product-title"></h1>
+
+            <div class="product-detail__meta">
+              <div class="product-detail__rating">
+                <span class="rating-stars" id="rating-stars"></span>
+                <span class="rating-value" id="rating-value"></span>
+                <span class="rating-count" id="rating-count"></span>
+              </div>
+              <div class="product-detail__category" id="product-category"></div>
+            </div>
+
+            <div class="product-detail__price" id="product-price"></div>
+
+            <div class="product-detail__fabric">
+              <span class="label">Fabric:</span>
+              <span id="product-fabric"></span>
+            </div>
+
+            <div class="product-detail__color" id="product-color">
+              <span class="label">Color:</span>
+            </div>
+
+            <div class="product-detail__sizes">
+              <span class="label">Available Sizes:</span>
+              <div class="size-options" id="product-sizes">
+                <!-- Size buttons will be added here dynamically -->
+              </div>
+            </div>
+
+            <div class="product-detail__quantity">
+              <span class="label">Quantity:</span>
+              <div class="quantity-control">
+                <button id="decrease-quantity">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="10">
+                <button id="increase-quantity">+</button>
+              </div>
+            </div>
+
+            <div class="product-detail__actions">
+              <button id="add-to-cart" class="btn-primary">Add to Cart</button>
+            </div>
+            <div class="product-detail__buy-now">
+              <button id="buy-now" class="btn-buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Description Section -->
+        <div class="product-detail__description">
+          <h2>Product Description</h2>
+          <div class="description-content" id="product-description"></div>
+        </div>
+
+        <!-- Product Gallery Section -->
+        <div class="product-detail__gallery">
+          <h2>Product Gallery</h2>
+          <div class="gallery-container" id="product-gallery">
+            <!-- Gallery images will be added here dynamically -->
+          </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div class="product-detail__related">
+          <h2>You May Also Like</h2>
+          <div class="related-products" id="related-products">
+            <!-- Related products will be added here dynamically -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>📍 Datu Liwa Candao Street, Cotabato City</p>
+          <p>📞 +639111111</p>
+          <p>📧 KunoZulkhair@gmail.com</p>
+          <p>⏰ Mon-Sat: 9am-6pm, Sun: 10am-4pm</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer-section">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="embroidery-services.html">Embroidery Services</a></li>
+            <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
+            <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
+            <li><a href="bridal-and-formalwear.html">Bridal & Formal Wear</a></li>
+            <li><a href="curtains-and-hometextiles.html">Home Textiles</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="footer-section newsletter">
+          <h3>Stay Updated</h3>
+          <p>Subscribe to our newsletter for exclusive offers and updates</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Your email address" />
+            <button type="submit">Subscribe</button>
+          </div>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61575972894049" target="_blank" title="Facebook">
+              <img src="assets/images/Fb.jpg" alt="Facebook" />
+            </a>
+            <a href="https://www.instagram.com/tailorshopdresses?igsh=MWt1d3QxeWpkdGRiNA==" target="_blank" title="Instagram">
+              <img src="assets/images/Instagram.jpg" alt="Instagram" />
+            </a>
+            <a href="https://x.com/Shopdress12?t=kadWcD_XQNlPQtizwPtjHQ&s=09" target="_blank" title="Twitter">
+              <img src="assets/images/twitter.jpg" alt="Twitter" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="faqs.html">FAQs</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Image Viewer Modal -->
+    <div class="image-viewer-modal" id="image-viewer">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modal-image" src="" alt="Product image">
+        <div class="modal-navigation">
+          <button id="prev-image" class="nav-button">&lt;</button>
+          <button id="next-image" class="nav-button">&gt;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: ₱<span id="cart-total">0</span></p>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
+    <script type="module" src="data/products.js"></script>
+    <script type="module" src="data/cart.js"></script>
+    <script type="module" src="js/product-detail.js"></script>
+    <script src="js/header.js"></script>
+    <script type="module" src="data/notifications.js"></script>
+    <script type="module" src="js/notifications.js"></script>
+  </body>
+</html>

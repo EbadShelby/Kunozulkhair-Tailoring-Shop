@@ -238,6 +238,7 @@
 
 .featured-product-slide img {
   max-width: 225px;
+  aspect-ratio: 3/4;
   object-fit: cover;
   border-bottom: 1px solid #f0f0f0;
 }

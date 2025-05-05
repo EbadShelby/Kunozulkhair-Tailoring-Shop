@@ -12,7 +12,7 @@ const cartTotal = document.getElementById('cart-total');
 export function addToCart(productName, price) {
   // Convert price to number if it's a string
   const priceValue = typeof price === 'string' ? parseFloat(price.replace('₱', '')) : price;
-  
+
   const existing = cart.find(item => item.name === productName);
   if (existing) {
     existing.quantity++;
@@ -47,7 +47,7 @@ export function decreaseQuantity(name) {
 
 function updateCart() {
   if (!cartItemsContainer) return; // Guard clause if element doesn't exist
-  
+
   cartItemsContainer.innerHTML = '';
   let total = 0;
 
@@ -81,11 +81,34 @@ function updateCart() {
 
 // Make sure the DOM is loaded before adding event listeners
 document.addEventListener('DOMContentLoaded', () => {
+  // Enhanced cart icon click handling
   if (cartIcon) {
+    // Make the entire cart icon clickable
     cartIcon.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       cartSidebar.classList.toggle('open');
+      console.log('Cart toggled:', cartSidebar.classList.contains('open'));
     });
+
+    // Also make sure clicks on SVG and other elements inside the cart icon work
+    const cartSvg = cartIcon.querySelector('svg');
+    if (cartSvg) {
+      cartSvg.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        cartSidebar.classList.toggle('open');
+      });
+    }
+
+    const cartCount = cartIcon.querySelector('.cart-count');
+    if (cartCount) {
+      cartCount.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        cartSidebar.classList.toggle('open');
+      });
+    }
   }
 
   if (closeCart) {
@@ -93,6 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cartSidebar.classList.remove('open');
     });
   }
+
+  // Close cart when clicking outside
+  document.addEventListener('click', function(e) {
+    if (cartSidebar && cartSidebar.classList.contains('open') &&
+        !cartSidebar.contains(e.target) &&
+        !cartIcon.contains(e.target)) {
+      cartSidebar.classList.remove('open');
+    }
+  });
 
   const checkoutBtn = document.querySelector('.checkout-btn');
   if (checkoutBtn) {

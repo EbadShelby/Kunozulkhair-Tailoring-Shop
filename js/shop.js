@@ -361,9 +361,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
 
       productEl.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
+          <a href="product-detail.html?id=${product.id}" class="product-image-link">
+            <img src="${product.image}" alt="${product.name}" />
+          </a>
         <div class="product-info">
-          <h3>${product.name}</h3>
+          <a href="product-detail.html?id=${product.id}" class="product-title-link">
+            <h3>${product.name}</h3>
+          </a>
           <div class="product-meta">
             <div class="product-price">₱${product.price.toLocaleString()}</div>
             <div class="product-rating">
