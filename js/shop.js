@@ -18,10 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
       priceMax: 5000
     },
     sort: "default",
-    pagination: {
-      currentPage: 1,
-      productsPerPage: 8,
-      totalPages: 1
+    infiniteScroll: {
+      currentIndex: 0,
+      productsPerLoad: 12,
+      isLoading: false,
+      allLoaded: false
     },
     search: ""
   };
@@ -29,9 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // DOM Elements
   const productsContainer = document.getElementById("shop-products");
   const sortSelect = document.getElementById("sort-by");
-  const prevPageBtn = document.getElementById("prev-page");
-  const nextPageBtn = document.getElementById("next-page");
-  const pageNumbersContainer = document.getElementById("page-numbers");
+  const scrollLoader = document.getElementById("scroll-loader");
   const priceRangeSlider = document.getElementById("price-range");
   const priceValueDisplay = document.getElementById("price-value");
   const minPriceInput = document.getElementById("min-price");
@@ -40,114 +39,83 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleFiltersBtn = document.getElementById("toggle-filters");
   const filtersContainer = document.querySelector(".shop-filters");
   const shopLayoutSection = document.querySelector('.shop-layout');
-  
+
   // Initialize the shop
   init();
-  
+
   function init() {
     // Setup event listeners
     setupEventListeners();
-    
+
     // Check for search param in URL
     checkForSearchParam();
-    
-    // Calculate total pages
-    updateTotalPages();
-    
+
     // Render initial products
     renderProducts();
-    
-    // Render pagination
-    renderPagination();
+
+    // Setup infinite scroll
+    setupInfiniteScroll();
   }
-  
+
   function checkForSearchParam() {
     // Get search term from URL or session storage
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
-    
+
     if (searchParam) {
       state.search = decodeURIComponent(searchParam);
     } else if (sessionStorage.getItem('searchTerm')) {
       state.search = sessionStorage.getItem('searchTerm');
     }
-    
+
     // Clear session storage after using it
     sessionStorage.removeItem('searchTerm');
   }
-  
+
   function setupEventListeners() {
     // Listen for search event
     document.addEventListener('performSearch', (e) => {
       state.search = e.detail.searchTerm;
-      state.pagination.currentPage = 1;
+      resetInfiniteScroll();
       renderProducts();
-      renderPagination();
     });
-    
+
     // Sort change
     if (sortSelect) {
       sortSelect.addEventListener("change", () => {
         state.sort = sortSelect.value;
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     }
-    
-    // Pagination
-    if (prevPageBtn) {
-      prevPageBtn.addEventListener("click", () => {
-        if (state.pagination.currentPage > 1) {
-          state.pagination.currentPage--;
-          renderProducts();
-          renderPagination();
-          if (shopLayoutSection) shopLayoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-    
-    if (nextPageBtn) {
-      nextPageBtn.addEventListener("click", () => {
-        if (state.pagination.currentPage < state.pagination.totalPages) {
-          state.pagination.currentPage++;
-          renderProducts();
-          renderPagination();
-          if (shopLayoutSection) shopLayoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-    
+
     // Category filters
     document.querySelectorAll('input[name="category"]').forEach(checkbox => {
       checkbox.addEventListener("change", () => {
         updateFilterArray("category", checkbox.value, checkbox.checked);
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     });
-    
+
     // Fabric filters
     document.querySelectorAll('input[name="fabric"]').forEach(checkbox => {
       checkbox.addEventListener("change", () => {
         updateFilterArray("fabric", checkbox.value, checkbox.checked);
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     });
-    
+
     // Color filters
     document.querySelectorAll('input[name="color"]').forEach(checkbox => {
       checkbox.addEventListener("change", () => {
         updateFilterArray("color", checkbox.value, checkbox.checked);
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     });
-    
+
     // Size filters
     document.querySelectorAll('.size-btn').forEach(button => {
       button.addEventListener("click", () => {
@@ -159,12 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
           button.classList.add("active");
           state.filters.size.push(size);
         }
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     });
-    
+
     // Price slider
     if (priceRangeSlider) {
       priceRangeSlider.addEventListener("input", () => {
@@ -174,43 +141,40 @@ document.addEventListener("DOMContentLoaded", () => {
       priceRangeSlider.addEventListener("change", () => {
         const value = priceRangeSlider.value;
         state.filters.priceMax = parseInt(value);
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     }
-    
+
     // Min/Max price inputs
     if (minPriceInput) {
       minPriceInput.addEventListener("change", () => {
         state.filters.priceMin = parseInt(minPriceInput.value) || 0;
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     }
-    
+
     if (maxPriceInput) {
       maxPriceInput.addEventListener("change", () => {
         state.filters.priceMax = parseInt(maxPriceInput.value) || 5000;
-        state.pagination.currentPage = 1;
+        resetInfiniteScroll();
         renderProducts();
-        renderPagination();
       });
     }
-    
+
     // Reset filters
     if (resetFiltersBtn) {
       resetFiltersBtn.addEventListener("click", resetFilters);
     }
-    
+
     // Toggle filters on mobile
     if (toggleFiltersBtn) {
       toggleFiltersBtn.addEventListener("click", () => {
         filtersContainer.classList.toggle("open");
       });
     }
-    
+
     // Filter header click to toggle on mobile
     const filterHeader = document.querySelector(".filter-header");
     if (filterHeader && window.innerWidth <= 768) {
@@ -219,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-  
+
   function updateFilterArray(filterType, value, isChecked) {
     if (isChecked) {
       if (!state.filters[filterType].includes(value)) {
@@ -229,12 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
       state.filters[filterType] = state.filters[filterType].filter(item => item !== value);
     }
   }
-  
-  function updateTotalPages() {
-    const filteredProducts = getFilteredProducts();
-    state.pagination.totalPages = Math.ceil(filteredProducts.length / state.pagination.productsPerPage);
-  }
-  
+
+  // No longer needed with infinite scroll
+
   function resetFilters() {
     // Reset filter state
     state.filters = {
@@ -245,78 +206,87 @@ document.addEventListener("DOMContentLoaded", () => {
       priceMin: 0,
       priceMax: 5000
     };
-    
+
     // Reset UI
     document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
       checkbox.checked = false;
     });
-    
+
     document.querySelectorAll('.size-btn').forEach(button => {
       button.classList.remove("active");
     });
-    
+
     if (minPriceInput) minPriceInput.value = "";
     if (maxPriceInput) maxPriceInput.value = "";
     if (priceRangeSlider) priceRangeSlider.value = 5000;
     if (priceValueDisplay) priceValueDisplay.textContent = "5000";
-    
-    // Reset pagination
-    state.pagination.currentPage = 1;
-    
+
+    // Reset infinite scroll
+    resetInfiniteScroll();
+
     // Re-render
     renderProducts();
-    renderPagination();
   }
-  
+
+  function resetInfiniteScroll() {
+    state.infiniteScroll.currentIndex = 0;
+    state.infiniteScroll.isLoading = false;
+    state.infiniteScroll.allLoaded = false;
+
+    if (scrollLoader) {
+      scrollLoader.classList.remove('active');
+    }
+  }
+
   function getFilteredProducts() {
     return products.filter(product => {
       const { category, fabric, color, size, priceMin, priceMax } = state.filters;
       const price = product.price;
-      
+
       // Filter by price
       if (price < priceMin || price > priceMax) {
         return false;
       }
-      
+
       // Filter by category (if categories are selected)
       if (category.length > 0 && !category.includes(product.category)) {
         return false;
       }
-      
+
       // Filter by fabric (if fabrics are selected)
       if (fabric.length > 0 && !fabric.includes(product.fabric)) {
         return false;
       }
-      
+
       // Filter by color (if colors are selected)
       if (color.length > 0 && !color.includes(product.color)) {
         return false;
       }
-      
+
       // Filter by size (if sizes are selected)
       if (size.length > 0 && (!product.sizes || !size.some(s => product.sizes.includes(s)))) {
         return false;
       }
-      
+
       // Filter by search term
       if (state.search) {
         const searchTerm = state.search.toLowerCase();
         const nameMatch = product.name.toLowerCase().includes(searchTerm);
         const descMatch = product.description && product.description.toLowerCase().includes(searchTerm);
         const categoryMatch = product.category.toLowerCase().includes(searchTerm);
-        
+
         if (!nameMatch && !descMatch && !categoryMatch) {
           return false;
         }
       }
-      
+
       return true;
     });
   }
-  
+
   function getSortedProducts(filteredProducts) {
     const sorted = [...filteredProducts];
-    
+
     switch (state.sort) {
       case "price-low":
         return sorted.sort((a, b) => a.price - b.price);
@@ -336,30 +306,43 @@ document.addEventListener("DOMContentLoaded", () => {
         return sorted;
     }
   }
-  
-  function getCurrentPageProducts() {
+
+  function getProductsToShow() {
     const filteredProducts = getFilteredProducts();
     const sortedProducts = getSortedProducts(filteredProducts);
-    
-    // Update total pages
-    updateTotalPages();
-    
-    // Get current page products
-    const startIndex = (state.pagination.currentPage - 1) * state.pagination.productsPerPage;
-    const endIndex = startIndex + state.pagination.productsPerPage;
-    
-    return sortedProducts.slice(startIndex, endIndex);
-  }
-  
-  function renderProducts() {
-    if (!productsContainer) return;
-    
-    const productsToShow = getCurrentPageProducts();
-    
-    // Clear container
-    productsContainer.innerHTML = "";
 
-    if (productsToShow.length === 0) {
+    // For initial load or filter/sort changes
+    if (state.infiniteScroll.currentIndex === 0) {
+      return {
+        products: sortedProducts.slice(0, state.infiniteScroll.productsPerLoad),
+        hasMore: sortedProducts.length > state.infiniteScroll.productsPerLoad
+      };
+    }
+
+    // For loading more products
+    const startIndex = state.infiniteScroll.currentIndex;
+    const endIndex = startIndex + state.infiniteScroll.productsPerLoad;
+
+    return {
+      products: sortedProducts.slice(startIndex, endIndex),
+      hasMore: sortedProducts.length > endIndex
+    };
+  }
+
+  function renderProducts(append = false) {
+    if (!productsContainer) return;
+
+    const { products: productsToShow, hasMore } = getProductsToShow();
+
+    // Update state
+    state.infiniteScroll.allLoaded = !hasMore;
+
+    // Clear container if not appending
+    if (!append) {
+      productsContainer.innerHTML = "";
+    }
+
+    if (productsToShow.length === 0 && !append) {
       productsContainer.innerHTML = `
         <div class="no-products">
           <p>No products match your filters. Please try different criteria.</p>
@@ -367,16 +350,16 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       return;
     }
-    
+
     // Generate HTML for products
     productsToShow.forEach(product => {
       const productEl = document.createElement("article");
       productEl.className = "product-card";
       productEl.dataset.productId = product.id;
-      
+
       // Convert 5-star rating to 10-point scale
       const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
-      
+
       productEl.innerHTML = `
           <img src="${product.image}" alt="${product.name}" />
         <div class="product-info">
@@ -405,12 +388,12 @@ document.addEventListener("DOMContentLoaded", () => {
           const name = foundProduct.name;
           const price = foundProduct.price;
           addToCart(name, price);
-          
+
           // Add visual feedback
           const originalText = button.innerText;
           button.innerText = "Added!";
           button.classList.add("added-to-cart");
-          
+
           // Reset button after 1.5 seconds
           setTimeout(() => {
             button.innerText = originalText;
@@ -419,75 +402,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+
+    // Update current index if appending
+    if (append) {
+      state.infiniteScroll.currentIndex += state.infiniteScroll.productsPerLoad;
+    } else {
+      state.infiniteScroll.currentIndex = productsToShow.length;
+    }
+
+    // Hide loader if all products are loaded
+    if (state.infiniteScroll.allLoaded && scrollLoader) {
+      scrollLoader.classList.remove('active');
+    }
+
+    // Set loading state to false
+    state.infiniteScroll.isLoading = false;
   }
-  
-  function renderPagination() {
-    if (!pageNumbersContainer) return;
-    
-    // Update prev/next buttons
-    if (prevPageBtn) {
-      prevPageBtn.disabled = state.pagination.currentPage === 1;
-    }
-    
-    if (nextPageBtn) {
-      nextPageBtn.disabled = state.pagination.currentPage === state.pagination.totalPages || state.pagination.totalPages === 0;
-    }
-    
-    // Render page numbers
-    pageNumbersContainer.innerHTML = "";
-    
-    if (state.pagination.totalPages <= 1) {
-      return;
-    }
-    
-    // Determine which page numbers to show
-    let startPage = Math.max(1, state.pagination.currentPage - 2);
-    let endPage = Math.min(state.pagination.totalPages, startPage + 4);
-    
-    // Adjust start page if needed
-    if (endPage - startPage < 4) {
-      startPage = Math.max(1, endPage - 4);
-    }
-    
-    // Add first page if needed
-    if (startPage > 1) {
-      addPageNumber(1);
-      if (startPage > 2) {
-        addEllipsis();
+
+  function setupInfiniteScroll() {
+    // Add scroll event listener for infinite scrolling
+    window.addEventListener('scroll', () => {
+      // If already loading or all products loaded, don't do anything
+      if (state.infiniteScroll.isLoading || state.infiniteScroll.allLoaded) {
+        return;
       }
-    }
-    
-    // Add page numbers
-    for (let i = startPage; i <= endPage; i++) {
-      addPageNumber(i);
-    }
-    
-    // Add last page if needed
-    if (endPage < state.pagination.totalPages) {
-      if (endPage < state.pagination.totalPages - 1) {
-        addEllipsis();
+
+      // Check if we're near the bottom of the page
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bodyHeight = document.body.offsetHeight;
+      const scrollThreshold = bodyHeight - 500; // Load more when 500px from bottom
+
+      if (scrollPosition >= scrollThreshold) {
+        loadMoreProducts();
       }
-      addPageNumber(state.pagination.totalPages);
-    }
-    
-    function addPageNumber(pageNum) {
-      const button = document.createElement("button");
-      button.className = `page-number ${pageNum === state.pagination.currentPage ? 'active' : ''}`;
-      button.textContent = pageNum;
-      button.addEventListener("click", () => {
-        state.pagination.currentPage = pageNum;
-        renderProducts();
-        renderPagination();
-        if (shopLayoutSection) shopLayoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      pageNumbersContainer.appendChild(button);
-    }
-    
-    function addEllipsis() {
-      const span = document.createElement("span");
-      span.className = "page-ellipsis";
-      span.textContent = "...";
-      pageNumbersContainer.appendChild(span);
+    });
+
+    // Function to load more products
+    function loadMoreProducts() {
+      // Set loading state
+      state.infiniteScroll.isLoading = true;
+
+      // Show loader
+      if (scrollLoader) {
+        scrollLoader.classList.add('active');
+      }
+
+      // Simulate network delay (can be removed in production)
+      setTimeout(() => {
+        // Append more products
+        renderProducts(true);
+      }, 500);
     }
   }
 });

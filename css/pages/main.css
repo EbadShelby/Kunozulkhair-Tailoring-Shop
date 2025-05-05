@@ -213,10 +213,9 @@
   display: flex;
   gap: var(--spacing-400);
   transition: transform 0.3s ease-in-out;
-  /* position: relative; */
   height: 100%;
   padding: var(--spacing-500) 0;
-
+  justify-content: center;
 }
 
 /* Individual Product Slide */
@@ -228,8 +227,7 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  max-width: 240px;
+  max-width: 226px;
   flex: 0 0 auto;
 }
 
@@ -239,8 +237,7 @@
 }
 
 .featured-product-slide img {
-  width: 100%;
-  height: 250px;
+  max-width: 225px;
   object-fit: cover;
   border-bottom: 1px solid #f0f0f0;
 }
