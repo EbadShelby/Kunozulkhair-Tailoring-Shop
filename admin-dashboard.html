@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Kunozulkhair Tailoring Shop</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/admin/admin-dashboard.css">
+  
+  <link rel="icon" href="assets/images/logo.jpg" type="image/png">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/images/logo.jpg" alt="Kunozulkhair Logo" class="logo">
+        <h2>Admin Panel</h2>
+      </div>
+      
+      <div class="sidebar-user">
+        <div class="user-avatar">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="user-info">
+          <p class="user-name" id="user-name">Admin User</p>
+          <p class="user-role" id="user-role">Administrator</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <a href="admin-dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-inventory.html">
+              <i class="fas fa-box"></i>
+              <span>Inventory</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-orders.html">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Orders</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-appointments.html">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Appointments</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-customers.html">
+              <i class="fas fa-users"></i>
+              <span>Customers</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-tailors.html">
+              <i class="fas fa-user-tie"></i>
+              <span>Tailors</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-reports.html">
+              <i class="fas fa-chart-bar"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-settings.html">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <button id="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Navigation -->
+      <header class="top-nav">
+        <button id="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <button>
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        
+        <div class="nav-actions">
+          <div class="nav-item">
+            <button class="notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="badge">3</span>
+            </button>
+          </div>
+          <div class="nav-item">
+            <button class="message-btn">
+              <i class="fas fa-envelope"></i>
+              <span class="badge">5</span>
+            </button>
+          </div>
+          <div class="nav-item user-dropdown">
+            <button class="user-btn">
+              <i class="fas fa-user-circle"></i>
+              <span id="dropdown-user-name">Admin</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#"><i class="fas fa-user"></i> Profile</a>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+              <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p>Welcome to the Kunozulkhair Tailoring Shop admin panel</p>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon orders">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="stat-card-info">
+              <h3>Total Orders</h3>
+              <p class="stat-value">254</p>
+              <p class="stat-change positive">+12% <span>from last month</span></p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-icon revenue">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="stat-card-info">
+              <h3>Revenue</h3>
+              <p class="stat-value">₱125,400</p>
+              <p class="stat-change positive">+8% <span>from last month</span></p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-icon appointments">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-card-info">
+              <h3>Appointments</h3>
+              <p class="stat-value">42</p>
+              <p class="stat-change negative">-3% <span>from last month</span></p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-icon inventory">
+              <i class="fas fa-box-open"></i>
+            </div>
+            <div class="stat-card-info">
+              <h3>Low Stock Items</h3>
+              <p class="stat-value">8</p>
+              <p class="stat-change neutral">0% <span>from last month</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Orders & Appointments -->
+        <div class="dashboard-grid">
+          <!-- Recent Orders -->
+          <div class="dashboard-card recent-orders">
+            <div class="card-header">
+              <h2>Recent Orders</h2>
+              <a href="admin-orders.html" class="view-all">View All</a>
+            </div>
+            <div class="card-content">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-orders-table">
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Upcoming Appointments -->
+          <div class="dashboard-card upcoming-appointments">
+            <div class="card-header">
+              <h2>Upcoming Appointments</h2>
+              <a href="admin-appointments.html" class="view-all">View All</a>
+            </div>
+            <div class="card-content">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date & Time</th>
+                    <th>Assigned To</th>
+                  </tr>
+                </thead>
+                <tbody id="upcoming-appointments-table">
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Inventory Status & Sales Chart -->
+        <div class="dashboard-grid">
+          <!-- Low Stock Items -->
+          <div class="dashboard-card low-stock">
+            <div class="card-header">
+              <h2>Low Stock Items</h2>
+              <a href="admin-inventory.html" class="view-all">View All</a>
+            </div>
+            <div class="card-content">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Reorder Level</th>
+                  </tr>
+                </thead>
+                <tbody id="low-stock-table">
+                  <!-- Will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Sales Chart -->
+          <div class="dashboard-card sales-chart">
+            <div class="card-header">
+              <h2>Sales Overview</h2>
+              <div class="chart-period">
+                <button class="active">Weekly</button>
+                <button>Monthly</button>
+                <button>Yearly</button>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="chart-container" id="sales-chart-container">
+                <!-- Chart will be rendered here -->
+                <div class="chart-placeholder">
+                  <p>Sales chart will be displayed here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="js/admin/admin-auth.js"></script>
+  <script src="js/admin/admin-dashboard.js"></script>
+</body>
+</html>

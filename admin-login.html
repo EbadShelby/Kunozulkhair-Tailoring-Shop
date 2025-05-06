@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+    <!-- linked google fonts  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="assets/images/logo.jpg" type="image/png">
+
+    <link rel="stylesheet" href="css/shared/login-form.css" />
+    <link rel="stylesheet" href="css/admin/admin-login.css" />
+
+    <title>Admin Login - Kunozulkhair Tailoring Shop</title>
+  </head>
+
+  <body class="admin-login-page">
+    <header class="header admin-header">
+      <div class="header__top container">
+        <a class="header__logo" href="index.html">
+          <img
+            class="header__logo-img"
+            src="assets/images/logo.jpg"
+            alt="logo"
+          />
+          <p class="header__logo-text">
+            <span>KunoZulkhair</span> Tailoring & Dress Shop
+          </p>
+        </a>
+      </div>
+    </header>
+
+    <main class="login-main">
+      <div class="container_lf" id="container">
+        <div class="form-container admin-login">
+          <form id="admin-login-form">
+            <h1>Admin Login</h1>
+            <div class="admin-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <p class="admin-login-desc">Enter your credentials to access the admin dashboard</p>
+            <div class="input-group">
+              <label for="admin-email">Email</label>
+              <input type="email" id="admin-email" placeholder="Email" required />
+            </div>
+            <div class="input-group">
+              <label for="admin-password">Password</label>
+              <input type="password" id="admin-password" placeholder="Password" required />
+            </div>
+            <div class="remember-me">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </div>
+            <div id="login-error" class="error-message"></div>
+            <button type="submit" class="admin-login-btn">Login</button>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+            <div class="back-to-site">
+              <a href="index.html">
+                <i class="fas fa-arrow-left"></i> Back to Website
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="admin-login-footer">
+      <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
+    </footer>
+
+    <script src="js/admin/admin-login.js"></script>
+  </body>
+</html>
