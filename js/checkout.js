@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const customizationContent = document.getElementById('customization-content');
   const toggleMeasurements = document.getElementById('toggle-measurements');
   const measurementsContent = document.getElementById('measurements-content');
-  
+
   // Initial state variables
   let shippingCost = 40; // Standard shipping is default
   let fittingFee = 0;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize custom elements
   initializeCustomElements();
-  
+
   function initializeCustomElements() {
     // Set up toggle functionality for customization details
     if (toggleCustomizations && customizationContent) {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    
+
     // Set up toggle functionality for measurements
     if (toggleMeasurements && measurementsContent) {
       measurementsContent.style.display = 'none';
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    
+
     // Setup fitting appointment toggle
     if (scheduleFittingToggle && appointmentDetails) {
       scheduleFittingToggle.addEventListener('change', (e) => {
@@ -78,30 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
         updateOrderSummary();
       });
     }
-    
+
     // Set up date and time selection for fitting appointment
     const dateOptions = document.querySelectorAll('input[name="fitting-date"]');
     const timeOptions = document.querySelectorAll('input[name="fitting-time"]');
-    
+
     dateOptions.forEach(option => {
       option.addEventListener('change', () => {
         updateEstimatedCompletion();
       });
     });
-    
+
     timeOptions.forEach(option => {
       option.addEventListener('change', () => {
         updateEstimatedCompletion();
       });
     });
-    
+
     // Setup voucher application
     if (applyVoucherBtn && voucherInput) {
       applyVoucherBtn.addEventListener('click', () => {
         applyVoucher(voucherInput.value);
       });
     }
-    
+
     // Setup "Use" buttons for available vouchers
     if (useVoucherBtns) {
       useVoucherBtns.forEach(btn => {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
-    
+
     // Setup edit measurements button
     const editMeasurementsBtn = document.querySelector('.edit-measurements-btn');
     if (editMeasurementsBtn) {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showMeasurementsModal();
       });
     }
-    
+
     // Setup schedule professional measurement button
     const scheduleMeasurementBtn = document.querySelector('.schedule-measurement-btn');
     if (scheduleMeasurementBtn) {
@@ -135,10 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateOrderSummary() {
     // Clear existing items
     cartItemsContainer.innerHTML = '';
-    
+
     // Calculate subtotal from sample product
     subtotalAmount = sampleProduct.price * sampleProduct.quantity;
-    
+
     // Add sample product to the summary
     const itemElement = document.createElement('div');
     itemElement.className = 'summary-item';
@@ -147,16 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>₱${subtotalAmount.toFixed(2)}</span>
     `;
     cartItemsContainer.appendChild(itemElement);
-    
+
     // Calculate total with shipping and fitting fee
     const total = subtotalAmount + shippingCost + fittingFee - appliedDiscount;
-    
+
     // Update summary values
     subtotalElement.textContent = `₱${subtotalAmount.toFixed(2)}`;
     shippingElement.textContent = `₱${shippingCost.toFixed(2)}`;
     fittingFeeElement.textContent = `₱${fittingFee.toFixed(2)}`;
     totalElement.textContent = `₱${total.toFixed(2)}`;
-    
+
     // Show or hide discount row
     if (appliedDiscount > 0) {
       discountRow.style.display = 'flex';
@@ -164,31 +164,31 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       discountRow.style.display = 'none';
     }
-    
+
     // Update estimated completion date based on current selections
     updateEstimatedCompletion();
   }
-  
+
   function updateEstimatedCompletion() {
     const estimateDateElement = document.getElementById('estimate-date');
     const selectedDate = document.querySelector('input[name="fitting-date"]:checked');
-    
+
     // Base completion time is ~10 days from now
     const baseDate = new Date();
     baseDate.setDate(baseDate.getDate() + 10);
-    
+
     // If fitting is scheduled, add 4 more days to account for alterations
     if (scheduleFittingToggle && scheduleFittingToggle.checked && selectedDate) {
       baseDate.setDate(baseDate.getDate() + 4);
     }
-    
+
     // Format the date
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = baseDate.toLocaleDateString('en-US', options);
-    
+
     if (estimateDateElement) {
       estimateDateElement.textContent = formattedDate;
-      
+
       // Add animation to highlight the updated date
       estimateDateElement.classList.add('updated');
       setTimeout(() => {
@@ -196,17 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000);
     }
   }
-  
+
   function applyVoucher(code) {
     // If code is empty, clear any applied voucher
     if (!code) {
       showToast('Please enter a voucher code', 'error');
       return;
     }
-    
+
     // Check for valid voucher codes
     code = code.trim().toUpperCase();
-    
+
     if (code === 'NEW10') {
       appliedDiscount = subtotalAmount * 0.1; // 10% discount
       appliedVoucher = 'NEW10';
@@ -220,20 +220,20 @@ document.addEventListener('DOMContentLoaded', () => {
       appliedDiscount = 0;
       appliedVoucher = null;
     }
-    
+
     // Update the summary with the applied discount
     updateOrderSummary();
   }
-  
+
   function showToast(message, type = 'info') {
     // Create toast container if it doesn't exist
     let toastContainer = document.querySelector('.toast-container');
-    
+
     if (!toastContainer) {
       toastContainer = document.createElement('div');
       toastContainer.className = 'toast-container';
       document.body.appendChild(toastContainer);
-      
+
       // Add styles for the toast container
       const style = document.createElement('style');
       style.textContent = `
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       document.head.appendChild(style);
     }
-    
+
     // Create the toast
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
@@ -299,22 +299,22 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>${message}</span>
       <button class="toast-close">&times;</button>
     `;
-    
+
     // Add close button functionality
     const closeBtn = toast.querySelector('.toast-close');
     closeBtn.addEventListener('click', () => {
       toast.remove();
     });
-    
+
     // Auto-remove after 3 seconds
     setTimeout(() => {
       toast.remove();
     }, 3000);
-    
+
     // Add to container
     toastContainer.appendChild(toast);
   }
-  
+
   function showMeasurementsModal() {
     // Create modal for editing measurements
     const modalHTML = `
@@ -354,12 +354,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `;
-    
+
     const modalContainer = document.createElement('div');
     modalContainer.className = 'modal-container';
     modalContainer.innerHTML = modalHTML;
     document.body.appendChild(modalContainer);
-    
+
     // Add modal styles
     const modalStyle = document.createElement('style');
     modalStyle.textContent = `
@@ -464,22 +464,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     `;
     document.head.appendChild(modalStyle);
-    
+
     // Modal functionality
     const closeBtn = modalContainer.querySelector('.modal-close');
     const cancelBtn = modalContainer.querySelector('.modal-cancel');
     const saveBtn = modalContainer.querySelector('.modal-save');
     const backdrop = modalContainer.querySelector('.modal-backdrop');
-    
+
     const closeModal = () => {
       modalContainer.remove();
       modalStyle.remove();
     };
-    
+
     closeBtn.addEventListener('click', closeModal);
     cancelBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
-    
+
     saveBtn.addEventListener('click', () => {
       // Get values from inputs
       const bust = document.getElementById('measurement-bust').value;
@@ -487,21 +487,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const hip = document.getElementById('measurement-hip').value;
       const shoulder = document.getElementById('measurement-shoulder').value;
       const length = document.getElementById('measurement-length').value;
-      
+
       // Update the displayed measurements
       document.querySelector('.measurement-item:nth-child(1) .measurement-value').textContent = `${bust} inches`;
       document.querySelector('.measurement-item:nth-child(2) .measurement-value').textContent = `${waist} inches`;
       document.querySelector('.measurement-item:nth-child(3) .measurement-value').textContent = `${hip} inches`;
       document.querySelector('.measurement-item:nth-child(4) .measurement-value').textContent = `${shoulder} inches`;
       document.querySelector('.measurement-item:nth-child(5) .measurement-value').textContent = `${length} inches`;
-      
+
       // Show success toast
       showToast('Measurements updated successfully', 'success');
-      
+
       closeModal();
     });
   }
-  
+
   function showScheduleMeasurementModal() {
     // Show toast notification
     showToast('Professional measurement scheduling coming soon!', 'info');
@@ -510,9 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle delivery option changes
   deliveryOptions.forEach(option => {
     option.addEventListener('change', (e) => {
-      if (e.target.value === 'express') {
-        shippingCost = 150;
-      } else if (e.target.value === 'standard') {
+      if (e.target.value === 'standard') {
         shippingCost = 40;
       } else {
         shippingCost = 0; // Free for pickup
@@ -529,24 +527,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const customerAddress = document.getElementById('customer-address');
 
     // Basic validation
-    if (customerName.textContent === 'Your Name' || 
-        customerPhone.textContent === 'Your Phone' || 
+    if (customerName.textContent === 'Your Name' ||
+        customerPhone.textContent === 'Your Phone' ||
         customerAddress.textContent === 'Your complete address will appear here') {
       showToast('Please fill in your delivery details before placing the order.', 'error');
       return;
     }
-    
+
     // Get fitting information if selected
     let fittingInfo = null;
     if (scheduleFittingToggle && scheduleFittingToggle.checked) {
       const selectedDate = document.querySelector('input[name="fitting-date"]:checked');
       const selectedTime = document.querySelector('input[name="fitting-time"]:checked');
-      
+
       if (!selectedDate || !selectedTime) {
         showToast('Please select a date and time for your fitting appointment.', 'error');
         return;
       }
-      
+
       fittingInfo = {
         date: selectedDate.value,
         time: selectedTime.value
@@ -576,11 +574,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Log the order (in a real app, this would be sent to a server)
     console.log('Order placed:', order);
-    
+
     // Show success message and redirect to confirmation page
     setTimeout(() => {
       showToast('Order placed successfully! Redirecting to confirmation page...', 'success');
-      
+
       // In a real app, this would redirect to an order confirmation page
       // For now, just reload the page after 2 seconds
       setTimeout(() => {

@@ -314,7 +314,7 @@ function generateAIResponse(userMessage) {
     return "We accept returns and exchanges within 14 days of purchase. Items must be unworn and in their original condition.";
   }
   else if (userMessage.includes('payment') || userMessage.includes('pay')) {
-    return "We accept credit/debit cards, PayPal, and bank transfers. All payments are securely processed.";
+    return "We accept cash and digital payment methods like GCash. All payments are securely processed.";
   }
   else if (userMessage.includes('custom') || userMessage.includes('tailor')) {
     return "Our custom tailoring service allows you to design your own clothing. Book an appointment to discuss your requirements with our expert tailors.";
@@ -384,7 +384,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What payment methods do you accept?</div>
             <div class="faq-answer">
-              <p>We accept cash, credit/debit cards, and digital payment methods like GCash and PayMaya. For custom orders, we typically require a 50% deposit upfront with the remaining balance due upon completion.</p>
+              <p>We accept cash and digital payment methods like GCash and PayMaya.</p>
             </div>
           </div>
         </div>
