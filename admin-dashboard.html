@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Kunozulkhair Tailoring Shop</title>
-  
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
-  
+
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
 </head>
 <body>
@@ -24,7 +24,7 @@
         <img src="assets/images/logo.jpg" alt="Kunozulkhair Logo" class="logo">
         <h2>Admin Panel</h2>
       </div>
-      
+
       <div class="sidebar-user">
         <div class="user-avatar">
           <i class="fas fa-user-circle"></i>
@@ -34,7 +34,7 @@
           <p class="user-role" id="user-role">Administrator</p>
         </div>
       </div>
-      
+
       <nav class="sidebar-nav">
         <ul>
           <li class="active">
@@ -87,7 +87,7 @@
           </li>
         </ul>
       </nav>
-      
+
       <div class="sidebar-footer">
         <button id="logout-btn">
           <i class="fas fa-sign-out-alt"></i>
@@ -95,7 +95,7 @@
         </button>
       </div>
     </aside>
-    
+
     <!-- Main Content -->
     <main class="main-content">
       <!-- Top Navigation -->
@@ -103,14 +103,14 @@
         <button id="sidebar-toggle">
           <i class="fas fa-bars"></i>
         </button>
-        
+
         <div class="search-bar">
           <input type="text" placeholder="Search...">
           <button>
             <i class="fas fa-search"></i>
           </button>
         </div>
-        
+
         <div class="nav-actions">
           <div class="nav-item">
             <button class="notification-btn">
@@ -138,60 +138,69 @@
           </div>
         </div>
       </header>
-      
+
       <!-- Dashboard Content -->
       <div class="dashboard-content">
         <div class="page-header">
           <h1>Dashboard</h1>
+          <p>Yo admin, this is your dashboard</p>
         </div>
-        
+
         <!-- Stats Cards -->
         <div class="stats-cards">
-          <div class="stat-card">
-            <div class="stat-card-icon orders">
-              <i class="fas fa-shopping-bag"></i>
+          <div class="stat-card orders">
+            <div class="stat-card-header">
+              <h3 class="stat-card-title">Total Orders</h3>
+              <div class="stat-card-icon">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
             </div>
-            <div class="stat-card-info">
-              <h3>Total Orders</h3>
+            <div class="stat-card-body">
               <p class="stat-value">254</p>
               <p class="stat-change positive">+12% <span>from last month</span></p>
             </div>
           </div>
-          
-          <div class="stat-card">
-            <div class="stat-card-icon revenue">
-              <i class="fas fa-money-bill-wave"></i>
+
+          <div class="stat-card revenue">
+            <div class="stat-card-header">
+              <h3 class="stat-card-title">Revenue</h3>
+              <div class="stat-card-icon">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
             </div>
-            <div class="stat-card-info">
-              <h3>Revenue</h3>
+            <div class="stat-card-body">
               <p class="stat-value">₱125,400</p>
               <p class="stat-change positive">+8% <span>from last month</span></p>
             </div>
           </div>
-          
-          <div class="stat-card">
-            <div class="stat-card-icon appointments">
-              <i class="fas fa-calendar-check"></i>
+
+          <div class="stat-card appointments">
+            <div class="stat-card-header">
+              <h3 class="stat-card-title">Appointments</h3>
+              <div class="stat-card-icon">
+                <i class="fas fa-calendar-check"></i>
+              </div>
             </div>
-            <div class="stat-card-info">
-              <h3>Appointments</h3>
+            <div class="stat-card-body">
               <p class="stat-value">42</p>
               <p class="stat-change negative">-3% <span>from last month</span></p>
             </div>
           </div>
-          
-          <div class="stat-card">
-            <div class="stat-card-icon inventory">
-              <i class="fas fa-box-open"></i>
+
+          <div class="stat-card inventory">
+            <div class="stat-card-header">
+              <h3 class="stat-card-title">Low Stock Items</h3>
+              <div class="stat-card-icon">
+                <i class="fas fa-box-open"></i>
+              </div>
             </div>
-            <div class="stat-card-info">
-              <h3>Low Stock Items</h3>
+            <div class="stat-card-body">
               <p class="stat-value">8</p>
               <p class="stat-change neutral">0% <span>from last month</span></p>
             </div>
           </div>
         </div>
-        
+
         <!-- Recent Orders & Appointments -->
         <div class="dashboard-grid">
           <!-- Recent Orders -->
@@ -217,7 +226,7 @@
               </table>
             </div>
           </div>
-          
+
           <!-- Upcoming Appointments -->
           <div class="dashboard-card upcoming-appointments">
             <div class="card-header">
@@ -241,7 +250,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Inventory Status & Sales Chart -->
         <div class="dashboard-grid">
           <!-- Low Stock Items -->
@@ -266,7 +275,7 @@
               </table>
             </div>
           </div>
-          
+
           <!-- Sales Chart -->
           <div class="dashboard-card sales-chart">
             <div class="card-header">
@@ -290,7 +299,7 @@
       </div>
     </main>
   </div>
-  
+
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
   <script src="js/admin/admin-dashboard.js"></script>
