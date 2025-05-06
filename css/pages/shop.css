@@ -96,7 +96,7 @@
   flex-direction: column;
   min-height: 100%;
   gap: var(--spacing-300);
-  align-items: center;
+  align-items: flex-start;
 }
 
 .shop-controls {
@@ -191,8 +191,9 @@
 .shop-products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--spacing-300);
+  width: 100%;
 }
 
 /* Filter Group Styling */
