@@ -31,7 +31,6 @@
   gap: 8px;
   font-size: var(--size-sm);
   font-weight: var(--fw-medium);
-  padding: 8px 12px;
   border-radius: 4px;
   background-color: #f5f5f5;
   transition: all 0.2s ease;
@@ -127,7 +126,7 @@
 .product-detail__info {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-300);
+  gap: var(--spacing-100);
 }
 
 .product-detail__title {
@@ -175,7 +174,7 @@
   font-size: var(--size-2xl);
   font-weight: var(--fw-bold);
   color: var(--clr-secondary);
-  margin: var(--spacing-200) 0;
+  margin-bottom: var(--spacing-200);
 }
 
 .product-detail__fabric,
@@ -237,7 +236,7 @@
 }
 
 .product-detail__sizes {
-  margin: var(--spacing-300) 0;
+  margin-bottom: var(--spacing-300);
 }
 
 .size-options {

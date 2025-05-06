@@ -5,6 +5,11 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+.inner-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .icon {
   color: var(--clr-neutral-900);
