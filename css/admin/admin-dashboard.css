@@ -398,6 +398,14 @@ body {
   border-top-color: #0d6efd;
 }
 
+.stat-card.tasks {
+  border-top-color: var(--info-color);
+}
+
+.stat-card.pending {
+  border-top-color: #6c757d;
+}
+
 .stat-card-header {
   display: flex;
   justify-content: space-between;
@@ -459,6 +467,16 @@ body {
   color: white;
 }
 
+.stat-card.tasks .stat-card-icon {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+}
+
+.stat-card.pending .stat-card-icon {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+}
+
 .stat-card-body {
   flex: 1;
 }
@@ -496,6 +514,14 @@ body {
 
 .stat-card.completed .stat-value {
   color: #0d6efd;
+}
+
+.stat-card.tasks .stat-value {
+  color: var(--info-color);
+}
+
+.stat-card.pending .stat-value {
+  color: #6c757d;
 }
 
 .stat-change {
