@@ -1,0 +1,53 @@
+/* Tailor Login Styles */
+
+/* Specific styles for tailor login page */
+.tailor-login-page {
+  background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+}
+
+/* Tailor icon styling */
+.tailor-login-page .login-icon i {
+  background-color: #2c3e50;
+}
+
+/* Tailor login button styling */
+.tailor-login-page .login-btn {
+  background-color: #2c3e50;
+}
+
+.tailor-login-page .login-btn:hover {
+  background-color: #1a1a2e;
+}
+
+/* Tailor links styling */
+.tailor-login-page .forgot-password,
+.tailor-login-page .switch-login:hover,
+.tailor-login-page .back-to-site:hover {
+  color: #2c3e50;
+}
+
+/* Tailor input focus styling */
+.tailor-login-page .input-group input:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+/* Tailor password toggle hover */
+.tailor-login-page .password-toggle:hover {
+  color: #2c3e50;
+}
+
+/* Tailor card hover effect */
+.tailor-login-page .login-card:hover {
+  box-shadow: 0 15px 35px rgba(26, 26, 46, 0.2);
+}
+
+/* Tailor header text color */
+.tailor-login-page .login-card-header h1 {
+  color: #2c3e50;
+}
+
+/* Tailor footer styling */
+.tailor-login-footer {
+  background-color: rgba(26, 26, 46, 0.3);
+}

@@ -18,13 +18,14 @@
 
     <link rel="stylesheet" href="css/shared/login-form.css" />
     <link rel="stylesheet" href="css/admin/admin-login.css" />
+    <link rel="stylesheet" href="css/admin/tailor-login.css" />
 
-    <title>Admin Login - Kunozulkhair Tailoring Shop</title>
+    <title>Tailor Login - Kunozulkhair Tailoring Shop</title>
   </head>
 
-  <body class="admin-login-page">
+  <body class="tailor-login-page">
     <div class="login-wrapper">
-      <header class="header admin-header">
+      <header class="header tailor-header">
         <div class="header__top container">
           <a class="header__logo" href="index.html">
             <img
@@ -44,31 +45,31 @@
           <div class="login-card">
             <div class="login-card-header">
               <div class="login-icon">
-                <i class="fas fa-user-shield"></i>
+                <i class="fas fa-scissors"></i>
               </div>
-              <h1>Admin Login</h1>
-              <p class="login-desc">Access your admin dashboard</p>
+              <h1>Tailor Login</h1>
+              <p class="login-desc">Access your tailor workspace</p>
             </div>
-
+            
             <div class="login-card-body">
-              <form id="admin-login-form">
+              <form id="tailor-login-form">
                 <div class="input-group">
                   <div class="input-icon">
                     <i class="fas fa-envelope"></i>
                   </div>
-                  <input type="email" id="admin-email" placeholder="Email Address" required />
+                  <input type="email" id="tailor-email" placeholder="Email Address" required />
                 </div>
-
+                
                 <div class="input-group">
                   <div class="input-icon">
                     <i class="fas fa-lock"></i>
                   </div>
-                  <input type="password" id="admin-password" placeholder="Password" required />
+                  <input type="password" id="tailor-password" placeholder="Password" required />
                   <button type="button" class="password-toggle" tabindex="-1">
                     <i class="fas fa-eye"></i>
                   </button>
                 </div>
-
+                
                 <div class="form-options">
                   <div class="remember-me">
                     <input type="checkbox" id="remember" />
@@ -76,20 +77,20 @@
                   </div>
                   <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
-
+                
                 <div id="login-error" class="error-message"></div>
-
+                
                 <button type="submit" class="login-btn">
                   <span>Login</span>
                   <i class="fas fa-arrow-right"></i>
                 </button>
               </form>
             </div>
-
+            
             <div class="login-card-footer">
               <div class="login-options">
-                <a href="tailor-login.html" class="switch-login">
-                  <i class="fas fa-scissors"></i> Tailor Login
+                <a href="admin-login.html" class="switch-login">
+                  <i class="fas fa-user-shield"></i> Admin Login
                 </a>
                 <a href="index.html" class="back-to-site">
                   <i class="fas fa-home"></i> Back to Website
@@ -100,18 +101,18 @@
         </div>
       </main>
 
-      <footer class="admin-login-footer">
+      <footer class="tailor-login-footer">
         <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
       </footer>
     </div>
 
-    <script src="js/admin/admin-login.js"></script>
+    <script src="js/admin/tailor-login.js"></script>
     <script>
       // Password visibility toggle
       document.querySelector('.password-toggle').addEventListener('click', function() {
-        const passwordInput = document.getElementById('admin-password');
+        const passwordInput = document.getElementById('tailor-password');
         const icon = this.querySelector('i');
-
+        
         if (passwordInput.type === 'password') {
           passwordInput.type = 'text';
           icon.classList.remove('fa-eye');
