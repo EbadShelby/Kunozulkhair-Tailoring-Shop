@@ -38,14 +38,19 @@ This website provides a complete solution for both customers and shop management
   5. Confirmation and summary
 
 ### 🔔 Notification System
-- Real-time notifications for order updates
-- Appointment reminders
-- New collection announcements
+- Real-time notifications for order updates, appointments, and announcements
+- Visual indicators for unread notifications
+- Notification count badges
+- "Mark all as read" functionality
+- Timestamp display for each notification
+- Implemented across all pages for consistent user experience
 
 ### 💬 Help System
-- Quick access to sizing guides
-- FAQs
-- AI chat assistance
+- Quick-access help tooltip from any page
+- Sizing guide for accurate measurements
+- Comprehensive FAQs section
+- AI chat assistance for immediate customer support
+- Context-aware help suggestions based on current page
 
 ### 📱 Responsive Design
 - Fully responsive layout for mobile, tablet, and desktop
@@ -77,15 +82,19 @@ This website provides a complete solution for both customers and shop management
 
 ## 🛠️ Technologies Used
 
-### Frontend
-- **HTML5** — Structure
+### Current Implementation
+- **HTML5** — Semantic markup and structure
 - **CSS3** — Styling with custom variables for consistent theming
-- **JavaScript** — Interactive functionality
-- **Responsive Design** — Mobile-first approach
+- **JavaScript** — Interactive functionality and dynamic content
+- **Responsive Design** — Mobile-first approach for all device sizes
+- **Heroicons** — SVG icons for consistent visual elements
+- **JavaScript Modules** — For organized data management
+- **Local Storage** — For cart persistence between sessions
 
-### Data Management
-- **JavaScript Modules** — For data organization
-- **Local Storage** — For cart persistence
+### Planned Backend Technologies
+- **MySQL** — Relational database for data storage
+- **PHP** — Server-side scripting
+- **AJAX** — Asynchronous data loading
 
 ## 🔄 Data Structure
 
@@ -94,11 +103,30 @@ The website uses JavaScript modules to manage data:
 - **cart.js** — Shopping cart functionality with add, remove, and update features
 
 ## 🚀 Future Enhancements
-- User account creation and management
-- Backend integration for persistent data storage
+
+### 🔄 Upcoming Database Integration
+- **MySQL Database** — For persistent data storage
+- **PHP Backend** — For server-side processing
+- **User Authentication** — Secure login and registration system
+- **Dynamic Content** — Server-rendered product listings and user data
+
+### 📊 Admin & Tailor Features
+- **Admin Dashboard** — For managing:
+  - Inventory management
+  - Order processing
+  - Appointment scheduling
+  - Customer management
+- **Tailor Portal** — For tailors to:
+  - View work queue
+  - Update order progress
+  - Access customer measurements
+  - Manage schedule
+
+### 🔍 Additional Planned Features
 - Payment gateway integration
 - Advanced filtering and search functionality
 - Customer reviews and ratings system
+- Order history and reordering
 
 ## 📍 Location
 Kunozulkhair Tailoring Shop is located in **Datu Liwa Candao Street, Cotabato City**.
@@ -112,7 +140,7 @@ Kunozulkhair Tailoring Shop is located in **Datu Liwa Candao Street, Cotabato Ci
   - [Twitter](https://x.com/Shopdress12)
 
 ## 📑 Project Status
-This website is currently a student/group project and continues to be developed with new features and improvements.
+The frontend of this website is now almost complete with all major features implemented. The project is ready for the next phase of development, which will include database integration and backend functionality. This is being developed as a student/group project.
 
 ## 🕒 Business Hours
 - **Monday-Saturday:** 9am-6pm
