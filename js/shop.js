@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
       isLoading: false,
       allLoaded: false
     },
-    search: ""
   };
 
   // DOM Elements
@@ -47,9 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Setup event listeners
     setupEventListeners();
 
-    // Check for search param in URL
-    checkForSearchParam();
-
     // Render initial products
     renderProducts();
 
@@ -57,28 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupInfiniteScroll();
   }
 
-  function checkForSearchParam() {
-    // Get search term from URL or session storage
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchParam = urlParams.get('search');
-
-    if (searchParam) {
-      state.search = decodeURIComponent(searchParam);
-    } else if (sessionStorage.getItem('searchTerm')) {
-      state.search = sessionStorage.getItem('searchTerm');
-    }
-
-    // Clear session storage after using it
-    sessionStorage.removeItem('searchTerm');
-  }
 
   function setupEventListeners() {
-    // Listen for search event
-    document.addEventListener('performSearch', (e) => {
-      state.search = e.detail.searchTerm;
-      resetInfiniteScroll();
-      renderProducts();
-    });
 
     // Sort change
     if (sortSelect) {
@@ -268,17 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return false;
       }
 
-      // Filter by search term
-      if (state.search) {
-        const searchTerm = state.search.toLowerCase();
-        const nameMatch = product.name.toLowerCase().includes(searchTerm);
-        const descMatch = product.description && product.description.toLowerCase().includes(searchTerm);
-        const categoryMatch = product.category.toLowerCase().includes(searchTerm);
-
-        if (!nameMatch && !descMatch && !categoryMatch) {
-          return false;
-        }
-      }
 
       return true;
     });
