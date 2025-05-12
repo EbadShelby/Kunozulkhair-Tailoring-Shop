@@ -49,7 +49,6 @@ This website provides a complete solution for both customers and shop management
 - Quick-access help tooltip from any page
 - Sizing guide for accurate measurements
 - Comprehensive FAQs section
-- AI chat assistance for immediate customer support
 - Context-aware help suggestions based on current page
 
 ### 📱 Responsive Design
