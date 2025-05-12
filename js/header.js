@@ -445,7 +445,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What are your business hours?</div>
             <div class="faq-answer">
-              <p>We are open Monday to Saturday from 9:00 AM to 6:00 PM, and Sunday from 10:00 AM to 4:00 PM.</p>
+              <p>We are open Monday to Saturday from 9:00 AM to 6:00 PM, and close on Sunday.</p>
             </div>
           </div>
 
@@ -459,7 +459,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What payment methods do you accept?</div>
             <div class="faq-answer">
-              <p>We accept cash and digital payment methods like GCash and PayMaya.</p>
+              <p>We accept cash and a digital payment method with GCash.</p>
             </div>
           </div>
         </div>
@@ -475,7 +475,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">Do you provide the fabric or should I bring my own?</div>
             <div class="faq-answer">
-              <p>We have a selection of high-quality fabrics available in our shop, but you're also welcome to bring your own fabric. If you're looking for something specific that we don't have in stock, we can help source it for you.</p>
+              <p>We have a selection of good-quality fabrics available in our shop, but you're also welcome to bring your own fabric. If you're looking for something specific that we don't have in stock, we can help source it for you.</p>
             </div>
           </div>
 
@@ -489,7 +489,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">How much do your services cost?</div>
             <div class="faq-answer">
-              <p>Our pricing varies depending on the service and complexity. Basic alterations start at ₱300, while custom dresses range from ₱1,500 for simple designs to ₱5,000+ for formal wear. Embroidery is priced based on size and complexity. We provide detailed quotes after consultation.</p>
+              <p>Our pricing varies depending on the service and complexity. Basic alterations start at ₱100, while custom dresses range from ₱700 for simple designs to ₱5,000+ for formal wear. Embroidery is priced based on size and complexity. We provide detailed quotes after consultation.</p>
             </div>
           </div>
 
