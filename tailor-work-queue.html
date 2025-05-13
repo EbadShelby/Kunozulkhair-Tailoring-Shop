@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/admin/tailor-dashboard.css">
   <link rel="stylesheet" href="css/admin/tailor-work-queue.css">
   <link rel="stylesheet" href="css/admin/tailor-notifications.css">
+  <link rel="stylesheet" href="css/admin/admin-messages.css">
 
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
 </head>
@@ -116,6 +117,19 @@
               <i class="fas fa-envelope"></i>
               <span class="badge">3</span>
             </button>
+            <!-- Tailor Message Dropdown -->
+            <div class="admin-message-dropdown">
+              <div class="admin-message-header">
+                <h3>Messages</h3>
+                <button id="admin-mark-all-read-messages">Mark all as read</button>
+              </div>
+              <div class="admin-message-list">
+                <!-- Messages will be dynamically inserted here -->
+              </div>
+              <div class="admin-message-footer">
+                <a href="tailor-messages.html">View all messages</a>
+              </div>
+            </div>
           </div>
           <div class="nav-item user-dropdown">
             <button class="user-btn">
@@ -264,5 +278,6 @@
   <script src="js/admin/admin-auth.js"></script>
   <script src="js/admin/tailor-work-queue.js"></script>
   <script type="module" src="js/admin/tailor-notifications.js"></script>
+  <script type="module" src="js/admin/tailor-messages.js"></script>
 </body>
 </html>
