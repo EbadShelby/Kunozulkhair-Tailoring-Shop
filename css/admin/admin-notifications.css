@@ -1,0 +1,148 @@
+/* Admin Notification Styles */
+
+/* Notification Dropdown */
+.admin-notification-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 350px;
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+  overflow: hidden;
+}
+
+.admin-notification-dropdown.show {
+  display: block;
+}
+
+.admin-notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-notification-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.admin-notification-header button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.admin-notification-header button:hover {
+  text-decoration: underline;
+}
+
+.admin-notification-list {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.admin-notification-list .notification-item {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.admin-notification-list .notification-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.admin-notification-list .notification-item.unread {
+  background-color: rgba(13, 110, 253, 0.05);
+  border-left: 3px solid var(--primary-color);
+}
+
+.admin-notification-list .notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.admin-notification-list .notification-item.unread .notification-icon {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: var(--primary-color);
+}
+
+.admin-notification-list .notification-content {
+  flex: 1;
+}
+
+.admin-notification-list .notification-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.admin-notification-list .notification-message {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.admin-notification-list .notification-time {
+  font-size: 12px;
+  color: var(--text-lighter);
+}
+
+.admin-notification-footer {
+  padding: 12px 15px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.admin-notification-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-notification-footer a:hover {
+  text-decoration: underline;
+}
+
+.empty-notification {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-lighter);
+  font-style: italic;
+}
+
+/* Notification Badge Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.notification-btn .badge {
+  animation: pulse 2s infinite;
+}
