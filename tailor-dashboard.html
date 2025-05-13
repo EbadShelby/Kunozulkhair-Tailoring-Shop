@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
   <link rel="stylesheet" href="css/admin/admin-dashboard-svg.css">
   <link rel="stylesheet" href="css/admin/tailor-dashboard.css">
+  <link rel="stylesheet" href="css/admin/tailor-notifications.css">
 
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
 </head>
@@ -95,6 +96,19 @@
               <i class="fas fa-bell"></i>
               <span class="badge">2</span>
             </button>
+            <!-- Tailor Notification Dropdown -->
+            <div class="tailor-notification-dropdown">
+              <div class="tailor-notification-header">
+                <h3>Notifications</h3>
+                <button id="tailor-mark-all-read">Mark all as read</button>
+              </div>
+              <div class="tailor-notification-list">
+                <!-- Notifications will be dynamically inserted here -->
+              </div>
+              <div class="tailor-notification-footer">
+                <a href="tailor-notifications.html">View all notifications</a>
+              </div>
+            </div>
           </div>
           <div class="nav-item">
             <button class="message-btn">
@@ -507,5 +521,6 @@
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
   <script src="js/admin/tailor-dashboard.js"></script>
+  <script type="module" src="js/admin/tailor-notifications.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
   <link rel="stylesheet" href="css/admin/admin-reports.css">
+  <link rel="stylesheet" href="css/admin/admin-notifications.css">
 
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
 </head>
@@ -117,6 +118,19 @@
               <i class="fas fa-bell"></i>
               <span class="badge">3</span>
             </button>
+            <!-- Admin Notification Dropdown -->
+            <div class="admin-notification-dropdown">
+              <div class="admin-notification-header">
+                <h3>Notifications</h3>
+                <button id="admin-mark-all-read">Mark all as read</button>
+              </div>
+              <div class="admin-notification-list">
+                <!-- Notifications will be dynamically inserted here -->
+              </div>
+              <div class="admin-notification-footer">
+                <a href="admin-notifications.html">View all notifications</a>
+              </div>
+            </div>
           </div>
           <div class="nav-item">
             <button class="message-btn">
@@ -274,5 +288,6 @@
   <script src="js/admin/admin-auth.js"></script>
   <script src="js/admin/admin-dashboard.js"></script>
   <script src="js/admin/admin-reports.js"></script>
+  <script type="module" src="js/admin/admin-notifications.js"></script>
 </body>
 </html>
