@@ -1,0 +1,314 @@
+/* Admin Messages Page Styles */
+
+.message-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0f1c28;
+}
+
+.message-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.filter-group select {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.messages-container {
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.admin-messages-page-list {
+  min-height: 400px;
+}
+
+.admin-messages-page-list .message-item {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.admin-messages-page-list .message-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.admin-messages-page-list .message-item.unread {
+  background-color: rgba(13, 110, 253, 0.05);
+  border-left: 3px solid var(--primary-color);
+}
+
+.admin-messages-page-list .message-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.admin-messages-page-list .message-item.unread .message-avatar {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: var(--primary-color);
+}
+
+.admin-messages-page-list .message-content {
+  flex: 1;
+}
+
+.admin-messages-page-list .message-sender {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-messages-page-list .message-time {
+  font-size: 0.85rem;
+  color: var(--text-lighter);
+  font-weight: normal;
+}
+
+.admin-messages-page-list .message-subject {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.admin-messages-page-list .message-preview {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.message-actions-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: var(--text-lighter);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+}
+
+.message-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+}
+
+.status-indicator.unread {
+  background-color: var(--primary-color);
+}
+
+.message-actions-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-action-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.message-action-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
+}
+
+.message-action-btn i {
+  font-size: 1rem;
+}
+
+/* Message Detail Modal */
+.message-detail-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.message-detail-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 2rem;
+  width: 70%;
+  max-width: 800px;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.message-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.message-detail-subject {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.message-detail-sender {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-detail-sender-name {
+  font-weight: 500;
+}
+
+.message-detail-time {
+  color: var(--text-lighter);
+  font-size: 0.9rem;
+}
+
+.message-detail-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.message-detail-body {
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+.message-detail-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .message-detail-content {
+    width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .message-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .message-filters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .message-detail-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 1.5rem;
+  }
+
+  .admin-messages-page-list .message-item {
+    padding: 1rem;
+  }
+
+  .admin-messages-page-list .message-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+  }
+}
