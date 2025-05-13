@@ -1,0 +1,451 @@
+/* Tailor Measurements Styles */
+
+/* Stat Card Styles */
+.stat-card.total {
+  border-top-color: var(--primary-color);
+}
+
+.stat-card.recent {
+  border-top-color: var(--info-color);
+}
+
+.stat-card.custom {
+  border-top-color: var(--warning-color);
+}
+
+.stat-card.alterations {
+  border-top-color: var(--success-color);
+}
+
+.stat-card.total .stat-card-icon {
+  background: linear-gradient(135deg, #1a2a3a, #0d1520);
+  color: white;
+}
+
+.stat-card.recent .stat-card-icon {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+}
+
+.stat-card.custom .stat-card-icon {
+  background: linear-gradient(135deg, #ffc107, #d39e00);
+  color: white;
+}
+
+.stat-card.alterations .stat-card-icon {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+}
+
+/* Measurements Container */
+.measurements-container {
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.measurements-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: #f9f9f9;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.filter-group select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  background-color: white;
+  min-width: 140px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-border-radius) 0 0 var(--button-border-radius);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  min-width: 200px;
+}
+
+.search-container button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0 var(--button-border-radius) var(--button-border-radius) 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-container button:hover {
+  background-color: #0d1520;
+}
+
+/* Customer Measurements List */
+.customer-measurements-list {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.customer-card {
+  background-color: #f9f9f9;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.customer-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.customer-card-header {
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customer-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.customer-type {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.customer-card-body {
+  padding: 1rem;
+}
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.customer-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.customer-info-item i {
+  width: 16px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.measurement-summary {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.measurement-summary-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.measurement-preview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.measurement-item {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.measurement-label {
+  color: var(--text-light);
+}
+
+.measurement-value {
+  font-weight: 500;
+}
+
+.customer-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.card-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--button-border-radius);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  background-color: rgba(23, 162, 184, 0.1);
+  color: var(--info-color);
+  border: 1px solid rgba(23, 162, 184, 0.2);
+}
+
+.view-btn:hover {
+  background-color: rgba(23, 162, 184, 0.2);
+}
+
+.edit-btn {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.edit-btn:hover {
+  background-color: rgba(40, 167, 69, 0.2);
+}
+
+/* Measurement Detail Modal */
+.measurement-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.measurement-section {
+  margin-bottom: 1.5rem;
+}
+
+.measurement-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--primary-color);
+}
+
+.measurement-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.measurement-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.measurement-detail-label {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.measurement-detail-value {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.measurement-notes {
+  grid-column: span 2;
+}
+
+.measurement-history {
+  grid-column: span 2;
+}
+
+.history-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  min-width: 100px;
+}
+
+.history-changes {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--button-border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.modal-btn.primary:hover {
+  background-color: #0d1520;
+}
+
+.modal-btn.secondary {
+  background-color: white;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.modal-btn.secondary:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Measurement Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .measurement-details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .measurement-notes, .measurement-history {
+    grid-column: span 1;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .measurements-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filters {
+    width: 100%;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .search-container {
+    width: 100%;
+  }
+  
+  .search-container input {
+    flex: 1;
+  }
+  
+  .customer-measurements-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .measurement-group {
+    grid-template-columns: 1fr;
+  }
+}
