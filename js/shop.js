@@ -46,11 +46,76 @@ document.addEventListener("DOMContentLoaded", () => {
     // Setup event listeners
     setupEventListeners();
 
+    // Check for search parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('search');
+
+    if (searchTerm) {
+      // Set search term in the header search input
+      const headerSearchInput = document.querySelector('.header__search-input');
+      if (headerSearchInput) {
+        headerSearchInput.value = searchTerm;
+      }
+
+      // Create a search filter section at the top of the products
+      createSearchFilterSection(searchTerm);
+    }
+
     // Render initial products
     renderProducts();
 
     // Setup infinite scroll
     setupInfiniteScroll();
+  }
+
+  /**
+   * Create a search filter section to show the search term and results
+   * @param {string} searchTerm - The search term from the URL
+   */
+  function createSearchFilterSection(searchTerm) {
+    // Create search filter section if it doesn't exist
+    if (!document.getElementById('search-filter-section')) {
+      const searchFilterSection = document.createElement('div');
+      searchFilterSection.id = 'search-filter-section';
+      searchFilterSection.className = 'search-filter-section';
+
+      // Get filtered products count
+      const filteredProducts = getFilteredProductsBySearch(searchTerm);
+
+      searchFilterSection.innerHTML = `
+        <div class="search-filter-header">
+          <h3>Search results for: "${searchTerm}"</h3>
+          <p>${filteredProducts.length} products found</p>
+        </div>
+        <button id="clear-search" class="clear-search-btn">Clear Search</button>
+      `;
+
+      // Insert before the shop-products div
+      const shopProductsSection = document.querySelector('.shop-products-section');
+      if (shopProductsSection) {
+        shopProductsSection.insertBefore(searchFilterSection, shopProductsSection.firstChild);
+
+        // Add event listener to clear search button
+        document.getElementById('clear-search').addEventListener('click', () => {
+          // Remove search parameter from URL without refreshing the page
+          const url = new URL(window.location.href);
+          url.searchParams.delete('search');
+          window.history.pushState({}, '', url);
+
+          // Remove search filter section
+          searchFilterSection.remove();
+
+          // Reset header search input
+          const headerSearchInput = document.querySelector('.header__search-input');
+          if (headerSearchInput) {
+            headerSearchInput.value = '';
+          }
+
+          // Reset filters and re-render products
+          resetFilters();
+        });
+      }
+    }
   }
 
 
@@ -214,8 +279,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function getFilteredProducts() {
+  /**
+   * Filter products by search term
+   * @param {string} searchTerm - The search term to filter by
+   * @returns {Array} - Array of products that match the search term
+   */
+  function getFilteredProductsBySearch(searchTerm) {
+    if (!searchTerm) return products;
+
+    searchTerm = searchTerm.toLowerCase();
+
     return products.filter(product => {
+      // Search in product name
+      if (product.name.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+
+      // Search in product description
+      if (product.description.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+
+      // Search in product category
+      if (product.category.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+
+      // Search in product fabric
+      if (product.fabric.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+
+      // Search in product color
+      if (product.color.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  function getFilteredProducts() {
+    // Get search term from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('search');
+
+    // First filter by search term if present
+    let filteredBySearch = searchTerm ? getFilteredProductsBySearch(searchTerm) : products;
+
+    // Then apply other filters
+    return filteredBySearch.filter(product => {
       const { category, fabric, color, size, priceMin, priceMax } = state.filters;
       const price = product.price;
 
@@ -243,7 +356,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (size.length > 0 && (!product.sizes || !size.some(s => product.sizes.includes(s)))) {
         return false;
       }
-
 
       return true;
     });
