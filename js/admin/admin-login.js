@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const adminLoginForm = document.getElementById('admin-login-form');
-  const adminEmail = document.getElementById('admin-email');
-  const adminPassword = document.getElementById('admin-password');
+  const shopLoginForm = document.getElementById('admin-login-form');
+  const shopEmail = document.getElementById('admin-email');
+  const shopPassword = document.getElementById('admin-password');
   const loginError = document.getElementById('login-error');
   const rememberMe = document.getElementById('remember');
 
@@ -9,57 +9,57 @@ document.addEventListener('DOMContentLoaded', function() {
   checkSavedCredentials();
 
   // Handle form submission
-  if (adminLoginForm) {
-    adminLoginForm.addEventListener('submit', function(e) {
+  if (shopLoginForm) {
+    shopLoginForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       // Clear previous error messages
       loginError.textContent = '';
-      
+
       // Get form values
-      const email = adminEmail.value.trim();
-      const password = adminPassword.value.trim();
-      
+      const email = shopEmail.value.trim();
+      const password = shopPassword.value.trim();
+
       // Validate inputs
       if (!email || !password) {
         loginError.textContent = 'Please enter both email and password';
         return;
       }
-      
+
       // For demo purposes, we'll use hardcoded credentials
       // In a real application, this would be validated against a server
-      authenticateAdmin(email, password);
+      authenticateUser(email, password);
     });
   }
 
-  // Function to authenticate admin
-  function authenticateAdmin(email, password) {
+  // Function to authenticate user (both admin and tailor)
+  function authenticateUser(email, password) {
     // Demo credentials - in a real app, this would be a server request
     const validCredentials = [
-      { email: 'admin@kunozulkhair.com', password: 'admin123', role: 'admin' },
-      { email: 'tailor@kunozulkhair.com', password: 'tailor123', role: 'tailor' }
+      { email: 'admin@kunozulkhair.com', password: 'admin123', role: 'admin', name: 'Admin User' },
+      { email: 'tailor@kunozulkhair.com', password: 'tailor123', role: 'tailor', name: 'Ryan Mentang' }
     ];
-    
+
     const user = validCredentials.find(cred => cred.email === email && cred.password === password);
-    
+
     if (user) {
       // Save credentials if remember me is checked
       if (rememberMe.checked) {
         saveCredentials(email, password);
       } else {
         // Clear any saved credentials
-        localStorage.removeItem('adminCredentials');
+        localStorage.removeItem('shopCredentials');
       }
-      
+
       // Save user info in session storage
       sessionStorage.setItem('currentUser', JSON.stringify({
         email: user.email,
         role: user.role,
-        name: user.email.split('@')[0], // Simple name extraction for demo
+        name: user.name, // Use the provided name
         loggedIn: true,
         loginTime: new Date().toISOString()
       }));
-      
+
       // Redirect based on role
       if (user.role === 'admin') {
         window.location.href = 'admin-dashboard.html';
@@ -69,11 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // Show error message
       loginError.textContent = 'Invalid email or password';
-      
+
       // Shake effect for error
-      adminLoginForm.classList.add('shake');
+      shopLoginForm.classList.add('shake');
       setTimeout(() => {
-        adminLoginForm.classList.remove('shake');
+        shopLoginForm.classList.remove('shake');
       }, 500);
     }
   }
@@ -86,21 +86,32 @@ document.addEventListener('DOMContentLoaded', function() {
       email: email,
       password: password // In reality, you'd use a token instead
     };
-    
-    localStorage.setItem('adminCredentials', JSON.stringify(credentials));
+
+    localStorage.setItem('shopCredentials', JSON.stringify(credentials));
   }
 
   // Function to check for saved credentials
   function checkSavedCredentials() {
-    const savedCredentials = localStorage.getItem('adminCredentials');
-    
+    // Check both old credential storage locations for backward compatibility
+    const savedCredentials = localStorage.getItem('shopCredentials') ||
+                            localStorage.getItem('adminCredentials') ||
+                            localStorage.getItem('tailorCredentials');
+
     if (savedCredentials) {
-      const credentials = JSON.parse(savedCredentials);
-      
-      // Fill in the form
-      adminEmail.value = credentials.email;
-      adminPassword.value = credentials.password;
-      rememberMe.checked = true;
+      try {
+        const credentials = JSON.parse(savedCredentials);
+
+        // Fill in the form
+        shopEmail.value = credentials.email;
+        shopPassword.value = credentials.password;
+        rememberMe.checked = true;
+      } catch (error) {
+        console.error('Error parsing saved credentials:', error);
+        // Clear invalid credentials
+        localStorage.removeItem('shopCredentials');
+        localStorage.removeItem('adminCredentials');
+        localStorage.removeItem('tailorCredentials');
+      }
     }
   }
 });
