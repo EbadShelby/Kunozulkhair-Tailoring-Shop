@@ -7,17 +7,22 @@ document.querySelector('.cart-toggle-btn')?.addEventListener('click', function (
 
 // Function to render products to the shop page
 document.addEventListener("DOMContentLoaded", () => {
+  // Check URL parameters for category and sort
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryParam = urlParams.get('category');
+  const sortParam = urlParams.get('sort');
+
   // State management
   const state = {
     filters: {
-      category: [],
+      category: categoryParam ? [categoryParam] : [],
       fabric: [],
       color: [],
       size: [],
       priceMin: 0,
       priceMax: 5000
     },
-    sort: "default",
+    sort: sortParam || "default",
     infiniteScroll: {
       currentIndex: 0,
       productsPerLoad: 12,
@@ -37,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetFiltersBtn = document.getElementById("reset-filters");
   const toggleFiltersBtn = document.getElementById("toggle-filters");
   const filtersContainer = document.querySelector(".shop-filters");
-  const shopLayoutSection = document.querySelector('.shop-layout');
 
   // Initialize the shop
   init();
@@ -46,10 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Setup event listeners
     setupEventListeners();
 
-    // Check for search parameter in URL
+    // Check for URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const searchTerm = urlParams.get('search');
+    const categoryParam = urlParams.get('category');
+    const sortParam = urlParams.get('sort');
 
+    // Update UI based on URL parameters
     if (searchTerm) {
       // Set search term in the header search input
       const headerSearchInput = document.querySelector('.header__search-input');
@@ -59,6 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Create a search filter section at the top of the products
       createSearchFilterSection(searchTerm);
+    }
+
+    // Update category checkboxes based on URL parameter
+    if (categoryParam) {
+      const checkbox = document.getElementById(categoryParam);
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    }
+
+    // Update sort dropdown based on URL parameter
+    if (sortParam && sortSelect) {
+      sortSelect.value = sortParam;
     }
 
     // Render initial products
@@ -461,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listeners to all "Add to Cart" buttons
     document.querySelectorAll(".product-card button").forEach((button) => {
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         const productId = button.dataset.productId;
         const foundProduct = products.find((p) => p.id == productId);
 
