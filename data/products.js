@@ -1,7 +1,7 @@
 export const products = [
   {
     id: 1,
-    name: "Light blue dress",
+    name: "Sapphire Lace Dress",
     price: 749,
     category: "dresses",
     fabric: "cotton",
@@ -14,7 +14,7 @@ export const products = [
   },
   {
     id: 2,
-    name: "Red dress",
+    name: "Azure Bloom Abaya",
     price: 749,
     category: "dresses",
     fabric: "silk",
@@ -27,7 +27,7 @@ export const products = [
   },
   {
     id: 3,
-    name: "Floral summer dress",
+    name: "Rose Dusk Abaya",
     price: 599,
     category: "dresses",
     fabric: "cotton",
@@ -40,7 +40,7 @@ export const products = [
   },
   {
     id: 4,
-    name: "Evening gown",
+    name: "Golden Thread Kimono",
     price: 1299,
     category: "formal",
     fabric: "silk",
@@ -53,7 +53,7 @@ export const products = [
   },
   {
     id: 5,
-    name: "Casual denim dress",
+    name: "Rose Whisper Abaya",
     price: 499,
     category: "casual",
     fabric: "cotton",
@@ -66,7 +66,7 @@ export const products = [
   },
   {
     id: 6,
-    name: "Office pencil dress",
+    name: "Midnight Bloom Gown",
     price: 899,
     category: "formal",
     fabric: "polyester",
@@ -79,7 +79,7 @@ export const products = [
   },
   {
     id: 7,
-    name: "Wedding dress",
+    name: "Emerald Bloom Abaya",
     price: 2499,
     category: "formal",
     fabric: "silk",
@@ -92,7 +92,7 @@ export const products = [
   },
   {
     id: 8,
-    name: "Cocktail dress",
+    name: "Crimson Bloom Abaya",
     price: 899,
     category: "formal",
     fabric: "silk",
@@ -105,7 +105,7 @@ export const products = [
   },
   {
     id: 9,
-    name: "Traditional embroidered dress",
+    name: "Velvet Bloom Gown",
     price: 1199,
     category: "traditional",
     fabric: "cotton",
@@ -118,7 +118,7 @@ export const products = [
   },
   {
     id: 10,
-    name: "Linen summer top",
+    name: "Silver Lining Gown",
     price: 349,
     category: "casual",
     fabric: "linen",
@@ -131,7 +131,7 @@ export const products = [
   },
   {
     id: 11,
-    name: "Wool winter coat",
+    name: "Mint Breeze Abaya",
     price: 1499,
     category: "casual",
     fabric: "wool",
@@ -144,7 +144,7 @@ export const products = [
   },
   {
     id: 12,
-    name: "Embroidered scarf",
+    name: "Ivory Blossom Dress",
     price: 299,
     category: "accessories",
     fabric: "silk",
@@ -157,7 +157,7 @@ export const products = [
   },
   {
     id: 13,
-    name: "Summer beach dress",
+    name: "Verdant Belted Dress",
     price: 399,
     category: "casual",
     fabric: "cotton",
