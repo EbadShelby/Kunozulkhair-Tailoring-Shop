@@ -139,5 +139,5 @@ Kunozulkhair Tailoring Shop is located in **Datu Liwa Candao Street, Cotabato Ci
 The frontend of this website is now almost complete with all major features implemented. The project is ready for the next phase of development, which will include database integration and backend functionality. This is being developed as a student/group project.
 
 ## 🕒 Business Hours
-- **Monday-Saturday:** 9am-6pm
-- **Sunday:** 10am-4pm
+- **Monday-Saturday:** Open at 9am-6pm
+- **Sunday:** Close
