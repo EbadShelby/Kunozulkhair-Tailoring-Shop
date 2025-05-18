@@ -48,7 +48,7 @@ export const products = [
     sizes: ["s", "m", "l"],
     date: "2023-10-25",
     rating: { rate: 4.8, count: 56 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Duchess-Blue-Ballgown.jpg",
     description: "Elegant evening gown for special occasions",
   },
   {
@@ -61,7 +61,7 @@ export const products = [
     sizes: ["xs", "s", "m", "l", "xl"],
     date: "2024-02-05",
     rating: { rate: 4.0, count: 122 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Mint-Breeze-Abaya.jpg",
     description: "Comfortable denim dress for everyday wear",
   },
   {
