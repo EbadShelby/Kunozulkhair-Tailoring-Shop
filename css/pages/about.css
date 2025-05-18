@@ -1,44 +1,4 @@
-.about-hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--spacing-800) var(--spacing-400);
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../assets/images/team.jpg") center/cover no-repeat;
-  color: var(--clr-neutral-100);
-  margin-bottom: 3rem;
-}
-
-.about-hero__content {
-  max-width: 600px;
-}
-
-.about-hero__title {
-  font-size: 2.5rem;
-  font-weight: var(--fw-black);
-  font-family: var(--ff-accent);
-  margin-bottom: 1rem;
-}
-
-.about-hero__description {
-  font-size: 1.2rem;
-  margin: 0 auto 1.5rem;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: var(--spacing-200) var(--spacing-400);
-  background: var(--clr-primary);
-  color: var(--clr-neutral-900);
-  font-weight: var(--fw-bold);
-  text-decoration: none;
-  border-radius: var(--spacing-100);
-  transition: background 0.3s;
-}
-
-.btn-primary:hover {
-  background: hsl(50, 91%, 45%);
-}
+/* About page specific styles */
 
 .mission-values {
   text-align: center;
@@ -280,11 +240,11 @@
   .slideshow-container {
     max-width: 95%;
   }
-  
+
   .slide img {
     height: 350px;
   }
-  
+
   .prev, .next {
     padding: var(--spacing-200);
     font-size: var(--size-2xl);

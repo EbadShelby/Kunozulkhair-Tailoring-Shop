@@ -1,25 +1,5 @@
 /* appointmement.css */
 
-/* Hero Section */
-.appointment-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/logo.jpg') center/cover no-repeat;
-  color: #fff;
-  padding: 5rem 0;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.appointment-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.appointment-hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 /* Appointment Container */
 .appointment-container {
   max-width: 1000px;

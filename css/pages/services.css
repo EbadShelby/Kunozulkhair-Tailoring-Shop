@@ -1,43 +1,6 @@
+/* Services page specific styles */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../assets/images/Sample4.png") center/cover no-repeat;
-  color: var(--clr-neutral-100);
-  padding: 5rem 0;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-
-.hero__content {
-  max-width: 600px;
-}
-
-.hero__title {
-  font-size: 2.5rem;
-  font-weight: var(--fw-black);
-  font-family: var(--ff-accent);
-  margin-bottom: 1rem;
-}
-
-.hero__description {
-  font-size: 1.2rem;
-  margin: 0 auto 1.5rem;
-}
-
-.hero__btn {
-  display: inline-block;
-  background: var(--clr-primary);
-  color: var(--clr-neutral-900);
-  padding: var(--spacing-200) var(--spacing-400);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  border-radius: var(--size-xs);
-  transition: background 0.3s;
-}
-
-.hero__btn:hover {
-  background: hsl(50, 100%, 45%);
 }
 
 

@@ -1,0 +1,123 @@
+/* Shared Hero Section Styles */
+
+.hero {
+  /* Default gradient overlay - the background image should be set per page */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/logo.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--clr-neutral-100);
+  padding: 5rem 0;
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__content {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-accent);
+  margin-bottom: 1rem;
+}
+
+.hero__description {
+  font-size: 1.2rem;
+  margin: 0 auto 1.5rem;
+  max-width: 600px;
+}
+
+.hero__btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--clr-primary);
+  color: #000;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: var(--fw-bold);
+  transition: all 0.3s ease;
+}
+
+.hero__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Page-specific hero modifiers */
+.hero--service {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-position: center;
+  padding: var(--spacing-800) var(--spacing-200) var(--spacing-400);
+}
+
+/* Hero backgrounds for different pages */
+.hero--appointments {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/18.jpg');
+}
+
+.hero--services {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/17.jpg');
+}
+
+.hero--about {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/21.jpg');
+}
+
+.hero--shop {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/20.jpg');
+}
+
+.hero--contact {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/13.jpg');
+}
+
+.hero--orders {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/14.jpg');
+}
+
+.hero--casual {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/15.jpg');
+}
+
+.hero--custom-dressmaking {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/16.jpg');
+}
+
+.hero--alterations {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/Journey/19.jpg');
+}
+
+/* Fallback for any page that doesn't have a specific hero class */
+.hero--default {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/logo.jpg');
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 0;
+  }
+
+  .hero__title {
+    font-size: 1.8rem;
+  }
+}

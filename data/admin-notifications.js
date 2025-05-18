@@ -36,7 +36,7 @@ const adminNotifications = [
     id: 5,
     type: 'tailor',
     title: "Tailor Assignment",
-    message: "John has been assigned to Order #ORD-10045.",
+    message: "Ryan Mentang has been assigned to Order #ORD-10045.",
     time: "1 day ago",
     read: true
   }

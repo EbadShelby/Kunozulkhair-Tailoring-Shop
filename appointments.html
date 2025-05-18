@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/pages/appointment.css">
     <link rel="stylesheet" href="css/shared/footer.css">
     <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/shared/hero.css">
 
 
     <!-- linked google fonts  -->
@@ -194,12 +195,12 @@
     </div>
 
     <main>
-      <div class="appointment-hero">
-        <div class="container">
-          <h1>Book Your Tailoring Appointment</h1>
-          <p>Schedule a visit with our expert tailors to discuss your custom clothing needs</p>
+      <section class="hero hero--appointments">
+        <div class="hero__content container">
+          <h1 class="hero__title">Book Your Tailoring Appointment</h1>
+          <p class="hero__description">Schedule a visit with our expert tailors to discuss your custom clothing needs</p>
         </div>
-      </div>
+      </section>
 
       <div class="appointment-container container">
         <!-- Appointment Flow Steps -->
@@ -436,40 +437,7 @@
               </div>
             </div>
 
-            <!-- Fabric Preference Section -->
-            <div class="fabric-section">
-              <h3>Fabric Preferences (Optional)</h3>
-              <div class="fabric-options">
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_cotton" name="fabric_preference[]" value="cotton">
-                  <label for="fabric_cotton">Cotton</label>
-                </div>
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_linen" name="fabric_preference[]" value="linen">
-                  <label for="fabric_linen">Linen</label>
-                </div>
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_silk" name="fabric_preference[]" value="silk">
-                  <label for="fabric_silk">Silk</label>
-                </div>
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_wool" name="fabric_preference[]" value="wool">
-                  <label for="fabric_wool">Wool</label>
-                </div>
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_polyester" name="fabric_preference[]" value="polyester">
-                  <label for="fabric_polyester">Polyester</label>
-                </div>
-                <div class="fabric-option">
-                  <input type="checkbox" id="fabric_other" name="fabric_preference[]" value="other">
-                  <label for="fabric_other">Other</label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="fabric_notes">Additional fabric notes:</label>
-                <textarea id="fabric_notes" name="fabric_notes" rows="2" placeholder="Any specific fabric requirements or preferences..."></textarea>
-              </div>
-            </div>
+
 
             <div class="form-buttons">
               <button type="button" class="prev-btn">Previous</button>

@@ -67,7 +67,7 @@ function createSampleAppointments() {
       description: 'Wedding Dress Fitting - Second session',
       date: formatDateForStorage(today),
       time: '10:00',
-      assignedTo: 'Maria',
+      assignedTo: 'Ryan Mentang',
       status: 'confirmed',
       notes: [
         {
@@ -89,7 +89,7 @@ function createSampleAppointments() {
       description: 'Suit Measurement for wedding',
       date: formatDateForStorage(tomorrow),
       time: '14:30',
-      assignedTo: 'John',
+      assignedTo: 'Ryan Mentang',
       status: 'pending',
       notes: [],
       createdAt: new Date(today).setHours(today.getHours() - 24)
@@ -105,7 +105,7 @@ function createSampleAppointments() {
       description: 'Dress Alteration - Hemming and taking in waist',
       date: formatDateForStorage(nextWeek),
       time: '11:00',
-      assignedTo: 'Maria',
+      assignedTo: 'Ryan Mentang',
       status: 'pending',
       notes: [],
       createdAt: new Date(today).setHours(today.getHours() - 72)
@@ -137,7 +137,7 @@ function createSampleAppointments() {
       description: 'Embroidery Consultation',
       date: formatDateForStorage(nextWeek),
       time: '13:00',
-      assignedTo: 'John',
+      assignedTo: 'Ryan Mentang',
       status: 'cancelled',
       notes: [
         {
@@ -186,7 +186,7 @@ function filterAppointments(appointments) {
     // Tailor filter
     if (tailorFilter === 'unassigned' && appointment.assignedTo) {
       return false;
-    } else if (tailorFilter !== 'all' && tailorFilter !== 'unassigned' && appointment.assignedTo !== tailorFilter) {
+    } else if (tailorFilter === 'Ryan Mentang' && appointment.assignedTo !== 'Ryan Mentang') {
       return false;
     }
 
@@ -414,13 +414,19 @@ function setupEventListeners() {
   // Confirm status update button
   const confirmStatusUpdateBtn = document.getElementById('confirm-status-update');
   if (confirmStatusUpdateBtn) {
-    confirmStatusUpdateBtn.addEventListener('click', updateAppointmentStatus);
+    confirmStatusUpdateBtn.addEventListener('click', function() {
+      const appointmentId = this.getAttribute('data-appointment-id');
+      updateAppointmentStatus(appointmentId);
+    });
   }
 
   // Add note button
   const addNoteBtn = document.getElementById('add-note-btn');
   if (addNoteBtn) {
-    addNoteBtn.addEventListener('click', addAppointmentNote);
+    addNoteBtn.addEventListener('click', function() {
+      const appointmentId = this.getAttribute('data-appointment-id');
+      addAppointmentNote(appointmentId);
+    });
   }
 
   // Edit appointment button in detail modal
@@ -694,8 +700,7 @@ function openStatusUpdateModal(appointmentId) {
 }
 
 // Function to update appointment status
-function updateAppointmentStatus() {
-  const appointmentId = this.getAttribute('data-appointment-id');
+function updateAppointmentStatus(appointmentId) {
   const newStatus = document.getElementById('new-status').value;
   const statusNote = document.getElementById('status-note').value;
   const notifyCustomer = document.getElementById('notify-customer').checked;
@@ -746,8 +751,7 @@ function updateAppointmentStatus() {
 }
 
 // Function to add appointment note
-function addAppointmentNote() {
-  const appointmentId = this.getAttribute('data-appointment-id');
+function addAppointmentNote(appointmentId) {
   const noteText = document.getElementById('new-note').value.trim();
 
   if (!noteText) {

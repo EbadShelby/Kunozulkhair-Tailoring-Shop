@@ -1,24 +1,4 @@
-.contact-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../assets/images/logo.jpg") center/cover no-repeat;
-  color: #fff;
-  padding: 5rem 0;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.contact-hero__title {
-  font-size: 2.5rem;
-  font-weight: var(--fw-bold);
-  color: var(--clr-neutral-100);
-  margin-bottom: 1rem;
-}
-
-.contact-hero__desc {
-  font-size: 1.2rem;
-  color: var(--clr-neutral-100);
-  max-width: 600px;
-  margin: 0 auto;
-}
+/* Hero Section is now handled by the shared hero.css */
 
 .contact-info {
   background: var(--clr-neutral-100);

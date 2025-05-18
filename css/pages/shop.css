@@ -1,45 +1,4 @@
-.shop-hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: url("assets/images/logo.jpg") center/cover no-repeat;
-  color: var(--clr-neutral-100);
-  padding: var(--spacing-400);
-  position: relative;
-}
-
-.shop-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
-}
-
-.shop-hero__content {
-  position: relative;
-  z-index: 1;
-  max-width: 600px;
-}
-
-.shop-hero__title {
-  font-family: var(--ff-base);
-  font-size: var(--size-5xl);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--spacing-200);
-}
-
-.shop-hero__subtitle {
-  font-family: var(--ff-accent);
-  font-size: var(--size-lg);
-  font-weight: var(--fw-regular);
-  margin-bottom: var(--spacing-300);
-}
-
-.shop-hero__btn:hover {
-  background-color: var(--clr-secondary);
-  color: var(--clr-neutral-100);
-}
+/* Shop-specific styles */
 
 /* ========== SHOP LAYOUT (2-COLUMN) ========== */
 .shop-layout {

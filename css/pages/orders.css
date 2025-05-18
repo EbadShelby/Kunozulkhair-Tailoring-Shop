@@ -1,24 +1,6 @@
 /* orders.css */
 
-/* Hero Section */
-.orders-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/logo.jpg') center/cover no-repeat;
-  color: #fff;
-  padding: 5rem 0;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.orders-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.orders-hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
+/* Hero Section is now handled by the shared hero.css */
 
 /* Orders Container */
 .orders-container {
@@ -688,16 +670,16 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .order-progress {
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-  
+
   .progress-step {
     width: 30%;
   }
-  
+
   .order-progress::before {
     display: none;
   }
@@ -707,33 +689,33 @@
   .orders-container {
     padding: 1.5rem;
   }
-  
+
   .orders-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .orders-filters {
     flex-direction: column;
   }
-  
+
   .filter {
     width: 100%;
   }
-  
+
   .order-item {
     flex-direction: column;
   }
-  
+
   .item-price {
     text-align: left;
     margin-top: 1rem;
   }
-  
+
   .order-actions {
     flex-direction: column;
   }
-  
+
   .action-btn {
     width: 100%;
   }
@@ -743,13 +725,13 @@
   .progress-step {
     width: 45%;
   }
-  
+
   .modal-content {
     width: 95%;
     margin: 10% auto;
   }
-  
+
   .orders-stats {
     grid-template-columns: 1fr 1fr;
   }
-} 
+}
