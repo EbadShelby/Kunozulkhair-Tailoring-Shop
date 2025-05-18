@@ -163,7 +163,7 @@
       <div class="dashboard-content">
         <div class="page-header">
           <h1>Tailor Profile</h1>
-          <p>View and manage the shop's master tailor</p>
+          <p>View and manage the shop's tailor</p>
         </div>
 
         <!-- Tailor Profile -->
@@ -197,22 +197,10 @@
               </div>
               <div class="stat-card-body">
                 <p class="stat-value" id="current-workload">7 tasks</p>
-                <p class="stat-change neutral">No change <span>from last week</span></p>
               </div>
             </div>
 
-            <div class="stat-card efficiency">
-              <div class="stat-card-header">
-                <h3 class="stat-card-title">Efficiency</h3>
-                <div class="stat-card-icon">
-                  <i class="fas fa-chart-line"></i>
-                </div>
-              </div>
-              <div class="stat-card-body">
-                <p class="stat-value" id="tailor-efficiency">92%</p>
-                <p class="stat-change positive">+5% <span>from last month</span></p>
-              </div>
-            </div>
+
 
             <div class="stat-card appointments">
               <div class="stat-card-header">
@@ -223,7 +211,6 @@
               </div>
               <div class="stat-card-body">
                 <p class="stat-value" id="upcoming-appointments">2</p>
-                <p class="stat-change neutral">No change <span>from last week</span></p>
               </div>
             </div>
 
@@ -236,72 +223,57 @@
               </div>
               <div class="stat-card-body">
                 <p class="stat-value" id="completed-orders">124</p>
-                <p class="stat-change positive">+12 <span>from last month</span></p>
               </div>
             </div>
           </div>
 
           <!-- Tailor Details -->
           <div class="tailor-details">
-            <div class="detail-section personal-info">
-              <h3>Personal Information</h3>
-              <div class="detail-content">
-                <div class="detail-item">
-                  <span class="label">Name:</span>
-                  <span id="detail-name">Ryan Mentang</span>
-                </div>
-                <div class="detail-item">
-                  <span class="label">Email:</span>
-                  <span id="detail-email">ryan.mentang@example.com</span>
-                </div>
-                <div class="detail-item">
-                  <span class="label">Phone:</span>
-                  <span id="detail-phone">+63 912 345 6789</span>
-                </div>
-                <div class="detail-item">
-                  <span class="label">Joined:</span>
-                  <span id="detail-joined">January 15, 2022</span>
-                </div>
-                <div class="detail-item">
-                  <span class="label">Specialization:</span>
-                  <span id="detail-specialization">Wedding, Formal Wear</span>
-                </div>
-              </div>
-            </div>
-
             <!-- Current Assignments -->
             <div class="detail-section assignments">
-              <h3>Current Assignments</h3>
-              <table class="detail-table">
-                <thead>
-                  <tr>
-                    <th>Order/Task</th>
-                    <th>Customer</th>
-                    <th>Due Date</th>
-                    <th>Progress</th>
-                  </tr>
-                </thead>
-                <tbody id="tailor-assignments-table">
-                  <!-- Will be populated by JavaScript -->
-                </tbody>
-              </table>
+              <div class="detail-header">
+                <h3>Current Assignments</h3>
+                <a href="admin-orders.html" class="view-all">View All</a>
+              </div>
+              <div class="detail-content">
+                <table class="detail-table">
+                  <thead>
+                    <tr>
+                      <th>Order/Task</th>
+                      <th>Customer</th>
+                      <th>Due Date</th>
+                      <th>Progress</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tailor-assignments-table">
+                    <!-- Will be populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <!-- Upcoming Appointments -->
             <div class="detail-section appointments">
-              <h3>Upcoming Appointments</h3>
-              <table class="detail-table">
-                <thead>
-                  <tr>
-                    <th>Customer</th>
-                    <th>Service</th>
-                    <th>Date & Time</th>
-                  </tr>
-                </thead>
-                <tbody id="tailor-appointments-table">
-                  <!-- Will be populated by JavaScript -->
-                </tbody>
-              </table>
+              <div class="detail-header">
+                <h3>Upcoming Appointments</h3>
+                <a href="admin-appointments.html" class="view-all">View All</a>
+              </div>
+              <div class="detail-content">
+                <table class="detail-table">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Service</th>
+                      <th>Date & Time</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tailor-appointments-table">
+                    <!-- Will be populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -323,14 +295,7 @@
               <label for="tailor-name-input">Full Name</label>
               <input type="text" id="tailor-name-input" name="name" required>
             </div>
-            <div class="form-group">
-              <label for="tailor-email">Email</label>
-              <input type="email" id="tailor-email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="tailor-phone">Phone</label>
-              <input type="tel" id="tailor-phone" name="phone" required>
-            </div>
+
             <div class="form-group">
               <label for="tailor-status-input">Status</label>
               <select id="tailor-status-input" name="status" required>

@@ -177,7 +177,6 @@
             </div>
             <div class="stat-card-body">
               <p class="stat-value" id="total-appointments">0</p>
-              <p class="stat-change positive">+12% <span>from last month</span></p>
             </div>
           </div>
 
@@ -190,7 +189,6 @@
             </div>
             <div class="stat-card-body">
               <p class="stat-value" id="pending-appointments">0</p>
-              <p class="stat-change">+5% <span>from last month</span></p>
             </div>
           </div>
 
@@ -203,7 +201,6 @@
             </div>
             <div class="stat-card-body">
               <p class="stat-value" id="confirmed-appointments">0</p>
-              <p class="stat-change positive">+8% <span>from last month</span></p>
             </div>
           </div>
 
@@ -216,7 +213,6 @@
             </div>
             <div class="stat-card-body">
               <p class="stat-value" id="completed-appointments">0</p>
-              <p class="stat-change positive">+15% <span>from last month</span></p>
             </div>
           </div>
         </div>
@@ -260,14 +256,7 @@
                 </select>
               </div>
 
-              <div class="filter-group">
-                <label for="tailor-filter">Assigned to Tailor</label>
-                <select id="tailor-filter" class="filter-select">
-                  <option value="all">All Appointments</option>
-                  <option value="Ryan Mentang">Ryan Mentang</option>
-                  <option value="unassigned">Unassigned</option>
-                </select>
-              </div>
+
             </div>
 
             <div class="actions">
@@ -295,7 +284,6 @@
                   <th>Customer</th>
                   <th>Service</th>
                   <th>Date & Time</th>
-                  <th>Assigned To</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -368,10 +356,7 @@
               <span class="label">Date & Time:</span>
               <span id="detail-datetime">July 20, 2023 - 10:00 AM</span>
             </div>
-            <div class="detail-item">
-              <span class="label">Assigned to Tailor:</span>
-              <span id="detail-assigned">Ryan Mentang</span>
-            </div>
+
           </div>
         </div>
 
@@ -447,13 +432,7 @@
               <input type="time" id="appointment-time" name="appointment-time" required>
             </div>
 
-            <div class="form-group">
-              <label for="appointment-assigned">Assign to Tailor</label>
-              <select id="appointment-assigned" name="appointment-assigned">
-                <option value="">Unassigned</option>
-                <option value="Ryan Mentang">Ryan Mentang</option>
-              </select>
-            </div>
+
 
             <div class="form-group">
               <label for="appointment-status">Status*</label>

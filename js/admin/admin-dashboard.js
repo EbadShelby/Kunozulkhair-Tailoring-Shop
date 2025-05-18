@@ -31,8 +31,7 @@ function loadDashboardData() {
   // Load low stock items
   loadLowStockItems();
 
-  // Initialize sales chart
-  initSalesChart();
+
 }
 
 // Function to load recent orders
@@ -266,26 +265,4 @@ function loadLowStockItems() {
   });
 }
 
-// Function to initialize sales chart
-function initSalesChart() {
-  const chartContainer = document.getElementById('sales-chart-container');
-  if (!chartContainer) return;
 
-  // In a real app, you would use a charting library like Chart.js
-  // For this demo, we'll just show a placeholder
-
-  // Set up chart period buttons
-  const chartPeriodButtons = document.querySelectorAll('.chart-period button');
-
-  chartPeriodButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      chartPeriodButtons.forEach(btn => btn.classList.remove('active'));
-
-      // Add active class to clicked button
-      this.classList.add('active');
-
-      // In a real app, you would update the chart data based on the selected period
-    });
-  });
-}

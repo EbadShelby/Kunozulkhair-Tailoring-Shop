@@ -51,16 +51,8 @@ function updateTailorProfile(tailor) {
 
   // Update stats
   document.getElementById('current-workload').textContent = `${tailor.workload} tasks`;
-  document.getElementById('tailor-efficiency').textContent = `${tailor.efficiency}%`;
   document.getElementById('upcoming-appointments').textContent = tailor.appointments.length;
   document.getElementById('completed-orders').textContent = tailor.completedOrders;
-
-  // Update personal info
-  document.getElementById('detail-name').textContent = tailor.name;
-  document.getElementById('detail-email').textContent = tailor.email;
-  document.getElementById('detail-phone').textContent = tailor.phone;
-  document.getElementById('detail-joined').textContent = tailor.joined;
-  document.getElementById('detail-specialization').textContent = tailor.specialization.join(', ');
 }
 
 // Function to render assignments
@@ -74,7 +66,7 @@ function renderAssignments(assignments) {
   if (assignments.length === 0) {
     const emptyRow = document.createElement('tr');
     emptyRow.innerHTML = `
-      <td colspan="4" class="empty-state">
+      <td colspan="5" class="empty-state">
         <p>No current assignments.</p>
       </td>
     `;
@@ -95,18 +87,34 @@ function renderAssignments(assignments) {
     }
 
     row.innerHTML = `
-      <td>${assignment.task}</td>
+      <td><strong>${assignment.task}</strong></td>
       <td>${assignment.customer}</td>
       <td>${assignment.dueDate}</td>
       <td>
         <div class="progress-bar">
           <div class="progress-fill ${progressClass}" style="width: ${assignment.progress}%;"></div>
         </div>
-        <span>${assignment.progress}%</span>
+        <div class="progress-text ${progressClass}">${assignment.progress}% Complete</div>
+      </td>
+      <td>
+        <div class="action-buttons">
+          <button class="action-btn view" title="View Details">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="action-btn edit" title="Edit Assignment">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="action-btn complete" title="Mark as Complete">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
       </td>
     `;
     tableBody.appendChild(row);
   });
+
+  // Set up action buttons for the newly rendered assignments
+  setupActionButtons();
 }
 
 // Function to render appointments
@@ -120,7 +128,7 @@ function renderAppointments(appointments) {
   if (appointments.length === 0) {
     const emptyRow = document.createElement('tr');
     emptyRow.innerHTML = `
-      <td colspan="3" class="empty-state">
+      <td colspan="4" class="empty-state">
         <p>No upcoming appointments.</p>
       </td>
     `;
@@ -131,13 +139,37 @@ function renderAppointments(appointments) {
   // Add appointment rows
   appointments.forEach(appointment => {
     const row = document.createElement('tr');
+
+    // Add status to appointments (randomly for demo)
+    const status = Math.random() > 0.5 ? 'confirmed' : 'pending';
+    const statusText = status === 'confirmed' ? 'Confirmed' : 'Pending';
+
     row.innerHTML = `
-      <td>${appointment.customer}</td>
+      <td><strong>${appointment.customer}</strong></td>
       <td>${appointment.service}</td>
-      <td>${appointment.datetime}</td>
+      <td>
+        ${appointment.datetime}
+        <span class="appointment-status ${status}">${statusText}</span>
+      </td>
+      <td>
+        <div class="action-buttons">
+          <button class="action-btn view" title="View Details">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="action-btn edit" title="Reschedule">
+            <i class="fas fa-calendar-alt"></i>
+          </button>
+          <button class="action-btn complete" title="Mark as Complete">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </td>
     `;
     tableBody.appendChild(row);
   });
+
+  // Set up action buttons for the newly rendered appointments
+  setupActionButtons();
 }
 
 // Function to format status text
@@ -163,6 +195,9 @@ function setupEventListeners() {
       openEditTailorModal();
     });
   }
+
+  // Set up action buttons after tables are populated
+  setupActionButtons();
 
   // Close modals
   const closeButtons = document.querySelectorAll('.close-modal');
@@ -211,8 +246,6 @@ function openEditTailorModal() {
   const form = document.getElementById('tailor-form');
   if (form) {
     form.elements['name'].value = tailorData.name;
-    form.elements['email'].value = tailorData.email;
-    form.elements['phone'].value = tailorData.phone;
     form.elements['status'].value = tailorData.status;
     form.elements['notes'].value = tailorData.notes || '';
 
@@ -240,8 +273,6 @@ function saveTailorChanges() {
 
   // Update tailor data
   tailorData.name = formData.get('name');
-  tailorData.email = formData.get('email');
-  tailorData.phone = formData.get('phone');
   tailorData.status = formData.get('status');
   tailorData.notes = formData.get('notes');
   tailorData.specialization = formData.getAll('specialization').map(s => {
@@ -260,6 +291,49 @@ function saveTailorChanges() {
 
   // Show success message (in a real app)
   console.log('Tailor profile updated successfully');
+}
+
+// Function to set up action buttons
+function setupActionButtons() {
+  // Assignment action buttons
+  document.querySelectorAll('#tailor-assignments-table .action-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const task = row.querySelector('td:first-child').textContent;
+      const customer = row.querySelector('td:nth-child(2)').textContent;
+      const action = this.classList.contains('view') ? 'view' :
+                    this.classList.contains('edit') ? 'edit' : 'complete';
+
+      // In a real app, this would perform the actual action
+      if (action === 'view') {
+        alert(`Viewing details for "${task}" for ${customer}`);
+      } else if (action === 'edit') {
+        alert(`Editing assignment "${task}" for ${customer}`);
+      } else if (action === 'complete') {
+        alert(`Marking "${task}" for ${customer} as complete`);
+      }
+    });
+  });
+
+  // Appointment action buttons
+  document.querySelectorAll('#tailor-appointments-table .action-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const customer = row.querySelector('td:first-child').textContent;
+      const service = row.querySelector('td:nth-child(2)').textContent;
+      const action = this.classList.contains('view') ? 'view' :
+                    this.classList.contains('edit') ? 'reschedule' : 'complete';
+
+      // In a real app, this would perform the actual action
+      if (action === 'view') {
+        alert(`Viewing appointment details for ${customer} (${service})`);
+      } else if (action === 'reschedule') {
+        alert(`Rescheduling appointment for ${customer} (${service})`);
+      } else if (action === 'complete') {
+        alert(`Marking appointment for ${customer} (${service}) as complete`);
+      }
+    });
+  });
 }
 
 // Function to get sample tailor data

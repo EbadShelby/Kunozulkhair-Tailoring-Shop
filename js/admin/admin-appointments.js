@@ -67,7 +67,6 @@ function createSampleAppointments() {
       description: 'Wedding Dress Fitting - Second session',
       date: formatDateForStorage(today),
       time: '10:00',
-      assignedTo: 'Ryan Mentang',
       status: 'confirmed',
       notes: [
         {
@@ -89,7 +88,6 @@ function createSampleAppointments() {
       description: 'Suit Measurement for wedding',
       date: formatDateForStorage(tomorrow),
       time: '14:30',
-      assignedTo: 'Ryan Mentang',
       status: 'pending',
       notes: [],
       createdAt: new Date(today).setHours(today.getHours() - 24)
@@ -105,7 +103,6 @@ function createSampleAppointments() {
       description: 'Dress Alteration - Hemming and taking in waist',
       date: formatDateForStorage(nextWeek),
       time: '11:00',
-      assignedTo: 'Ryan Mentang',
       status: 'pending',
       notes: [],
       createdAt: new Date(today).setHours(today.getHours() - 72)
@@ -121,7 +118,6 @@ function createSampleAppointments() {
       description: 'Custom Shirt Consultation',
       date: formatDateForStorage(nextWeek),
       time: '15:00',
-      assignedTo: '',
       status: 'pending',
       notes: [],
       createdAt: new Date(today).setHours(today.getHours() - 96)
@@ -137,7 +133,6 @@ function createSampleAppointments() {
       description: 'Embroidery Consultation',
       date: formatDateForStorage(nextWeek),
       time: '13:00',
-      assignedTo: 'Ryan Mentang',
       status: 'cancelled',
       notes: [
         {
@@ -169,7 +164,6 @@ function filterAppointments(appointments) {
   const statusFilter = document.getElementById('status-filter').value;
   const serviceFilter = document.getElementById('service-filter').value;
   const dateFilter = document.getElementById('date-filter').value;
-  const tailorFilter = document.getElementById('tailor-filter').value;
   const searchTerm = document.getElementById('appointment-search').value.toLowerCase();
 
   return appointments.filter(appointment => {
@@ -183,12 +177,7 @@ function filterAppointments(appointments) {
       return false;
     }
 
-    // Tailor filter
-    if (tailorFilter === 'unassigned' && appointment.assignedTo) {
-      return false;
-    } else if (tailorFilter === 'Ryan Mentang' && appointment.assignedTo !== 'Ryan Mentang') {
-      return false;
-    }
+
 
     // Date filter
     if (dateFilter !== 'all') {
@@ -276,10 +265,7 @@ function populateAppointmentsTable(appointments) {
     statusBadge.className = `status-badge ${appointment.status}`;
     statusBadge.textContent = formatStatus(appointment.status);
 
-    // Create assigned badge
-    const assignedBadge = document.createElement('span');
-    assignedBadge.className = `assigned-badge ${!appointment.assignedTo ? 'unassigned' : ''}`;
-    assignedBadge.textContent = appointment.assignedTo || 'Unassigned';
+
 
     // Add cells
     row.innerHTML = `
@@ -287,7 +273,6 @@ function populateAppointmentsTable(appointments) {
       <td>${appointment.customer.name}</td>
       <td>${appointment.service}</td>
       <td>${formattedDate} - ${formattedTime}</td>
-      <td></td>
       <td></td>
       <td>
         <button class="action-btn view" data-appointment-id="${appointment.id}" title="View Details">
@@ -303,10 +288,7 @@ function populateAppointmentsTable(appointments) {
     `;
 
     // Add status badge to status cell
-    row.querySelector('td:nth-child(6)').appendChild(statusBadge);
-
-    // Add assigned badge to assigned cell
-    row.querySelector('td:nth-child(5)').appendChild(assignedBadge);
+    row.querySelector('td:nth-child(5)').appendChild(statusBadge);
 
     // Add row to table
     tableBody.appendChild(row);
@@ -351,14 +333,12 @@ function setupEventListeners() {
   const statusFilter = document.getElementById('status-filter');
   const serviceFilter = document.getElementById('service-filter');
   const dateFilter = document.getElementById('date-filter');
-  const tailorFilter = document.getElementById('tailor-filter');
   const searchInput = document.getElementById('appointment-search');
   const searchBtn = document.getElementById('search-btn');
 
   if (statusFilter) statusFilter.addEventListener('change', loadAppointmentsData);
   if (serviceFilter) serviceFilter.addEventListener('change', loadAppointmentsData);
   if (dateFilter) dateFilter.addEventListener('change', loadAppointmentsData);
-  if (tailorFilter) tailorFilter.addEventListener('change', loadAppointmentsData);
 
   if (searchBtn) {
     searchBtn.addEventListener('click', loadAppointmentsData);
@@ -486,7 +466,6 @@ function openAppointmentDetailModal(appointmentId) {
 
   document.getElementById('detail-service').textContent = appointment.service;
   document.getElementById('detail-datetime').textContent = `${formatDateForDisplay(appointment.date)} at ${formatTimeForDisplay(appointment.time)}`;
-  document.getElementById('detail-assigned').textContent = appointment.assignedTo || 'Unassigned';
 
   document.getElementById('detail-description').textContent = appointment.description || 'No description provided';
 
@@ -561,7 +540,6 @@ function openEditAppointmentModal(appointmentId) {
   document.getElementById('appointment-service').value = appointment.service.toLowerCase();
   document.getElementById('appointment-date').value = appointment.date;
   document.getElementById('appointment-time').value = appointment.time;
-  document.getElementById('appointment-assigned').value = appointment.assignedTo || '';
   document.getElementById('appointment-status').value = appointment.status;
   document.getElementById('appointment-description').value = appointment.description || '';
 
@@ -582,7 +560,6 @@ function saveAppointment() {
   const service = document.getElementById('appointment-service').value;
   const date = document.getElementById('appointment-date').value;
   const time = document.getElementById('appointment-time').value;
-  const assignedTo = document.getElementById('appointment-assigned').value;
   const status = document.getElementById('appointment-status').value;
   const description = document.getElementById('appointment-description').value;
 
@@ -615,7 +592,6 @@ function saveAppointment() {
         description: description,
         date: date,
         time: time,
-        assignedTo: assignedTo,
         status: status,
         notes: notes,
         createdAt: createdAt,
@@ -637,7 +613,6 @@ function saveAppointment() {
       description: description,
       date: date,
       time: time,
-      assignedTo: assignedTo,
       status: status,
       notes: [],
       createdAt: new Date().getTime(),
@@ -794,7 +769,7 @@ function exportAppointments() {
   const appointments = filterAppointments(JSON.parse(localStorage.getItem('adminAppointments') || '[]'));
 
   // Create CSV content
-  let csvContent = 'ID,Customer,Email,Phone,Service,Date,Time,Assigned To,Status,Description\n';
+  let csvContent = 'ID,Customer,Email,Phone,Service,Date,Time,Status,Description\n';
 
   appointments.forEach(appointment => {
     const row = [
@@ -805,7 +780,6 @@ function exportAppointments() {
       appointment.service,
       appointment.date,
       appointment.time,
-      appointment.assignedTo || 'Unassigned',
       appointment.status,
       appointment.description || ''
     ].map(cell => `"${cell}"`).join(',');
