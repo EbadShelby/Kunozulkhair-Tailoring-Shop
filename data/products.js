@@ -131,7 +131,7 @@ export const products = [
   },
   {
     id: 11,
-    name: "Watercolor-Garden-Dress",
+    name: "Watercolor Garden Dress",
     price: 1499,
     category: "casual",
     fabric: "wool",
@@ -144,7 +144,7 @@ export const products = [
   },
   {
     id: 12,
-    name: "Mustard-Yellow-Abaya",
+    name: "Mustard Yellow Abaya",
     price: 299,
     category: "accessories",
     fabric: "silk",
@@ -152,12 +152,12 @@ export const products = [
     sizes: ["one-size"],
     date: "2024-01-25",
     rating: { rate: 4.4, count: 45 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Mustard-Yellow-Abaya.jpg",
     description: "Elegant embroidered scarf with traditional patterns",
   },
   {
     id: 13,
-    name: "Rosewater-Senerade-Gown",
+    name: "Rosewater Senerade Gown",
     price: 399,
     category: "casual",
     fabric: "cotton",
@@ -165,7 +165,7 @@ export const products = [
     sizes: ["s", "m", "l"],
     date: "2024-02-20",
     rating: { rate: 4.3, count: 67 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Rosewater-Senerade-Gown.jpg",
     description: "Light and colorful beach dress perfect for holidays",
   },
   {
