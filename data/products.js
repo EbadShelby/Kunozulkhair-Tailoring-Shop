@@ -9,7 +9,7 @@ export const products = [
     sizes: ["s", "m", "l"],
     date: "2023-11-15",
     rating: { rate: 4.5, count: 100 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Verrdant-Belted-Dress.jpg",
     description: "Elegant light blue dress perfect for summer occasions",
   },
   {
