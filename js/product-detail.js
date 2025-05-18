@@ -160,14 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentProduct = product;
 
-    // For demo purposes, create multiple images from the single image
-    // In a real application, you would have multiple images in your product data
-    productImages = [
-      product.image,
-      product.image,
-      product.image,
-      product.image
-    ];
+    // Just use the actual product image
+    // In a real application with multiple product images, you would use those
+    productImages = [product.image];
 
     // Update page title
     document.title = `${product.name} - Kunozulkhair Tailoring Shop`;
@@ -222,12 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const colorOptionsContainer = document.createElement('div');
       colorOptionsContainer.className = 'color-options';
 
-      // For demo purposes, we'll create multiple color options
-      // In a real application, you would have multiple colors in your product data
+      // Only show the actual product color
       const colors = [
-        { name: product.color, image: product.image },
-        { name: 'Black', image: product.image },
-        { name: 'White', image: product.image }
+        { name: product.color, image: product.image }
       ];
 
       // Create color options
@@ -301,17 +293,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set product description
     if (productDescription) {
-      // Create a more detailed description for demo purposes
-      // In a real application, you would have a more detailed description in your product data
+      // Create a more detailed description based on the product category and type
+      let categoryDescription = '';
+
+      if (product.category === 'formal') {
+        categoryDescription = `
+          <p>This elegant formal dress is perfect for special occasions, galas, weddings, and formal events.
+          The exquisite design and premium materials make it a standout piece in any formal setting.</p>
+          <p>The tailoring is done with precision to ensure a perfect fit and elegant silhouette.
+          Each detail has been carefully crafted to create a stunning and sophisticated look.</p>
+        `;
+      } else if (product.category === 'casual') {
+        categoryDescription = `
+          <p>This comfortable casual dress is perfect for everyday wear, casual outings, and relaxed gatherings.
+          The versatile design makes it easy to dress up or down depending on the occasion.</p>
+          <p>The relaxed fit and breathable fabric ensure all-day comfort without compromising on style.
+          This piece is designed to be both practical and fashionable for your everyday wardrobe.</p>
+        `;
+      } else {
+        categoryDescription = `
+          <p>This beautiful ${product.name.toLowerCase()} is designed to make you look and feel your best.
+          The thoughtful design elements and quality construction ensure a flattering fit and lasting wear.</p>
+          <p>Available in various sizes, this piece is designed to provide both comfort and fashion.
+          The tailoring is done with precision to ensure a perfect fit.</p>
+        `;
+      }
+
       const detailedDescription = `
         <p>${product.description}</p>
-        <p>This beautiful ${product.name.toLowerCase()} is made from high-quality ${product.fabric} fabric,
-        perfect for any occasion. The ${product.color} color adds a touch of elegance and style.</p>
-        <p>Available in various sizes, this piece is designed to provide both comfort and fashion.
-        The tailoring is done with precision to ensure a perfect fit.</p>
+        ${categoryDescription}
         <ul>
           <li>Material: Premium ${product.fabric}</li>
           <li>Color: ${product.color}</li>
+          <li>Available Sizes: ${product.sizes.map(s => s.toUpperCase()).join(', ')}</li>
           <li>Care Instructions: Hand wash or gentle machine wash</li>
           <li>Made in the Philippines</li>
         </ul>
@@ -371,34 +385,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mainImageContainer.appendChild(mainImg);
 
-    // Add thumbnails
-    images.forEach((image, index) => {
-      const thumbnailItem = document.createElement('div');
-      thumbnailItem.className = `thumbnail-item ${index === 0 ? 'active' : ''}`;
-      thumbnailItem.dataset.index = index;
+    // Since we only have one image, just add it as a thumbnail
+    const thumbnailItem = document.createElement('div');
+    thumbnailItem.className = 'thumbnail-item active';
+    thumbnailItem.dataset.index = 0;
 
-      const thumbnailImg = document.createElement('img');
-      thumbnailImg.src = image;
-      thumbnailImg.alt = `${currentProduct.name} - Thumbnail ${index + 1}`;
+    const thumbnailImg = document.createElement('img');
+    thumbnailImg.src = images[0];
+    thumbnailImg.alt = `${currentProduct.name} - Thumbnail`;
 
-      thumbnailItem.appendChild(thumbnailImg);
-      thumbnailsContainer.appendChild(thumbnailItem);
-
-      // Add click event to thumbnail
-      thumbnailItem.addEventListener('click', () => {
-        // Update main image
-        mainImg.src = image;
-
-        // Update active thumbnail
-        document.querySelectorAll('.thumbnail-item').forEach(item => {
-          item.classList.remove('active');
-        });
-        thumbnailItem.classList.add('active');
-
-        // Update current image index
-        currentImageIndex = index;
-      });
-    });
+    thumbnailItem.appendChild(thumbnailImg);
+    thumbnailsContainer.appendChild(thumbnailItem);
   }
 
   function renderProductGallery(images) {
@@ -407,22 +404,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear container
     productGallery.innerHTML = '';
 
-    // Add gallery items
-    images.forEach((image, index) => {
-      const galleryItem = document.createElement('div');
-      galleryItem.className = 'gallery-item';
+    // Since we only have one image, just add it to the gallery
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
 
-      const galleryImg = document.createElement('img');
-      galleryImg.src = image;
-      galleryImg.alt = `${currentProduct.name} - Gallery ${index + 1}`;
+    const galleryImg = document.createElement('img');
+    galleryImg.src = images[0];
+    galleryImg.alt = `${currentProduct.name}`;
 
-      galleryItem.appendChild(galleryImg);
-      productGallery.appendChild(galleryItem);
+    galleryItem.appendChild(galleryImg);
+    productGallery.appendChild(galleryItem);
 
-      // Add click event to gallery item
-      galleryItem.addEventListener('click', () => {
-        openImageViewer(index);
-      });
+    // Add click event to gallery item
+    galleryItem.addEventListener('click', () => {
+      openImageViewer(0);
     });
   }
 
@@ -494,32 +489,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set modal image
     modalImage.src = productImages[index];
-    modalImage.alt = `${currentProduct.name} - Image ${index + 1}`;
+    modalImage.alt = `${currentProduct.name}`;
 
     // Show modal
     imageViewer.style.display = 'block';
   }
 
   function showPreviousImage() {
-    if (currentImageIndex > 0) {
-      currentImageIndex--;
-    } else {
-      currentImageIndex = productImages.length - 1;
-    }
-
-    modalImage.src = productImages[currentImageIndex];
-    modalImage.alt = `${currentProduct.name} - Image ${currentImageIndex + 1}`;
+    // Since we only have one image, this function doesn't need to do anything
+    // but we'll keep it for future expansion
+    modalImage.src = productImages[0];
+    modalImage.alt = `${currentProduct.name}`;
   }
 
   function showNextImage() {
-    if (currentImageIndex < productImages.length - 1) {
-      currentImageIndex++;
-    } else {
-      currentImageIndex = 0;
-    }
-
-    modalImage.src = productImages[currentImageIndex];
-    modalImage.alt = `${currentProduct.name} - Image ${currentImageIndex + 1}`;
+    // Since we only have one image, this function doesn't need to do anything
+    // but we'll keep it for future expansion
+    modalImage.src = productImages[0];
+    modalImage.alt = `${currentProduct.name}`;
   }
 
   function handleAddToCart() {
@@ -534,9 +521,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get quantity
     const quantity = parseInt(quantityInput.value) || 1;
 
-    // Add to cart
+    // Add to cart with product details
     for (let i = 0; i < quantity; i++) {
-      addToCart(currentProduct.name, currentProduct.price);
+      addToCart(currentProduct.name, currentProduct.price, currentProduct.image);
     }
 
     // Show success message
@@ -569,14 +556,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get quantity
     const quantity = parseInt(quantityInput.value) || 1;
 
-    // Add to cart
+    // Add to cart with product details
     for (let i = 0; i < quantity; i++) {
-      addToCart(currentProduct.name, currentProduct.price);
+      addToCart(currentProduct.name, currentProduct.price, currentProduct.image);
     }
 
+    // Store selected product details for checkout page
+    const checkoutDetails = {
+      productId: currentProduct.id,
+      productName: currentProduct.name,
+      productImage: currentProduct.image,
+      productPrice: currentProduct.price,
+      quantity: quantity,
+      size: selectedSize || (currentProduct.sizes ? currentProduct.sizes[0] : null),
+      color: currentProduct.color
+    };
+
+    // Store in sessionStorage for checkout page to access
+    sessionStorage.setItem('checkoutDetails', JSON.stringify(checkoutDetails));
+
     // Redirect to checkout page
-    // For now, we'll redirect to a hypothetical checkout page
-    // You can create this page later or modify this to use your actual checkout flow
     window.location.href = 'checkout.html';
   }
 

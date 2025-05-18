@@ -98,12 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
     products.forEach((product) => {
       // Convert 5-star rating to 10-point scale
       const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
-      
+
       html = `
         <article class="featured-product-slide" data-product-id="${product.id}">
-          <img src="${product.image}" alt="${product.name}" />
+          <a href="product-detail.html?id=${product.id}" class="product-image-link">
+            <img src="${product.image}" alt="${product.name}" />
+          </a>
           <div class="product-info">
-            <h3>${product.name}</h3>
+            <a href="product-detail.html?id=${product.id}" class="product-title-link">
+              <h3>${product.name}</h3>
+            </a>
             <div class="product-meta">
               <div class="product-price">₱${product.price.toLocaleString()}</div>
               <div class="product-rating">
@@ -121,23 +125,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listeners to all "Add to Cart" buttons
     document.querySelectorAll(".btn-cart").forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", (e) => {
+        // Prevent the click from bubbling up to the product card
+        e.stopPropagation();
+
         const productId = button.dataset.productId;
         const foundProduct = products.find((p) => p.id == productId);
 
         if (foundProduct) {
           const name = foundProduct.name;
           const price = foundProduct.price;
+          const image = foundProduct.image;
 
           // Call the addToCart function from shop.js
           if (typeof addToCart === "function") {
-            addToCart(name, price);
-            
+            addToCart(name, price, image);
+
             // Add visual feedback
             const originalText = button.innerText;
             button.innerText = "Added!";
             button.classList.add("added-to-cart");
-            
+
             // Reset button after 1.5 seconds
             setTimeout(() => {
               button.innerText = originalText;
@@ -147,6 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("addToCart function not found");
           }
         }
+      });
+    });
+
+    // Make the entire product card clickable
+    document.querySelectorAll(".featured-product-slide").forEach((card) => {
+      card.addEventListener("click", (e) => {
+        // Don't navigate if the click was on the Add to Cart button
+        if (e.target.closest('.btn-cart')) return;
+
+        const productId = card.dataset.productId;
+        window.location.href = `product-detail.html?id=${productId}`;
       });
     });
 

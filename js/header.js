@@ -194,7 +194,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What services does Kunozulkhair Tailoring Shop offer?</div>
             <div class="faq-answer">
-              <p>We offer a wide range of tailoring services including custom dressmaking, alterations and repairs, embroidery services, bridal and formal wear, curtains and home textiles, and casual and everyday dresses. Our skilled tailors can create or modify any garment to your specifications.</p>
+              <p>We offer a range of tailoring services including custom dressmaking, alterations and repairs, and casual and everyday dresses. Our skilled tailor can create or modify dresses to your specifications.</p>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What payment methods do you accept?</div>
             <div class="faq-answer">
-              <p>We accept cash and a digital payment method with GCash.</p>
+              <p>We accept cash payments only at this time.</p>
             </div>
           </div>
         </div>
@@ -245,14 +245,14 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What alterations services do you offer?</div>
             <div class="faq-answer">
-              <p>We offer a complete range of alterations including hemming, taking in or letting out seams, sleeve adjustments, zipper replacements, and resizing. We can alter almost any garment including dresses, pants, shirts, jackets, and formal wear.</p>
+              <p>We offer a complete range of dress alterations including hemming, taking in or letting out seams, sleeve adjustments, zipper replacements, and resizing. We can alter all types of dresses including casual, formal, and evening gowns.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-question">How much do your services cost?</div>
             <div class="faq-answer">
-              <p>Our pricing varies depending on the service and complexity. Basic alterations start at ₱100, while custom dresses range from ₱700 for simple designs to ₱5,000+ for formal wear. Embroidery is priced based on size and complexity. We provide detailed quotes after consultation.</p>
+              <p>Our pricing varies depending on the service and complexity. Basic alterations start at ₱200, while custom dresses range from ₱1,299 for casual designs to ₱3,499 for luxury formal wear. We provide detailed quotes after consultation.</p>
             </div>
           </div>
 
@@ -296,7 +296,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">Do you offer delivery services?</div>
             <div class="faq-answer">
-              <p>Yes, we offer delivery within Cotabato City for a small fee. For locations outside the city, we can arrange shipping through courier services. Delivery times and costs vary depending on location.</p>
+              <p>We currently do not offer delivery services. All orders must be picked up at our shop in Cotabato City.</p>
             </div>
           </div>
         </div>
@@ -312,7 +312,7 @@ function openFAQs() {
           <div class="faq-item">
             <div class="faq-question">What should I bring to my appointment?</div>
             <div class="faq-answer">
-              <p>For custom garments, bring any reference images, fabric samples, or specific ideas you have. For alterations, bring the garment that needs modification. For fittings, wear appropriate undergarments that you'll wear with the final garment. If you have a specific event date, please share this information so we can plan accordingly.</p>
+              <p>For custom dresses, bring any reference images, fabric samples, or specific ideas you have. For alterations, bring the dress that needs modification. For fittings, wear appropriate undergarments that you'll wear with the final dress. If you have a specific event date, please share this information so we can plan accordingly.</p>
             </div>
           </div>
 

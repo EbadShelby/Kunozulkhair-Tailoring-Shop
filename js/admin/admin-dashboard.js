@@ -45,35 +45,35 @@ function loadRecentOrders() {
       id: 'ORD-10045',
       customer: 'Maria Santos',
       date: 'July 15, 2023',
-      amount: '₱35,000.00',
+      amount: '₱2,899.00',
       status: 'Processing'
     },
     {
       id: 'ORD-10038',
       customer: 'Juan Dela Cruz',
       date: 'July 10, 2023',
-      amount: '₱4,500.00',
+      amount: '₱2,499.00',
       status: 'Ready'
     },
     {
       id: 'ORD-10032',
       customer: 'Ana Reyes',
       date: 'July 5, 2023',
-      amount: '₱12,800.00',
+      amount: '₱1,599.00',
       status: 'Processing'
     },
     {
       id: 'ORD-10028',
       customer: 'Mike Johnson',
       date: 'July 1, 2023',
-      amount: '₱3,200.00',
+      amount: '₱1,899.00',
       status: 'Completed'
     },
     {
       id: 'ORD-10025',
       customer: 'Sarah Lee',
       date: 'June 28, 2023',
-      amount: '₱7,500.00',
+      amount: '₱1,799.00',
       status: 'Completed'
     }
   ];
@@ -116,27 +116,27 @@ function loadUpcomingAppointments() {
   const appointments = [
     {
       customer: 'Elena Garcia',
-      service: 'Wedding Dress Fitting',
+      service: 'Peach Lace Velvet Bloom Dress Fitting',
       datetime: 'July 20, 2023 - 10:00 AM'
     },
     {
       customer: 'Maria Santos',
-      service: 'Evening Gown Fitting',
+      service: 'Duchess Blue Ballgown Fitting',
       datetime: 'July 21, 2023 - 2:30 PM'
     },
     {
       customer: 'Sophia Lee',
-      service: 'Dress Alteration',
+      service: 'Lavender Whisper Dress Alteration',
       datetime: 'July 22, 2023 - 11:00 AM'
     },
     {
       customer: 'Anna Johnson',
-      service: 'Casual Dress Consultation',
+      service: 'Verdant Belted Dress Consultation',
       datetime: 'July 23, 2023 - 3:00 PM'
     },
     {
       customer: 'Isabella Martinez',
-      service: 'Formal Dress Measurement',
+      service: 'Emerald Bloom Dress Measurement',
       datetime: 'July 24, 2023 - 1:00 PM'
     }
   ];

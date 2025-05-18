@@ -70,17 +70,17 @@ function getSampleOrders() {
       date: 'July 15, 2023',
       items: [
         {
-          name: 'Custom Wedding Dress',
-          details: 'White silk, embroidered bodice, A-line',
+          name: 'Peach Lace Velvet Bloom Dress',
+          details: 'Peach silk with lace and velvet details',
           quantity: 1,
-          price: 35000,
-          total: 35000
+          price: 2899,
+          total: 2899
         }
       ],
-      subtotal: 35000,
+      subtotal: 2899,
       shipping: 0,
       discount: 0,
-      total: 35000,
+      total: 2899,
       status: 'processing',
       paymentMethod: 'GCash',
       paymentStatus: 'paid',
@@ -101,17 +101,17 @@ function getSampleOrders() {
       date: 'July 10, 2023',
       items: [
         {
-          name: 'Embroidered Barong Tagalog',
-          details: 'Piña fabric, traditional pattern',
+          name: 'Duchess Blue Ballgown',
+          details: 'Blue silk with elegant silhouette',
           quantity: 1,
-          price: 4500,
-          total: 4500
+          price: 2499,
+          total: 2499
         }
       ],
-      subtotal: 4500,
+      subtotal: 2499,
       shipping: 40,
       discount: 0,
-      total: 4540,
+      total: 2539,
       status: 'ready',
       paymentMethod: 'GCash',
       paymentStatus: 'paid',
@@ -132,17 +132,17 @@ function getSampleOrders() {
       date: 'July 5, 2023',
       items: [
         {
-          name: 'Formal Evening Gown',
-          details: 'Navy blue silk, mermaid cut',
+          name: 'Lavender Whisper Dress',
+          details: 'Lavender silk with delicate details',
           quantity: 1,
-          price: 12800,
-          total: 12800
+          price: 1599,
+          total: 1599
         }
       ],
-      subtotal: 12800,
+      subtotal: 1599,
       shipping: 0,
       discount: 0,
-      total: 12800,
+      total: 1599,
       status: 'processing',
       paymentMethod: 'Bank Transfer',
       paymentStatus: 'paid',
@@ -163,24 +163,24 @@ function getSampleOrders() {
       date: 'July 1, 2023',
       items: [
         {
-          name: 'Business Suit',
-          details: 'Charcoal gray, slim fit',
+          name: 'Emerald Bloom Dress',
+          details: 'Emerald green silk with elegant design',
           quantity: 1,
-          price: 8500,
-          total: 8500
+          price: 1899,
+          total: 1899
         },
         {
-          name: 'Dress Shirt',
-          details: 'White cotton, French cuffs',
-          quantity: 2,
-          price: 1500,
-          total: 3000
+          name: 'Accessories Set',
+          details: 'Matching jewelry set',
+          quantity: 1,
+          price: 500,
+          total: 500
         }
       ],
-      subtotal: 11500,
+      subtotal: 2399,
       shipping: 40,
-      discount: 1000,
-      total: 10540,
+      discount: 200,
+      total: 2239,
       status: 'completed',
       paymentMethod: 'Cash on Delivery',
       paymentStatus: 'paid',
@@ -201,24 +201,24 @@ function getSampleOrders() {
       date: 'June 28, 2023',
       items: [
         {
-          name: 'Casual Dress',
-          details: 'Floral pattern, cotton blend',
-          quantity: 2,
-          price: 2500,
-          total: 5000
+          name: 'Verdant Belted Dress',
+          details: 'Light blue cotton with belt',
+          quantity: 1,
+          price: 1299,
+          total: 1299
         },
         {
-          name: 'Blouse',
-          details: 'White silk, short sleeve',
+          name: 'Rose Whisper Dress',
+          details: 'Light rose linen dress',
           quantity: 1,
-          price: 1800,
-          total: 1800
+          price: 1249,
+          total: 1249
         }
       ],
-      subtotal: 6800,
+      subtotal: 2548,
       shipping: 40,
-      discount: 500,
-      total: 6340,
+      discount: 100,
+      total: 2488,
       status: 'completed',
       paymentMethod: 'PayMaya',
       paymentStatus: 'paid',
@@ -239,17 +239,17 @@ function getSampleOrders() {
       date: 'June 25, 2023',
       items: [
         {
-          name: 'Suit Alteration',
-          details: 'Jacket and pants adjustment',
+          name: 'Watercolor Garden Dress Alteration',
+          details: 'Hem adjustment and size modification',
           quantity: 1,
-          price: 2500,
-          total: 2500
+          price: 1200,
+          total: 1200
         }
       ],
-      subtotal: 2500,
+      subtotal: 1200,
       shipping: 0,
       discount: 0,
-      total: 2500,
+      total: 1200,
       status: 'cancelled',
       paymentMethod: 'Cash',
       paymentStatus: 'refunded',

@@ -9,7 +9,7 @@ const cartItemsContainer = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 
 // Function to add product to cart
-export function addToCart(productName, price) {
+export function addToCart(productName, price, image = 'assets/images/logo.jpg') {
   // Convert price to number if it's a string
   const priceValue = typeof price === 'string' ? parseFloat(price.replace('₱', '')) : price;
 
@@ -17,7 +17,12 @@ export function addToCart(productName, price) {
   if (existing) {
     existing.quantity++;
   } else {
-    cart.push({ name: productName, price: priceValue, quantity: 1 });
+    cart.push({
+      name: productName,
+      price: priceValue,
+      quantity: 1,
+      image: image
+    });
   }
   updateCart();
 }
@@ -57,11 +62,17 @@ function updateCart() {
     const itemEl = document.createElement('div');
     itemEl.className = 'cart-item';
     itemEl.innerHTML = `
-      <span>${item.name} (₱${item.price})</span>
-      <div class="quantity-control">
-        <button class="decrease-btn" data-product="${item.name}">−</button>
-        <span>${item.quantity}</span>
-        <button class="increase-btn" data-product="${item.name}">+</button>
+      <div class="cart-item-image">
+        <img src="${item.image || 'assets/images/logo.jpg'}" alt="${item.name}">
+      </div>
+      <div class="cart-item-details">
+        <span class="cart-item-name">${item.name}</span>
+        <span class="cart-item-price">₱${item.price.toLocaleString()}</span>
+        <div class="quantity-control">
+          <button class="decrease-btn" data-product="${item.name}">−</button>
+          <span>${item.quantity}</span>
+          <button class="increase-btn" data-product="${item.name}">+</button>
+        </div>
       </div>
     `;
 
