@@ -431,102 +431,13 @@
             </div>
           </div>
 
-          <!-- Notes & Reminders -->
-          <div class="dashboard-card notes-reminders">
-            <div class="card-header">
-              <h2>Notes & Reminders</h2>
-              <button class="add-note-btn">
-                <i class="fas fa-plus"></i> Add Note
-              </button>
-            </div>
-            <div class="card-content">
-              <div class="notes-list">
-                <div class="note-item">
-                  <div class="note-header">
-                    <div class="note-title">Wedding Dress Fabric Arrived</div>
-                    <div class="note-date">Jul 18, 2023</div>
-                  </div>
-                  <div class="note-content">
-                    Special silk fabric for Elena's wedding dress has arrived. Stored in cabinet B.
-                  </div>
-                </div>
 
-                <div class="note-item">
-                  <div class="note-header">
-                    <div class="note-title">Order Buttons</div>
-                    <div class="note-date">Jul 17, 2023</div>
-                  </div>
-                  <div class="note-content">
-                    Need to order more pearl buttons for upcoming projects.
-                  </div>
-                </div>
-
-                <div class="note-item reminder">
-                  <div class="note-header">
-                    <div class="note-title">Team Meeting</div>
-                    <div class="note-date">Jul 20, 2023 - 9:00 AM</div>
-                  </div>
-                  <div class="note-content">
-                    Weekly team meeting to discuss project progress and upcoming orders.
-                  </div>
-                </div>
-
-                <div class="note-item">
-                  <div class="note-header">
-                    <div class="note-title">Special Beading Technique</div>
-                    <div class="note-date">Jul 15, 2023</div>
-                  </div>
-                  <div class="note-content">
-                    Researched new beading technique for Sophia's dress. Reference materials saved in shared folder.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </main>
   </div>
 
-  <!-- Add Note Modal -->
-  <div id="add-note-modal" class="modal">
-    <div class="modal-content note-modal-content">
-      <div class="modal-header">
-        <h2>Add New Note</h2>
-        <button class="close-modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="note-form">
-          <div class="form-group">
-            <label for="note-title">Title</label>
-            <input type="text" id="note-title" required>
-          </div>
 
-          <div class="form-group">
-            <label for="note-content">Content</label>
-            <textarea id="note-content" rows="4" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label>
-              <input type="checkbox" id="is-reminder">
-              Set as Reminder
-            </label>
-          </div>
-
-          <div class="form-group reminder-date-group" style="display: none;">
-            <label for="reminder-date">Reminder Date & Time</label>
-            <input type="datetime-local" id="reminder-date">
-          </div>
-
-          <div class="form-actions">
-            <button type="button" class="btn-secondary" id="cancel-note">Cancel</button>
-            <button type="submit" class="btn-primary" id="save-note">Save Note</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
