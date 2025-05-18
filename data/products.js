@@ -1,7 +1,7 @@
 export const products = [
   {
     id: 1,
-    name: "Verrdant-Belted-Dress",
+    name: "Verrdant Belted Dress",
     price: 749,
     category: "dresses",
     fabric: "cotton",
@@ -14,7 +14,7 @@ export const products = [
   },
   {
     id: 2,
-    name: "Lavender-Whisper-Dress",
+    name: "Lavender Whisper Dress",
     price: 749,
     category: "dresses",
     fabric: "silk",
@@ -27,7 +27,7 @@ export const products = [
   },
   {
     id: 3,
-    name: "Ivory-Blossom-Dress",
+    name: "Ivory Blossom Dress",
     price: 599,
     category: "dresses",
     fabric: "cotton",
@@ -40,7 +40,7 @@ export const products = [
   },
   {
     id: 4,
-    name: "Duchess-Blue-Ballgwon",
+    name: "Duchess Blue Ballgwon",
     price: 1299,
     category: "formal",
     fabric: "silk",
@@ -53,7 +53,7 @@ export const products = [
   },
   {
     id: 5,
-    name: "Mint-Breeze-Abaya",
+    name: "Mint Breeze Abaya",
     price: 499,
     category: "casual",
     fabric: "cotton",
@@ -66,7 +66,7 @@ export const products = [
   },
   {
     id: 6,
-    name: "Crimson-Bloom-Dress",
+    name: "Crimson Bloom Dress",
     price: 899,
     category: "formal",
     fabric: "polyester",
@@ -79,7 +79,7 @@ export const products = [
   },
   {
     id: 7,
-    name: "Peace-Lace-Velvet-Bloom-Dress",
+    name: "Peace Lace Velvet Bloom Dress",
     price: 2499,
     category: "formal",
     fabric: "silk",
@@ -92,7 +92,7 @@ export const products = [
   },
   {
     id: 8,
-    name: "Emerald-Bloom-Dress",
+    name: "Emerald Bloom Dress",
     price: 899,
     category: "formal",
     fabric: "silk",
@@ -105,7 +105,7 @@ export const products = [
   },
   {
     id: 9,
-    name: "Black-Mindnight-Bloom-Dress",
+    name: "Black Mindnight Bloom Dress",
     price: 1199,
     category: "traditional",
     fabric: "cotton",
@@ -118,7 +118,7 @@ export const products = [
   },
   {
     id: 10,
-    name: "Rose-Whisper-Dress",
+    name: "Rose Whisper Dress",
     price: 349,
     category: "casual",
     fabric: "linen",
@@ -126,7 +126,7 @@ export const products = [
     sizes: ["xs", "s", "m", "l", "xl", "xxl"],
     date: "2024-02-15",
     rating: { rate: 4.1, count: 92 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Rose-Whisper-Dress.jpg",
     description: "Light and breathable linen top perfect for summer",
   },
   {
@@ -139,7 +139,7 @@ export const products = [
     sizes: ["s", "m", "l", "xl"],
     date: "2023-09-05",
     rating: { rate: 4.6, count: 73 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Watercolor-Garden-Dress.jpg",
     description: "Warm wool coat for winter, classic design",
   },
   {
