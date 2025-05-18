@@ -178,12 +178,12 @@ export const products = [
     sizes: ["s", "m", "l", "xl"],
     date: "2023-10-10",
     rating: { rate: 4.7, count: 51 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Azure-Bloom-Dress.jpg",
     description: "Professional business suit for women, tailored fit",
   },
   {
     id: 15,
-    name: "Embroidered handbag",
+    name: "Noor Black Kaftan",
     price: 549,
     category: "accessories",
     fabric: "cotton",
@@ -191,12 +191,12 @@ export const products = [
     sizes: ["one-size"],
     date: "2023-12-15",
     rating: { rate: 4.2, count: 39 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Noor-Black-Kaftan.jpg",
     description: "Beautifully embroidered handbag, handcrafted design",
   },
   {
     id: 16,
-    name: "Linen pants",
+    name: "Rose Dusk Abaya",
     price: 449,
     category: "casual",
     fabric: "linen",
@@ -204,7 +204,7 @@ export const products = [
     sizes: ["s", "m", "l", "xl", "xxl"],
     date: "2024-01-05",
     rating: { rate: 4.0, count: 85 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Rose-Dusk-Abaya.jpg",
     description: "Comfortable linen pants for everyday casual wear",
   }
 ];
