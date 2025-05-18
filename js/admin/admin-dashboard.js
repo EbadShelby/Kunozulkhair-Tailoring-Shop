@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize sidebar toggle functionality
   initSidebarToggle();
-  
+
   // Load dashboard data
   loadDashboardData();
 });
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSidebarToggle() {
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const adminContainer = document.querySelector('.admin-container');
-  
+
   if (sidebarToggle && adminContainer) {
     sidebarToggle.addEventListener('click', function() {
       adminContainer.classList.toggle('sidebar-collapsed');
@@ -24,13 +24,13 @@ function initSidebarToggle() {
 function loadDashboardData() {
   // Load recent orders
   loadRecentOrders();
-  
+
   // Load upcoming appointments
   loadUpcomingAppointments();
-  
+
   // Load low stock items
   loadLowStockItems();
-  
+
   // Initialize sales chart
   initSalesChart();
 }
@@ -39,7 +39,7 @@ function loadDashboardData() {
 function loadRecentOrders() {
   const recentOrdersTable = document.getElementById('recent-orders-table');
   if (!recentOrdersTable) return;
-  
+
   // Sample data - in a real app, this would come from an API
   const recentOrders = [
     {
@@ -78,19 +78,19 @@ function loadRecentOrders() {
       status: 'Completed'
     }
   ];
-  
+
   // Clear table
   recentOrdersTable.innerHTML = '';
-  
+
   // Add orders to table
   recentOrders.forEach(order => {
     const row = document.createElement('tr');
-    
+
     // Create status badge
     const statusBadge = document.createElement('span');
     statusBadge.className = `status-badge status-${order.status.toLowerCase()}`;
     statusBadge.textContent = order.status;
-    
+
     // Add cells
     row.innerHTML = `
       <td>${order.id}</td>
@@ -99,10 +99,10 @@ function loadRecentOrders() {
       <td>${order.amount}</td>
       <td></td>
     `;
-    
+
     // Add status badge to last cell
     row.querySelector('td:last-child').appendChild(statusBadge);
-    
+
     // Add row to table
     recentOrdersTable.appendChild(row);
   });
@@ -112,64 +112,50 @@ function loadRecentOrders() {
 function loadUpcomingAppointments() {
   const appointmentsTable = document.getElementById('upcoming-appointments-table');
   if (!appointmentsTable) return;
-  
+
   // Sample data - in a real app, this would come from an API
   const appointments = [
     {
       customer: 'Elena Garcia',
       service: 'Wedding Dress Fitting',
-      datetime: 'July 20, 2023 - 10:00 AM',
-      assignedTo: 'Maria (Tailor)'
+      datetime: 'July 20, 2023 - 10:00 AM'
     },
     {
       customer: 'Carlos Mendoza',
       service: 'Suit Measurement',
-      datetime: 'July 21, 2023 - 2:30 PM',
-      assignedTo: 'John (Tailor)'
+      datetime: 'July 21, 2023 - 2:30 PM'
     },
     {
       customer: 'Sophia Lee',
       service: 'Dress Alteration',
-      datetime: 'July 22, 2023 - 11:00 AM',
-      assignedTo: 'Maria (Tailor)'
+      datetime: 'July 22, 2023 - 11:00 AM'
     },
     {
       customer: 'David Kim',
       service: 'Custom Shirt Consultation',
-      datetime: 'July 23, 2023 - 3:00 PM',
-      assignedTo: 'Unassigned'
+      datetime: 'July 23, 2023 - 3:00 PM'
     },
     {
       customer: 'Isabella Martinez',
       service: 'Embroidery Consultation',
-      datetime: 'July 24, 2023 - 1:00 PM',
-      assignedTo: 'John (Tailor)'
+      datetime: 'July 24, 2023 - 1:00 PM'
     }
   ];
-  
+
   // Clear table
   appointmentsTable.innerHTML = '';
-  
+
   // Add appointments to table
   appointments.forEach(appointment => {
     const row = document.createElement('tr');
-    
-    // Create assigned badge
-    const assignedBadge = document.createElement('span');
-    assignedBadge.className = `assigned-badge ${appointment.assignedTo === 'Unassigned' ? 'unassigned' : ''}`;
-    assignedBadge.textContent = appointment.assignedTo;
-    
+
     // Add cells
     row.innerHTML = `
       <td>${appointment.customer}</td>
       <td>${appointment.service}</td>
       <td>${appointment.datetime}</td>
-      <td></td>
     `;
-    
-    // Add assigned badge to last cell
-    row.querySelector('td:last-child').appendChild(assignedBadge);
-    
+
     // Add row to table
     appointmentsTable.appendChild(row);
   });
@@ -179,7 +165,7 @@ function loadUpcomingAppointments() {
 function loadLowStockItems() {
   const lowStockTable = document.getElementById('low-stock-table');
   if (!lowStockTable) return;
-  
+
   // Sample data - in a real app, this would come from an API
   const lowStockItems = [
     {
@@ -213,21 +199,21 @@ function loadLowStockItems() {
       reorderLevel: 15
     }
   ];
-  
+
   // Clear table
   lowStockTable.innerHTML = '';
-  
+
   // Add items to table
   lowStockItems.forEach(item => {
     const row = document.createElement('tr');
-    
+
     // Create stock indicator
     const stockIndicator = document.createElement('div');
     stockIndicator.className = 'stock-indicator';
-    
+
     // Calculate percentage of stock remaining
     const stockPercentage = (item.currentStock / item.reorderLevel) * 100;
-    
+
     // Set indicator color based on percentage
     let indicatorColor;
     if (stockPercentage <= 25) {
@@ -237,14 +223,14 @@ function loadLowStockItems() {
     } else {
       indicatorColor = 'var(--info-color)';
     }
-    
+
     // Create stock level display
     const stockLevel = document.createElement('div');
     stockLevel.className = 'stock-level';
     stockLevel.innerHTML = `
       <span>${item.currentStock}</span>/<span>${item.reorderLevel}</span>
     `;
-    
+
     // Create stock bar
     const stockBar = document.createElement('div');
     stockBar.className = 'stock-bar';
@@ -253,28 +239,28 @@ function loadLowStockItems() {
     stockBar.style.backgroundColor = '#e0e0e0';
     stockBar.style.borderRadius = '2px';
     stockBar.style.overflow = 'hidden';
-    
+
     // Create stock fill
     const stockFill = document.createElement('div');
     stockFill.style.width = `${stockPercentage}%`;
     stockFill.style.height = '100%';
     stockFill.style.backgroundColor = indicatorColor;
-    
+
     // Assemble stock indicator
     stockBar.appendChild(stockFill);
     stockIndicator.appendChild(stockLevel);
     stockIndicator.appendChild(stockBar);
-    
+
     // Add cells
     row.innerHTML = `
       <td>${item.product}</td>
       <td>${item.category}</td>
       <td colspan="2"></td>
     `;
-    
+
     // Add stock indicator to last cell
     row.querySelector('td:last-child').appendChild(stockIndicator);
-    
+
     // Add row to table
     lowStockTable.appendChild(row);
   });
@@ -284,21 +270,21 @@ function loadLowStockItems() {
 function initSalesChart() {
   const chartContainer = document.getElementById('sales-chart-container');
   if (!chartContainer) return;
-  
+
   // In a real app, you would use a charting library like Chart.js
   // For this demo, we'll just show a placeholder
-  
+
   // Set up chart period buttons
   const chartPeriodButtons = document.querySelectorAll('.chart-period button');
-  
+
   chartPeriodButtons.forEach(button => {
     button.addEventListener('click', function() {
       // Remove active class from all buttons
       chartPeriodButtons.forEach(btn => btn.classList.remove('active'));
-      
+
       // Add active class to clicked button
       this.classList.add('active');
-      
+
       // In a real app, you would update the chart data based on the selected period
     });
   });
