@@ -3,8 +3,8 @@ const tailorNotifications = [
   {
     id: 1,
     type: 'order',
-    title: "New Order Assigned",
-    message: "You have been assigned to Order #ORD-10050 for a wedding dress alteration.",
+    title: "New Order",
+    message: "New Order #ORD-10050 for a wedding dress alteration is ready for your attention.",
     time: "10 minutes ago",
     read: false
   },

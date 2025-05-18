@@ -44,11 +44,6 @@ function updateTailorProfile(tailor) {
   // Update profile header
   document.getElementById('tailor-name').textContent = tailor.name;
 
-  // Update status badge
-  const statusBadge = document.getElementById('tailor-status');
-  statusBadge.textContent = formatStatus(tailor.status);
-  statusBadge.className = `status-badge ${tailor.status}`;
-
   // Update stats
   document.getElementById('current-workload').textContent = `${tailor.workload} tasks`;
   document.getElementById('upcoming-appointments').textContent = tailor.appointments.length;
@@ -172,19 +167,7 @@ function renderAppointments(appointments) {
   setupActionButtons();
 }
 
-// Function to format status text
-function formatStatus(status) {
-  switch (status) {
-    case 'active':
-      return 'Active';
-    case 'on-leave':
-      return 'On Leave';
-    case 'inactive':
-      return 'Inactive';
-    default:
-      return status;
-  }
-}
+
 
 // Function to set up event listeners
 function setupEventListeners() {
@@ -246,7 +229,6 @@ function openEditTailorModal() {
   const form = document.getElementById('tailor-form');
   if (form) {
     form.elements['name'].value = tailorData.name;
-    form.elements['status'].value = tailorData.status;
     form.elements['notes'].value = tailorData.notes || '';
 
     // Set specializations
@@ -273,7 +255,6 @@ function saveTailorChanges() {
 
   // Update tailor data
   tailorData.name = formData.get('name');
-  tailorData.status = formData.get('status');
   tailorData.notes = formData.get('notes');
   tailorData.specialization = formData.getAll('specialization').map(s => {
     // Capitalize first letter
@@ -346,7 +327,6 @@ function getSampleTailorData() {
     specialization: ['Wedding', 'Formal Wear'],
     workload: 7,
     efficiency: 92,
-    status: 'active',
     joined: 'January 15, 2022',
     notes: 'Specializes in wedding gowns and formal attire.',
     completedOrders: 124,

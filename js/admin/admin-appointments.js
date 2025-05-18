@@ -130,7 +130,7 @@ function createSampleAppointments() {
         phone: '+1234567894'
       },
       service: 'Consultation',
-      description: 'Embroidery Consultation',
+      description: 'Dress Design Consultation',
       date: formatDateForStorage(nextWeek),
       time: '13:00',
       status: 'cancelled',

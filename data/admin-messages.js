@@ -22,8 +22,8 @@ const adminMessages = [
     id: 3,
     sender: "John Doe",
     avatar: null,
-    subject: "Custom Embroidery Request",
-    message: "I'd like to add a custom embroidery to my order. Can you please provide a quote?",
+    subject: "Custom Design Request",
+    message: "I'd like to add some custom details to my dress order. Can you please provide a quote?",
     time: "3 hours ago",
     read: false
   },

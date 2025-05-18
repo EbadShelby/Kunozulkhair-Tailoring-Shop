@@ -72,38 +72,9 @@
   color: var(--text-light);
 }
 
-.profile-status {
-  margin-top: 0.5rem;
-}
-
 .profile-actions {
   display: flex;
   gap: 1rem;
-}
-
-/* Status Badge */
-.status-badge {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.status-badge.active {
-  background-color: rgba(40, 167, 69, 0.1);
-  color: var(--success-color);
-}
-
-.status-badge.on-leave {
-  background-color: rgba(255, 193, 7, 0.1);
-  color: var(--warning-color);
-}
-
-.status-badge.inactive {
-  background-color: rgba(108, 117, 125, 0.1);
-  color: var(--text-lighter);
 }
 
 /* Tailor Details */

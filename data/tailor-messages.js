@@ -4,8 +4,8 @@ const tailorMessages = [
     id: 1,
     sender: "Admin",
     avatar: null, // Will use initials if null
-    subject: "New Assignment",
-    message: "You have been assigned to work on Order #ORD-10050 for Elena Garcia.",
+    subject: "New Order",
+    message: "Please work on Order #ORD-10050 for Elena Garcia.",
     time: "10 minutes ago",
     read: false
   },

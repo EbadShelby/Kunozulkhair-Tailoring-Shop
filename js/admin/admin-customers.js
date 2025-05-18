@@ -4,64 +4,62 @@ document.addEventListener('DOMContentLoaded', function() {
   // DOM Elements
   const customersTableBody = document.getElementById('customers-table-body');
   const customerSearch = document.getElementById('customer-search');
-  const customerStatusFilter = document.getElementById('customer-status');
   const addCustomerBtn = document.getElementById('add-customer-btn');
   const exportCustomersBtn = document.getElementById('export-customers');
-  
+
   // Customer Detail Modal Elements
   const customerModal = document.getElementById('customer-modal');
   const closeDetailBtn = document.getElementById('close-detail-btn');
   const editCustomerBtn = document.getElementById('edit-customer-btn');
-  
+
   // Edit Customer Modal Elements
   const editCustomerModal = document.getElementById('edit-customer-modal');
   const customerForm = document.getElementById('customer-form');
   const saveCustomerBtn = document.getElementById('save-customer-btn');
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
-  
+
   // Delete Modal Elements
   const deleteModal = document.getElementById('delete-modal');
   const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
   const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
-  
+
   // Close Modal Buttons
   const closeModalButtons = document.querySelectorAll('.close-modal');
-  
+
   // Initialize customers data
   let customers = [];
   let currentCustomerId = null;
-  
+
   // Initialize stats
   initializeStats();
-  
+
   // Load customers data
   loadCustomers();
-  
+
   // Event Listeners
   customerSearch.addEventListener('input', filterCustomers);
-  customerStatusFilter.addEventListener('change', filterCustomers);
   addCustomerBtn.addEventListener('click', showAddCustomerModal);
   exportCustomersBtn.addEventListener('click', exportCustomers);
-  
+
   closeDetailBtn.addEventListener('click', () => {
     customerModal.style.display = 'none';
   });
-  
+
   editCustomerBtn.addEventListener('click', () => {
     customerModal.style.display = 'none';
     showEditCustomerModal(currentCustomerId);
   });
-  
+
   saveCustomerBtn.addEventListener('click', saveCustomer);
   cancelEditBtn.addEventListener('click', () => {
     editCustomerModal.style.display = 'none';
   });
-  
+
   confirmDeleteBtn.addEventListener('click', deleteCustomer);
   cancelDeleteBtn.addEventListener('click', () => {
     deleteModal.style.display = 'none';
   });
-  
+
   // Close modals when clicking on X button
   closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -70,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
       deleteModal.style.display = 'none';
     });
   });
-  
+
   // Close modals when clicking outside
   window.addEventListener('click', (event) => {
     if (event.target === customerModal) {
@@ -83,28 +81,27 @@ document.addEventListener('DOMContentLoaded', function() {
       deleteModal.style.display = 'none';
     }
   });
-  
+
   // Functions
   function initializeStats() {
     // In a real app, these would be fetched from an API
     document.getElementById('total-customers').textContent = '125';
     document.getElementById('new-customers').textContent = '18';
-    document.getElementById('active-customers').textContent = '98';
     document.getElementById('returning-customers').textContent = '65';
   }
-  
+
   function loadCustomers() {
     // In a real app, this would be fetched from an API
     customers = getSampleCustomers();
-    
+
     // Render customers
     renderCustomers(customers);
   }
-  
+
   function renderCustomers(customersToRender) {
     // Clear table
     customersTableBody.innerHTML = '';
-    
+
     if (customersToRender.length === 0) {
       const emptyRow = document.createElement('tr');
       emptyRow.innerHTML = `
@@ -116,16 +113,16 @@ document.addEventListener('DOMContentLoaded', function() {
       customersTableBody.appendChild(emptyRow);
       return;
     }
-    
+
     // Add customers to table
     customersToRender.forEach(customer => {
       const row = document.createElement('tr');
       row.dataset.customerId = customer.id;
-      
+
       // Create activity badges
       const ordersBadge = `<span class="stat-badge orders"><i class="fas fa-shopping-cart"></i> ${customer.orders.length}</span>`;
       const appointmentsBadge = `<span class="stat-badge appointments"><i class="fas fa-calendar-check"></i> ${customer.appointments.length}</span>`;
-      
+
       // Add cells
       row.innerHTML = `
         <td>${customer.id}</td>
@@ -155,93 +152,75 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </td>
       `;
-      
+
       // Add event listeners to action buttons
       row.querySelector('.action-btn.view').addEventListener('click', () => {
         showCustomerDetails(customer.id);
       });
-      
+
       row.querySelector('.action-btn.edit').addEventListener('click', () => {
         showEditCustomerModal(customer.id);
       });
-      
+
       row.querySelector('.action-btn.delete').addEventListener('click', () => {
         showDeleteConfirmation(customer.id);
       });
-      
+
       // Add row to table
       customersTableBody.appendChild(row);
     });
   }
-  
+
   function filterCustomers() {
     const searchTerm = customerSearch.value.toLowerCase();
-    const statusFilter = customerStatusFilter.value;
-    
+
     const filteredCustomers = customers.filter(customer => {
       // Search filter
-      const matchesSearch = 
+      const matchesSearch =
         customer.name.toLowerCase().includes(searchTerm) ||
         customer.email.toLowerCase().includes(searchTerm) ||
         customer.phone.toLowerCase().includes(searchTerm);
-      
-      // Status filter
-      let matchesStatus = true;
-      if (statusFilter !== 'all') {
-        if (statusFilter === 'active') {
-          matchesStatus = customer.status === 'active';
-        } else if (statusFilter === 'inactive') {
-          matchesStatus = customer.status === 'inactive';
-        } else if (statusFilter === 'new') {
-          // Check if registered within last 30 days
-          const thirtyDaysAgo = new Date();
-          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-          const registeredDate = new Date(customer.registered);
-          matchesStatus = registeredDate >= thirtyDaysAgo;
-        }
-      }
-      
-      return matchesSearch && matchesStatus;
+
+      return matchesSearch;
     });
-    
+
     renderCustomers(filteredCustomers);
   }
-  
+
   function showCustomerDetails(customerId) {
     const customer = customers.find(c => c.id === customerId);
     if (!customer) return;
-    
+
     currentCustomerId = customerId;
-    
+
     // Populate customer details
     document.getElementById('detail-customer-name').textContent = customer.name;
     document.getElementById('detail-customer-email').textContent = customer.email;
     document.getElementById('detail-customer-phone').textContent = customer.phone;
     document.getElementById('detail-customer-address').textContent = customer.address;
     document.getElementById('detail-customer-registered').textContent = customer.registered;
-    document.getElementById('detail-customer-status').textContent = customer.status.charAt(0).toUpperCase() + customer.status.slice(1);
-    
+
     // Populate activity summary
     document.getElementById('detail-customer-orders').textContent = customer.orders.length;
-    
+
     // Calculate total spent
     const totalSpent = customer.orders.reduce((sum, order) => sum + order.total, 0);
     document.getElementById('detail-customer-spent').textContent = `₱${totalSpent.toLocaleString()}`;
-    
+
     // Get last order date
     const lastOrder = customer.orders.length > 0 ? customer.orders[0].date : 'N/A';
     document.getElementById('detail-customer-last-order').textContent = lastOrder;
-    
+
     document.getElementById('detail-customer-appointments').textContent = customer.appointments.length;
-    
+
     // Get last appointment date
     const lastAppointment = customer.appointments.length > 0 ? customer.appointments[0].date : 'N/A';
     document.getElementById('detail-customer-last-appointment').textContent = lastAppointment;
-    
+
     // Populate orders table
     const ordersTable = document.getElementById('customer-orders-table');
     ordersTable.innerHTML = '';
-    
+
     if (customer.orders.length === 0) {
       const emptyRow = document.createElement('tr');
       emptyRow.innerHTML = '<td colspan="5" class="empty-table-message">No orders found</td>';
@@ -259,11 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ordersTable.appendChild(row);
       });
     }
-    
+
     // Populate appointments table
     const appointmentsTable = document.getElementById('customer-appointments-table');
     appointmentsTable.innerHTML = '';
-    
+
     if (customer.appointments.length === 0) {
       const emptyRow = document.createElement('tr');
       emptyRow.innerHTML = '<td colspan="4" class="empty-table-message">No appointments found</td>';
@@ -280,40 +259,39 @@ document.addEventListener('DOMContentLoaded', function() {
         appointmentsTable.appendChild(row);
       });
     }
-    
+
     // Show modal
     customerModal.style.display = 'block';
   }
-  
+
   function showAddCustomerModal() {
     // Reset form
     customerForm.reset();
     document.getElementById('customer-id').value = '';
     document.getElementById('edit-modal-title').textContent = 'Add New Customer';
-    
+
     // Show modal
     editCustomerModal.style.display = 'block';
   }
-  
+
   function showEditCustomerModal(customerId) {
     const customer = customers.find(c => c.id === customerId);
     if (!customer) return;
-    
+
     // Populate form
     document.getElementById('customer-id').value = customer.id;
     document.getElementById('customer-name').value = customer.name;
     document.getElementById('customer-email').value = customer.email;
     document.getElementById('customer-phone').value = customer.phone;
     document.getElementById('customer-address-input').value = customer.address;
-    document.getElementById('customer-status-select').value = customer.status;
     document.getElementById('customer-notes').value = customer.notes || '';
-    
+
     document.getElementById('edit-modal-title').textContent = 'Edit Customer';
-    
+
     // Show modal
     editCustomerModal.style.display = 'block';
   }
-  
+
   function saveCustomer() {
     // Get form values
     const customerId = document.getElementById('customer-id').value;
@@ -321,15 +299,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const email = document.getElementById('customer-email').value;
     const phone = document.getElementById('customer-phone').value;
     const address = document.getElementById('customer-address-input').value;
-    const status = document.getElementById('customer-status-select').value;
     const notes = document.getElementById('customer-notes').value;
-    
+
     // Validate form
     if (!name || !email || !phone || !address) {
       alert('Please fill in all required fields');
       return;
     }
-    
+
     // In a real app, this would send data to an API
     if (customerId) {
       // Update existing customer
@@ -341,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function() {
           email,
           phone,
           address,
-          status,
           notes
         };
       }
@@ -353,45 +329,44 @@ document.addEventListener('DOMContentLoaded', function() {
         email,
         phone,
         address,
-        status,
         notes,
         registered: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         orders: [],
         appointments: []
       };
-      
+
       customers.unshift(newCustomer);
     }
-    
+
     // Close modal and refresh table
     editCustomerModal.style.display = 'none';
     renderCustomers(customers);
   }
-  
+
   function showDeleteConfirmation(customerId) {
     const customer = customers.find(c => c.id === customerId);
     if (!customer) return;
-    
+
     document.getElementById('delete-customer-name').textContent = customer.name;
     currentCustomerId = customerId;
-    
+
     deleteModal.style.display = 'block';
   }
-  
+
   function deleteCustomer() {
     // In a real app, this would send a request to an API
     customers = customers.filter(c => c.id !== currentCustomerId);
-    
+
     // Close modal and refresh table
     deleteModal.style.display = 'none';
     renderCustomers(customers);
   }
-  
+
   function exportCustomers() {
     // In a real app, this would generate a CSV file
     alert('Exporting customers data...');
   }
-  
+
   // Function to get sample customers data
   function getSampleCustomers() {
     return [
@@ -401,7 +376,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'maria@example.com',
         phone: '+63 912 345 6789',
         address: '123 Main St, Cotabato City',
-        status: 'active',
         registered: 'July 15, 2023',
         orders: [
           {
@@ -430,7 +404,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'juan@example.com',
         phone: '+63 917 123 4567',
         address: '456 Oak St, Cotabato City',
-        status: 'active',
         registered: 'July 10, 2023',
         orders: [
           {
@@ -459,7 +432,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'ana@example.com',
         phone: '+63 918 765 4321',
         address: '789 Pine St, Cotabato City',
-        status: 'active',
         registered: 'July 5, 2023',
         orders: [
           {
@@ -496,7 +468,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'mike@example.com',
         phone: '+63 919 876 5432',
         address: '101 Maple St, Cotabato City',
-        status: 'active',
         registered: 'July 1, 2023',
         orders: [
           {
@@ -516,7 +487,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'sarah@example.com',
         phone: '+63 920 123 7890',
         address: '202 Cedar St, Cotabato City',
-        status: 'inactive',
         registered: 'June 28, 2023',
         orders: [
           {
@@ -536,7 +506,6 @@ document.addEventListener('DOMContentLoaded', function() {
         email: 'david@example.com',
         phone: '+63 921 234 5678',
         address: '303 Birch St, Cotabato City',
-        status: 'active',
         registered: 'June 25, 2023',
         orders: [
           {
