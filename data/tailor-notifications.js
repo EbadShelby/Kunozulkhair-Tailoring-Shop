@@ -20,7 +20,7 @@ const tailorNotifications = [
     id: 3,
     type: 'task',
     title: "Task Due Soon",
-    message: "The wedding dress for Order #ORD-10045 is due in 2 days.",
+    message: "The wedding dress for Elena Garcia (Order #ORD-10045) is due in 2 days.",
     time: "3 hours ago",
     read: false
   },
@@ -36,7 +36,7 @@ const tailorNotifications = [
     id: 5,
     type: 'message',
     title: "Message from Admin",
-    message: "Please check the measurements for Order #ORD-10042 before proceeding.",
+    message: "Please check the measurements for Sophia Lee's dress (Order #ORD-10042) before proceeding.",
     time: "1 day ago",
     read: true
   }
