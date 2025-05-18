@@ -253,12 +253,14 @@
 .color-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .color-option {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .color-option input[type="checkbox"] {
@@ -280,7 +282,27 @@
 }
 
 .color-option span {
-  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  margin-bottom: 5px;
+}
+
+.color-option:hover span {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .color-option input[type="checkbox"]:checked + label {
