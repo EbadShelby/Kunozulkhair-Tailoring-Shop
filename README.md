@@ -64,9 +64,6 @@ This website provides a complete solution for both customers and shop management
 ### Service-Specific Pages
 - **Custom Dressmaking** — Custom clothing creation services
 - **Alterations & Repairs** — Clothing adjustment and repair services
-- **Embroidery Services** — Custom embroidery options
-- **Bridal & Formal Wear** — Special occasion clothing services
-- **Curtains & Home Textiles** — Home decor tailoring services
 - **Casual & Everyday Dresses** — Everyday clothing options
 
 ### User Journey Pages
