@@ -74,7 +74,7 @@ export const products = [
     sizes: ["s", "m", "l"],
     date: "2023-09-18",
     rating: { rate: 4.6, count: 87 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Crimson-Bloom-Dress.jpg",
     description: "Professional pencil dress for office wear",
   },
   {
@@ -87,7 +87,7 @@ export const products = [
     sizes: ["xs", "s", "m", "l"],
     date: "2023-08-30",
     rating: { rate: 4.9, count: 43 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Peach-Lace-Velvet-Bloom-Dress.jpg",
     description: "Beautiful white wedding dress with lace details",
   },
   {
