@@ -22,7 +22,7 @@ export const products = [
     sizes: ["xs", "s", "m", "l", "xl"],
     date: "2023-12-03",
     rating: { rate: 4.5, count: 100 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Lavender-Whisper-Dress.jpg",
     description: "Stunning red dress for formal events",
   },
   {
@@ -35,7 +35,7 @@ export const products = [
     sizes: ["s", "m", "l", "xl"],
     date: "2024-01-10",
     rating: { rate: 4.2, count: 78 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Ivory-Blossom-Dress.jpg",
     description: "Light and breezy floral pattern dress for summer",
   },
   {
