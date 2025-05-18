@@ -100,7 +100,7 @@ export const products = [
     sizes: ["s", "m", "l"],
     date: "2024-01-20",
     rating: { rate: 4.3, count: 65 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Emerald-Bloom-Dress.jpg",
     description: "Stylish cocktail dress for parties and events",
   },
   {
@@ -113,7 +113,7 @@ export const products = [
     sizes: ["s", "m", "l", "xl"],
     date: "2023-11-05",
     rating: { rate: 4.7, count: 58 },
-    image: "assets/images/logo.jpg",
+    image: "assets/images/Black-Midnight-Bloom-Dress.jpg",
     description: "Beautiful traditional dress with intricate embroidery",
   },
   {
