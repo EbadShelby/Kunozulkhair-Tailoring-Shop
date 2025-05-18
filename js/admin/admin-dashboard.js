@@ -120,8 +120,8 @@ function loadUpcomingAppointments() {
       datetime: 'July 20, 2023 - 10:00 AM'
     },
     {
-      customer: 'Carlos Mendoza',
-      service: 'Suit Measurement',
+      customer: 'Maria Santos',
+      service: 'Evening Gown Fitting',
       datetime: 'July 21, 2023 - 2:30 PM'
     },
     {
@@ -130,13 +130,13 @@ function loadUpcomingAppointments() {
       datetime: 'July 22, 2023 - 11:00 AM'
     },
     {
-      customer: 'David Kim',
-      service: 'Custom Shirt Consultation',
+      customer: 'Anna Johnson',
+      service: 'Casual Dress Consultation',
       datetime: 'July 23, 2023 - 3:00 PM'
     },
     {
       customer: 'Isabella Martinez',
-      service: 'Embroidery Consultation',
+      service: 'Formal Dress Measurement',
       datetime: 'July 24, 2023 - 1:00 PM'
     }
   ];
@@ -168,33 +168,33 @@ function loadLowStockItems() {
   // Sample data - in a real app, this would come from an API
   const lowStockItems = [
     {
-      product: 'Blue Cotton Fabric',
-      category: 'Fabric',
+      product: 'Verrdant Belted Dress',
+      category: 'Casual Dresses',
       currentStock: 5,
       reorderLevel: 10
     },
     {
-      product: 'White Silk Fabric',
-      category: 'Fabric',
+      product: 'Lavender Whisper Dress',
+      category: 'Formal Dresses',
       currentStock: 3,
       reorderLevel: 8
     },
     {
-      product: 'Gold Embroidery Thread',
-      category: 'Thread',
+      product: 'Ivory Blossom Dress',
+      category: 'Evening Dresses',
       currentStock: 2,
       reorderLevel: 5
     },
     {
-      product: 'Pearl Buttons (20mm)',
-      category: 'Accessories',
-      currentStock: 15,
-      reorderLevel: 20
+      product: 'Duchess Blue Ballgown',
+      category: 'Formal Dresses',
+      currentStock: 4,
+      reorderLevel: 10
     },
     {
-      product: 'Black Zippers (18 inch)',
-      category: 'Accessories',
-      currentStock: 8,
+      product: 'Crimson Bloom Dress',
+      category: 'Everyday Dresses',
+      currentStock: 6,
       reorderLevel: 15
     }
   ];

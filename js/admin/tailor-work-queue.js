@@ -528,55 +528,55 @@ function getSampleTasks() {
   return [
     {
       id: 'T1',
-      title: 'Wedding Dress - Final Touches',
+      title: 'Formal Dress - Final Touches',
       customer: 'Maria Santos',
-      type: 'Wedding Dress',
+      type: 'Formal Dress',
       priority: 'urgent',
       status: 'in-progress',
       progress: 80,
       assignedDate: '2023-07-15',
       dueDate: '2023-07-20',
       completedDate: null,
-      description: 'Complete the final touches on Maria\'s wedding dress. Add pearl embellishments to the bodice and hem the skirt to the final length after the last fitting. Ensure all seams are properly finished and the dress is pressed before delivery.'
+      description: 'Complete the final touches on Maria\'s formal dress. Add pearl embellishments to the bodice and hem the skirt to the final length after the last fitting. Ensure all seams are properly finished and the dress is pressed before delivery.'
     },
     {
       id: 'T2',
-      title: 'Formal Suit Alterations',
+      title: 'Formal Dress Alterations',
       customer: 'Carlos Mendoza',
-      type: 'Formal Suit',
+      type: 'Formal Dress',
       priority: 'high',
       status: 'not-started',
       progress: 0,
       assignedDate: '2023-07-16',
       dueDate: '2023-07-25',
       completedDate: null,
-      description: 'Alter Carlos\'s formal suit for his business conference. Take in the waist by 1 inch, shorten the sleeves by 0.5 inches, and hem the pants to the proper length. Ensure the suit is properly pressed before delivery.'
+      description: 'Alter Carlos\'s formal dress for his special event. Take in the waist by 1 inch, adjust the length, and ensure proper fit. Ensure the dress is properly pressed before delivery.'
     },
     {
       id: 'T3',
-      title: 'Evening Gown Repair',
+      title: 'Evening Dress Repair',
       customer: 'Sophia Lee',
-      type: 'Evening Gown',
+      type: 'Evening Dress',
       priority: 'medium',
       status: 'in-progress',
       progress: 50,
       assignedDate: '2023-07-14',
       dueDate: '2023-07-22',
       completedDate: null,
-      description: 'Repair the torn seam on Sophia\'s evening gown and replace the broken zipper. Check all other seams for potential issues and reinforce as needed. Steam the dress before delivery.'
+      description: 'Repair the torn seam on Sophia\'s evening dress and replace the broken zipper. Check all other seams for potential issues and reinforce as needed. Steam the dress before delivery.'
     },
     {
       id: 'T4',
-      title: 'Custom Shirt - Initial Fitting',
+      title: 'Casual Dress - Initial Fitting',
       customer: 'James Wilson',
-      type: 'Custom Shirt',
+      type: 'Casual Dress',
       priority: 'low',
       status: 'completed',
       progress: 100,
       assignedDate: '2023-07-10',
       dueDate: '2023-07-17',
       completedDate: '2023-07-16',
-      description: 'Create a custom dress shirt for James based on his measurements. Use the blue Egyptian cotton fabric he selected. Include monogramming on the cuff with his initials "JW".'
+      description: 'Create a custom casual dress for James based on his measurements. Use the blue cotton fabric selected. Include the requested design elements and ensure proper fit.'
     },
     {
       id: 'T5',
@@ -606,29 +606,29 @@ function getSampleTasks() {
     },
     {
       id: 'T7',
-      title: 'Prom Dress Alterations',
+      title: 'Evening Dress Alterations',
       customer: 'Lily Chen',
-      type: 'Prom Dress',
+      type: 'Evening Dress',
       priority: 'urgent',
       status: 'not-started',
       progress: 0,
       assignedDate: '2023-07-17',
       dueDate: '2023-07-21',
       completedDate: null,
-      description: 'Alter Lily\'s prom dress. Take in the bodice, adjust the straps, and hem the dress to the appropriate length. Add the requested beading to the waistline.'
+      description: 'Alter Lily\'s evening dress. Take in the bodice, adjust the straps, and hem the dress to the appropriate length. Add the requested beading to the waistline.'
     },
     {
       id: 'T8',
-      title: 'Business Suit - New Client',
+      title: 'Formal Dress - New Client',
       customer: 'Robert Johnson',
-      type: 'Business Suit',
+      type: 'Formal Dress',
       priority: 'low',
       status: 'in-progress',
       progress: 40,
       assignedDate: '2023-07-13',
       dueDate: '2023-07-30',
       completedDate: null,
-      description: 'Create a custom business suit for Robert based on his measurements and preferences. Using the charcoal gray wool blend fabric with subtle pinstripes. Include an extra pair of pants as requested.'
+      description: 'Create a custom formal dress for Robert\'s partner based on measurements and preferences. Using the charcoal gray fabric with subtle design elements. Include the requested accessories.'
     },
     {
       id: 'T9',
