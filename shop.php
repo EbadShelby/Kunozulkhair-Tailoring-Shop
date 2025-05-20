@@ -1,3 +1,32 @@
+<?php
+// Include database connection
+require_once 'config/db_connect.php';
+
+// Get filter options from database
+$categories = [];
+$category_result = mysqli_query($conn, "SELECT DISTINCT category FROM products ORDER BY category");
+while ($row = mysqli_fetch_assoc($category_result)) {
+    $categories[] = $row['category'];
+}
+
+$fabrics = [];
+$fabric_result = mysqli_query($conn, "SELECT DISTINCT fabric FROM products WHERE fabric IS NOT NULL AND fabric != '' ORDER BY fabric");
+while ($row = mysqli_fetch_assoc($fabric_result)) {
+    $fabrics[] = $row['fabric'];
+}
+
+$colors = [];
+$color_result = mysqli_query($conn, "SELECT DISTINCT color FROM products WHERE color IS NOT NULL AND color != '' ORDER BY color");
+while ($row = mysqli_fetch_assoc($color_result)) {
+    $colors[] = $row['color'];
+}
+
+// Get price range
+$price_result = mysqli_query($conn, "SELECT MIN(price) as min_price, MAX(price) as max_price FROM products");
+$price_range = mysqli_fetch_assoc($price_result);
+$min_price = floor($price_range['min_price'] ?? 0);
+$max_price = ceil($price_range['max_price'] ?? 5000);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +41,7 @@
     <link rel="stylesheet" href="css/shared/footer.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/shared/hero.css">
+    <link rel="stylesheet" href="css/cart.css">
 
     <link
       href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -23,166 +53,8 @@
 
 
   <body>
-    <header class="header">
-      <div class="header__top container">
-        <a class="header__logo" href="shop.php">
-          <img
-            class="header__logo-img"
-            src="assets/images/logo.jpg"
-            alt="logo"
-          />
-          <p class="header__logo-text">
-            <span>KunoZulkhair</span> Tailoring & Dress Shop
-          </p>
-        </a>
-        <div class="header__search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="header__search-input"
-            placeholder="Search for products"
-          />
-          <button class="header__search--btn">
-            <svg
-              class="icon header__search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div class="header__icons">
-          <div class="header__icon" id="cart-icon">
-            <button class="header__icon cart">
-              <svg
-                class="icon cart"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
-              <span class="cart-count" id="cart-count">0</span>
-            </button>
-          </div>
-          <button class="header__icon notification" id="notification-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-              />
-            </svg>
-            <span class="notification-count" id="notification-count">3</span>
-          </button>
-          <button class="header__icon help" id="help-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-              />
-            </svg>
-          </button>
-          <a href="login-form.php"class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </a>
-        </div>
-
-        <!-- Cart Sidebar -->
-        <div class="cart-sidebar" id="cart-sidebar">
-          <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button id="close-cart">&times;</button>
-          </div>
-          <div class="cart-items" id="cart-items"></div>
-          <div class="cart-footer">
-            <p>Total: ₱<span id="cart-total">0</span></p>
-            <button class="checkout-btn">Checkout</button>
-          </div>
-        </div>
-      </div>
-      <nav class="header__nav container">
-        <ul class="header__nav-links">
-          <li><a class="header__link" href="index.php">Home</a></li>
-          <li><a class="header__link" href="shop.php">Shop</a></li>
-          <li class="header__dropdown">
-            <a class="header__link" href="services.php">Services</a>
-            <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.php">Orders</a></li>
-          <li><a class="header__link" href="about.php">About Us</a></li>
-          <li><a class="header__link" href="contact.php">Contact</a></li>
-        </ul>
-        <button class="header__nav--toggle">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </nav>
-    </header>
-
+    <?php include 'includes/header.php'; ?>
+    
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -244,14 +116,12 @@
             <div class="filter-group">
               <h4>Dress Type</h4>
               <ul>
+                <?php foreach ($categories as $category): ?>
                 <li>
-                  <input type="checkbox" id="casual" name="category" value="casual" />
-                  <label for="casual">Casual Dresses</label>
+                  <input type="checkbox" id="<?php echo $category; ?>" name="category" value="<?php echo $category; ?>" />
+                  <label for="<?php echo $category; ?>"><?php echo ucfirst($category); ?> Dresses</label>
                 </li>
-                <li>
-                  <input type="checkbox" id="formal" name="category" value="formal" />
-                  <label for="formal">Formal Dresses</label>
-                </li>
+                <?php endforeach; ?>
               </ul>
             </div>
 
@@ -259,26 +129,12 @@
             <div class="filter-group">
               <h4>Fabric Type</h4>
               <ul>
+                <?php foreach ($fabrics as $fabric): ?>
                 <li>
-                  <input type="checkbox" id="cotton" name="fabric" value="cotton" />
-                  <label for="cotton">Cotton</label>
+                  <input type="checkbox" id="<?php echo $fabric; ?>" name="fabric" value="<?php echo $fabric; ?>" />
+                  <label for="<?php echo $fabric; ?>"><?php echo ucfirst($fabric); ?></label>
                 </li>
-                <li>
-                  <input type="checkbox" id="silk" name="fabric" value="silk" />
-                  <label for="silk">Silk</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="linen" name="fabric" value="linen" />
-                  <label for="linen">Linen</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="polyester" name="fabric" value="polyester" />
-                  <label for="polyester">Polyester</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="lace" name="fabric" value="lace" />
-                  <label for="lace">Lace</label>
-                </li>
+                <?php endforeach; ?>
               </ul>
             </div>
 
@@ -286,51 +142,35 @@
             <div class="filter-group">
               <h4>Color</h4>
               <div class="color-options">
+                <?php
+                // Define color codes for common colors
+                $colorCodes = [
+                    'black' => '#000',
+                    'white' => '#fff; border: 1px solid #ddd',
+                    'red' => '#e74c3c',
+                    'blue' => '#3498db',
+                    'green' => '#2ecc71',
+                    'yellow' => '#f1c40f',
+                    'purple' => '#9b59b6',
+                    'pink' => '#e84393',
+                    'orange' => '#e67e22',
+                    'brown' => '#795548',
+                    'gray' => '#95a5a6',
+                    'multi' => 'linear-gradient(45deg, #e74c3c, #3498db, #2ecc71, #f1c40f, #9b59b6, #e84393)'
+                ];
+
+                foreach ($colors as $color):
+                    // Default to gray if color code not defined
+                    $colorStyle = isset($colorCodes[$color]) ? $colorCodes[$color] : '#95a5a6';
+                    $backgroundStyle = strpos($colorStyle, 'linear-gradient') !== false ?
+                        "background: $colorStyle" : "background-color: $colorStyle";
+                ?>
                 <div class="color-option">
-                  <input type="checkbox" id="black" name="color" value="black" />
-                  <label for="black" style="background-color: #000;"></label>
-                  <span>Black</span>
+                  <input type="checkbox" id="<?php echo $color; ?>" name="color" value="<?php echo $color; ?>" />
+                  <label for="<?php echo $color; ?>" style="<?php echo $backgroundStyle; ?>"></label>
+                  <span><?php echo ucfirst($color); ?></span>
                 </div>
-                <div class="color-option">
-                  <input type="checkbox" id="white" name="color" value="white" />
-                  <label for="white" style="background-color: #fff; border: 1px solid #ddd;"></label>
-                  <span>White</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="red" name="color" value="red" />
-                  <label for="red" style="background-color: #e74c3c;"></label>
-                  <span>Red</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="blue" name="color" value="blue" />
-                  <label for="blue" style="background-color: #3498db;"></label>
-                  <span>Blue</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="green" name="color" value="green" />
-                  <label for="green" style="background-color: #2ecc71;"></label>
-                  <span>Green</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="yellow" name="color" value="yellow" />
-                  <label for="yellow" style="background-color: #f1c40f;"></label>
-                  <span>Yellow</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="purple" name="color" value="purple" />
-                  <label for="purple" style="background-color: #9b59b6;"></label>
-                  <span>Purple</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="pink" name="color" value="pink" />
-                  <label for="pink" style="background-color: #e84393;"></label>
-                  <span>Pink</span>
-                </div>
-                <div class="color-option">
-                  <input type="checkbox" id="multi" name="color" value="multi" />
-                  <label for="multi" style="background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71, #f1c40f, #9b59b6, #e84393);"></label>
-                  <span>Multi</span>
-                </div>
+                <?php endforeach; ?>
               </div>
             </div>
 
@@ -353,17 +193,17 @@
               <div class="price-inputs">
                 <div class="price-input">
                   <span>₱</span>
-                  <input type="number" id="min-price" placeholder="Min" min="0" />
+                  <input type="number" id="min-price" placeholder="Min" min="<?php echo $min_price; ?>" value="<?php echo $min_price; ?>" />
                 </div>
                 <div class="price-separator">-</div>
                 <div class="price-input">
                   <span>₱</span>
-                  <input type="number" id="max-price" placeholder="Max" min="0" />
+                  <input type="number" id="max-price" placeholder="Max" min="<?php echo $min_price; ?>" max="<?php echo $max_price; ?>" value="<?php echo $max_price; ?>" />
                 </div>
               </div>
               <div class="price-slider">
-                <input type="range" id="price-range" min="0" max="5000" step="100" value="2500" />
-                <div class="price-value">Up to: ₱<span id="price-value">2500</span></div>
+                <input type="range" id="price-range" min="<?php echo $min_price; ?>" max="<?php echo $max_price; ?>" step="100" value="<?php echo floor($max_price/2); ?>" />
+                <div class="price-value">Up to: ₱<span id="price-value"><?php echo floor($max_price/2); ?></span></div>
               </div>
             </div>
 
@@ -473,10 +313,9 @@
       </div>
     </footer>
 
-    <script type="module" src="data/products.js"></script>
-    <script type="module" src="data/cart.js"></script>
-    <script type="module" src="js/shop.js"></script>
     <script src="js/header.js"></script>
+    <script type="module" src="js/shop-db.js"></script>
+    <script src="js/cart.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script type="module" src="js/search.js"></script>

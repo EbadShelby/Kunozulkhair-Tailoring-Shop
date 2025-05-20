@@ -8,10 +8,17 @@
 // Include database connection
 require_once 'config/db_connect.php';
 
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Initialize variables
 $name = '';
 $email = '';
 $password = '';
+$phone = '';
+$address = '';
 $login_email = '';
 $error_message = '';
 $success_message = '';
@@ -23,9 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $phone = trim($_POST['phone'] ?? '');
+    $address = trim($_POST['address'] ?? '');
 
     // Validate input
-    if (empty($name) || empty($email) || empty($password)) {
+    if (empty($name) || empty($email) || empty($password) || empty($phone) || empty($address)) {
         $error_message = 'Please fill in all fields';
         $show_signup = true;
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -49,14 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert new customer
-            $insert_stmt = mysqli_prepare($conn, "INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
-            mysqli_stmt_bind_param($insert_stmt, "sss", $name, $email, $hashed_password);
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO customers (name, email, password, phone, address) VALUES (?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($insert_stmt, "sssss", $name, $email, $hashed_password, $phone, $address);
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $success_message = 'Registration successful! You can now login.';
                 // Clear form data
                 $name = '';
                 $email = '';
+                $phone = '';
+                $address = '';
             } else {
                 $error_message = 'Registration failed. Please try again later.';
                 $show_signup = true;
@@ -99,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 $_SESSION['customer_email'] = $customer['email'];
                 $_SESSION['login_time'] = time();
 
-                // Redirect to home page
-                header("Location: index.php");
+                // Redirect to profile page
+                header("Location: profile.php");
                 exit;
             } else {
                 $error_message = 'Invalid email or password';
@@ -143,6 +154,7 @@ if (isset($_GET['signup']) && $_GET['signup'] === 'true') {
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
     <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/cart.css" />
 
     <!-- linked google fonts  -->
     <link
@@ -159,188 +171,18 @@ if (isset($_GET['signup']) && $_GET['signup'] === 'true') {
 
 
   <body class="login-page">
-    <header class="header">
-      <div class="header__top container">
-        <a class="header__logo" href="#">
-          <img
-            class="header__logo-img"
-            src="assets/images/logo.jpg"
-            alt="logo"
-          />
-          <p class="header__logo-text">
-            <span>KunoZulkhair</span> Tailoring & Dress Shop
-          </p>
-        </a>
-        <div class="header__search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="header__search-input"
-            placeholder="Search for products"
-          />
-          <button class="header__search--btn">
-            <svg
-              class="icon header__search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
-        </div>
+    <?php include 'includes/header.php'; ?>
 
-        <div class="header__icons">
-          <div class="header__icon" id="cart-icon">
-            <button class="header__icon cart">
-              <svg
-                class="icon cart"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
-              <span class="cart-count" id="cart-count">0</span>
-            </button>
-          </div>
-          <button class="header__icon notification" id="notification-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-              />
-            </svg>
-            <span class="notification-count" id="notification-count">3</span>
-          </button>
-          <button class="header__icon help" id="help-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-              />
-            </svg>
-          </button>
-          <a href="login-form.php" class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </a>
-        </div>
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart">&times;</button>
       </div>
-
-      <!-- Cart Sidebar -->
-      <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-          <h2>Your Cart</h2>
-          <button id="close-cart">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-items"></div>
-        <div class="cart-footer">
-          <p>Total: ₱<span id="cart-total">0</span></p>
-          <button class="checkout-btn">Checkout</button>
-        </div>
-      </div>
-
-      <nav class="header__nav container">
-        <ul class="header__nav-links">
-          <li><a class="header__link active" href="index.php">Home</a></li>
-          <li><a class="header__link" href="shop.php">Shop</a></li>
-          <li class="header__dropdown">
-            <a class="header__link" href="services.php">Services</a>
-            <ul class="header__dropdown-menu">
-              <li><a href="embroidery-services.php">Embroidery Services</a></li>
-              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.php">Orders</a></li>
-          <li><a class="header__link" href="about.php">About Us</a></li>
-          <li><a class="header__link" href="contact.php">Contact</a></li>
-        </ul>
-        <button class="header__nav--toggle">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </nav>
-    </header>
-
-    <!-- Notification Dropdown -->
-    <div class="notification-dropdown" id="notification-dropdown">
-      <div class="notification-header">
-        <h3>Notifications</h3>
-        <button id="mark-all-read">Mark all as read</button>
-      </div>
-      <div class="notification-list">
-        <!-- Notifications will be dynamically inserted here -->
-      </div>
-      <div class="notification-footer">
-        <a href="notifications.php">View all notifications</a>
-      </div>
-    </div>
-
-    <!-- Help Tooltip -->
-        <div class="help-tooltip" id="help-tooltip">
-      <p>Need help with something? Try these quick options:</p>
-      <div class="quick-help-buttons">
-        <button class="quick-help-button" id="help-sizing">Sizing Guide</button>
-        <button class="quick-help-button" id="help-orders">FAQs</button>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: ₱<span id="cart-total">0</span></p>
+        <button class="checkout-btn">Checkout</button>
       </div>
     </div>
 
@@ -363,6 +205,8 @@ if (isset($_GET['signup']) && $_GET['signup'] === 'true') {
           <h1>Create Account</h1>
           <input type="text" name="name" placeholder="Name" value="<?php echo htmlspecialchars($name); ?>" required />
           <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required />
+          <input type="tel" name="phone" placeholder="Phone Number" value="<?php echo htmlspecialchars($phone); ?>" required />
+          <input type="text" name="address" placeholder="Address" value="<?php echo htmlspecialchars($address); ?>" required />
           <input type="password" name="password" placeholder="Password" minlength="6" required />
           <button type="submit" name="register">Sign Up</button>
         </form>
@@ -407,6 +251,7 @@ if (isset($_GET['signup']) && $_GET['signup'] === 'true') {
 
     <script src="js/login-form.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
     <!-- <script type="module" src="js/shop.js"></script> -->
     <!-- <script type="module" src="data/products.js"></script> -->
     <script type="module" src="data/notifications.js"></script>

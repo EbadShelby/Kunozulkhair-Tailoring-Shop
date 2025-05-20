@@ -7,6 +7,63 @@
 
 // Include admin authentication check
 require_once 'admin-check.php';
+
+// Include database connection
+require_once 'config/db_connect.php';
+
+// Function to get stock status
+function getStockStatus($stock, $reorder_level) {
+    if ($stock <= 0) {
+        return 'out-of-stock';
+    } elseif ($stock <= $reorder_level) {
+        return 'low-stock';
+    } else {
+        return 'in-stock';
+    }
+}
+
+// Handle filters
+$category = isset($_GET['category']) ? $_GET['category'] : 'all';
+$stock_status = isset($_GET['stock_status']) ? $_GET['stock_status'] : 'all';
+
+// Build query with filters
+$query = "SELECT * FROM products";
+$where_clauses = [];
+
+if ($category != 'all') {
+    $category = mysqli_real_escape_string($conn, $category);
+    $where_clauses[] = "category = '$category'";
+}
+
+if ($stock_status != 'all') {
+    if ($stock_status == 'in-stock') {
+        $where_clauses[] = "stock > reorder_level";
+    } elseif ($stock_status == 'low-stock') {
+        $where_clauses[] = "stock <= reorder_level AND stock > 0";
+    } elseif ($stock_status == 'out-of-stock') {
+        $where_clauses[] = "stock = 0";
+    }
+}
+
+if (!empty($where_clauses)) {
+    $query .= " WHERE " . implode(" AND ", $where_clauses);
+}
+
+$query .= " ORDER BY id DESC";
+$result = mysqli_query($conn, $query);
+
+// Check if products table exists
+if (!$result) {
+    // Table might not exist, redirect to initialization
+    header('Location: config/init_products.php');
+    exit;
+}
+
+$products = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $row['stock_status'] = getStockStatus($row['stock'], $row['reorder_level']);
+    $products[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -183,27 +240,27 @@ require_once 'admin-check.php';
             <div class="filter-group">
               <label for="category-filter">Category:</label>
               <select id="category-filter">
-                <option value="all">All Categories</option>
-                <option value="casual">Casual Dresses</option>
-                <option value="formal">Formal Dresses</option>
-                <option value="evening">Evening Dresses</option>
-                <option value="everyday">Everyday Dresses</option>
+                <option value="all" <?php echo $category == 'all' ? 'selected' : ''; ?>>All Categories</option>
+                <option value="casual" <?php echo $category == 'casual' ? 'selected' : ''; ?>>Casual Dresses</option>
+                <option value="formal" <?php echo $category == 'formal' ? 'selected' : ''; ?>>Formal Dresses</option>
+                <option value="evening" <?php echo $category == 'evening' ? 'selected' : ''; ?>>Evening Dresses</option>
+                <option value="everyday" <?php echo $category == 'everyday' ? 'selected' : ''; ?>>Everyday Dresses</option>
               </select>
             </div>
 
             <div class="filter-group">
               <label for="stock-filter">Stock Status:</label>
               <select id="stock-filter">
-                <option value="all">All</option>
-                <option value="in-stock">In Stock</option>
-                <option value="low-stock">Low Stock</option>
-                <option value="out-of-stock">Out of Stock</option>
+                <option value="all" <?php echo $stock_status == 'all' ? 'selected' : ''; ?>>All</option>
+                <option value="in-stock" <?php echo $stock_status == 'in-stock' ? 'selected' : ''; ?>>In Stock</option>
+                <option value="low-stock" <?php echo $stock_status == 'low-stock' ? 'selected' : ''; ?>>Low Stock</option>
+                <option value="out-of-stock" <?php echo $stock_status == 'out-of-stock' ? 'selected' : ''; ?>>Out of Stock</option>
               </select>
             </div>
 
-            <button id="export-inventory" class="btn-secondary">
+            <a href="export-inventory.php" class="btn-secondary" id="export-inventory">
               <i class="fas fa-file-export"></i> Export
-            </button>
+            </a>
           </div>
         </div>
 
@@ -226,7 +283,64 @@ require_once 'admin-check.php';
               </tr>
             </thead>
             <tbody id="inventory-table-body">
-              <!-- Will be populated by JavaScript -->
+              <?php if (empty($products)): ?>
+                <tr>
+                  <td colspan="9" class="text-center">No products found</td>
+                </tr>
+              <?php else: ?>
+                <?php foreach ($products as $product): ?>
+                  <?php
+                    // Determine stock status class
+                    $status_class = '';
+                    $status_text = '';
+
+                    if ($product['stock_status'] == 'in-stock') {
+                      $status_class = 'status-in-stock';
+                      $status_text = 'In Stock';
+                    } elseif ($product['stock_status'] == 'low-stock') {
+                      $status_class = 'status-low-stock';
+                      $status_text = 'Low Stock';
+                    } else {
+                      $status_class = 'status-out-of-stock';
+                      $status_text = 'Out of Stock';
+                    }
+                  ?>
+                  <tr data-product-id="<?php echo $product['id']; ?>">
+                    <td>
+                      <input type="checkbox" class="product-checkbox" data-product-id="<?php echo $product['id']; ?>">
+                    </td>
+                    <td><?php echo $product['id']; ?></td>
+                    <td>
+                      <img src="<?php echo $product['image'] ?: 'assets/images/product-placeholder.jpg'; ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-image">
+                    </td>
+                    <td>
+                      <div class="product-name"><?php echo htmlspecialchars($product['name']); ?></div>
+                      <div class="product-category"><?php echo htmlspecialchars($product['category']); ?></div>
+                    </td>
+                    <td><?php echo htmlspecialchars($product['fabric'] ?: 'N/A'); ?></td>
+                    <td class="product-price">₱<?php echo number_format($product['price'], 2); ?></td>
+                    <td><?php echo $product['stock']; ?></td>
+                    <td>
+                      <span class="stock-badge <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
+                    </td>
+                    <td>
+                      <div class="product-actions">
+                        <button class="action-btn view" data-product-id="<?php echo $product['id']; ?>" title="View Product">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn edit" data-product-id="<?php echo $product['id']; ?>" title="Edit Product" onclick="editProduct(<?php echo $product['id']; ?>)">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete" data-product-id="<?php echo $product['id']; ?>"
+                                data-product-name="<?php echo htmlspecialchars($product['name']); ?>" title="Delete Product"
+                                onclick="openDeleteModal(<?php echo $product['id']; ?>, '<?php echo htmlspecialchars(addslashes($product['name'])); ?>')">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </tbody>
           </table>
         </div>
@@ -369,7 +483,7 @@ require_once 'admin-check.php';
 
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
-  <script src="js/admin/admin-inventory.js"></script>
+  <script src="js/admin/admin-inventory-ajax.js"></script>
   <script type="module" src="js/admin/admin-notifications.js"></script>
   <script type="module" src="js/admin/admin-messages.js"></script>
 </body>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/pages/service-detail.css" />
     <link rel="stylesheet" href="css/search.css" />
     <link rel="stylesheet" href="css/shared/hero.css" />
+    <link rel="stylesheet" href="css/cart.css" />
 
     <!-- linked google fonts  -->
     <link
@@ -23,171 +24,8 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="header__top container">
-        <a class="header__logo" href="index.php">
-          <img
-            class="header__logo-img"
-            src="assets/images/logo.jpg"
-            alt="logo"
-          />
-          <p class="header__logo-text">
-            <span>KunoZulkhair</span> Tailoring & Dress Shop
-          </p>
-        </a>
-        <div class="header__search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="header__search-input"
-            placeholder="Search for products"
-          />
-          <button class="header__search--btn">
-            <svg
-              class="icon header__search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div class="header__icons">
-          <div class="header__icon" id="cart-icon">
-            <button class="header__icon cart">
-              <svg
-                class="icon cart"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
-              <span class="cart-count" id="cart-count">0</span>
-            </button>
-          </div>
-          <div class="header__icon" id="notification-icon">
-            <button class="header__icon notification">
-              <svg
-                class="icon notification"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                />
-              </svg><span class="notification-count" id="notification-count">3</span>
-            </button>
-          </div>
-          <div class="header__icon" id="help-icon">
-            <button class="header__icon help">
-              <svg
-                class="icon help"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-                />
-              </svg>
-            </button>
-          </div>
-          <a href="login-form.php"class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Cart Sidebar -->
-      <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-          <h2>Your Cart</h2>
-          <button id="close-cart">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-items"></div>
-        <div class="cart-footer">
-          <p>Total: ₱<span id="cart-total">0</span></p>
-          <button class="checkout-btn">Checkout</button>
-        </div>
-      </div>
-
-      <nav class="header__nav container">
-        <ul class="header__nav-links">
-          <li><a class="header__link" href="index.php">Home</a></li>
-          <li><a class="header__link" href="shop.php">Shop</a></li>
-          <li class="header__dropdown">
-            <a class="header__link" href="services.php">Services</a>
-            <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.php">Orders</a></li>
-          <li><a class="header__link" href="about.php">About Us</a></li>
-          <li><a class="header__link" href="contact.php">Contact</a></li>
-        </ul>
-        <button class="header__nav--toggle">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </nav>
-
-    </header>
-
+    <?php include 'includes/header.php'; ?>
+    
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -487,13 +325,14 @@
     </footer>
 
     <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/service-detail.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script type="module" src="js/search.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
-    <!-- <script type="module" src="data/products.js"></script> -->
-    <!-- <script type="module" src="js/shop.js"></script> -->
+    <script type="module" src="data/products.js"></script>
+    <script type="module" src="data/cart.js"></script>
   </body>
 </html>
 

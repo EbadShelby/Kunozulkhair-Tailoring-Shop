@@ -41,8 +41,8 @@ $_SESSION['success_message'] = 'You have been successfully logged out.';
     <script>
         // Clear sessionStorage
         sessionStorage.removeItem('currentUser');
-        // Redirect to login page
-        window.location.href = 'admin-login.php';
+        // Redirect to customer login page
+        window.location.href = 'login-form.php';
     </script>
 </body>
 </html>

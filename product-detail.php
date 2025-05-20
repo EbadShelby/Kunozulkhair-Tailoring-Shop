@@ -1,9 +1,65 @@
+<?php
+// Include database connection
+require_once 'config/db_connect.php';
+
+// Get product ID from URL
+$product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// Fetch product data
+$product = null;
+$related_products = [];
+
+if ($product_id > 0) {
+    // Prepare and execute the query
+    $stmt = mysqli_prepare($conn, "SELECT * FROM products WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $product_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    // Check if product exists
+    if (mysqli_num_rows($result) > 0) {
+        $product = mysqli_fetch_assoc($result);
+
+        // Convert sizes string to array
+        if (!empty($product['sizes'])) {
+            $product['sizes'] = explode(',', $product['sizes']);
+        } else {
+            $product['sizes'] = [];
+        }
+
+        // Get related products (same category, excluding current product)
+        $related_stmt = mysqli_prepare($conn,
+            "SELECT * FROM products
+            WHERE category = ? AND id != ?
+            ORDER BY RAND()
+            LIMIT 4");
+
+        mysqli_stmt_bind_param($related_stmt, "si", $product['category'], $product_id);
+        mysqli_stmt_execute($related_stmt);
+        $related_result = mysqli_stmt_get_result($related_stmt);
+
+        while ($row = mysqli_fetch_assoc($related_result)) {
+            // Convert sizes string to array
+            if (!empty($row['sizes'])) {
+                $row['sizes'] = explode(',', $row['sizes']);
+            } else {
+                $row['sizes'] = [];
+            }
+
+            $related_products[] = $row;
+        }
+    }
+}
+
+// Set page title
+$page_title = $product ? $product['name'] . ' - Kunozulkhair Tailoring Shop' : 'Product Not Found - Kunozulkhair Tailoring Shop';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Detail - Kunozulkhair Tailoring Shop</title>
+    <title><?php echo $page_title; ?></title>
     <link rel="stylesheet" href="css/pages/product-detail.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
@@ -11,6 +67,7 @@
     <link rel="stylesheet" href="css/shared/utils.css" />
     <link rel="stylesheet" href="css/shared/footer.css">
     <link rel="stylesheet" href="css/pages/shop.css" />
+    <link rel="stylesheet" href="css/cart.css" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -21,152 +78,8 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="header__top container">
-        <a class="header__logo" href="index.php">
-          <img
-            class="header__logo-img"
-            src="assets/images/logo.jpg"
-            alt="logo"
-          />
-          <p class="header__logo-text">
-            <span>KunoZulkhair</span> Tailoring & Dress Shop
-          </p>
-        </a>
-        <div class="header__search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="header__search-input"
-            placeholder="Search for products"
-          />
-          <button class="header__search--btn">
-            <svg
-              class="icon header__search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div class="header__icons">
-          <button class="header__icon" id="cart-icon">
-            <svg
-              class="icon cart"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-              />
-            </svg>
-            <span class="cart-count" id="cart-count">0</span>
-          </button>
-          <button class="header__icon notification" id="notification-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-              />
-            </svg>
-            <span class="notification-count" id="notification-count">3</span>
-          </button>
-          <button class="header__icon help" id="help-icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-              />
-            </svg>
-          </button>
-          <a href="login-form.php"class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </a>
-        </div>
-
-      </div>
-      <nav class="header__nav container">
-        <ul class="header__nav-links">
-          <li><a class="header__link" href="index.php">Home</a></li>
-          <li><a class="header__link" href="shop.php">Shop</a></li>
-          <li class="header__dropdown">
-            <a class="header__link" href="services.php">Services</a>
-            <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.php">Orders</a></li>
-          <li><a class="header__link" href="about.php">About Us</a></li>
-          <li><a class="header__link" href="contact.php">Contact</a></li>
-        </ul>
-        <button class="header__nav--toggle">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </nav>
-    </header>
-
+    <?php include 'includes/header.php'; ?>
+    
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -196,7 +109,12 @@
         <div class="breadcrumb-path">
           <a href="index.php">Home</a> &gt;
           <a href="shop.php">Shop</a> &gt;
-          <span id="product-breadcrumb">Product Detail</span>
+          <?php if ($product): ?>
+          <a href="shop.php?category=<?php echo urlencode($product['category']); ?>"><?php echo ucfirst($product['category']); ?></a> &gt;
+          <span id="product-breadcrumb"><?php echo $product['name']; ?></span>
+          <?php else: ?>
+          <span id="product-breadcrumb">Product Not Found</span>
+          <?php endif; ?>
         </div>
         <a href="shop.php" class="back-to-shop">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -208,67 +126,94 @@
 
       <!-- Product Detail Section -->
       <section class="product-detail inner-container">
-        <div class="product-detail__loading" id="product-loading">
-          <div class="loader-spinner"></div>
-          <p>Loading product details...</p>
+        <?php if (!$product): ?>
+        <div class="product-not-found">
+          <h2>Product Not Found</h2>
+          <p>Sorry, the product you are looking for does not exist or has been removed.</p>
+          <a href="shop.php" class="btn-primary">Continue Shopping</a>
         </div>
-
+        <?php else: ?>
         <div class="product-detail__content" id="product-content">
           <!-- Left Column: Product Images -->
           <div class="product-detail__images">
             <div class="product-detail__thumbnails">
-              <!-- Thumbnail images will be added here dynamically -->
+              <!-- We'll just show the main image as a thumbnail for now -->
+              <div class="thumbnail active" data-image="<?php echo $product['image']; ?>">
+                <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" />
+              </div>
             </div>
             <div class="product-detail__main-image">
-              <!-- Main product image will be added here dynamically -->
+              <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" id="main-product-image" />
             </div>
           </div>
 
           <!-- Right Column: Product Info -->
           <div class="product-detail__info">
-            <h1 class="product-detail__title" id="product-title"></h1>
+            <h1 class="product-detail__title" id="product-title"><?php echo $product['name']; ?></h1>
 
             <div class="product-detail__meta">
               <div class="product-detail__rating">
-                <span class="rating-stars" id="rating-stars"></span>
-                <span class="rating-value" id="rating-value"></span>
-                <span class="rating-count" id="rating-count"></span>
+                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                <span class="rating-value">4.5</span>
+                <span class="rating-count">(10 reviews)</span>
               </div>
-              <div class="product-detail__category" id="product-category"></div>
+              <div class="product-detail__category" id="product-category">
+                <a href="shop.php?category=<?php echo urlencode($product['category']); ?>"><?php echo ucfirst($product['category']); ?></a>
+              </div>
             </div>
 
-            <div class="product-detail__price" id="product-price"></div>
+            <div class="product-detail__price" id="product-price">₱<?php echo number_format($product['price'], 2); ?></div>
 
+            <?php if (!empty($product['fabric'])): ?>
             <div class="product-detail__fabric">
               <span class="label">Fabric:</span>
-              <span id="product-fabric"></span>
+              <span id="product-fabric"><?php echo ucfirst($product['fabric']); ?></span>
             </div>
+            <?php endif; ?>
 
-            <div class="product-detail__color" id="product-color">
+            <?php if (!empty($product['color'])): ?>
+            <div class="product-detail__color">
               <span class="label">Color:</span>
+              <span id="product-color"><?php echo ucfirst($product['color']); ?></span>
             </div>
+            <?php endif; ?>
 
+            <?php if (!empty($product['sizes'])): ?>
             <div class="product-detail__sizes">
               <span class="label">Available Sizes:</span>
               <div class="size-options" id="product-sizes">
-                <!-- Size buttons will be added here dynamically -->
+                <?php foreach ($product['sizes'] as $size): ?>
+                <button class="size-btn" data-size="<?php echo $size; ?>"><?php echo strtoupper($size); ?></button>
+                <?php endforeach; ?>
               </div>
             </div>
+            <?php endif; ?>
 
             <div class="product-detail__quantity">
               <span class="label">Quantity:</span>
               <div class="quantity-control">
                 <button id="decrease-quantity">-</button>
-                <input type="number" id="quantity" value="1" min="1" max="10">
+                <input type="number" id="quantity" value="1" min="1" max="<?php echo min(10, $product['stock']); ?>">
                 <button id="increase-quantity">+</button>
+              </div>
+              <div class="stock-info">
+                <?php if ($product['stock'] > 0): ?>
+                <span class="in-stock">In Stock (<?php echo $product['stock']; ?> available)</span>
+                <?php else: ?>
+                <span class="out-of-stock">Out of Stock</span>
+                <?php endif; ?>
               </div>
             </div>
 
             <div class="product-detail__actions">
-              <button id="add-to-cart" class="btn-primary">Add to Cart</button>
+              <button id="add-to-cart" class="btn-primary" <?php echo $product['stock'] <= 0 ? 'disabled' : ''; ?> data-product-id="<?php echo $product['id']; ?>">
+                Add to Cart
+              </button>
             </div>
             <div class="product-detail__buy-now">
-              <button id="buy-now" class="btn-buy-now">Buy Now</button>
+              <button id="buy-now" class="btn-buy-now" <?php echo $product['stock'] <= 0 ? 'disabled' : ''; ?> data-product-id="<?php echo $product['id']; ?>">
+                Buy Now
+              </button>
             </div>
           </div>
         </div>
@@ -276,24 +221,41 @@
         <!-- Product Description Section -->
         <div class="product-detail__description">
           <h2>Product Description</h2>
-          <div class="description-content" id="product-description"></div>
-        </div>
-
-        <!-- Product Gallery Section -->
-        <div class="product-detail__gallery">
-          <h2>Product Gallery</h2>
-          <div class="gallery-container" id="product-gallery">
-            <!-- Gallery images will be added here dynamically -->
+          <div class="description-content" id="product-description">
+            <?php if (!empty($product['description'])): ?>
+              <?php echo nl2br($product['description']); ?>
+            <?php else: ?>
+              <p>No description available for this product.</p>
+            <?php endif; ?>
           </div>
         </div>
 
+        <?php if (count($related_products) > 0): ?>
         <!-- Related Products Section -->
         <div class="product-detail__related">
           <h2>You May Also Like</h2>
           <div class="related-products" id="related-products">
-            <!-- Related products will be added here dynamically -->
+            <?php foreach ($related_products as $related): ?>
+            <div class="product-card">
+              <a href="product-detail.php?id=<?php echo $related['id']; ?>" class="product-image-link">
+                <img src="<?php echo $related['image']; ?>" alt="<?php echo $related['name']; ?>" />
+              </a>
+              <div class="product-info">
+                <a href="product-detail.php?id=<?php echo $related['id']; ?>" class="product-title-link">
+                  <h3><?php echo $related['name']; ?></h3>
+                </a>
+                <div class="product-meta">
+                  <div class="product-price">₱<?php echo number_format($related['price'], 2); ?></div>
+                  <div class="product-rating">⭐4.5</div>
+                </div>
+                <button class="related-add-to-cart" data-product-id="<?php echo $related['id']; ?>">Add to Cart</button>
+              </div>
+            </div>
+            <?php endforeach; ?>
           </div>
         </div>
+        <?php endif; ?>
+        <?php endif; ?>
       </section>
     </main>
 
@@ -389,13 +351,146 @@
       </div>
     </div>
 
-    <script type="module" src="data/products.js"></script>
-    <script type="module" src="data/cart.js"></script>
-    <script type="module" src="js/product-detail.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
+    <script>
+      // Simple product detail page JavaScript
+      document.addEventListener('DOMContentLoaded', function() {
+        // Quantity controls
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decrease-quantity');
+        const increaseBtn = document.getElementById('increase-quantity');
+
+        if (decreaseBtn) {
+          decreaseBtn.addEventListener('click', function() {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+              quantityInput.value = currentValue - 1;
+            }
+          });
+        }
+
+        if (increaseBtn) {
+          increaseBtn.addEventListener('click', function() {
+            const currentValue = parseInt(quantityInput.value);
+            const maxValue = parseInt(quantityInput.getAttribute('max'));
+            if (currentValue < maxValue) {
+              quantityInput.value = currentValue + 1;
+            }
+          });
+        }
+
+        // Size selection
+        const sizeButtons = document.querySelectorAll('.size-btn');
+        let selectedSize = null;
+
+        sizeButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            sizeButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Update selected size
+            selectedSize = this.dataset.size;
+          });
+        });
+
+        // Add to cart functionality
+        const addToCartBtn = document.getElementById('add-to-cart');
+        if (addToCartBtn) {
+          addToCartBtn.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            const quantity = parseInt(quantityInput.value);
+
+            // Check if size is selected (if sizes are available)
+            if (sizeButtons.length > 0 && !selectedSize) {
+              alert('Please select a size');
+              return;
+            }
+
+            // Add to cart using the cart.js functionality
+            addToCart(productId, quantity);
+
+            // Show cart sidebar
+            const cartSidebar = document.getElementById('cart-sidebar');
+            if (cartSidebar) {
+              cartSidebar.classList.add('open');
+            }
+          });
+        }
+
+        // Buy now functionality
+        const buyNowBtn = document.getElementById('buy-now');
+        if (buyNowBtn) {
+          buyNowBtn.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            const quantity = parseInt(quantityInput.value);
+
+            // Check if size is selected (if sizes are available)
+            if (sizeButtons.length > 0 && !selectedSize) {
+              alert('Please select a size');
+              return;
+            }
+
+            // Add to cart and redirect to checkout
+            addToCart(productId, quantity);
+            window.location.href = 'checkout.php';
+          });
+        }
+
+        // Related products "Add to Cart" buttons
+        const relatedAddToCartButtons = document.querySelectorAll('.related-add-to-cart');
+        if (relatedAddToCartButtons.length > 0) {
+          relatedAddToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              const productId = this.dataset.productId;
+
+              // Add to cart using the cart.js functionality
+              addToCart(productId, 1);
+
+              // Show visual feedback
+              const originalText = this.innerText;
+              this.innerText = 'Added!';
+              this.classList.add('added-to-cart');
+
+              // Reset button after 1.5 seconds
+              setTimeout(() => {
+                this.innerText = originalText;
+                this.classList.remove('added-to-cart');
+              }, 1500);
+
+              // Show cart sidebar
+              const cartSidebar = document.getElementById('cart-sidebar');
+              if (cartSidebar) {
+                cartSidebar.classList.add('open');
+              }
+            });
+          });
+        }
+
+        // Image viewer functionality
+        const mainImage = document.getElementById('main-product-image');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach(thumbnail => {
+          thumbnail.addEventListener('click', function() {
+            // Update main image
+            if (mainImage) {
+              mainImage.src = this.dataset.image;
+            }
+
+            // Update active thumbnail
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      });
+    </script>
   </body>
 </html>
 

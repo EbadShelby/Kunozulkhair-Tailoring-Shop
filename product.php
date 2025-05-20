@@ -1,3 +1,9 @@
+<?php
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,135 +24,7 @@
     <link rel="icon" href="assets/images/logo.jpg" type="image/png">
   </head>
   <body>
-    <header class="header">
-      <div class="header__top container">
-        <a class="header__logo" href="index.php">
-          <img
-            class="header__logo-img"
-            src="assets/images/logo.jpg"
-            alt="logo"
-          />
-          <p class="header__logo-text">
-            <span>KunoZulkhair</span> Tailoring & Dress Shop
-          </p>
-        </a>
-        <div class="header__search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="header__search-input"
-            placeholder="Search for products"
-          />
-          <button class="header__search--btn">
-            <svg
-              class="icon header__search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div class="header__icons">
-          <a href="checkout.php" class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-              />
-            </svg>
-          </a>
-          <button class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-              />
-            </svg>
-          </button>
-          <a href="login-form.php"class="header__icon">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-      <nav class="header__nav container">
-        <ul class="header__nav-links">
-          <li><a class="header__link" href="index.php">Home</a></li>
-          <li><a class="header__link" href="shop.php">Shop</a></li>
-          <li class="header__dropdown">
-            <a class="header__link" href="services.php">Services</a>
-            <ul class="header__dropdown-menu">
-              <li><a href="embroidery.php">Embroidery Services</a></li>
-              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
-              <li><a href="alterations.php">Alterations & Repairs</a></li>
-              <li><a href="bridal.php">Bridal & Formal Wear</a></li>
-              <li><a href="curtains-home-tetiles.php">Curtains & Home Textiles</a></li>
-              <li><a href="casual-dresses.php">Casual & Everyday Dresses</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.php">Orders</a></li>
-          <li><a class="header__link" href="about.php">About Us</a></li>
-          <li><a class="header__link" href="contact.php">Contact</a></li>
-        </ul>
-        <button class="header__nav--toggle">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </nav>
-    </header>
+    <?php include 'includes/header.php'; ?>
     <main></main>
     <footer></footer>
     <script src="js/header.js"></script>

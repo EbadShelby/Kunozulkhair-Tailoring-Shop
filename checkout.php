@@ -1,3 +1,228 @@
+<?php
+/**
+ * Checkout Page
+ *
+ * This page handles the checkout process for customer orders.
+ */
+
+// Start session
+session_start();
+
+// Include database connection and session management
+require_once 'config/db_connect.php';
+require_once 'config/session.php';
+
+// Initialize variables
+$error_message = '';
+$success_message = '';
+$order_id = '';
+$redirect_to_success = false;
+
+// Check if cart exists in session
+if (!isset($_SESSION['cart_session_id'])) {
+    // Redirect to cart page if no items in cart
+    header("Location: shop.php");
+    exit;
+}
+
+// Get cart session ID
+$cartSessionId = $_SESSION['cart_session_id'];
+
+// Get cart items
+$cartQuery = "
+    SELECT ci.id, ci.product_id, ci.quantity, p.name, p.price, p.image
+    FROM cart_items ci
+    JOIN products p ON ci.product_id = p.id
+    WHERE ci.cart_session_id = ?
+";
+$stmt = mysqli_prepare($conn, $cartQuery);
+mysqli_stmt_bind_param($stmt, "i", $cartSessionId);
+mysqli_stmt_execute($stmt);
+$cartResult = mysqli_stmt_get_result($stmt);
+
+$cartItems = [];
+$subtotal = 0;
+
+while ($item = mysqli_fetch_assoc($cartResult)) {
+    $itemTotal = $item['price'] * $item['quantity'];
+    $subtotal += $itemTotal;
+
+    $cartItems[] = [
+        'id' => $item['id'],
+        'product_id' => $item['product_id'],
+        'name' => $item['name'],
+        'price' => $item['price'],
+        'quantity' => $item['quantity'],
+        'image' => $item['image'],
+        'total' => $itemTotal
+    ];
+}
+
+// If cart is empty, redirect to shop
+if (count($cartItems) === 0) {
+    header("Location: shop.php");
+    exit;
+}
+
+// Process checkout form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
+    // Get form data
+    $customerName = trim($_POST['customer_name'] ?? '');
+    $customerPhone = trim($_POST['customer_phone'] ?? '');
+    $customerAddress = trim($_POST['customer_address'] ?? '');
+    $customerEmail = isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : trim($_POST['customer_email'] ?? '');
+    $customerId = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : null;
+    $paymentMethod = $_POST['payment'] ?? 'cash';
+    $deliveryOption = 'standard'; // Only standard delivery is available
+
+    // Calculate costs
+    $shippingCost = 40.00; // Standard delivery cost
+    $fittingFee = 0.00;
+    $discount = 0.00;
+
+    // No fitting appointment functionality
+
+    // No voucher discount functionality
+
+    // Calculate total
+    $total = $subtotal + $shippingCost;
+
+    // Validate input
+    if (empty($customerName) || empty($customerPhone) || empty($customerAddress) || empty($customerEmail)) {
+        $error_message = 'Please fill in all required fields';
+    } elseif (!filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+        $error_message = 'Please enter a valid email address';
+    } else {
+        // Generate unique order number
+        $orderNumber = 'ORD-' . strtoupper(substr(uniqid(), -5)) . date('ymd');
+
+        // Begin transaction
+        mysqli_begin_transaction($conn);
+
+        try {
+            // Insert order into database
+            $orderQuery = "
+                INSERT INTO orders (
+                    order_number, customer_id, customer_name, customer_email,
+                    customer_phone, shipping_address, subtotal, shipping_cost,
+                    total, payment_method
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ";
+
+            $orderStmt = mysqli_prepare($conn, $orderQuery);
+            mysqli_stmt_bind_param(
+                $orderStmt,
+                "sissssdds",
+                $orderNumber,
+                $customerId,
+                $customerName,
+                $customerEmail,
+                $customerPhone,
+                $customerAddress,
+                $subtotal,
+                $shippingCost,
+                $total,
+                $paymentMethod
+            );
+
+            mysqli_stmt_execute($orderStmt);
+            $orderId = mysqli_insert_id($conn);
+
+            // Insert order items
+            foreach ($cartItems as $item) {
+                $itemQuery = "
+                    INSERT INTO order_items (
+                        order_id, product_id, product_name, quantity, price, total
+                    ) VALUES (?, ?, ?, ?, ?, ?)
+                ";
+
+                $itemStmt = mysqli_prepare($conn, $itemQuery);
+                mysqli_stmt_bind_param(
+                    $itemStmt,
+                    "iisidd",
+                    $orderId,
+                    $item['product_id'],
+                    $item['name'],
+                    $item['quantity'],
+                    $item['price'],
+                    $item['total']
+                );
+
+                mysqli_stmt_execute($itemStmt);
+            }
+
+            // Add initial status to order_status_history
+            $statusQuery = "
+                INSERT INTO order_status_history (
+                    order_id, status, notes
+                ) VALUES (?, 'new', 'Order placed by customer')
+            ";
+
+            $statusStmt = mysqli_prepare($conn, $statusQuery);
+            mysqli_stmt_bind_param($statusStmt, "i", $orderId);
+            mysqli_stmt_execute($statusStmt);
+
+            // No fitting appointment functionality
+
+            // Clear cart after successful order
+            $clearCartQuery = "DELETE FROM cart_items WHERE cart_session_id = ?";
+            $clearCartStmt = mysqli_prepare($conn, $clearCartQuery);
+            mysqli_stmt_bind_param($clearCartStmt, "i", $cartSessionId);
+            mysqli_stmt_execute($clearCartStmt);
+
+            // Commit transaction
+            mysqli_commit($conn);
+
+            // Set success message and order ID for display
+            $success_message = 'Order placed successfully!';
+            $order_id = $orderNumber;
+
+            // Set flag to redirect to success page
+            $redirect_to_success = true;
+
+            // Store order info in session for success page
+            $_SESSION['last_order'] = [
+                'id' => $orderId,
+                'order_number' => $orderNumber,
+                'total' => $total
+            ];
+
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            mysqli_rollback($conn);
+            $error_message = 'An error occurred while processing your order. Please try again.';
+        }
+    }
+
+    // Redirect to success page if order was successful
+    if ($redirect_to_success) {
+        header("Location: order-success.php");
+        exit;
+    }
+}
+
+// Get customer info if logged in
+$customerName = '';
+$customerEmail = '';
+$customerPhone = '';
+$customerAddress = '';
+
+if (isset($_SESSION['customer_id'])) {
+    $customerId = $_SESSION['customer_id'];
+    $customerQuery = "SELECT name, email, phone, address FROM customers WHERE id = ?";
+    $customerStmt = mysqli_prepare($conn, $customerQuery);
+    mysqli_stmt_bind_param($customerStmt, "i", $customerId);
+    mysqli_stmt_execute($customerStmt);
+    $customerResult = mysqli_stmt_get_result($customerStmt);
+
+    if ($customer = mysqli_fetch_assoc($customerResult)) {
+        $customerName = $customer['name'];
+        $customerEmail = $customer['email'];
+        $customerPhone = $customer['phone'] ?? '';
+        $customerAddress = $customer['address'] ?? '';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,181 +275,48 @@
     </header>
 
     <main>
-      <div class="checkout-container">
-        <!-- Left Column - Products Section -->
-        <div class="left-column">
-          <section class="checkout-section">
-            <div class="section-header">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-              </svg>
-              <h2>Products Ordered</h2>
-            </div>
-            <div class="products-list" id="products-list">
-              <!-- Sample Product -->
-              <div class="product-item">
-                <img src="assets/images/Duchess-Blue-Ballgown.jpg" alt="Duchess Blue Ballgown" class="product-image">
-                <div class="product-details">
-                  <h3 class="product-name">Duchess Blue Ballgown</h3>
-                  <p class="product-variation">Size: Medium | Color: Blue</p>
-                  <p class="product-quantity">Quantity: 1</p>
+      <?php if (!empty($error_message)): ?>
+      <div class="alert alert-error">
+        <?php echo htmlspecialchars($error_message); ?>
+      </div>
+      <?php endif; ?>
 
-                  <!-- New: Customization Details -->
-                  <div class="customization-details">
-                    <div class="customization-header" id="toggle-customizations">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                      </svg>
-                      <span>Customization Details</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon chevron">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                      </svg>
-                    </div>
-                    <div class="customization-content" id="customization-content">
-                      <div class="customization-option">
-                        <span class="option-label">Neckline:</span>
-                        <span class="option-value">Sweetheart</span>
-                      </div>
-                      <div class="customization-option">
-                        <span class="option-label">Sleeves:</span>
-                        <span class="option-value">Off-shoulder</span>
-                      </div>
-                      <div class="customization-option">
-                        <span class="option-label">Details:</span>
-                        <span class="option-value">Beaded bodice</span>
-                      </div>
-                      <div class="customization-option">
-                        <span class="option-label">Length:</span>
-                        <span class="option-value">Full length</span>
-                      </div>
-                    </div>
-                  </div>
+      <?php if (!empty($success_message)): ?>
+      <div class="alert alert-success">
+        <?php echo htmlspecialchars($success_message); ?>
+        <?php if (!empty($order_id)): ?>
+        <p>Your order number is: <strong><?php echo htmlspecialchars($order_id); ?></strong></p>
+        <?php endif; ?>
+      </div>
+      <?php endif; ?>
 
-                  <!-- New: Measurement Confirmation -->
-                  <div class="measurements-details">
-                    <div class="measurements-header" id="toggle-measurements">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25" />
-                      </svg>
-                      <span>Measurements</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon chevron">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                      </svg>
-                    </div>
-                    <div class="measurements-content" id="measurements-content">
-                      <div class="measurements-grid">
-                        <div class="measurement-item">
-                          <span class="measurement-label">Bust:</span>
-                          <span class="measurement-value">36 inches</span>
-                        </div>
-                        <div class="measurement-item">
-                          <span class="measurement-label">Waist:</span>
-                          <span class="measurement-value">28 inches</span>
-                        </div>
-                        <div class="measurement-item">
-                          <span class="measurement-label">Hip:</span>
-                          <span class="measurement-value">38 inches</span>
-                        </div>
-                        <div class="measurement-item">
-                          <span class="measurement-label">Shoulder:</span>
-                          <span class="measurement-value">15 inches</span>
-                        </div>
-                        <div class="measurement-item">
-                          <span class="measurement-label">Length:</span>
-                          <span class="measurement-value">42 inches</span>
-                        </div>
-                      </div>
-                      <div class="measurements-actions">
-                        <button class="edit-measurements-btn">Edit Measurements</button>
-                        <button class="schedule-measurement-btn">Schedule Professional Measurement</button>
-                      </div>
-                    </div>
+      <form method="POST" action="checkout.php" id="checkout-form">
+        <div class="checkout-container">
+          <!-- Left Column - Products Section -->
+          <div class="left-column">
+            <section class="checkout-section">
+              <div class="section-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+                <h2>Products Ordered</h2>
+              </div>
+              <div class="products-list" id="products-list">
+                <?php foreach ($cartItems as $item): ?>
+                <div class="product-item">
+                  <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="product-image">
+                  <div class="product-details">
+                    <h3 class="product-name"><?php echo htmlspecialchars($item['name']); ?></h3>
+                    <p class="product-quantity">Quantity: <?php echo htmlspecialchars($item['quantity']); ?></p>
                   </div>
+                  <div class="product-price">₱<?php echo number_format($item['price'], 2); ?></div>
                 </div>
-                <div class="product-price">₱2,499.00</div>
-              </div>
-            </div>
-            <div class="message-seller">
-              <textarea placeholder="Special instructions for your order (optional)" rows="2"></textarea>
-            </div>
-          </section>
-
-          <!-- New: Fitting Appointment Section -->
-          <section class="checkout-section">
-            <div class="section-header">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-              </svg>
-              <h2>Fitting Appointment</h2>
-            </div>
-            <div class="fitting-options">
-              <p class="fitting-info">Schedule a fitting appointment to ensure your garment fits perfectly before completion.</p>
-
-              <div class="appointment-toggle">
-                <label class="toggle-switch">
-                  <input type="checkbox" id="schedule-fitting">
-                  <span class="toggle-slider"></span>
-                </label>
-                <span class="toggle-label">I want to schedule a fitting appointment</span>
+                <?php endforeach; ?>
               </div>
 
-              <div class="appointment-details" id="appointment-details" style="display: none;">
-                <div class="appointment-dates">
-                  <h4>Select Date</h4>
-                  <div class="date-options">
-                    <label class="date-option">
-                      <input type="radio" name="fitting-date" value="2023-08-10">
-                      <span class="date-display">
-                        <span class="date-day">10</span>
-                        <span class="date-month">August</span>
-                        <span class="date-weekday">Thursday</span>
-                      </span>
-                    </label>
-                    <label class="date-option">
-                      <input type="radio" name="fitting-date" value="2023-08-11">
-                      <span class="date-display">
-                        <span class="date-day">11</span>
-                        <span class="date-month">August</span>
-                        <span class="date-weekday">Friday</span>
-                      </span>
-                    </label>
-                    <label class="date-option">
-                      <input type="radio" name="fitting-date" value="2023-08-12">
-                      <span class="date-display">
-                        <span class="date-day">12</span>
-                        <span class="date-month">August</span>
-                        <span class="date-weekday">Saturday</span>
-                      </span>
-                    </label>
-                  </div>
+            </section>
 
-                  <h4>Select Time</h4>
-                  <div class="time-options">
-                    <label class="time-option">
-                      <input type="radio" name="fitting-time" value="10:00">
-                      <span>10:00 AM</span>
-                    </label>
-                    <label class="time-option">
-                      <input type="radio" name="fitting-time" value="11:00">
-                      <span>11:00 AM</span>
-                    </label>
-                    <label class="time-option">
-                      <input type="radio" name="fitting-time" value="14:00">
-                      <span>2:00 PM</span>
-                    </label>
-                    <label class="time-option">
-                      <input type="radio" name="fitting-time" value="15:00">
-                      <span>3:00 PM</span>
-                    </label>
-                    <label class="time-option">
-                      <input type="radio" name="fitting-time" value="16:00">
-                      <span>4:00 PM</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+
         </div>
 
         <!-- Right Column - Checkout Details -->
@@ -238,12 +330,60 @@
               </svg>
               <h2>Delivery Address</h2>
             </div>
-            <div class="delivery-address">
-              <div class="address-details">
-                <h3><span id="customer-name">Your Name</span> | <span id="customer-phone">Your Phone</span></h3>
-                <p id="customer-address">Your complete address will appear here</p>
+            <div class="delivery-address" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 1.25rem; background: #f9f7f1; border-radius: 10px; border: 1px solid #E8E8E8; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);">
+              <?php if (isset($_SESSION['customer_id']) && !empty($customerName)): ?>
+              <!-- Display saved address for logged-in customer -->
+              <div class="address-details" style="flex: 1;">
+                <h3 style="font-weight: 600; margin-bottom: 0.75rem; color: #4A4A4A; font-size: 1.1rem;"><span id="customer-name"><?php echo htmlspecialchars($customerName); ?></span> | <span id="customer-phone"><?php echo htmlspecialchars($customerPhone); ?></span></h3>
+                <p id="customer-address" style="color: #555; line-height: 1.5; font-size: 0.95rem;"><?php echo htmlspecialchars($customerAddress); ?></p>
+                <input type="hidden" name="customer_name" value="<?php echo htmlspecialchars($customerName); ?>">
+                <input type="hidden" name="customer_phone" value="<?php echo htmlspecialchars($customerPhone); ?>">
+                <input type="hidden" name="customer_address" value="<?php echo htmlspecialchars($customerAddress); ?>">
+                <input type="hidden" name="customer_email" value="<?php echo htmlspecialchars($customerEmail); ?>">
               </div>
-              <button class="change-btn">Change</button>
+              <button type="button" class="change-btn" id="edit-address-btn" style="color: #D4AF37; background: none; border: 1px solid #D4AF37; cursor: pointer; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 6px; font-size: 0.95rem;">Edit</button>
+              <?php else: ?>
+              <!-- Address form for guest checkout -->
+              <div class="address-form" style="width: 100%;">
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="customer_name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Full Name</label>
+                  <input type="text" id="customer_name" name="customer_name" required value="<?php echo htmlspecialchars($customerName); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="customer_email" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Email</label>
+                  <input type="email" id="customer_email" name="customer_email" required value="<?php echo htmlspecialchars($customerEmail); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="customer_phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Phone Number</label>
+                  <input type="tel" id="customer_phone" name="customer_phone" required value="<?php echo htmlspecialchars($customerPhone); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="customer_address" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Complete Address</label>
+                  <textarea id="customer_address" name="customer_address" rows="3" required style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;"><?php echo htmlspecialchars($customerAddress); ?></textarea>
+                </div>
+              </div>
+              <?php endif; ?>
+
+              <!-- Hidden address form for editing (initially hidden) -->
+              <div class="address-form" id="edit-address-form" style="display: none; width: 100%;">
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="edit_customer_name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Full Name</label>
+                  <input type="text" id="edit_customer_name" name="customer_name" required value="<?php echo htmlspecialchars($customerName); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="edit_customer_email" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Email</label>
+                  <input type="email" id="edit_customer_email" name="customer_email" required value="<?php echo htmlspecialchars($customerEmail); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="edit_customer_phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Phone Number</label>
+                  <input type="tel" id="edit_customer_phone" name="customer_phone" required value="<?php echo htmlspecialchars($customerPhone); ?>" style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label for="edit_customer_address" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #4A4A4A; font-size: 0.95rem;">Complete Address</label>
+                  <textarea id="edit_customer_address" name="customer_address" rows="3" required style="width: 100%; padding: 0.85rem; border: 1px solid #E8E8E8; border-radius: 6px; font-size: 1rem; background-color: #fff;"><?php echo htmlspecialchars($customerAddress); ?></textarea>
+                </div>
+                <button type="button" class="save-address-btn" id="save-address-btn" style="background-color: #D4AF37; color: white; border: none; cursor: pointer; font-weight: 500; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 1rem; margin-top: 1rem; box-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);">Save Address</button>
+              </div>
             </div>
           </section>
 
@@ -253,12 +393,12 @@
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
               </svg>
-              <h2>Delivery Options</h2>
+              <h2>Delivery Information</h2>
             </div>
 
             <div class="delivery-options">
-              <label class="delivery-option">
-                <input type="radio" name="delivery" value="standard" checked>
+              <div class="delivery-option">
+                <input type="hidden" name="delivery" value="standard">
                 <div class="option-content">
                   <div>
                     <div class="option-name">Standard Delivery</div>
@@ -266,55 +406,11 @@
                   </div>
                   <div class="option-price">₱40</div>
                 </div>
-              </label>
-
-
-
-              <label class="delivery-option">
-                <input type="radio" name="delivery" value="pickup">
-                <div class="option-content">
-                  <div>
-                    <div class="option-name">Store Pickup</div>
-                    <div class="option-description">Pick up at our shop when ready</div>
-                  </div>
-                  <div class="option-price">Free</div>
-                </div>
-              </label>
-            </div>
-          </section>
-
-          <!-- Voucher Section -->
-          <section class="checkout-section">
-            <div class="section-header">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
-              </svg>
-              <h2>Shop Voucher</h2>
-            </div>
-            <div class="voucher-input">
-              <input type="text" placeholder="Enter voucher code" id="voucher-code">
-              <button class="apply-btn">Apply</button>
-            </div>
-            <div class="available-vouchers">
-              <h4>Available Vouchers</h4>
-              <div class="voucher-list">
-                <div class="voucher-item">
-                  <div class="voucher-details">
-                    <div class="voucher-name">NEW10</div>
-                    <div class="voucher-description">10% off for new customers</div>
-                  </div>
-                  <button class="use-voucher-btn" data-code="NEW10">Use</button>
-                </div>
-                <div class="voucher-item">
-                  <div class="voucher-details">
-                    <div class="voucher-name">WEDDING50</div>
-                    <div class="voucher-description">₱50 off on wedding dress orders</div>
-                  </div>
-                  <button class="use-voucher-btn" data-code="WEDDING50">Use</button>
-                </div>
               </div>
             </div>
           </section>
+
+
 
           <!-- Payment Method Section -->
           <section class="checkout-section">
@@ -346,10 +442,6 @@
                   <div>GCash</div>
                 </div>
               </label>
-
-
-
-
             </div>
           </section>
 
@@ -357,32 +449,26 @@
           <section class="summary-section">
             <h3>Order Summary</h3>
             <div id="cart-items">
-              <!-- Sample cart item -->
+              <?php foreach ($cartItems as $item): ?>
               <div class="summary-item">
-                <span>Duchess Blue Ballgown x 1</span>
-                <span>₱2,499.00</span>
+                <span><?php echo htmlspecialchars($item['name']); ?> x <?php echo htmlspecialchars($item['quantity']); ?></span>
+                <span>₱<?php echo number_format($item['total'], 2); ?></span>
               </div>
+              <?php endforeach; ?>
             </div>
 
             <div class="summary-row">
               <span>Subtotal:</span>
-              <span id="subtotal">₱2,499.00</span>
+              <span id="subtotal">₱<?php echo number_format($subtotal, 2); ?></span>
             </div>
             <div class="summary-row">
               <span>Shipping:</span>
               <span id="shipping">₱40.00</span>
             </div>
-            <div class="summary-row">
-              <span>Fitting Appointment:</span>
-              <span id="fitting-fee">₱0.00</span>
-            </div>
-            <div class="summary-row discount-row" style="display: none;">
-              <span>Discount:</span>
-              <span id="discount">-₱0.00</span>
-            </div>
+
             <div class="summary-row total">
               <span>Total Payment:</span>
-              <span id="total">₱2,539.00</span>
+              <span id="total">₱<?php echo number_format($subtotal + 40.00, 2); ?></span>
             </div>
             <div class="delivery-estimate">
               <div class="estimate-icon">
@@ -392,10 +478,10 @@
               </div>
               <div class="estimate-details">
                 <div class="estimate-label">Estimated Completion:</div>
-                <div class="estimate-date" id="estimate-date">August 20, 2023</div>
+                <div class="estimate-date" id="estimate-date"><?php echo date('F d, Y', strtotime('+7 days')); ?></div>
               </div>
             </div>
-            <button class="place-order-btn" id="place-order-btn">Place Order</button>
+            <button type="submit" name="place_order" class="place-order-btn" id="place-order-btn">Place Order</button>
 
             <div class="order-note">
               <p>By placing your order, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</p>
@@ -403,6 +489,7 @@
           </section>
         </div>
       </div>
+    </form>
     </main>
 
     <footer class="site-footer">

@@ -1,7 +1,3 @@
-import { cart } from "../data/cart.js";
-import { products } from "../data/products.js";
-import { addToCart } from "../data/cart.js";
-
 // set up the carousel
 const track = document.querySelector(".ads-carousel__track");
 const slides = Array.from(track.children);
@@ -85,92 +81,51 @@ dotsNav.addEventListener("click", (e) => {
   hideShowArrows(slides, prevButton, nextButton, targetIndex);
 });
 
-// Function to render products to the shop page
+// Initialize featured products carousel
 document.addEventListener("DOMContentLoaded", () => {
-  const productsContainer = document.querySelector(".featured-product-track");
-  let html = "";
+  // Add event listeners to all "Add to Cart" buttons
+  document.querySelectorAll(".btn-cart").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      // Prevent the click from bubbling up to the product card
+      e.stopPropagation();
 
-  // Clear any existing products
-  if (productsContainer) {
-    productsContainer.innerHTML = "";
+      const productId = button.dataset.productId;
 
-    // Render each product
-    products.forEach((product) => {
-      // Convert 5-star rating to 10-point scale
-      const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
+      // Use the cart.js addToCart function with product ID
+      // Make sure the addToCart function is available from cart.js
+      if (typeof addToCart === 'function') {
+        addToCart(productId);
+      } else {
+        console.error('addToCart function not found. Make sure cart.js is loaded properly.');
+      }
 
-      html = `
-        <article class="featured-product-slide" data-product-id="${product.id}">
-          <a href="product-detail.php?id=${product.id}" class="product-image-link">
-            <img src="${product.image}" alt="${product.name}" />
-          </a>
-          <div class="product-info">
-            <a href="product-detail.php?id=${product.id}" class="product-title-link">
-              <h3>${product.name}</h3>
-            </a>
-            <div class="product-meta">
-              <div class="product-price">₱${product.price.toLocaleString()}</div>
-              <div class="product-rating">
-                ⭐${ratingOutOf10}
-                <span class="rating-count">(${product.rating.count})</span>
-              </div>
-            </div>
-            <button class="btn-cart" data-product-id="${product.id}">Add to Cart</button>
-          </div>
-        </article>
-        `;
+      // Add visual feedback
+      const originalText = button.innerText;
+      button.innerText = "Added!";
+      button.classList.add("added-to-cart");
 
-      productsContainer.innerHTML += html;
+      // Reset button after 1.5 seconds
+      setTimeout(() => {
+        button.innerText = originalText;
+        button.classList.remove("added-to-cart");
+      }, 1500);
     });
+  });
 
-    // Add event listeners to all "Add to Cart" buttons
-    document.querySelectorAll(".btn-cart").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        // Prevent the click from bubbling up to the product card
-        e.stopPropagation();
+  // Make the entire product card clickable
+  document.querySelectorAll(".featured-product-slide").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      // Don't navigate if the click was on the Add to Cart button
+      if (e.target.closest('.btn-cart')) return;
 
-        const productId = button.dataset.productId;
-        const foundProduct = products.find((p) => p.id == productId);
-
-        if (foundProduct) {
-          const name = foundProduct.name;
-          const price = foundProduct.price;
-          const image = foundProduct.image;
-
-          // Call the addToCart function from shop.js
-          if (typeof addToCart === "function") {
-            addToCart(name, price, image);
-
-            // Add visual feedback
-            const originalText = button.innerText;
-            button.innerText = "Added!";
-            button.classList.add("added-to-cart");
-
-            // Reset button after 1.5 seconds
-            setTimeout(() => {
-              button.innerText = originalText;
-              button.classList.remove("added-to-cart");
-            }, 1500);
-          } else {
-            console.error("addToCart function not found");
-          }
-        }
-      });
+      const productId = card.dataset.productId;
+      window.location.href = `product-detail.php?id=${productId}`;
     });
+  });
 
-    // Make the entire product card clickable
-    document.querySelectorAll(".featured-product-slide").forEach((card) => {
-      card.addEventListener("click", (e) => {
-        // Don't navigate if the click was on the Add to Cart button
-        if (e.target.closest('.btn-cart')) return;
-
-        const productId = card.dataset.productId;
-        window.location.href = `product-detail.php?id=${productId}`;
-      });
-    });
-
-    // Initialize featured products carousel AFTER products are rendered
-    const featuredTrack = document.querySelector(".featured-product-track");
+  // Initialize featured products carousel
+  const featuredTrack = document.querySelector(".featured-product-track");
+  if (featuredTrack && featuredTrack.children.length > 0) {
     const featuredSlides = Array.from(featuredTrack.children);
     const featuredNextButton = document.querySelector(
       ".featured-product_carousel-button--right"
@@ -182,26 +137,30 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     const visibleSlides = 4; // Reduced from 6 to 4 for better visibility
     const totalSlides = featuredSlides.length;
-    const featuredSlideWidth = featuredSlides[0].getBoundingClientRect().width;
-    const maxIndex = Math.ceil(totalSlides / visibleSlides) - 1;
 
-    featuredNextButton.addEventListener("click", () => {
-      if (currentIndex < maxIndex) {
-        currentIndex++;
-        moveFeaturedTrack();
+    // Only proceed if we have slides
+    if (totalSlides > 0) {
+      const featuredSlideWidth = featuredSlides[0].getBoundingClientRect().width;
+      const maxIndex = Math.ceil(totalSlides / visibleSlides) - 1;
+
+      featuredNextButton.addEventListener("click", () => {
+        if (currentIndex < maxIndex) {
+          currentIndex++;
+          moveFeaturedTrack();
+        }
+      });
+
+      featuredPrevButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          moveFeaturedTrack();
+        }
+      });
+
+      function moveFeaturedTrack() {
+        const amountToMove = featuredSlideWidth * visibleSlides * currentIndex;
+        featuredTrack.style.transform = `translateX(-${amountToMove}px)`;
       }
-    });
-
-    featuredPrevButton.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        moveFeaturedTrack();
-      }
-    });
-
-    function moveFeaturedTrack() {
-      const amountToMove = featuredSlideWidth * visibleSlides * currentIndex;
-      featuredTrack.style.transform = `translateX(-${amountToMove}px)`;
     }
   }
 });

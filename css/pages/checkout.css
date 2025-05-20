@@ -15,6 +15,27 @@ body {
   background-color: #FAFAFA;
 }
 
+/* Alert messages */
+.alert {
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 8px;
+  max-width: 1200px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.alert-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
 .checkout-container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -419,42 +440,102 @@ input:checked + .toggle-slider:before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1rem;
-  background: #f8f8f8;
-  border-radius: 8px;
+  padding: 1.25rem;
+  background: #f9f7f1;
+  border-radius: 10px;
   border: 1px solid var(--checkout-border);
   transition: var(--checkout-hover-transition);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .delivery-address:hover {
   border-color: var(--checkout-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .address-details h3 {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
   color: var(--checkout-secondary);
+  font-size: 1.1rem;
 }
 
 .address-details p {
-  color: #666;
-  line-height: 1.4;
+  color: #555;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
-.change-btn {
+.change-btn, .save-address-btn {
   color: var(--checkout-primary);
   background: none;
-  border: none;
+  border: 1px solid var(--checkout-primary);
   cursor: pointer;
   font-weight: 500;
   transition: var(--checkout-hover-transition);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
 
-.change-btn:hover {
+.change-btn:hover, .save-address-btn:hover {
   background-color: var(--checkout-light);
-  text-decoration: underline;
+  transform: translateY(-2px);
+}
+
+.save-address-btn {
+  background-color: var(--checkout-primary);
+  color: white;
+  margin-top: 1.25rem;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+}
+
+.save-address-btn:hover {
+  background-color: #c9a22e;
+  color: white;
+  box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+}
+
+/* Address form */
+.address-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--checkout-secondary);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid var(--checkout-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: var(--checkout-hover-transition);
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--checkout-primary);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--checkout-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 /* Delivery options improvements */
@@ -803,11 +884,11 @@ input:checked + .toggle-slider:before {
   .checkout-container {
     grid-template-columns: 1fr;
   }
-  
+
   .right-column {
     order: -1;
   }
-  
+
   .summary-section {
     position: relative;
     top: 0;
@@ -818,7 +899,7 @@ input:checked + .toggle-slider:before {
   .checkout-progress {
     max-width: 100%;
   }
-  
+
   .product-item {
     flex-direction: column;
     align-items: flex-start;
@@ -833,15 +914,15 @@ input:checked + .toggle-slider:before {
     text-align: left;
     margin-top: 1rem;
   }
-  
+
   .date-option, .time-option {
     flex-basis: calc(50% - 0.5rem);
   }
-  
+
   .measurements-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .measurements-actions {
     flex-direction: column;
   }
@@ -851,13 +932,13 @@ input:checked + .toggle-slider:before {
   .date-option, .time-option {
     flex-basis: 100%;
   }
-  
+
   .checkout-footer .container {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  
+
   .footer-links {
     flex-wrap: wrap;
     justify-content: center;

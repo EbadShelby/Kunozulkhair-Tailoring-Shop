@@ -1,0 +1,275 @@
+/**
+ * Cart functionality
+ *
+ * This file handles all cart-related operations on the client side:
+ * - Loading cart items
+ * - Adding items to cart
+ * - Updating item quantities
+ * - Removing items from cart
+ * - Displaying cart in sidebar
+ */
+
+// DOM elements
+const cartIcon = document.getElementById('cart-icon');
+const cartSidebar = document.getElementById('cart-sidebar');
+const closeCart = document.getElementById('close-cart');
+const cartCount = document.getElementById('cart-count');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const checkoutBtn = document.querySelector('.checkout-btn');
+
+// Cart state
+let cart = {
+  items: [],
+  total: 0,
+  count: 0
+};
+
+// Load cart items from server
+async function loadCart() {
+  try {
+    const response = await fetch('api/cart.php?action=get');
+    const data = await response.json();
+
+    cart = data;
+    updateCartUI();
+
+    return data;
+  } catch (error) {
+    console.error('Error loading cart:', error);
+    return { items: [], total: 0, count: 0 };
+  }
+}
+
+// Add item to cart
+// Make this function globally available
+window.addToCart = async function(productId, quantity = 1) {
+  try {
+    const formData = new FormData();
+    formData.append('product_id', productId);
+    formData.append('quantity', quantity);
+
+    const response = await fetch('api/cart.php?action=add', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // Reload cart to get updated items
+      await loadCart();
+
+      // Show visual feedback
+      showAddedToCartFeedback();
+
+      // Open cart sidebar
+      cartSidebar.classList.add('open');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    return { success: false, message: 'Failed to add item to cart' };
+  }
+}
+
+// Update item quantity
+async function updateCartItem(cartItemId, quantity) {
+  try {
+    const formData = new FormData();
+    formData.append('cart_item_id', cartItemId);
+    formData.append('quantity', quantity);
+
+    const response = await fetch('api/cart.php?action=update', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // Reload cart to get updated items
+      await loadCart();
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+    return { success: false, message: 'Failed to update cart item' };
+  }
+}
+
+// Remove item from cart
+async function removeCartItem(cartItemId) {
+  try {
+    const formData = new FormData();
+    formData.append('cart_item_id', cartItemId);
+
+    const response = await fetch('api/cart.php?action=remove', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // Reload cart to get updated items
+      await loadCart();
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error removing cart item:', error);
+    return { success: false, message: 'Failed to remove cart item' };
+  }
+}
+
+// Update cart UI
+function updateCartUI() {
+  // Update cart count
+  if (cartCount) {
+    cartCount.textContent = cart.count;
+  }
+
+  // Update cart items
+  if (cartItemsContainer) {
+    cartItemsContainer.innerHTML = '';
+
+    if (cart.items.length === 0) {
+      cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+    } else {
+      cart.items.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
+        itemEl.innerHTML = `
+          <div class="cart-item-image">
+            <img src="${item.image || 'assets/images/logo.jpg'}" alt="${item.name}">
+          </div>
+          <div class="cart-item-details">
+            <span class="cart-item-name">${item.name}</span>
+            <span class="cart-item-price">₱${parseFloat(item.price).toLocaleString()}</span>
+            <div class="quantity-control">
+              <button class="decrease-btn" data-item-id="${item.id}">−</button>
+              <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="99" data-item-id="${item.id}">
+              <button class="increase-btn" data-item-id="${item.id}">+</button>
+              <button class="remove-btn" data-item-id="${item.id}">×</button>
+            </div>
+          </div>
+        `;
+
+        cartItemsContainer.appendChild(itemEl);
+
+        // Add event listeners to buttons
+        const decreaseBtn = itemEl.querySelector('.decrease-btn');
+        const increaseBtn = itemEl.querySelector('.increase-btn');
+        const quantityInput = itemEl.querySelector('.quantity-input');
+        const removeBtn = itemEl.querySelector('.remove-btn');
+
+        decreaseBtn.addEventListener('click', () => {
+          const newQuantity = Math.max(1, item.quantity - 1);
+          updateCartItem(item.id, newQuantity);
+        });
+
+        increaseBtn.addEventListener('click', () => {
+          const newQuantity = item.quantity + 1;
+          updateCartItem(item.id, newQuantity);
+        });
+
+        quantityInput.addEventListener('change', (e) => {
+          const newQuantity = parseInt(e.target.value) || 1;
+          updateCartItem(item.id, newQuantity);
+        });
+
+        removeBtn.addEventListener('click', () => {
+          removeCartItem(item.id);
+        });
+      });
+    }
+  }
+
+  // Update cart total
+  if (cartTotal) {
+    cartTotal.textContent = parseFloat(cart.total).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+}
+
+// Show visual feedback when item is added to cart
+function showAddedToCartFeedback() {
+  // Create a floating notification
+  const notification = document.createElement('div');
+  notification.className = 'cart-notification';
+  notification.textContent = 'Item added to cart!';
+  document.body.appendChild(notification);
+
+  // Remove notification after animation
+  setTimeout(() => {
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 2000);
+  }, 10);
+}
+
+// Initialize cart functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Load cart items
+  loadCart();
+
+  // Cart icon click event
+  if (cartIcon) {
+    cartIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      cartSidebar.classList.toggle('open');
+    });
+  }
+
+  // Close cart button click event
+  if (closeCart) {
+    closeCart.addEventListener('click', () => {
+      cartSidebar.classList.remove('open');
+    });
+  }
+
+  // Close cart when clicking outside
+  document.addEventListener('click', (e) => {
+    if (cartSidebar && cartSidebar.classList.contains('open') &&
+        !cartSidebar.contains(e.target) &&
+        !cartIcon.contains(e.target)) {
+      cartSidebar.classList.remove('open');
+    }
+  });
+
+  // Checkout button click event
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      window.location.href = 'checkout.php';
+    });
+  }
+
+  // Add to cart buttons on product cards
+  document.querySelectorAll('.product-card button[data-product-id]').forEach(button => {
+    button.addEventListener('click', () => {
+      const productId = button.dataset.productId;
+      addToCart(productId);
+
+      // Add visual feedback
+      const originalText = button.innerText;
+      button.innerText = 'Added!';
+      button.classList.add('added-to-cart');
+
+      // Reset button after 1.5 seconds
+      setTimeout(() => {
+        button.innerText = originalText;
+        button.classList.remove('added-to-cart');
+      }, 1500);
+    });
+  });
+});
