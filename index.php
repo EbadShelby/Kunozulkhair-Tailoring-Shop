@@ -142,7 +142,7 @@
           <li><a class="header__link active" href="index.php">Home</a></li>
           <li><a class="header__link" href="shop.php">Shop</a></li>
           <li class="header__dropdown">
-            <a class="header__link" href="services.html">Services</a>
+            <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
               <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
               <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
@@ -365,14 +365,14 @@
               <img src="assets/images/logo.jpg" alt="Custom Dressmaking" />
               <h3>Custom Dressmaking</h3>
               <p>Get a dress made just for you!</p>
-              <a href="services.html" class="btn-learn">Learn More</a>
+              <a href="services.php" class="btn-learn">Learn More</a>
             </div>
 
             <div class="service-card">
               <img src="assets/images/logo.jpg" alt="Alterations & Repairs" />
               <h3>Alterations & Repairs</h3>
               <p>Make your old clothes fit perfectly again!</p>
-              <a href="services.html" class="btn-learn">Learn More</a>
+              <a href="services.php" class="btn-learn">Learn More</a>
             </div>
           </div>
         </div>
@@ -426,7 +426,7 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="services.html">Services</a></li>
+            <li><a href="services.php">Services</a></li>
             <li><a href="appointments.html">Appointments</a></li>
             <li><a href="orders.html">Orders</a></li>
             <li><a href="contact.html">Contact</a></li>

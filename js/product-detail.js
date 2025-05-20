@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem('checkoutDetails', JSON.stringify(checkoutDetails));
 
     // Redirect to checkout page
-    window.location.href = 'checkout.html';
+    window.location.href = 'checkout.php';
   }
 
   function showError(message) {

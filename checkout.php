@@ -421,7 +421,7 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="services.html">Services</a></li>
+            <li><a href="services.php">Services</a></li>
             <li><a href="appointments.html">Appointments</a></li>
             <li><a href="orders.html">Orders</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -433,7 +433,7 @@
         <div class="footer-section">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="embroidery-services.html">Embroidery Services</a></li>
+            <li><a href="embroidery-services.php">Embroidery Services</a></li>
             <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
             <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
             <li><a href="bridal-and-formalwear.html">Bridal & Formal Wear</a></li>

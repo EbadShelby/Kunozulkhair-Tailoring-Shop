@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutBtn = document.querySelector('.checkout-btn');
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
-      location.href = 'checkout.html';
+      location.href = 'checkout.php';
     });
   }
 

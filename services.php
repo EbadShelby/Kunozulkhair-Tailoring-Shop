@@ -116,7 +116,7 @@
               />
             </svg>
           </button>
-          <a href="login-form.html"class="header__icon">
+          <a href="login-form.php"class="header__icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
           <li><a class="header__link" href="index.php">Home</a></li>
           <li><a class="header__link" href="shop.php">Shop</a></li>
           <li class="header__dropdown">
-            <a class="header__link" href="services.html">Services</a>
+            <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
               <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
               <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
@@ -147,7 +147,7 @@
             </ul>
           </li>
           <li>
-            <a class="header__link" href="appointments.html">Appointments</a>
+            <a class="header__link" href="appointments.php">Appointments</a>
           </li>
           <li><a class="header__link" href="orders.html">Orders</a></li>
           <li><a class="header__link" href="about.html">About Us</a></li>
@@ -382,7 +382,7 @@
       <h3>Quick Links</h3>
       <ul>
         <li><a href="shop.php">Shop</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.php">Services</a></li>
         <li><a href="appointments.html">Appointments</a></li>
         <li><a href="orders.html">Orders</a></li>
         <li><a href="contact.html">Contact</a></li>
