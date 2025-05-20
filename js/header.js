@@ -762,7 +762,7 @@ function openSizingGuide() {
 
         <div class="sizing-cta">
           <p>Need help with your measurements? Visit our shop or book an appointment for professional measuring!</p>
-          <a href="appointments.html" class="sizing-guide-btn">Book Appointment</a>
+          <a href="appointments.php" class="sizing-guide-btn">Book Appointment</a>
         </div>
       </div>
     </div>
@@ -973,3 +973,4 @@ function openSizingGuide() {
     document.head.appendChild(style);
   }
 }
+

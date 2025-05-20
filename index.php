@@ -149,7 +149,7 @@
               <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
-          <li><a class="header__link" href="appointments.html">Appointments</a></li>
+          <li><a class="header__link" href="appointments.php">Appointments</a></li>
           <li><a class="header__link" href="orders.html">Orders</a></li>
           <li><a class="header__link" href="about.html">About Us</a></li>
           <li><a class="header__link" href="contact.html">Contact</a></li>
@@ -289,7 +289,7 @@
               <img src="assets\images\Journey\17.jpg" alt="Casual Dresses" />
               <span>Casual Dresses</span>
             </a>
-            <a href="appointments.html" class="category-card">
+            <a href="appointments.php" class="category-card">
               <img src="assets\images\Journey\18.jpg" alt="Book an Appointment" />
               <span>Book an Appointment</span>
             </a>
@@ -427,7 +427,7 @@
           <ul>
             <li><a href="shop.php">Shop</a></li>
             <li><a href="services.php">Services</a></li>
-            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="appointments.php">Appointments</a></li>
             <li><a href="orders.html">Orders</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -501,3 +501,4 @@
     <script src="js/breakpoint-indicator.js"></script>
   </body>
 </html>
+

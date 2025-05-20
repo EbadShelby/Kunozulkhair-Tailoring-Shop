@@ -205,7 +205,7 @@
             Get high-quality custom dressmaking and alterations
             services tailored to your needs.
           </p>
-          <a href="appointments.html" class="hero__btn">Book an Appointment</a>
+          <a href="appointments.php" class="hero__btn">Book an Appointment</a>
         </div>
       </section>
 
@@ -358,7 +358,7 @@
           </p>
           <div class="contact-cta__buttons">
             <a href="contact.html" class="btn btn--primary">Contact Us</a>
-            <a href="appointments.html" class="btn btn--secondary"
+            <a href="appointments.php" class="btn btn--secondary"
               >Book an Appointment</a
             >
           </div>
@@ -383,7 +383,7 @@
       <ul>
         <li><a href="shop.php">Shop</a></li>
         <li><a href="services.php">Services</a></li>
-        <li><a href="appointments.html">Appointments</a></li>
+        <li><a href="appointments.php">Appointments</a></li>
         <li><a href="orders.html">Orders</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -457,4 +457,5 @@
     <!-- <script type="module" src="js/shop.js"></script> -->
   </body>
 </html>
+
 

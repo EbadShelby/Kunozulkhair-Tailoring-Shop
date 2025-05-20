@@ -422,7 +422,7 @@
           <ul>
             <li><a href="shop.php">Shop</a></li>
             <li><a href="services.php">Services</a></li>
-            <li><a href="appointments.html">Appointments</a></li>
+            <li><a href="appointments.php">Appointments</a></li>
             <li><a href="orders.html">Orders</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -507,3 +507,4 @@
     </style>
   </body>
 </html>
+
