@@ -3,23 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Kunozulkhair Tailoring Shop</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- link css -->
+    <title>Shop - Kunozulkhair Tailoring Shop </title>
     <link rel="stylesheet" href="css/pages/shop.css" />
-    <link rel="stylesheet" href="css/pages/main.css" />
-
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
-    <link rel="stylesheet" href="css/shared/footer.css" />
-    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/shared/hero.css">
 
-    <!-- linked google fonts  -->
     <link
       href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -27,10 +20,12 @@
 
     <link rel="icon" href="assets/images/logo.jpg" type="image/png">
   </head>
+
+
   <body>
     <header class="header">
       <div class="header__top container">
-        <a class="header__logo" href="#">
+        <a class="header__logo" href="shop.php">
           <img
             class="header__logo-img"
             src="assets/images/logo.jpg"
@@ -119,7 +114,7 @@
               />
             </svg>
           </button>
-          <a href="login-form.html" class="header__icon">
+          <a href="login-form.php"class="header__icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -136,11 +131,24 @@
             </svg>
           </a>
         </div>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cart-sidebar">
+          <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart">&times;</button>
+          </div>
+          <div class="cart-items" id="cart-items"></div>
+          <div class="cart-footer">
+            <p>Total: ₱<span id="cart-total">0</span></p>
+            <button class="checkout-btn">Checkout</button>
+          </div>
+        </div>
       </div>
       <nav class="header__nav container">
         <ul class="header__nav-links">
-          <li><a class="header__link active" href="index.html">Home</a></li>
-          <li><a class="header__link" href="shop.html">Shop</a></li>
+          <li><a class="header__link" href="index.php">Home</a></li>
+          <li><a class="header__link" href="shop.php">Shop</a></li>
           <li class="header__dropdown">
             <a class="header__link" href="services.html">Services</a>
             <ul class="header__dropdown-menu">
@@ -149,7 +157,9 @@
               <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
-          <li><a class="header__link" href="appointments.html">Appointments</a></li>
+          <li>
+            <a class="header__link" href="appointments.html">Appointments</a>
+          </li>
           <li><a class="header__link" href="orders.html">Orders</a></li>
           <li><a class="header__link" href="about.html">About Us</a></li>
           <li><a class="header__link" href="contact.html">Contact</a></li>
@@ -188,7 +198,7 @@
     </div>
 
     <!-- Help Tooltip -->
-    <div class="help-tooltip" id="help-tooltip">
+        <div class="help-tooltip" id="help-tooltip">
       <p>Need help with something? Try these quick options:</p>
       <div class="quick-help-buttons">
         <button class="quick-help-button" id="help-sizing">Sizing Guide</button>
@@ -197,219 +207,205 @@
     </div>
 
     <main>
-      <div class="container">
-        <div class="ads-carousel">
-          <button
-            class="ads-carousel__button ads-carousel__button--left is-hidden"
-          >
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-          <div class="ads-carousel__track-container">
-            <ul class="ads-carousel__track">
-              <li class="ads-carousel__slide ads-carousel__current-slide">
-                <a href="#">
-                  <img
-                    class="ads-carousel__image"
-                    src="assets\images\Journey\uw2zDaCDiZ.png"
-                    alt=""
-                  />
-                </a>
-              </li>
-              <li class="ads-carousel__slide">
-                <a href="#">
-                  <img
-                    class="ads-carousel__image"
-                    src="assets/images/logo.jpg"
-                    alt=""
-                  />
-                </a>
-              </li>
-              <li class="ads-carousel__slide">
-                <a href="#">
-                  <img
-                    class="ads-carousel__image"
-                    src="assets/images/logo.jpg"
-                    alt=""
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button class="ads-carousel__button ads-carousel__button--right">
-            <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-
-          <div class="ads-carousel__nav">
-            <button
-              class="ads-carousel__indicator ads-carousel__indicator--active"
-            ></button>
-            <button class="ads-carousel__indicator"></button>
-            <button class="ads-carousel__indicator"></button>
-          </div>
-        </div>
-      </div>
-
-      <!-- grind again -->
-      <section class="featured-categories">
-        <div class="container">
-          <h2 class="section-title">Explore Our Dresses & Services</h2>
-          <div class="categories-grid">
-            <a href="shop.html?category=formal" class="category-card">
-              <img src="assets\images\Journey\21.jpg" alt="Formal Dresses" />
-              <span>Formal Dresses</span>
-            </a>
-            <a href="shop.html?category=casual" class="category-card">
-              <img src="assets\images\Journey\17.jpg" alt="Casual Dresses" />
-              <span>Casual Dresses</span>
-            </a>
-            <a href="appointments.html" class="category-card">
-              <img src="assets\images\Journey\18.jpg" alt="Book an Appointment" />
-              <span>Book an Appointment</span>
-            </a>
-            <a href="shop.html?sort=newest" class="category-card">
-              <img src="assets/images/logo.jpg" alt="New Arrivals" />
-              <span>New Arrivals</span>
-            </a>
-            <a href="shop.html?sort=popularity" class="category-card">
-              <img src="assets/images/logo.jpg" alt="Best Sellers" />
-              <span>Popular Dresses</span>
-            </a>
-          </div>
+      <!-- Shop Hero Section -->
+      <section class="hero hero--shop">
+        <div class="hero__content container">
+          <h1 class="hero__title">Discover Your Perfect Outfit!</h1>
+          <p class="hero__description">
+            Handcrafted clothing with precision and care.
+          </p>
         </div>
       </section>
 
-      <section class="featured-products">
-        <div class="container">
-          <h2 class="section-title">Featured Products</h2>
 
-          <div class="featured-product-carousel">
-            <button
-              class="featured-product_carousel-button featured-product_carousel-button--left"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5 8.25 12l7.5-7.5"
-                />
-              </svg>
-            </button>
-
-
-            <div class="featured-product-track-container">
-              <section class="featured-product-track">
-                <div id="loading-products">Loading products...</div>
-              </section>
-            </div>
-
-            <button
-              class="featured-product_carousel-button featured-product_carousel-button--right"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                />
+      <!-- working on filters -->
+      <!-- Shop Layout (Filters + Products) -->
+      <section class="shop-layout container">
+        <aside class="shop-filters">
+          <div class="filter-header">
+            <h3>Filter Products</h3>
+            <button id="toggle-filters" class="filter-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
               </svg>
             </button>
           </div>
-        </div>
-      </section>
 
-      <section class="tailoring-services">
-        <div class="container">
-          <h2 class="section-title">Tailoring Services</h2>
-
-          <div class="services-grid">
-            <div class="service-card">
-              <img src="assets/images/logo.jpg" alt="Custom Dressmaking" />
-              <h3>Custom Dressmaking</h3>
-              <p>Get a dress made just for you!</p>
-              <a href="services.html" class="btn-learn">Learn More</a>
+          <div class="filter-content">
+            <!-- Dress Type Filter -->
+            <div class="filter-group">
+              <h4>Dress Type</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="casual" name="category" value="casual" />
+                  <label for="casual">Casual Dresses</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="formal" name="category" value="formal" />
+                  <label for="formal">Formal Dresses</label>
+                </li>
+              </ul>
             </div>
 
-            <div class="service-card">
-              <img src="assets/images/logo.jpg" alt="Alterations & Repairs" />
-              <h3>Alterations & Repairs</h3>
-              <p>Make your old clothes fit perfectly again!</p>
-              <a href="services.html" class="btn-learn">Learn More</a>
+            <!-- Fabric Filter -->
+            <div class="filter-group">
+              <h4>Fabric Type</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="cotton" name="fabric" value="cotton" />
+                  <label for="cotton">Cotton</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="silk" name="fabric" value="silk" />
+                  <label for="silk">Silk</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="linen" name="fabric" value="linen" />
+                  <label for="linen">Linen</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="polyester" name="fabric" value="polyester" />
+                  <label for="polyester">Polyester</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="lace" name="fabric" value="lace" />
+                  <label for="lace">Lace</label>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Color Filter -->
+            <div class="filter-group">
+              <h4>Color</h4>
+              <div class="color-options">
+                <div class="color-option">
+                  <input type="checkbox" id="black" name="color" value="black" />
+                  <label for="black" style="background-color: #000;"></label>
+                  <span>Black</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="white" name="color" value="white" />
+                  <label for="white" style="background-color: #fff; border: 1px solid #ddd;"></label>
+                  <span>White</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="red" name="color" value="red" />
+                  <label for="red" style="background-color: #e74c3c;"></label>
+                  <span>Red</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="blue" name="color" value="blue" />
+                  <label for="blue" style="background-color: #3498db;"></label>
+                  <span>Blue</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="green" name="color" value="green" />
+                  <label for="green" style="background-color: #2ecc71;"></label>
+                  <span>Green</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="yellow" name="color" value="yellow" />
+                  <label for="yellow" style="background-color: #f1c40f;"></label>
+                  <span>Yellow</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="purple" name="color" value="purple" />
+                  <label for="purple" style="background-color: #9b59b6;"></label>
+                  <span>Purple</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="pink" name="color" value="pink" />
+                  <label for="pink" style="background-color: #e84393;"></label>
+                  <span>Pink</span>
+                </div>
+                <div class="color-option">
+                  <input type="checkbox" id="multi" name="color" value="multi" />
+                  <label for="multi" style="background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71, #f1c40f, #9b59b6, #e84393);"></label>
+                  <span>Multi</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Size Filter -->
+            <div class="filter-group">
+              <h4>Size</h4>
+              <div class="size-options">
+                <button class="size-btn" data-size="xs">XS</button>
+                <button class="size-btn" data-size="s">S</button>
+                <button class="size-btn" data-size="m">M</button>
+                <button class="size-btn" data-size="l">L</button>
+                <button class="size-btn" data-size="xl">XL</button>
+                <button class="size-btn" data-size="xxl">XXL</button>
+              </div>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="filter-group price-filter">
+              <h4>Price Range</h4>
+              <div class="price-inputs">
+                <div class="price-input">
+                  <span>₱</span>
+                  <input type="number" id="min-price" placeholder="Min" min="0" />
+                </div>
+                <div class="price-separator">-</div>
+                <div class="price-input">
+                  <span>₱</span>
+                  <input type="number" id="max-price" placeholder="Max" min="0" />
+                </div>
+              </div>
+              <div class="price-slider">
+                <input type="range" id="price-range" min="0" max="5000" step="100" value="2500" />
+                <div class="price-value">Up to: ₱<span id="price-value">2500</span></div>
+              </div>
+            </div>
+
+            <!-- Reset button -->
+            <button id="reset-filters" class="reset-filters">Reset All Filters</button>
+          </div>
+        </aside>
+
+        <!-- Right: Products Section -->
+        <section class="shop-products-section">
+          <div class="shop-controls">
+            <div class="controls-row">
+              <div class="shop-sorting">
+                <label for="sort-by">Sort By:</label>
+                <select id="sort-by" class="sort-select">
+                  <option value="default">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="name-az">Name: A to Z</option>
+                  <option value="name-za">Name: Z to A</option>
+                  <option value="newest">Newest First</option>
+                  <option value="popularity">Popularity</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section class="why-choose-us">
-        <div class="container">
-          <h2 class="section-title">Why Choose Us?</h2>
-
-          <div class="reasons-grid">
-            <div class="reason-card">
-              <img src="assets/images/logo.jpg" alt="Quality Craftsmanship" />
-              <h3>Quality Craftsmanship</h3>
-              <p>Skilled tailors with years of experience.</p>
-            </div>
-
-            <div class="reason-card">
-              <img src="assets/images/logo.jpg" alt="Affordable Prices" />
-              <h3>Affordable Prices</h3>
-              <p>High-quality work without breaking the bank.</p>
-            </div>
-
-            <div class="reason-card">
-              <img src="assets/images/logo.jpg" alt="Fast & Reliable" />
-              <h3>Fast & Reliable</h3>
-              <p>Quick turnaround time for custom orders.</p>
-            </div>
-
-            <div class="reason-card">
-              <img src="assets/images/logo.jpg" alt="Customer Satisfaction" />
-              <h3>Customer Satisfaction</h3>
-              <p>Hundreds of happy customers.</p>
-            </div>
+          <!-- Products Grid -->
+          <div class="shop-products" id="shop-products">
+            <div id="loading-products">Loading products...</div>
           </div>
-        </div>
+
+          <!-- Loading Indicator for Infinite Scroll -->
+          <div class="scroll-loader" id="scroll-loader">
+            <div class="loader-spinner"></div>
+            <p>Loading more products...</p>
+          </div>
+        </section>
       </section>
     </main>
+
+
     <footer class="site-footer">
       <div class="container footer-grid">
         <!-- Contact Info -->
@@ -425,7 +421,7 @@
         <div class="footer-section">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="shop.html">Shop</a></li>
+            <li><a href="shop.php">Shop</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="appointments.html">Appointments</a></li>
             <li><a href="orders.html">Orders</a></li>
@@ -477,23 +473,9 @@
       </div>
     </footer>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cart-sidebar">
-      <div class="cart-header">
-        <h2>Your Cart</h2>
-        <button id="close-cart">&times;</button>
-      </div>
-      <div class="cart-items" id="cart-items"></div>
-      <div class="cart-footer">
-        <p>Total: ₱<span id="cart-total">0</span></p>
-        <button class="checkout-btn">Checkout</button>
-      </div>
-    </div>
-
     <script type="module" src="data/products.js"></script>
     <script type="module" src="data/cart.js"></script>
     <script type="module" src="js/shop.js"></script>
-    <script type="module" src="js/main.js"></script>
     <script src="js/header.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
@@ -501,3 +483,4 @@
     <script src="js/breakpoint-indicator.js"></script>
   </body>
 </html>
+

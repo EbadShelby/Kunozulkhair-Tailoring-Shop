@@ -164,8 +164,8 @@
 
       <nav class="header__nav container">
         <ul class="header__nav-links">
-          <li><a class="header__link active" href="index.html">Home</a></li>
-          <li><a class="header__link" href="shop.html">Shop</a></li>
+          <li><a class="header__link active" href="index.php">Home</a></li>
+          <li><a class="header__link" href="shop.php">Shop</a></li>
           <li class="header__dropdown">
             <a class="header__link" href="services.html">Services</a>
             <ul class="header__dropdown-menu">

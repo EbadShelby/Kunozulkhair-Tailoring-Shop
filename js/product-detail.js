@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="error-message">
           <h2>Oops! Something went wrong</h2>
           <p>${message}</p>
-          <a href="shop.html" class="btn-primary">Back to Shop</a>
+          <a href="shop.php" class="btn-primary">Back to Shop</a>
         </div>
       `;
       productContent.style.display = 'block';

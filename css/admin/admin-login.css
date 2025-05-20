@@ -202,6 +202,23 @@
   text-align: center;
   min-height: 20px;
   font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.success-message {
+  color: #2ecc71;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  min-height: 20px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(46, 204, 113, 0.1);
+  border: 1px solid rgba(46, 204, 113, 0.3);
 }
 
 .login-btn {

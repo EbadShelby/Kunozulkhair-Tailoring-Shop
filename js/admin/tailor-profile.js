@@ -238,5 +238,5 @@ function showNotification(message, type) {
 // Function to handle logout
 function logout() {
   // In a real application, this would clear session data and redirect to login
-  window.location.href = 'tailor-login.html';
+  window.location.href = 'admin-login.html';
 }

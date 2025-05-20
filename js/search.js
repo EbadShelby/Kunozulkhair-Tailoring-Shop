@@ -67,7 +67,7 @@ function handleSearch() {
   }
 
   // Redirect to shop page with search query parameter
-  window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
+  window.location.href = `shop.php?search=${encodeURIComponent(searchTerm)}`;
 }
 
 /**
