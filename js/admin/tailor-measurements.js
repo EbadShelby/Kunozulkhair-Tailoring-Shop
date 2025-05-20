@@ -1,40 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize the measurements page
   initMeasurementsPage();
-  
+
   // Event listeners for sidebar toggle and user dropdown
   document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
-  
+
   const userBtn = document.querySelector('.user-btn');
   if (userBtn) {
     userBtn.addEventListener('click', toggleUserDropdown);
   }
-  
+
   // Event listeners for logout buttons
   const logoutBtn = document.getElementById('logout-btn');
   const dropdownLogout = document.getElementById('dropdown-logout');
-  
+
   if (logoutBtn) {
     logoutBtn.addEventListener('click', handleLogout);
   }
-  
+
   if (dropdownLogout) {
     dropdownLogout.addEventListener('click', handleLogout);
   }
-  
+
   // Event listeners for search and filters
   const searchBtn = document.getElementById('search-btn');
   const customerSearch = document.getElementById('customer-search');
   const customerFilter = document.getElementById('customer-filter');
   const orderTypeFilter = document.getElementById('order-type-filter');
   const dateFilter = document.getElementById('date-filter');
-  
+
   if (searchBtn) {
     searchBtn.addEventListener('click', function() {
       filterMeasurements();
     });
   }
-  
+
   if (customerSearch) {
     customerSearch.addEventListener('keyup', function(e) {
       if (e.key === 'Enter') {
@@ -42,19 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
+
   if (customerFilter) {
     customerFilter.addEventListener('change', filterMeasurements);
   }
-  
+
   if (orderTypeFilter) {
     orderTypeFilter.addEventListener('change', filterMeasurements);
   }
-  
+
   if (dateFilter) {
     dateFilter.addEventListener('change', filterMeasurements);
   }
-  
+
   // Close modal buttons
   const closeModalButtons = document.querySelectorAll('.close-modal');
   closeModalButtons.forEach(button => {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+
   // Close modals when clicking outside
   window.addEventListener('click', function(e) {
     if (e.target.classList.contains('modal')) {
@@ -87,15 +87,15 @@ function toggleUserDropdown() {
 
 // Handle logout function
 function handleLogout() {
-  // In a real app, this would handle the logout process
-  window.location.href = 'admin-login.php';
+  // Redirect to logout.php which will properly destroy the PHP session
+  window.location.href = 'logout.php';
 }
 
 // Initialize the measurements page
 function initMeasurementsPage() {
   // Load customer measurements data
   loadCustomerMeasurements();
-  
+
   // Update stats
   updateStats();
 }
@@ -208,7 +208,7 @@ function loadCustomerMeasurements() {
       }
     }
   ];
-  
+
   renderCustomerCards(mockCustomers);
   setupCardEventListeners();
 }
@@ -217,14 +217,14 @@ function loadCustomerMeasurements() {
 function renderCustomerCards(customers) {
   const container = document.getElementById('customer-measurements');
   if (!container) return;
-  
+
   container.innerHTML = '';
-  
+
   if (customers.length === 0) {
     container.innerHTML = '<div class="no-results">No measurement records found</div>';
     return;
   }
-  
+
   customers.forEach(customer => {
     const card = createCustomerCard(customer);
     container.appendChild(card);
@@ -236,11 +236,11 @@ function createCustomerCard(customer) {
   const card = document.createElement('div');
   card.className = 'customer-card';
   card.dataset.id = customer.id;
-  
+
   const isMale = customer.measurements.chest !== undefined;
   const primaryMeasurement = isMale ? 'chest' : 'bust';
   const primaryValue = isMale ? customer.measurements.chest : customer.measurements.bust;
-  
+
   card.innerHTML = `
     <div class="customer-card-header">
       <div class="customer-name">${customer.name}</div>
@@ -296,7 +296,7 @@ function createCustomerCard(customer) {
       </div>
     </div>
   `;
-  
+
   return card;
 }
 
@@ -309,7 +309,7 @@ function setupCardEventListeners() {
       openMeasurementDetails(customerId);
     });
   });
-  
+
   // Edit buttons
   document.querySelectorAll('.edit-btn').forEach(button => {
     button.addEventListener('click', function() {
@@ -325,15 +325,15 @@ function openMeasurementDetails(customerId) {
   // For now, we'll use mock data
   const customer = getMockCustomerById(customerId);
   if (!customer) return;
-  
+
   const modal = document.getElementById('measurement-detail-modal');
   const modalTitle = document.getElementById('modal-customer-name');
   const detailsGrid = document.querySelector('.measurement-details-grid');
-  
+
   modalTitle.textContent = `${customer.name}'s Measurements`;
-  
+
   const isMale = customer.measurements.chest !== undefined;
-  
+
   detailsGrid.innerHTML = `
     <div class="measurement-section customer-info-section">
       <h3>Customer Information</h3>
@@ -356,7 +356,7 @@ function openMeasurementDetails(customerId) {
         </div>
       </div>
     </div>
-    
+
     <div class="measurement-section order-info-section">
       <h3>Order Information</h3>
       <div class="measurement-group">
@@ -378,15 +378,15 @@ function openMeasurementDetails(customerId) {
         </div>
       </div>
     </div>
-    
+
     <div class="measurement-section body-measurements">
       <h3>Body Measurements</h3>
       <div class="measurement-group">
-        ${isMale ? 
+        ${isMale ?
           `<div class="measurement-detail">
             <div class="measurement-detail-label">Chest</div>
             <div class="measurement-detail-value">${customer.measurements.chest} inches</div>
-          </div>` : 
+          </div>` :
           `<div class="measurement-detail">
             <div class="measurement-detail-label">Bust</div>
             <div class="measurement-detail-value">${customer.measurements.bust} inches</div>
@@ -414,12 +414,12 @@ function openMeasurementDetails(customerId) {
         </div>
       </div>
     </div>
-    
+
     <div class="measurement-section measurement-notes">
       <h3>Notes</h3>
       <p>Customer prefers a slightly looser fit around the waist. Fabric has been pre-washed to account for shrinkage.</p>
     </div>
-    
+
     <div class="measurement-section measurement-history">
       <h3>Measurement History</h3>
       <div class="history-item">
@@ -431,13 +431,13 @@ function openMeasurementDetails(customerId) {
         <div class="history-changes">Updated waist measurement from 27 to 28 inches.</div>
       </div>
     </div>
-    
+
     <div class="modal-actions">
       <button class="modal-btn secondary close-modal">Close</button>
       <button class="modal-btn primary" onclick="openEditMeasurementForm(${customer.id})">Edit Measurements</button>
     </div>
   `;
-  
+
   modal.style.display = 'block';
 }
 
@@ -447,15 +447,15 @@ function openEditMeasurementForm(customerId) {
   // For now, we'll use mock data
   const customer = getMockCustomerById(customerId);
   if (!customer) return;
-  
+
   const modal = document.getElementById('edit-measurement-modal');
   const modalTitle = document.getElementById('edit-modal-title');
   const form = document.getElementById('measurement-form');
-  
+
   modalTitle.textContent = `Edit ${customer.name}'s Measurements`;
-  
+
   const isMale = customer.measurements.chest !== undefined;
-  
+
   form.innerHTML = `
     <div class="form-grid">
       <div class="form-section">
@@ -477,7 +477,7 @@ function openEditMeasurementForm(customerId) {
           <input type="number" id="measurement-shoulder" value="${customer.measurements.shoulder}" step="0.5">
         </div>
       </div>
-      
+
       <div class="form-section">
         <h3>Additional Measurements</h3>
         <div class="form-group">
@@ -497,7 +497,7 @@ function openEditMeasurementForm(customerId) {
           <input type="number" id="measurement-thigh" value="22" step="0.5">
         </div>
       </div>
-      
+
       <div class="form-section" style="grid-column: span 2;">
         <h3>Notes</h3>
         <div class="form-group">
@@ -505,19 +505,19 @@ function openEditMeasurementForm(customerId) {
         </div>
       </div>
     </div>
-    
+
     <div class="form-actions">
       <button type="button" class="modal-btn secondary close-modal">Cancel</button>
       <button type="button" class="modal-btn primary" onclick="saveMeasurements(${customer.id})">Save Changes</button>
     </div>
   `;
-  
+
   // Close the details modal if it's open
   const detailModal = document.getElementById('measurement-detail-modal');
   if (detailModal) {
     detailModal.style.display = 'none';
   }
-  
+
   modal.style.display = 'block';
 }
 
@@ -526,7 +526,7 @@ function saveMeasurements(customerId) {
   // In a real app, this would save the data to a server
   // For now, we'll just close the modal
   alert(`Measurements for customer #${customerId} have been saved.`);
-  
+
   const modal = document.getElementById('edit-measurement-modal');
   if (modal) {
     modal.style.display = 'none';
@@ -554,7 +554,7 @@ function updateStats() {
 function getMockCustomerById(id) {
   // Convert id to number if it's a string
   id = parseInt(id);
-  
+
   const mockCustomers = [
     {
       id: 1,
@@ -625,6 +625,6 @@ function getMockCustomerById(id) {
       }
     }
   ];
-  
+
   return mockCustomers.find(customer => customer.id === id);
 }

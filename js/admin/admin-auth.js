@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to check if user is authenticated
 function checkAuth() {
+  // Check if we're on a PHP-authenticated page
+  // If the page has PHP authentication (admin-check.php or tailor-check.php),
+  // we don't need to do JavaScript authentication
+  const hasPHPAuth = document.body.hasAttribute('data-php-auth');
+
+  // If the page has PHP authentication, we don't need to redirect
+  if (hasPHPAuth) {
+    return;
+  }
+
   const currentUser = getCurrentUser();
 
   // If not logged in and not on login page, redirect to login
@@ -98,8 +108,8 @@ function logout() {
   // Clear session storage
   sessionStorage.removeItem('currentUser');
 
-  // Redirect to login page
-  window.location.href = 'admin-login.php';
+  // Redirect to logout.php which will properly destroy the PHP session
+  window.location.href = 'logout.php';
 }
 
 // Function to update user info in the UI

@@ -237,6 +237,6 @@ function showNotification(message, type) {
 
 // Function to handle logout
 function logout() {
-  // In a real application, this would clear session data and redirect to login
-  window.location.href = 'admin-login.php';
+  // Redirect to logout.php which will properly destroy the PHP session
+  window.location.href = 'logout.php';
 }

@@ -1,8 +1,8 @@
 <?php
 /**
- * Logout Script
- *
- * This script handles user logout by destroying the session.
+ * Customer Logout Script
+ * 
+ * This script handles customer logout by destroying the session.
  */
 
 // Start session if not already started
@@ -10,8 +10,11 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Unset all session variables
-$_SESSION = array();
+// Unset customer session variables
+unset($_SESSION['customer_id']);
+unset($_SESSION['customer_name']);
+unset($_SESSION['customer_email']);
+unset($_SESSION['login_time']);
 
 // If it's desired to kill the session, also delete the session cookie
 if (ini_get("session.use_cookies")) {
@@ -25,27 +28,11 @@ if (ini_get("session.use_cookies")) {
 // Destroy the session
 session_destroy();
 
-// Set a logout message
+// Start a new session for the message
 session_start();
 $_SESSION['success_message'] = 'You have been successfully logged out.';
 
-// Create a page that clears sessionStorage and redirects
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Logging out...</title>
-</head>
-<body>
-    <p>Logging out...</p>
-    <script>
-        // Clear sessionStorage
-        sessionStorage.removeItem('currentUser');
-        // Redirect to login page
-        window.location.href = 'admin-login.php';
-    </script>
-</body>
-</html>
-<?php
+// Redirect to login page
+header("Location: login-form.php");
 exit;
 ?>

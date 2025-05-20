@@ -3,10 +3,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize sidebar toggle functionality
   initSidebarToggle();
-  
+
   // Set up event listeners
   setupEventListeners();
-  
+
   // Load profile data
   loadProfileData();
 });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSidebarToggle() {
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const adminContainer = document.querySelector('.admin-container');
-  
+
   if (sidebarToggle && adminContainer) {
     sidebarToggle.addEventListener('click', function() {
       adminContainer.classList.toggle('sidebar-collapsed');
@@ -31,31 +31,31 @@ function setupEventListeners() {
   const closeModalBtns = document.querySelectorAll('.close-modal');
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
   const saveProfileBtn = document.getElementById('save-profile-btn');
-  
+
   // Change password button
   const changePasswordBtn = document.getElementById('change-password-btn');
   const changePasswordModal = document.getElementById('change-password-modal');
   const cancelPasswordBtn = document.getElementById('cancel-password-btn');
   const savePasswordBtn = document.getElementById('save-password-btn');
-  
+
   // Logout button
   const logoutBtn = document.getElementById('logout-btn');
   const dropdownLogoutBtn = document.getElementById('dropdown-logout');
-  
+
   // Edit profile modal
   if (editProfileBtn && editProfileModal) {
     editProfileBtn.addEventListener('click', function() {
       editProfileModal.style.display = 'block';
     });
   }
-  
+
   // Change password modal
   if (changePasswordBtn && changePasswordModal) {
     changePasswordBtn.addEventListener('click', function() {
       changePasswordModal.style.display = 'block';
     });
   }
-  
+
   // Close modals
   if (closeModalBtns) {
     closeModalBtns.forEach(btn => {
@@ -65,21 +65,21 @@ function setupEventListeners() {
       });
     });
   }
-  
+
   // Cancel edit profile
   if (cancelEditBtn && editProfileModal) {
     cancelEditBtn.addEventListener('click', function() {
       editProfileModal.style.display = 'none';
     });
   }
-  
+
   // Cancel change password
   if (cancelPasswordBtn && changePasswordModal) {
     cancelPasswordBtn.addEventListener('click', function() {
       changePasswordModal.style.display = 'none';
     });
   }
-  
+
   // Save profile changes
   if (saveProfileBtn && editProfileModal) {
     saveProfileBtn.addEventListener('click', function() {
@@ -87,7 +87,7 @@ function setupEventListeners() {
       editProfileModal.style.display = 'none';
     });
   }
-  
+
   // Save password changes
   if (savePasswordBtn && changePasswordModal) {
     savePasswordBtn.addEventListener('click', function() {
@@ -95,21 +95,21 @@ function setupEventListeners() {
       changePasswordModal.style.display = 'none';
     });
   }
-  
+
   // Logout functionality
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function() {
       logout();
     });
   }
-  
+
   if (dropdownLogoutBtn) {
     dropdownLogoutBtn.addEventListener('click', function(e) {
       e.preventDefault();
       logout();
     });
   }
-  
+
   // Close modal when clicking outside
   window.addEventListener('click', function(event) {
     if (event.target === editProfileModal) {
@@ -125,15 +125,15 @@ function setupEventListeners() {
 function loadProfileData() {
   // In a real application, this would fetch data from a server
   // For now, we'll use placeholder data
-  
+
   // This is where you would make an API call to get the user's profile data
   // For demonstration purposes, we're using static data
-  
+
   // Update profile header
   document.getElementById('profile-name').textContent = 'Admin User';
   document.getElementById('profile-role').textContent = 'Administrator';
   document.getElementById('profile-email').textContent = 'admin@kunozulkhair.com';
-  
+
   // Update profile details
   document.getElementById('full-name').textContent = 'Admin User';
   document.getElementById('email').textContent = 'admin@kunozulkhair.com';
@@ -142,11 +142,11 @@ function loadProfileData() {
   document.getElementById('username').textContent = 'admin';
   document.getElementById('last-login').textContent = 'Today at 9:30 AM';
   document.getElementById('account-created').textContent = 'January 1, 2023';
-  
+
   // Update sidebar user info
   document.getElementById('user-name').textContent = 'Admin User';
   document.getElementById('user-role').textContent = 'Administrator';
-  
+
   // Update dropdown user name
   document.getElementById('dropdown-user-name').textContent = 'Admin';
 }
@@ -158,26 +158,26 @@ function saveProfileChanges() {
   const email = document.getElementById('edit-email').value;
   const phone = document.getElementById('edit-phone').value;
   const username = document.getElementById('edit-username').value;
-  
+
   // In a real application, this would send data to a server
   // For now, we'll just update the UI
-  
+
   // Update profile header
   document.getElementById('profile-name').textContent = fullName;
   document.getElementById('profile-email').textContent = email;
-  
+
   // Update profile details
   document.getElementById('full-name').textContent = fullName;
   document.getElementById('email').textContent = email;
   document.getElementById('phone').textContent = phone;
   document.getElementById('username').textContent = username;
-  
+
   // Update sidebar user info
   document.getElementById('user-name').textContent = fullName;
-  
+
   // Update dropdown user name
   document.getElementById('dropdown-user-name').textContent = fullName.split(' ')[0];
-  
+
   // Show success message
   showNotification('Profile updated successfully!', 'success');
 }
@@ -188,26 +188,26 @@ function savePasswordChanges() {
   const currentPassword = document.getElementById('current-password').value;
   const newPassword = document.getElementById('new-password').value;
   const confirmPassword = document.getElementById('confirm-password').value;
-  
+
   // Validate passwords
   if (!currentPassword || !newPassword || !confirmPassword) {
     showNotification('Please fill in all password fields', 'error');
     return;
   }
-  
+
   if (newPassword !== confirmPassword) {
     showNotification('New passwords do not match', 'error');
     return;
   }
-  
+
   // In a real application, this would send data to a server
   // For now, we'll just show a success message
-  
+
   // Reset form
   document.getElementById('current-password').value = '';
   document.getElementById('new-password').value = '';
   document.getElementById('confirm-password').value = '';
-  
+
   // Show success message
   showNotification('Password updated successfully!', 'success');
 }
@@ -218,15 +218,15 @@ function showNotification(message, type) {
   const notification = document.createElement('div');
   notification.className = `notification ${type}`;
   notification.textContent = message;
-  
+
   // Add to document
   document.body.appendChild(notification);
-  
+
   // Show notification
   setTimeout(() => {
     notification.classList.add('show');
   }, 10);
-  
+
   // Remove notification after 3 seconds
   setTimeout(() => {
     notification.classList.remove('show');
@@ -238,6 +238,6 @@ function showNotification(message, type) {
 
 // Function to handle logout
 function logout() {
-  // In a real application, this would clear session data and redirect to login
-  window.location.href = 'admin-login.php';
+  // Redirect to logout.php which will properly destroy the PHP session
+  window.location.href = 'logout.php';
 }

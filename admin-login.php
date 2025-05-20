@@ -233,6 +233,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             loginForm.classList.remove('shake');
           }, 500);
         }
+
+        <?php if (is_logged_in()): ?>
+        // If PHP session is active, sync with sessionStorage
+        sessionStorage.setItem('currentUser', JSON.stringify({
+          id: <?php echo json_encode($_SESSION['user_id']); ?>,
+          email: <?php echo json_encode($_SESSION['user_email']); ?>,
+          name: <?php echo json_encode($_SESSION['user_name']); ?>,
+          role: <?php echo json_encode($_SESSION['user_role']); ?>,
+          loggedIn: true,
+          loginTime: new Date().toISOString()
+        }));
+        <?php endif; ?>
       });
     </script>
     <script src="js/breakpoint-indicator.js"></script>

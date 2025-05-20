@@ -1,3 +1,13 @@
+<?php
+/**
+ * Tailor Dashboard
+ *
+ * Main dashboard for tailor users.
+ */
+
+// Include tailor authentication check
+require_once 'tailor-check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +30,7 @@
 
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
 </head>
-<body>
+<body data-php-auth="true">
   <div class="admin-container">
     <!-- Sidebar -->
     <aside class="sidebar">

@@ -1,3 +1,123 @@
+<?php
+/**
+ * Customer Login and Registration Page
+ *
+ * This page handles customer login and registration.
+ */
+
+// Include database connection
+require_once 'config/db_connect.php';
+
+// Initialize variables
+$name = '';
+$email = '';
+$password = '';
+$login_email = '';
+$error_message = '';
+$success_message = '';
+$show_signup = false;
+
+// Process registration form
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+    // Get form data
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    // Validate input
+    if (empty($name) || empty($email) || empty($password)) {
+        $error_message = 'Please fill in all fields';
+        $show_signup = true;
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error_message = 'Please enter a valid email address';
+        $show_signup = true;
+    } elseif (strlen($password) < 6) {
+        $error_message = 'Password must be at least 6 characters long';
+        $show_signup = true;
+    } else {
+        // Check if email already exists
+        $stmt = mysqli_prepare($conn, "SELECT id FROM customers WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            $error_message = 'Email already exists. Please use a different email or login.';
+            $show_signup = true;
+        } else {
+            // Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert new customer
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
+            mysqli_stmt_bind_param($insert_stmt, "sss", $name, $email, $hashed_password);
+
+            if (mysqli_stmt_execute($insert_stmt)) {
+                $success_message = 'Registration successful! You can now login.';
+                // Clear form data
+                $name = '';
+                $email = '';
+            } else {
+                $error_message = 'Registration failed. Please try again later.';
+                $show_signup = true;
+            }
+
+            mysqli_stmt_close($insert_stmt);
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+}
+
+// Process login form
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    // Get form data
+    $login_email = trim($_POST['login_email'] ?? '');
+    $login_password = $_POST['login_password'] ?? '';
+
+    // Validate input
+    if (empty($login_email) || empty($login_password)) {
+        $error_message = 'Please enter both email and password';
+    } else {
+        // Check credentials
+        $stmt = mysqli_prepare($conn, "SELECT id, name, email, password FROM customers WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "s", $login_email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($customer = mysqli_fetch_assoc($result)) {
+            // Verify password
+            if (password_verify($login_password, $customer['password'])) {
+                // Start session if not already started
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                // Set session variables
+                $_SESSION['customer_id'] = $customer['id'];
+                $_SESSION['customer_name'] = $customer['name'];
+                $_SESSION['customer_email'] = $customer['email'];
+                $_SESSION['login_time'] = time();
+
+                // Redirect to home page
+                header("Location: index.php");
+                exit;
+            } else {
+                $error_message = 'Invalid email or password';
+            }
+        } else {
+            $error_message = 'Invalid email or password';
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+}
+
+// Check URL parameters for signup flag
+if (isset($_GET['signup']) && $_GET['signup'] === 'true') {
+    $show_signup = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -225,45 +345,35 @@
     </div>
 
     <main class="login-main">
-    <div class="container_lf" id="container">
+    <div class="container_lf <?php echo $show_signup ? 'active' : ''; ?>" id="container">
+      <?php if (!empty($error_message)): ?>
+        <div class="message error-message">
+          <?php echo htmlspecialchars($error_message); ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if (!empty($success_message)): ?>
+        <div class="message success-message">
+          <?php echo htmlspecialchars($success_message); ?>
+        </div>
+      <?php endif; ?>
+
       <div class="form-container sign-up">
-        <form>
+        <form method="POST" action="login-form.php">
           <h1>Create Account</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-linkedin-in"></i
-            ></a>
-          </div>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          <input type="text" name="name" placeholder="Name" value="<?php echo htmlspecialchars($name); ?>" required />
+          <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required />
+          <input type="password" name="password" placeholder="Password" minlength="6" required />
+          <button type="submit" name="register">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in">
-        <form>
+        <form method="POST" action="login-form.php">
           <h1>Sign In</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-linkedin-in"></i
-            ></a>
-          </div>
-          <span>or use your email password</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="email" name="login_email" placeholder="Email" value="<?php echo htmlspecialchars($login_email); ?>" required />
+          <input type="password" name="login_password" placeholder="Password" required />
           <a href="#">Forget Your Password?</a>
-          <button>Sign In</button>
+          <button type="submit" name="login">Sign In</button>
         </form>
       </div>
       <div class="toggle-container">
