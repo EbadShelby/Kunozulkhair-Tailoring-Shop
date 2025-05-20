@@ -88,7 +88,7 @@ function toggleUserDropdown() {
 // Handle logout function
 function handleLogout() {
   // In a real app, this would handle the logout process
-  window.location.href = 'admin-login.html';
+  window.location.href = 'admin-login.php';
 }
 
 // Initialize the measurements page

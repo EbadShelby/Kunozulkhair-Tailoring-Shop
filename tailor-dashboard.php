@@ -42,25 +42,25 @@
       <nav class="sidebar-nav">
         <ul>
           <li class="active">
-            <a href="tailor-dashboard.html">
+            <a href="tailor-dashboard.php">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="tailor-work-queue.html">
+            <a href="tailor-work-queue.php">
               <i class="fas fa-tasks"></i>
               <span>Work Queue</span>
             </a>
           </li>
           <li>
-            <a href="tailor-schedule.html">
+            <a href="tailor-schedule.php">
               <i class="fas fa-calendar-alt"></i>
               <span>Schedule</span>
             </a>
           </li>
           <li>
-            <a href="tailor-measurements.html">
+            <a href="tailor-measurements.php">
               <i class="fas fa-ruler-combined"></i>
               <span>Measurements</span>
             </a>
@@ -107,7 +107,7 @@
                 <!-- Notifications will be dynamically inserted here -->
               </div>
               <div class="tailor-notification-footer">
-                <a href="tailor-notifications.html">View all notifications</a>
+                <a href="tailor-notifications.php">View all notifications</a>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
                 <!-- Messages will be dynamically inserted here -->
               </div>
               <div class="admin-message-footer">
-                <a href="tailor-messages.html">View all messages</a>
+                <a href="tailor-messages.php">View all messages</a>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="tailor-profile.html"><i class="fas fa-user"></i> Profile</a>
+              <a href="tailor-profile.php"><i class="fas fa-user"></i> Profile</a>
               <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
@@ -208,7 +208,7 @@
           <div class="dashboard-card today-schedule">
             <div class="card-header">
               <h2>Today's Schedule</h2>
-              <a href="tailor-schedule.html" class="view-all">View Full Schedule</a>
+              <a href="tailor-schedule.php" class="view-all">View Full Schedule</a>
             </div>
             <div class="card-content">
               <div class="schedule-timeline">
@@ -274,7 +274,7 @@
           <div class="dashboard-card work-queue">
             <div class="card-header">
               <h2>Work Queue</h2>
-              <a href="tailor-work-queue.html" class="view-all">View All Tasks</a>
+              <a href="tailor-work-queue.php" class="view-all">View All Tasks</a>
             </div>
             <div class="card-content">
               <div class="task-list">
@@ -373,7 +373,7 @@
           <div class="dashboard-card recent-measurements">
             <div class="card-header">
               <h2>Recent Measurements</h2>
-              <a href="tailor-measurements.html" class="view-all">View All</a>
+              <a href="tailor-measurements.php" class="view-all">View All</a>
             </div>
             <div class="card-content">
               <table class="data-table">
@@ -446,3 +446,4 @@
   <script type="module" src="js/admin/tailor-messages.js"></script>
 </body>
 </html>
+

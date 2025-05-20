@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       html = `
         <article class="featured-product-slide" data-product-id="${product.id}">
-          <a href="product-detail.html?id=${product.id}" class="product-image-link">
+          <a href="product-detail.php?id=${product.id}" class="product-image-link">
             <img src="${product.image}" alt="${product.name}" />
           </a>
           <div class="product-info">
-            <a href="product-detail.html?id=${product.id}" class="product-title-link">
+            <a href="product-detail.php?id=${product.id}" class="product-title-link">
               <h3>${product.name}</h3>
             </a>
             <div class="product-meta">
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.closest('.btn-cart')) return;
 
         const productId = card.dataset.productId;
-        window.location.href = `product-detail.html?id=${productId}`;
+        window.location.href = `product-detail.php?id=${productId}`;
       });
     });
 

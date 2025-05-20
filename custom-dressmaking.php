@@ -25,7 +25,7 @@
   <body>
     <header class="header">
       <div class="header__top container">
-        <a class="header__logo" href="index.html">
+        <a class="header__logo" href="index.php">
           <img
             class="header__logo-img"
             src="assets/images/logo.jpg"
@@ -118,7 +118,7 @@
               </svg>
             </button>
           </div>
-          <a href="login-form.html"class="header__icon">
+          <a href="login-form.php"class="header__icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -153,22 +153,22 @@
 
       <nav class="header__nav container">
         <ul class="header__nav-links">
-          <li><a class="header__link" href="index.html">Home</a></li>
+          <li><a class="header__link" href="index.php">Home</a></li>
           <li><a class="header__link" href="shop.php">Shop</a></li>
           <li class="header__dropdown">
             <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
+              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
           <li>
             <a class="header__link" href="appointments.php">Appointments</a>
           </li>
-          <li><a class="header__link" href="orders.html">Orders</a></li>
-          <li><a class="header__link" href="about.html">About Us</a></li>
-          <li><a class="header__link" href="contact.html">Contact</a></li>
+          <li><a class="header__link" href="orders.php">Orders</a></li>
+          <li><a class="header__link" href="about.php">About Us</a></li>
+          <li><a class="header__link" href="contact.php">Contact</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -200,7 +200,7 @@
         <!-- Notifications will be dynamically inserted here -->
       </div>
       <div class="notification-footer">
-        <a href="notifications.html">View all notifications</a>
+        <a href="notifications.php">View all notifications</a>
       </div>
     </div>
 
@@ -436,9 +436,9 @@
             <li><a href="shop.php">Shop</a></li>
             <li><a href="services.php">Services</a></li>
             <li><a href="appointments.php">Appointments</a></li>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="about.php">About Us</a></li>
           </ul>
         </div>
 
@@ -446,9 +446,9 @@
         <div class="footer-section">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-            <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-            <li><a href="casual-and-everydaydresses.html">Casual and Everyday dresses</a></li>
+            <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+            <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+            <li><a href="casual-and-everydaydresses.php">Casual and Everyday dresses</a></li>
           </ul>
         </div>
 
@@ -477,10 +477,10 @@
       <div class="container footer-bottom">
         <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-of-service.html">Terms of Service</a>
-          <a href="faqs.html">FAQs</a>
-          <a href="admin-login.html" class="admin-link">Admin/Tailor Login</a>
+          <a href="privacy-policy.php">Privacy Policy</a>
+          <a href="terms-of-service.php">Terms of Service</a>
+          <a href="faqs.php">FAQs</a>
+          <a href="admin-login.php" class="admin-link">Admin/Tailor Login</a>
         </div>
       </div>
     </footer>
@@ -495,5 +495,8 @@
     <!-- <script type="module" src="data/products.js"></script> -->
   </body>
 </html>
+
+
+
 
 

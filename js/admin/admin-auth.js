@@ -16,17 +16,17 @@ function checkAuth() {
   const currentUser = getCurrentUser();
 
   // If not logged in and not on login page, redirect to login
-  if (!currentUser && !window.location.href.includes('admin-login.html')) {
-    window.location.href = 'admin-login.html';
+  if (!currentUser && !window.location.href.includes('admin-login.php')) {
+    window.location.href = 'admin-login.php';
     return;
   }
 
   // If logged in but on login page, redirect to dashboard based on role
-  if (currentUser && window.location.href.includes('admin-login.html')) {
+  if (currentUser && window.location.href.includes('admin-login.php')) {
     if (currentUser.role === 'admin') {
-      window.location.href = 'admin-dashboard.html';
+      window.location.href = 'admin-dashboard.php';
     } else if (currentUser.role === 'tailor') {
-      window.location.href = 'tailor-dashboard.html';
+      window.location.href = 'tailor-dashboard.php';
     }
     return;
   }
@@ -37,11 +37,11 @@ function checkAuth() {
 
     // If on admin pages but not admin role
     if (window.location.href.includes('admin-') &&
-        !window.location.href.includes('admin-login.html') &&
+        !window.location.href.includes('admin-login.php') &&
         role !== 'admin') {
       // Redirect to appropriate dashboard based on role
       if (role === 'tailor') {
-        window.location.href = 'tailor-dashboard.html';
+        window.location.href = 'tailor-dashboard.php';
       } else {
         // For any other role, log out and redirect to login
         logout();
@@ -52,7 +52,7 @@ function checkAuth() {
     if (window.location.href.includes('tailor-') && role !== 'tailor') {
       // Redirect to appropriate dashboard based on role
       if (role === 'admin') {
-        window.location.href = 'admin-dashboard.html';
+        window.location.href = 'admin-dashboard.php';
       } else {
         // For any other role, log out and redirect to login
         logout();
@@ -99,7 +99,7 @@ function logout() {
   sessionStorage.removeItem('currentUser');
 
   // Redirect to login page
-  window.location.href = 'admin-login.html';
+  window.location.href = 'admin-login.php';
 }
 
 // Function to update user info in the UI

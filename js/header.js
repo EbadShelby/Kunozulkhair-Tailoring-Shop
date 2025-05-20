@@ -340,7 +340,7 @@ function openFAQs() {
 
         <div class="faq-contact">
           <p>Didn't find what you're looking for? Contact us directly:</p>
-          <a href="contact.html" class="faq-contact-btn">Contact Us</a>
+          <a href="contact.php" class="faq-contact-btn">Contact Us</a>
         </div>
       </div>
     </div>
@@ -973,4 +973,5 @@ function openSizingGuide() {
     document.head.appendChild(style);
   }
 }
+
 

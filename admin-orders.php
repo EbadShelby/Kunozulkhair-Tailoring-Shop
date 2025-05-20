@@ -41,19 +41,19 @@
       <nav class="sidebar-nav">
         <ul>
           <li>
-            <a href="admin-dashboard.html">
+            <a href="admin-dashboard.php">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="admin-inventory.html">
+            <a href="admin-inventory.php">
               <i class="fas fa-box"></i>
               <span>Inventory</span>
             </a>
           </li>
           <li class="active">
-            <a href="admin-orders.html">
+            <a href="admin-orders.php">
               <i class="fas fa-shopping-cart"></i>
               <span>Orders</span>
             </a>
@@ -65,13 +65,13 @@
             </a>
           </li>
           <li>
-            <a href="admin-customers.html">
+            <a href="admin-customers.php">
               <i class="fas fa-users"></i>
               <span>Customers</span>
             </a>
           </li>
           <li>
-            <a href="admin-tailor.html">
+            <a href="admin-tailor.php">
               <i class="fas fa-user-tie"></i>
               <span>Tailor</span>
             </a>
@@ -119,7 +119,7 @@
                 <!-- Notifications will be dynamically inserted here -->
               </div>
               <div class="admin-notification-footer">
-                <a href="admin-notifications.html">View all notifications</a>
+                <a href="admin-notifications.php">View all notifications</a>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
                 <!-- Messages will be dynamically inserted here -->
               </div>
               <div class="admin-message-footer">
-                <a href="admin-messages.html">View all messages</a>
+                <a href="admin-messages.php">View all messages</a>
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="admin-profile.html"><i class="fas fa-user"></i> Profile</a>
+              <a href="admin-profile.php"><i class="fas fa-user"></i> Profile</a>
               <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
@@ -454,4 +454,5 @@
   <script type="module" src="js/admin/admin-messages.js"></script>
 </body>
 </html>
+
 

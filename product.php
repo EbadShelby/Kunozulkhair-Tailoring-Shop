@@ -114,20 +114,20 @@
           <li class="header__dropdown">
             <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
-              <li><a href="embroidery.html">Embroidery Services</a></li>
-              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-              <li><a href="alterations.html">Alterations & Repairs</a></li>
-              <li><a href="bridal.html">Bridal & Formal Wear</a></li>
-              <li><a href="curtains-home-tetiles.html">Curtains & Home Textiles</a></li>
-              <li><a href="casual-dresses.html">Casual & Everyday Dresses</a></li>
+              <li><a href="embroidery.php">Embroidery Services</a></li>
+              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+              <li><a href="alterations.php">Alterations & Repairs</a></li>
+              <li><a href="bridal.php">Bridal & Formal Wear</a></li>
+              <li><a href="curtains-home-tetiles.php">Curtains & Home Textiles</a></li>
+              <li><a href="casual-dresses.php">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
           <li>
             <a class="header__link" href="appointments.php">Appointments</a>
           </li>
-          <li><a class="header__link" href="orders.html">Orders</a></li>
-          <li><a class="header__link" href="about.html">About Us</a></li>
-          <li><a class="header__link" href="contact.html">Contact</a></li>
+          <li><a class="header__link" href="orders.php">Orders</a></li>
+          <li><a class="header__link" href="about.php">About Us</a></li>
+          <li><a class="header__link" href="contact.php">Contact</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -152,3 +152,5 @@
     <script src="js/header.js"></script>
   </body>
 </html>
+
+

@@ -130,7 +130,7 @@
               />
             </svg>
           </button>
-          <a href="login-form.html" class="header__icon">
+          <a href="login-form.php" class="header__icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -170,17 +170,17 @@
             <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
               <li><a href="embroidery-services.php">Embroidery Services</a></li>
-              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
+              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
           <li>
             <a class="header__link" href="appointments.php">Appointments</a>
           </li>
-          <li><a class="header__link" href="orders.html">Orders</a></li>
-          <li><a class="header__link" href="about.html">About Us</a></li>
-          <li><a class="header__link" href="contact.html">Contact</a></li>
+          <li><a class="header__link" href="orders.php">Orders</a></li>
+          <li><a class="header__link" href="about.php">About Us</a></li>
+          <li><a class="header__link" href="contact.php">Contact</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -211,7 +211,7 @@
         <!-- Notifications will be dynamically inserted here -->
       </div>
       <div class="notification-footer">
-        <a href="notifications.html">View all notifications</a>
+        <a href="notifications.php">View all notifications</a>
       </div>
     </div>
 
@@ -305,4 +305,6 @@
     <script src="js/breakpoint-indicator.js"></script>
   </body>
 </html>
+
+
 

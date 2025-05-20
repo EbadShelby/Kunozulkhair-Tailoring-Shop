@@ -446,11 +446,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const ratingOutOf10 = (relatedProduct.rating.rate * 2).toFixed(1);
 
       productCard.innerHTML = `
-        <a href="product-detail.html?id=${relatedProduct.id}" class="product-image-link">
+        <a href="product-detail.php?id=${relatedProduct.id}" class="product-image-link">
           <img src="${relatedProduct.image}" alt="${relatedProduct.name}" />
         </a>
         <div class="product-info">
-          <a href="product-detail.html?id=${relatedProduct.id}" class="product-title-link">
+          <a href="product-detail.php?id=${relatedProduct.id}" class="product-title-link">
             <h3>${relatedProduct.name}</h3>
           </a>
           <div class="product-meta">
@@ -469,13 +469,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add click event to "View Details" button
       const viewDetailsBtn = productCard.querySelector('button');
       viewDetailsBtn.addEventListener('click', () => {
-        window.location.href = `product-detail.html?id=${relatedProduct.id}`;
+        window.location.href = `product-detail.php?id=${relatedProduct.id}`;
       });
 
       // Make the entire card clickable
       productCard.addEventListener('click', (e) => {
         if (e.target !== viewDetailsBtn) {
-          window.location.href = `product-detail.html?id=${relatedProduct.id}`;
+          window.location.href = `product-detail.php?id=${relatedProduct.id}`;
         }
       });
     });

@@ -166,7 +166,7 @@ function createProductCard(product) {
   const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
 
   productCard.innerHTML = `
-    <a href="product-detail.html?id=${product.id}" class="search-product-link">
+    <a href="product-detail.php?id=${product.id}" class="search-product-link">
       <img src="${product.image}" alt="${product.name}" class="search-product-image">
       <div class="search-product-info">
         <h4 class="search-product-name">${product.name}</h4>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tailor Profile - Kunozulkhair Tailoring Shop</title>
+  <title>Admin Profile - Kunozulkhair Tailoring Shop</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
   <link rel="stylesheet" href="css/admin/admin-profile.css">
-  <link rel="stylesheet" href="css/admin/tailor-notifications.css">
+  <link rel="stylesheet" href="css/admin/admin-notifications.css">
   <link rel="stylesheet" href="css/admin/admin-messages.css">
 
   <link rel="icon" href="assets/images/logo.jpg" type="image/png">
@@ -25,7 +25,7 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <img src="assets/images/logo.jpg" alt="Kunozulkhair Logo" class="logo">
-        <h2>Tailor Panel</h2>
+        <h2>Admin Panel</h2>
       </div>
 
       <div class="sidebar-user">
@@ -33,35 +33,47 @@
           <i class="fas fa-user-circle"></i>
         </div>
         <div class="user-info">
-          <p class="user-name" id="user-name">Ryan Mentang</p>
-          <p class="user-role" id="user-role">Tailor</p>
+          <p class="user-name" id="user-name">Admin User</p>
+          <p class="user-role" id="user-role">Administrator</p>
         </div>
       </div>
 
       <nav class="sidebar-nav">
         <ul>
           <li>
-            <a href="tailor-dashboard.html">
+            <a href="admin-dashboard.php">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="tailor-work-queue.html">
-              <i class="fas fa-tasks"></i>
-              <span>Work Queue</span>
+            <a href="admin-inventory.php">
+              <i class="fas fa-box"></i>
+              <span>Inventory</span>
             </a>
           </li>
           <li>
-            <a href="tailor-schedule.html">
+            <a href="admin-orders.php">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Orders</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-appointments.php">
               <i class="fas fa-calendar-alt"></i>
-              <span>Schedule</span>
+              <span>Appointments</span>
             </a>
           </li>
           <li>
-            <a href="tailor-measurements.html">
-              <i class="fas fa-ruler-combined"></i>
-              <span>Measurements</span>
+            <a href="admin-customers.php">
+              <i class="fas fa-users"></i>
+              <span>Customers</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-tailor.php">
+              <i class="fas fa-user-tie"></i>
+              <span>Tailor</span>
             </a>
           </li>
         </ul>
@@ -97,28 +109,28 @@
           <div class="nav-item">
             <button class="notification-btn">
               <i class="fas fa-bell"></i>
-              <span class="badge">2</span>
+              <span class="badge">3</span>
             </button>
-            <!-- Tailor Notification Dropdown -->
-            <div class="tailor-notification-dropdown">
-              <div class="tailor-notification-header">
+            <!-- Admin Notification Dropdown -->
+            <div class="admin-notification-dropdown">
+              <div class="admin-notification-header">
                 <h3>Notifications</h3>
-                <button id="tailor-mark-all-read">Mark all as read</button>
+                <button id="admin-mark-all-read">Mark all as read</button>
               </div>
-              <div class="tailor-notification-list">
+              <div class="admin-notification-list">
                 <!-- Notifications will be dynamically inserted here -->
               </div>
-              <div class="tailor-notification-footer">
-                <a href="tailor-notifications.html">View all notifications</a>
+              <div class="admin-notification-footer">
+                <a href="admin-notifications.php">View all notifications</a>
               </div>
             </div>
           </div>
           <div class="nav-item">
             <button class="message-btn">
               <i class="fas fa-envelope"></i>
-              <span class="badge">3</span>
+              <span class="badge">5</span>
             </button>
-            <!-- Tailor Message Dropdown -->
+            <!-- Admin Message Dropdown -->
             <div class="admin-message-dropdown">
               <div class="admin-message-header">
                 <h3>Messages</h3>
@@ -128,18 +140,18 @@
                 <!-- Messages will be dynamically inserted here -->
               </div>
               <div class="admin-message-footer">
-                <a href="tailor-messages.html">View all messages</a>
+                <a href="admin-messages.php">View all messages</a>
               </div>
             </div>
           </div>
           <div class="nav-item user-dropdown">
             <button class="user-btn">
               <i class="fas fa-user-circle"></i>
-              <span id="dropdown-user-name">Ryan Mentang</span>
+              <span id="dropdown-user-name">Admin</span>
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="tailor-profile.html"><i class="fas fa-user"></i> Profile</a>
+              <a href="admin-profile.php"><i class="fas fa-user"></i> Profile</a>
               <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
@@ -165,9 +177,9 @@
               </div>
             </div>
             <div class="profile-info">
-              <h2 id="profile-name">Ryan Mentang</h2>
-              <p id="profile-role">Tailor</p>
-              <p id="profile-email">ryan.mentang@example.com</p>
+              <h2 id="profile-name">Admin User</h2>
+              <p id="profile-role">Administrator</p>
+              <p id="profile-email">admin@kunozulkhair.com</p>
             </div>
             <div class="profile-actions">
               <button class="btn-primary" id="edit-profile-btn">
@@ -183,36 +195,33 @@
               <div class="profile-fields">
                 <div class="profile-field">
                   <label>Full Name</label>
-                  <p id="full-name">Ryan Mentang</p>
+                  <p id="full-name">Admin User</p>
                 </div>
                 <div class="profile-field">
                   <label>Email Address</label>
-                  <p id="email">ryan.mentang@example.com</p>
+                  <p id="email">admin@kunozulkhair.com</p>
                 </div>
                 <div class="profile-field">
                   <label>Phone Number</label>
                   <p id="phone">+63 912 345 6789</p>
                 </div>
-
               </div>
             </div>
-
-
 
             <div class="profile-section">
               <h3>Account Information</h3>
               <div class="profile-fields">
                 <div class="profile-field">
                   <label>Username</label>
-                  <p id="username">ryanm</p>
+                  <p id="username">admin</p>
                 </div>
                 <div class="profile-field">
                   <label>Last Login</label>
-                  <p id="last-login">Today at 9:15 AM</p>
+                  <p id="last-login">Today at 9:30 AM</p>
                 </div>
                 <div class="profile-field">
                   <label>Account Created</label>
-                  <p id="account-created">January 15, 2022</p>
+                  <p id="account-created">January 1, 2023</p>
                 </div>
               </div>
             </div>
@@ -246,20 +255,19 @@
         <form id="edit-profile-form">
           <div class="form-group">
             <label for="edit-full-name">Full Name</label>
-            <input type="text" id="edit-full-name" name="full-name" value="Ryan Mentang">
+            <input type="text" id="edit-full-name" name="full-name" value="Admin User">
           </div>
           <div class="form-group">
             <label for="edit-email">Email Address</label>
-            <input type="email" id="edit-email" name="email" value="ryan.mentang@example.com">
+            <input type="email" id="edit-email" name="email" value="admin@kunozulkhair.com">
           </div>
           <div class="form-group">
             <label for="edit-phone">Phone Number</label>
             <input type="tel" id="edit-phone" name="phone" value="+63 912 345 6789">
           </div>
-
           <div class="form-group">
             <label for="edit-username">Username</label>
-            <input type="text" id="edit-username" name="username" value="ryanm">
+            <input type="text" id="edit-username" name="username" value="admin">
           </div>
         </form>
       </div>
@@ -302,8 +310,10 @@
 
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
-  <script src="js/admin/tailor-profile.js"></script>
-  <script type="module" src="js/admin/tailor-notifications.js"></script>
-  <script type="module" src="js/admin/tailor-messages.js"></script>
+  <script src="js/admin/admin-profile.js"></script>
+  <script type="module" src="js/admin/admin-notifications.js"></script>
+  <script type="module" src="js/admin/admin-messages.js"></script>
 </body>
 </html>
+
+

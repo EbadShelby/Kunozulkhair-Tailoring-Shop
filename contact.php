@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us - Kunozulkhair Tailoring Shop</title>
+    <title>Contact - Kunozulkhair Tailoring Shop</title>
 
     <link rel="stylesheet" href="css/shared/footer.css" />
-    <link rel="stylesheet" href="css/pages/about.css" />
+    <link rel="stylesheet" href="css/pages/contact.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
@@ -141,17 +141,15 @@
           <li class="header__dropdown">
             <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
+              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
-          <li>
-            <a class="header__link" href="appointments.php">Appointments</a>
-          </li>
-          <li><a class="header__link" href="orders.html">Orders</a></li>
-          <li><a class="header__link" href="about.html">About Us</a></li>
-          <li><a class="header__link" href="contact.html">Contact</a></li>
+          <li><a class="header__link" href="appointments.php">Appointments</a></li>
+          <li><a class="header__link" href="orders.php">Orders</a></li>
+          <li><a class="header__link" href="about.php">About Us</a></li>
+          <li><a class="header__link" href="contact.php">Contact</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -182,7 +180,7 @@
         <!-- Notifications will be dynamically inserted here -->
       </div>
       <div class="notification-footer">
-        <a href="notifications.html">View all notifications</a>
+        <a href="notifications.php">View all notifications</a>
       </div>
     </div>
 
@@ -196,198 +194,109 @@
     </div>
 
     <main>
-      <section class="hero hero--about">
+      <section class="hero hero--contact">
         <div class="hero__content container">
-          <h1 class="hero__title">Crafting Elegance, Stitch by Stitch</h1>
+          <h1 class="hero__title">Get in Touch</h1>
           <p class="hero__description">
-            We create high-quality, custom-made dresses and offer expert
-            tailoring services to bring your fashion dreams to life.
+            Have a question or need assistance? We're here to help! Contact us
+            for inquiries, custom orders, or any tailoring needs.
           </p>
-          <a href="shop.php" class="hero__btn">Explore Our Collection</a>
         </div>
       </section>
 
-      <section class="mission-values">
-        <div class="mission">
-          <h2 class="mission__title">Our Mission</h2>
-          <p class="mission__description">
-            At KunoZulkhair Tailoring & Dress Shop, our mission is to craft
-            high-quality, custom-made dresses and provide expert tailoring
-            services that empower confidence and self-expression.
-          </p>
-        </div>
-
-        <div class="values">
-          <h2 class="values__title">Our Core Values</h2>
-          <div class="values__grid">
-            <div class="value-card">
-              <img
-                src="assets/images/logo.jpg"
-                alt="Quality Icon"
-                class="value-card__icon"
-              />
-              <h3 class="value-card__title">Quality Craftsmanship</h3>
-              <p class="value-card__description">
-                Every stitch is made with precision and care.
+      <section class="contact-info">
+        <div class="container">
+          <div class="contact-info__grid">
+            <div class="contact-info__item">
+              <h3 class="contact-info__title">📍 Our Address</h3>
+              <p class="contact-info__text">Datu Liwa Candao Street, Cotabato City</p>
+            </div>
+            <div class="contact-info__item">
+              <h3 class="contact-info__title">📞 Call Us</h3>
+              <p class="contact-info__text">
+                <a href="tel:+1234567890">+1 234 567 890</a>
               </p>
             </div>
-
-            <div class="value-card">
-              <img
-                src="assets/images/logo.jpg"
-                alt="Affordability Icon"
-                class="value-card__icon"
-              />
-              <h3 class="value-card__title">Affordability</h3>
-              <p class="value-card__description">
-                Premium quality at prices that fit your budget.
+            <div class="contact-info__item">
+              <h3 class="contact-info__title">📧 Email Us</h3>
+              <p class="contact-info__text">
+                <a href="mailto:KunoZulkhair@gmail.com"
+                  >KunoZulkhair@gmail.com</a
+                >
               </p>
             </div>
-
-            <div class="value-card">
-              <img
-                src="assets/images/logo.jpg"
-                alt="Reliability Icon"
-                class="value-card__icon"
-              />
-              <h3 class="value-card__title">Reliability</h3>
-              <p class="value-card__description">
-                Timely service you can count on.
-              </p>
-            </div>
-
-            <div class="value-card">
-              <img
-                src="assets/images/logo.jpg"
-                alt="Customer Satisfaction Icon"
-                class="value-card__icon"
-              />
-              <h3 class="value-card__title">Customer Satisfaction</h3>
-              <p class="value-card__description">
-                We put our customers at the heart of everything.
-              </p>
+            <div class="contact-info__item">
+              <h3 class="contact-info__title">📱 Follow Us</h3>
+              <div class="contact-info__socials">
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Journey Slideshow Section -->
-      <section class="journey-slideshow">
+      <section class="contact-form">
         <div class="container">
-          <h2 class="journey-slideshow__title">Our Development Journey</h2>
-          <p class="journey-slideshow__description">
-            From concept to creation, follow our team's progress as we built Kunozulkhair Tailoring Shop.
+          <h2 class="contact-form__title">Get in Touch</h2>
+          <p class="contact-form__subtitle">
+            Have questions or need a custom order? Send us a message!
           </p>
+          <form action="#" method="POST" class="contact-form__form">
+            <div class="contact-form__group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="contact-form__group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="contact-form__group">
+              <label for="message">Your Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Type your message here..."
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="contact-form__button">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
 
-          <div class="slideshow-container">
-            <!-- Slides -->
-            <div class="slide fade">
-              <div class="slide__number">1 / 19</div>
-              <img src="assets/images/Journey/received_1829364240966750.png" alt="Development Journey - Initial Planning">
-              <div class="slide__caption">Initial planning and brainstorming sessions</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">2 / 19</div>
-              <img src="assets/images/Journey/received_1744755076252572.png" alt="Development Journey - Design Phase">
-              <div class="slide__caption">Design phase with our talented team</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">3 / 19</div>
-              <img src="assets/images/Journey/received_711488171309410.png" alt="Development Journey - First Prototype">
-              <div class="slide__caption">Creating our first prototype designs</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">4 / 19</div>
-              <img src="assets/images/Journey/received_1128957998995334.jpeg" alt="Development Journey - Team Meeting">
-              <div class="slide__caption">Team meeting to discuss project progress</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">5 / 19</div>
-              <img src="assets/images/Journey/received_1226767812397231.png" alt="Development Journey - Quality Testing">
-              <div class="slide__caption">Quality testing our products</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">6 / 19</div>
-              <img src="assets/images/Journey/received_661530089973123.png" alt="Development Journey - User Feedback">
-              <div class="slide__caption">Gathering and implementing user feedback</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">7 / 19</div>
-              <img src="assets/images/Journey/received_1350772079518090.png" alt="Development Journey - Final Touches">
-              <div class="slide__caption">Adding the final touches to our project</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">8 / 19</div>
-              <img src="assets/images/Journey/received_1133706934929083.jpeg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Celebrating our achievements as a team</div>
-            </div>
-
-            <div class="slide fade">
-              <div class="slide__number">9 / 19</div>
-              <img src="assets/images/Journey/12.jpeg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">10 / 19</div>
-              <img src="assets/images/Journey/20.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">11 / 19</div>
-              <img src="assets/images/Journey/13.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">12 / 19</div>
-              <img src="assets/images/Journey/14.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">13 / 19</div>
-              <img src="assets/images/Journey/15.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">14 / 19</div>
-              <img src="assets/images/Journey/16.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">15 / 19</div>
-              <img src="assets/images/Journey/17.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">16 / 19</div>
-              <img src="assets/images/Journey/18.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">17 / 19</div>
-              <img src="assets/images/Journey/19.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">18 / 19</div>
-              <img src="assets/images/Journey/20.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-            <div class="slide fade">
-              <div class="slide__number">19 / 19</div>
-              <img src="assets/images/Journey/21.jpg" alt="Development Journey - Launch Day">
-              <div class="slide__caption">Launch day - ready to serve our customers!</div>
-            </div>
-
-            <!-- Navigation arrows -->
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      <section class="contact-location">
+        <div class="container">
+          <h2 class="contact-location__title">Our Location</h2>
+          <p class="contact-location__subtitle">
+            Visit us in Datu Liwa Candao Street, Cotabato City, Philippines
+          </p>
+          <div class="contact-location__map">
+              <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223.87600080495332!2d124.2529917248385!3d7.211548033587534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32563a2d44ec4363%3A0xc963d76a9dc44d2d!2sDatu%20Liwa%20Candao%20St%2C%20Cotabato%20City%2C%20Maguindanao!5e1!3m2!1sen!2sph!4v1742522263035!5m2!1sen!2sph"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
         </div>
       </section>
@@ -396,11 +305,11 @@
         <div class="contact-cta__content">
           <h2 class="contact-cta__title">Ready to Get Started?</h2>
           <p class="contact-cta__text">
-            Whether you need a custom dress or expert alterations, we're here
-            to bring your vision to life. Let's create something amazing together!
+            Have questions or need custom tailoring services? We're here to
+            help you bring your fashion vision to life!
           </p>
           <div class="contact-cta__buttons">
-            <a href="contact.html" class="btn btn--primary">Contact Us</a>
+            <a href="appointments.php" class="btn btn--primary">Book an Appointment</a>
             <a href="services.php" class="btn btn--secondary">Our Services</a>
           </div>
         </div>
@@ -424,9 +333,9 @@
             <li><a href="shop.php">Shop</a></li>
             <li><a href="services.php">Services</a></li>
             <li><a href="appointments.php">Appointments</a></li>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="about.php">About Us</a></li>
           </ul>
         </div>
 
@@ -434,9 +343,9 @@
         <div class="footer-section">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-            <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-            <li><a href="casual-and-everydaydresses.html">Casual and Everyday dresses</a></li>
+            <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+            <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+            <li><a href="casual-and-everydaydresses.php">Casual and Everyday dresses</a></li>
           </ul>
         </div>
 
@@ -465,10 +374,10 @@
       <div class="container footer-bottom">
         <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-of-service.html">Terms of Service</a>
-          <a href="faqs.html">FAQs</a>
-          <a href="admin-login.html" class="admin-link">Shop Login</a>
+          <a href="privacy-policy.php">Privacy Policy</a>
+          <a href="terms-of-service.php">Terms of Service</a>
+          <a href="faqs.php">FAQs</a>
+          <a href="admin-login.php" class="admin-link">Shop Login</a>
         </div>
       </div>
     </footer>
@@ -488,14 +397,15 @@
 
     <script src="js/header.js"></script>
     <script type="module" src="data/products.js"></script>
-    <script type="module" src="data/cart.js"></script>
-    <script src="js/about.js"></script>
+    <script type="module" src="js/shop.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script type="module" src="js/search.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
-    <!-- <script type="module" src="js/shop.js"></script> -->
   </body>
 </html>
+
+
+
 
 

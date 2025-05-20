@@ -582,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // In a real app, this would redirect to an order confirmation page
       // For now, just reload the page after 2 seconds
       setTimeout(() => {
-        // window.location.href = 'order-confirmation.html?orderId=12345';
+        // window.location.href = 'order-confirmation.php?orderId=12345';
         alert('Order placed successfully! Thank you for your purchase.');
       }, 2000);
     }, 500);

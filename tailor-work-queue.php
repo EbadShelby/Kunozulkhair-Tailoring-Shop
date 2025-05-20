@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Measurements - Kunozulkhair Tailoring Shop</title>
+  <title>Work Queue - Kunozulkhair Tailoring Shop</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
   <link rel="stylesheet" href="css/admin/admin-dashboard-svg.css">
   <link rel="stylesheet" href="css/admin/tailor-dashboard.css">
-  <link rel="stylesheet" href="css/admin/tailor-measurements.css">
+  <link rel="stylesheet" href="css/admin/tailor-work-queue.css">
   <link rel="stylesheet" href="css/admin/tailor-notifications.css">
   <link rel="stylesheet" href="css/admin/admin-messages.css">
 
@@ -43,25 +43,25 @@
       <nav class="sidebar-nav">
         <ul>
           <li>
-            <a href="tailor-dashboard.html">
+            <a href="tailor-dashboard.php">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
-            <a href="tailor-work-queue.html">
+          <li class="active">
+            <a href="tailor-work-queue.php">
               <i class="fas fa-tasks"></i>
               <span>Work Queue</span>
             </a>
           </li>
           <li>
-            <a href="tailor-schedule.html">
+            <a href="tailor-schedule.php">
               <i class="fas fa-calendar-alt"></i>
               <span>Schedule</span>
             </a>
           </li>
-          <li class="active">
-            <a href="tailor-measurements.html">
+          <li>
+            <a href="tailor-measurements.php">
               <i class="fas fa-ruler-combined"></i>
               <span>Measurements</span>
             </a>
@@ -108,7 +108,7 @@
                 <!-- Notifications will be dynamically inserted here -->
               </div>
               <div class="tailor-notification-footer">
-                <a href="tailor-notifications.html">View all notifications</a>
+                <a href="tailor-notifications.php">View all notifications</a>
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@
                 <!-- Messages will be dynamically inserted here -->
               </div>
               <div class="admin-message-footer">
-                <a href="tailor-messages.html">View all messages</a>
+                <a href="tailor-messages.php">View all messages</a>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="tailor-profile.html"><i class="fas fa-user"></i> Profile</a>
+              <a href="tailor-profile.php"><i class="fas fa-user"></i> Profile</a>
               <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
@@ -148,131 +148,123 @@
       <!-- Dashboard Content -->
       <div class="dashboard-content">
         <div class="page-header">
-          <h1>Customer Measurements</h1>
-          <p>View and manage customer measurement records</p>
+          <h1>Work Queue</h1>
+          <p>Manage your assigned tasks and track progress</p>
         </div>
 
         <!-- Stats Cards -->
         <div class="stats-cards">
-          <div class="stat-card total">
+          <div class="stat-card tasks">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Total Records</h3>
+              <h3 class="stat-card-title">Total Tasks</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-ruler-combined"></i>
+                <i class="fas fa-tasks"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="total-records">48</p>
+              <p class="stat-value" id="total-tasks">12</p>
             </div>
           </div>
 
-          <div class="stat-card recent">
+          <div class="stat-card urgent">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Recent Updates</h3>
+              <h3 class="stat-card-title">Urgent</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-clock"></i>
+                <i class="fas fa-exclamation-circle"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="recent-updates">12</p>
+              <p class="stat-value" id="urgent-tasks">3</p>
             </div>
           </div>
 
-          <div class="stat-card custom">
+          <div class="stat-card in-progress">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Custom Orders</h3>
+              <h3 class="stat-card-title">In Progress</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-tshirt"></i>
+                <i class="fas fa-spinner"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="custom-orders">24</p>
+              <p class="stat-value" id="in-progress-tasks">7</p>
             </div>
           </div>
 
-          <div class="stat-card alterations">
+          <div class="stat-card completed">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Alterations</h3>
+              <h3 class="stat-card-title">Completed Today</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-cut"></i>
+                <i class="fas fa-check-circle"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="alterations">16</p>
+              <p class="stat-value" id="completed-tasks">2</p>
             </div>
           </div>
         </div>
 
-        <!-- Measurements Content -->
-        <div class="measurements-container">
-          <div class="measurements-header">
+        <!-- Work Queue Content -->
+        <div class="work-queue-container">
+          <div class="work-queue-header">
             <div class="filters">
               <div class="filter-group">
-                <label for="customer-filter">Customer Type</label>
-                <select id="customer-filter">
-                  <option value="all">All Customers</option>
-                  <option value="regular">Regular</option>
-                  <option value="new">New</option>
+                <label for="status-filter">Status</label>
+                <select id="status-filter">
+                  <option value="all">All Status</option>
+                  <option value="not-started">Not Started</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="on-hold">On Hold</option>
+                  <option value="completed">Completed</option>
                 </select>
               </div>
               <div class="filter-group">
-                <label for="order-type-filter">Order Type</label>
-                <select id="order-type-filter">
-                  <option value="all">All Types</option>
-                  <option value="custom">Custom</option>
-                  <option value="alteration">Alteration</option>
-                  <option value="repair">Repair</option>
+                <label for="priority-filter">Priority</label>
+                <select id="priority-filter">
+                  <option value="all">All Priorities</option>
+                  <option value="urgent">Urgent</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
                 </select>
               </div>
               <div class="filter-group">
-                <label for="date-filter">Date Range</label>
-                <select id="date-filter">
-                  <option value="all">All Time</option>
-                  <option value="this-month">This Month</option>
-                  <option value="last-month">Last Month</option>
-                  <option value="this-year">This Year</option>
+                <label for="sort-by">Sort By</label>
+                <select id="sort-by">
+                  <option value="due-date-asc">Due Date (Earliest)</option>
+                  <option value="due-date-desc">Due Date (Latest)</option>
+                  <option value="priority-desc">Priority (Highest)</option>
+                  <option value="priority-asc">Priority (Lowest)</option>
+                  <option value="progress-asc">Progress (Lowest)</option>
+                  <option value="progress-desc">Progress (Highest)</option>
                 </select>
               </div>
             </div>
             <div class="search-container">
-              <input type="text" id="customer-search" placeholder="Search customers...">
+              <input type="text" id="task-search" placeholder="Search tasks...">
               <button id="search-btn"><i class="fas fa-search"></i></button>
             </div>
           </div>
 
-          <div class="customer-measurements-list" id="customer-measurements">
-            <!-- Customer measurements will be populated by JavaScript -->
+          <div class="task-list-container">
+            <div class="task-list" id="work-queue-tasks">
+              <!-- Tasks will be populated by JavaScript -->
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Measurement Detail Modal -->
-    <div class="modal" id="measurement-detail-modal">
+    <!-- Task Detail Modal -->
+    <div class="modal" id="task-detail-modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 id="modal-customer-name">Customer Measurements</h2>
+          <h2 id="modal-task-title">Task Details</h2>
           <button class="close-modal">&times;</button>
         </div>
         <div class="modal-body">
-          <div class="measurement-details-grid">
-            <!-- Measurement details will be populated by JavaScript -->
+          <div class="task-details-grid">
+            <!-- Task details will be populated by JavaScript -->
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add/Edit Measurement Modal -->
-    <div class="modal" id="edit-measurement-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="edit-modal-title">Edit Measurements</h2>
-          <button class="close-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <form id="measurement-form">
-            <!-- Form fields will be populated by JavaScript -->
-          </form>
         </div>
       </div>
     </div>
@@ -280,8 +272,9 @@
 
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
-  <script src="js/admin/tailor-measurements.js"></script>
+  <script src="js/admin/tailor-work-queue.js"></script>
   <script type="module" src="js/admin/tailor-notifications.js"></script>
   <script type="module" src="js/admin/tailor-messages.js"></script>
 </body>
 </html>
+

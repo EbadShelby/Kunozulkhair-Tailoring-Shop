@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work Queue - Kunozulkhair Tailoring Shop</title>
+  <title>Schedule - Kunozulkhair Tailoring Shop</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/admin/admin-dashboard.css">
   <link rel="stylesheet" href="css/admin/admin-dashboard-svg.css">
   <link rel="stylesheet" href="css/admin/tailor-dashboard.css">
-  <link rel="stylesheet" href="css/admin/tailor-work-queue.css">
+  <link rel="stylesheet" href="css/admin/tailor-schedule.css">
   <link rel="stylesheet" href="css/admin/tailor-notifications.css">
   <link rel="stylesheet" href="css/admin/admin-messages.css">
 
@@ -43,25 +43,25 @@
       <nav class="sidebar-nav">
         <ul>
           <li>
-            <a href="tailor-dashboard.html">
+            <a href="tailor-dashboard.php">
               <i class="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <li class="active">
-            <a href="tailor-work-queue.html">
+          <li>
+            <a href="tailor-work-queue.php">
               <i class="fas fa-tasks"></i>
               <span>Work Queue</span>
             </a>
           </li>
-          <li>
-            <a href="tailor-schedule.html">
+          <li class="active">
+            <a href="tailor-schedule.php">
               <i class="fas fa-calendar-alt"></i>
               <span>Schedule</span>
             </a>
           </li>
           <li>
-            <a href="tailor-measurements.html">
+            <a href="tailor-measurements.php">
               <i class="fas fa-ruler-combined"></i>
               <span>Measurements</span>
             </a>
@@ -108,7 +108,7 @@
                 <!-- Notifications will be dynamically inserted here -->
               </div>
               <div class="tailor-notification-footer">
-                <a href="tailor-notifications.html">View all notifications</a>
+                <a href="tailor-notifications.php">View all notifications</a>
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@
                 <!-- Messages will be dynamically inserted here -->
               </div>
               <div class="admin-message-footer">
-                <a href="tailor-messages.html">View all messages</a>
+                <a href="tailor-messages.php">View all messages</a>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <a href="tailor-profile.html"><i class="fas fa-user"></i> Profile</a>
+              <a href="tailor-profile.php"><i class="fas fa-user"></i> Profile</a>
               <a href="#" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
@@ -148,122 +148,139 @@
       <!-- Dashboard Content -->
       <div class="dashboard-content">
         <div class="page-header">
-          <h1>Work Queue</h1>
-          <p>Manage your assigned tasks and track progress</p>
+          <h1>Schedule</h1>
+          <p>Manage your appointments and fittings</p>
         </div>
 
         <!-- Stats Cards -->
         <div class="stats-cards">
-          <div class="stat-card tasks">
+          <div class="stat-card today">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Total Tasks</h3>
+              <h3 class="stat-card-title">Today's Appointments</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-tasks"></i>
+                <i class="fas fa-calendar-day"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="total-tasks">12</p>
+              <p class="stat-value" id="today-appointments">5</p>
             </div>
           </div>
 
-          <div class="stat-card urgent">
+          <div class="stat-card week">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Urgent</h3>
+              <h3 class="stat-card-title">This Week</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-exclamation-circle"></i>
+                <i class="fas fa-calendar-week"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="urgent-tasks">3</p>
+              <p class="stat-value" id="week-appointments">18</p>
             </div>
           </div>
 
-          <div class="stat-card in-progress">
+          <div class="stat-card fittings">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">In Progress</h3>
+              <h3 class="stat-card-title">Fittings</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-spinner"></i>
+                <i class="fas fa-user-tie"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="in-progress-tasks">7</p>
+              <p class="stat-value" id="fittings-count">12</p>
             </div>
           </div>
 
-          <div class="stat-card completed">
+          <div class="stat-card consultations">
             <div class="stat-card-header">
-              <h3 class="stat-card-title">Completed Today</h3>
+              <h3 class="stat-card-title">Consultations</h3>
               <div class="stat-card-icon">
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-comments"></i>
               </div>
             </div>
             <div class="stat-card-body">
-              <p class="stat-value" id="completed-tasks">2</p>
+              <p class="stat-value" id="consultations-count">6</p>
             </div>
           </div>
         </div>
 
-        <!-- Work Queue Content -->
-        <div class="work-queue-container">
-          <div class="work-queue-header">
-            <div class="filters">
-              <div class="filter-group">
-                <label for="status-filter">Status</label>
-                <select id="status-filter">
-                  <option value="all">All Status</option>
-                  <option value="not-started">Not Started</option>
-                  <option value="in-progress">In Progress</option>
-                  <option value="on-hold">On Hold</option>
-                  <option value="completed">Completed</option>
-                </select>
-              </div>
-              <div class="filter-group">
-                <label for="priority-filter">Priority</label>
-                <select id="priority-filter">
-                  <option value="all">All Priorities</option>
-                  <option value="urgent">Urgent</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-              <div class="filter-group">
-                <label for="sort-by">Sort By</label>
-                <select id="sort-by">
-                  <option value="due-date-asc">Due Date (Earliest)</option>
-                  <option value="due-date-desc">Due Date (Latest)</option>
-                  <option value="priority-desc">Priority (Highest)</option>
-                  <option value="priority-asc">Priority (Lowest)</option>
-                  <option value="progress-asc">Progress (Lowest)</option>
-                  <option value="progress-desc">Progress (Highest)</option>
-                </select>
-              </div>
+        <!-- Schedule Content -->
+        <div class="schedule-container">
+          <div class="schedule-header">
+            <div class="date-navigation">
+              <button id="prev-date" class="nav-btn">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="current-date" id="current-date">July 19, 2023</div>
+              <button id="today-btn" class="today-btn">Today</button>
+              <button id="next-date" class="nav-btn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
             </div>
-            <div class="search-container">
-              <input type="text" id="task-search" placeholder="Search tasks...">
-              <button id="search-btn"><i class="fas fa-search"></i></button>
+            <div class="view-filters">
+              <div class="filter-group">
+                <label for="appointment-type">Type</label>
+                <select id="appointment-type">
+                  <option value="all">All Types</option>
+                  <option value="fitting">Fitting</option>
+                  <option value="consultation">Consultation</option>
+                  <option value="measurement">Measurement</option>
+                  <option value="pickup">Pickup</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <div class="task-list-container">
-            <div class="task-list" id="work-queue-tasks">
-              <!-- Tasks will be populated by JavaScript -->
+          <div class="schedule-view">
+            <div class="time-column">
+              <div class="time-header">Time</div>
+              <div class="time-slots">
+                <div class="time-slot">8:00 AM</div>
+                <div class="time-slot">9:00 AM</div>
+                <div class="time-slot">10:00 AM</div>
+                <div class="time-slot">11:00 AM</div>
+                <div class="time-slot">12:00 PM</div>
+                <div class="time-slot">1:00 PM</div>
+                <div class="time-slot">2:00 PM</div>
+                <div class="time-slot">3:00 PM</div>
+                <div class="time-slot">4:00 PM</div>
+                <div class="time-slot">5:00 PM</div>
+                <div class="time-slot">6:00 PM</div>
+              </div>
             </div>
+            <div class="appointments-column" id="appointments-container">
+              <!-- Appointments will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="upcoming-appointments">
+          <div class="section-header">
+            <h2>Upcoming Appointments</h2>
+            <div class="section-actions">
+              <button class="refresh-btn">
+                <i class="fas fa-sync-alt"></i>
+                Refresh
+              </button>
+            </div>
+          </div>
+          <div class="appointments-list" id="upcoming-appointments-list">
+            <!-- Upcoming appointments will be populated by JavaScript -->
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Task Detail Modal -->
-    <div class="modal" id="task-detail-modal">
+    <!-- Appointment Detail Modal -->
+    <div class="modal" id="appointment-detail-modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 id="modal-task-title">Task Details</h2>
+          <h2 id="modal-appointment-title">Appointment Details</h2>
           <button class="close-modal">&times;</button>
         </div>
         <div class="modal-body">
-          <div class="task-details-grid">
-            <!-- Task details will be populated by JavaScript -->
+          <div class="appointment-details-grid">
+            <!-- Appointment details will be populated by JavaScript -->
           </div>
         </div>
       </div>
@@ -272,8 +289,9 @@
 
   <!-- Scripts -->
   <script src="js/admin/admin-auth.js"></script>
-  <script src="js/admin/tailor-work-queue.js"></script>
+  <script src="js/admin/tailor-schedule.js"></script>
   <script type="module" src="js/admin/tailor-notifications.js"></script>
   <script type="module" src="js/admin/tailor-messages.js"></script>
 </body>
 </html>
+

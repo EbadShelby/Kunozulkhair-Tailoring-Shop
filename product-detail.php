@@ -3,181 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notifications - Kunozulkhair Tailoring Shop</title>
+    <title>Product Detail - Kunozulkhair Tailoring Shop</title>
+    <link rel="stylesheet" href="css/pages/product-detail.css" />
     <link rel="stylesheet" href="css/shared/general.css" />
     <link rel="stylesheet" href="css/shared/header.css" />
     <link rel="stylesheet" href="css/shared/reset.css" />
     <link rel="stylesheet" href="css/shared/utils.css" />
     <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/pages/shop.css" />
 
-    <!-- linked google fonts  -->
     <link
       href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
 
     <link rel="icon" href="assets/images/logo.jpg" type="image/png">
-    <style>
-      /* Notifications Page Specific Styles */
-      .notifications-hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/logo.jpg') center/cover no-repeat;
-        color: #fff;
-        padding: 5rem 0;
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .notifications-hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .notifications-hero p {
-        font-size: 1.2rem;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .notifications-container {
-        max-width: 800px;
-        margin: 0 auto 4rem;
-        padding: 0 1rem;
-      }
-
-      .notifications-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .notifications-header h2 {
-        font-size: 1.8rem;
-        color: var(--clr-neutral-900);
-      }
-
-      .mark-all-read-btn {
-        background-color: var(--clr-primary);
-        color: var(--clr-neutral-900);
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: var(--fw-medium);
-      }
-
-      .notifications-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .notification-card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-      }
-
-      .notification-card.unread {
-        background-color: #f0f7ff;
-        border-left: 3px solid var(--clr-primary);
-      }
-
-      .notification-card:hover {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .notification-title {
-        font-weight: var(--fw-bold);
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-        color: var(--clr-neutral-900);
-      }
-
-      .notification-message {
-        color: #555;
-        margin-bottom: 0.75rem;
-        line-height: 1.5;
-      }
-
-      .notification-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.85rem;
-        color: #777;
-      }
-
-      .notification-time {
-        font-style: italic;
-      }
-
-      .notification-actions button {
-        background: none;
-        border: none;
-        color: var(--clr-primary);
-        cursor: pointer;
-        text-decoration: underline;
-        padding: 0;
-        margin-left: 1rem;
-      }
-
-      .empty-notifications {
-        text-align: center;
-        padding: 3rem 0;
-        color: #777;
-      }
-
-      .empty-notifications p {
-        margin-bottom: 1.5rem;
-      }
-
-      .empty-notifications .btn {
-        display: inline-block;
-        background-color: var(--clr-primary);
-        color: var(--clr-neutral-900);
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: var(--fw-medium);
-      }
-
-      /* Filter Controls */
-      .filter-controls {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .filter-btn {
-        background-color: #f0f0f0;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .filter-btn.active {
-        background-color: var(--clr-primary);
-        color: var(--clr-neutral-900);
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .notifications-header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-        }
-
-        .filter-controls {
-          flex-wrap: wrap;
-        }
-      }
-    </style>
   </head>
+
   <body>
     <header class="header">
       <div class="header__top container">
@@ -218,25 +60,23 @@
         </div>
 
         <div class="header__icons">
-          <div class="header__icon" id="cart-icon">
-            <button class="header__icon cart">
-              <svg
-                class="icon cart"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
-              <span class="cart-count" id="cart-count">0</span>
-            </button>
-          </div>
+          <button class="header__icon" id="cart-icon">
+            <svg
+              class="icon cart"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              />
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+          </button>
           <button class="header__icon notification" id="notification-icon">
             <svg
               class="icon"
@@ -270,7 +110,7 @@
               />
             </svg>
           </button>
-          <a href="login-form.php" class="header__icon">
+          <a href="login-form.php"class="header__icon">
             <svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -287,6 +127,7 @@
             </svg>
           </a>
         </div>
+
       </div>
       <nav class="header__nav container">
         <ul class="header__nav-links">
@@ -295,17 +136,17 @@
           <li class="header__dropdown">
             <a class="header__link" href="services.php">Services</a>
             <ul class="header__dropdown-menu">
-              <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-              <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-              <li><a href="casual-and-everydaydresses.html">Casual & Everyday Dresses</a></li>
+              <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+              <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+              <li><a href="casual-and-everydaydresses.php">Casual & Everyday Dresses</a></li>
             </ul>
           </li>
           <li>
             <a class="header__link" href="appointments.php">Appointments</a>
           </li>
-          <li><a class="header__link" href="orders.html">Orders</a></li>
-          <li><a class="header__link" href="about.html">About Us</a></li>
-          <li><a class="header__link" href="contact.html">Contact</a></li>
+          <li><a class="header__link" href="orders.php">Orders</a></li>
+          <li><a class="header__link" href="about.php">About Us</a></li>
+          <li><a class="header__link" href="contact.php">Contact</a></li>
         </ul>
         <button class="header__nav--toggle">
           <svg
@@ -336,7 +177,7 @@
         <!-- Notifications will be dynamically inserted here -->
       </div>
       <div class="notification-footer">
-        <a href="notifications.html">View all notifications</a>
+        <a href="notifications.php">View all notifications</a>
       </div>
     </div>
 
@@ -350,37 +191,110 @@
     </div>
 
     <main>
-      <div class="notifications-hero">
-        <div class="container">
-          <h1>Your Notifications</h1>
-          <p>Stay updated with your orders, appointments, and special offers</p>
+      <!-- Breadcrumb Navigation -->
+      <div class="breadcrumb inner-container">
+        <div class="breadcrumb-path">
+          <a href="index.php">Home</a> &gt;
+          <a href="shop.php">Shop</a> &gt;
+          <span id="product-breadcrumb">Product Detail</span>
         </div>
+        <a href="shop.php" class="back-to-shop">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Shop
+        </a>
       </div>
 
-      <div class="notifications-container">
-        <div class="notifications-header">
-          <h2>All Notifications</h2>
-          <button class="mark-all-read-btn" id="mark-all-read-btn">Mark All as Read</button>
+      <!-- Product Detail Section -->
+      <section class="product-detail inner-container">
+        <div class="product-detail__loading" id="product-loading">
+          <div class="loader-spinner"></div>
+          <p>Loading product details...</p>
         </div>
 
-        <div class="filter-controls">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="unread">Unread</button>
-          <button class="filter-btn" data-filter="orders">Orders</button>
-          <button class="filter-btn" data-filter="appointments">Appointments</button>
-          <button class="filter-btn" data-filter="promotions">Promotions</button>
+        <div class="product-detail__content" id="product-content">
+          <!-- Left Column: Product Images -->
+          <div class="product-detail__images">
+            <div class="product-detail__thumbnails">
+              <!-- Thumbnail images will be added here dynamically -->
+            </div>
+            <div class="product-detail__main-image">
+              <!-- Main product image will be added here dynamically -->
+            </div>
+          </div>
+
+          <!-- Right Column: Product Info -->
+          <div class="product-detail__info">
+            <h1 class="product-detail__title" id="product-title"></h1>
+
+            <div class="product-detail__meta">
+              <div class="product-detail__rating">
+                <span class="rating-stars" id="rating-stars"></span>
+                <span class="rating-value" id="rating-value"></span>
+                <span class="rating-count" id="rating-count"></span>
+              </div>
+              <div class="product-detail__category" id="product-category"></div>
+            </div>
+
+            <div class="product-detail__price" id="product-price"></div>
+
+            <div class="product-detail__fabric">
+              <span class="label">Fabric:</span>
+              <span id="product-fabric"></span>
+            </div>
+
+            <div class="product-detail__color" id="product-color">
+              <span class="label">Color:</span>
+            </div>
+
+            <div class="product-detail__sizes">
+              <span class="label">Available Sizes:</span>
+              <div class="size-options" id="product-sizes">
+                <!-- Size buttons will be added here dynamically -->
+              </div>
+            </div>
+
+            <div class="product-detail__quantity">
+              <span class="label">Quantity:</span>
+              <div class="quantity-control">
+                <button id="decrease-quantity">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="10">
+                <button id="increase-quantity">+</button>
+              </div>
+            </div>
+
+            <div class="product-detail__actions">
+              <button id="add-to-cart" class="btn-primary">Add to Cart</button>
+            </div>
+            <div class="product-detail__buy-now">
+              <button id="buy-now" class="btn-buy-now">Buy Now</button>
+            </div>
+          </div>
         </div>
 
-        <div class="notifications-list" id="notifications-list">
-          <!-- Notifications will be dynamically inserted here by JavaScript -->
+        <!-- Product Description Section -->
+        <div class="product-detail__description">
+          <h2>Product Description</h2>
+          <div class="description-content" id="product-description"></div>
         </div>
 
-        <!-- Empty state (will be shown when there are no notifications) -->
-        <div class="empty-notifications" id="empty-notifications" style="display: none;">
-          <p>You don't have any notifications yet.</p>
-          <a href="shop.php" class="btn">Browse Our Products</a>
+        <!-- Product Gallery Section -->
+        <div class="product-detail__gallery">
+          <h2>Product Gallery</h2>
+          <div class="gallery-container" id="product-gallery">
+            <!-- Gallery images will be added here dynamically -->
+          </div>
         </div>
-      </div>
+
+        <!-- Related Products Section -->
+        <div class="product-detail__related">
+          <h2>You May Also Like</h2>
+          <div class="related-products" id="related-products">
+            <!-- Related products will be added here dynamically -->
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -401,9 +315,9 @@
             <li><a href="shop.php">Shop</a></li>
             <li><a href="services.php">Services</a></li>
             <li><a href="appointments.php">Appointments</a></li>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="about.php">About Us</a></li>
           </ul>
         </div>
 
@@ -411,9 +325,9 @@
         <div class="footer-section">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="custom-dressmaking.html">Custom Dressmaking</a></li>
-            <li><a href="alterations-and-repair.html">Alterations & Repairs</a></li>
-            <li><a href="casual-and-everydaydresses.html">Casual and Everyday dresses</a></li>
+            <li><a href="custom-dressmaking.php">Custom Dressmaking</a></li>
+            <li><a href="alterations-and-repair.php">Alterations & Repairs</a></li>
+            <li><a href="casual-and-everydaydresses.php">Casual and Everyday dresses</a></li>
           </ul>
         </div>
 
@@ -442,21 +356,50 @@
       <div class="container footer-bottom">
         <p>&copy; 2025 Kunozulkhair Tailoring Shop. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-of-service.html">Terms of Service</a>
-          <a href="faqs.html">FAQs</a>
-          <a href="admin-login.html" class="admin-link">Admin/Tailor Login</a>
+          <a href="privacy-policy.php">Privacy Policy</a>
+          <a href="terms-of-service.php">Terms of Service</a>
+          <a href="faqs.php">FAQs</a>
+          <a href="admin-login.php" class="admin-link">Shop Login</a>
         </div>
       </div>
     </footer>
 
-    <script src="js/header.js"></script>
+    <!-- Image Viewer Modal -->
+    <div class="image-viewer-modal" id="image-viewer">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modal-image" src="" alt="Product image">
+        <div class="modal-navigation">
+          <button id="prev-image" class="nav-button">&lt;</button>
+          <button id="next-image" class="nav-button">&gt;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: ₱<span id="cart-total">0</span></p>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
     <script type="module" src="data/products.js"></script>
-    <script type="module" src="js/shop.js"></script>
+    <script type="module" src="data/cart.js"></script>
+    <script type="module" src="js/product-detail.js"></script>
+    <script src="js/header.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
-    <script type="module" src="js/notifications-page.js"></script>
+    <script src="js/breakpoint-indicator.js"></script>
   </body>
 </html>
+
+
+
 
 

@@ -536,7 +536,7 @@ function deleteProduct() {
 function viewProduct(productId) {
   // In a real app, this would open a detailed view or redirect to the product page
   // For demo purposes, we'll just open the product in a new tab
-  window.open(`product-detail.html?id=${productId}`, '_blank');
+  window.open(`product-detail.php?id=${productId}`, '_blank');
 }
 
 // Function to export inventory

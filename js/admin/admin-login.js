@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Redirect based on role
       if (user.role === 'admin') {
-        window.location.href = 'admin-dashboard.html';
+        window.location.href = 'admin-dashboard.php';
       } else if (user.role === 'tailor') {
-        window.location.href = 'tailor-dashboard.html';
+        window.location.href = 'tailor-dashboard.php';
       }
     } else {
       // Show error message

@@ -20,10 +20,10 @@ $success = '';
 if (is_logged_in()) {
     // Redirect based on role
     if (is_admin()) {
-        header("Location: admin-dashboard.html");
+        header("Location: admin-dashboard.php");
         exit;
     } elseif (is_tailor()) {
-        header("Location: tailor-dashboard.html");
+        header("Location: tailor-dashboard.php");
         exit;
     }
 }
@@ -79,10 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirect based on role
                 if ($user['role'] === 'admin') {
-                    header("Location: admin-dashboard.html");
+                    header("Location: admin-dashboard.php");
                     exit;
                 } else {
-                    header("Location: tailor-dashboard.html");
+                    header("Location: tailor-dashboard.php");
                     exit;
                 }
             } else {
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-wrapper">
       <header class="header admin-header">
         <div class="header__top container">
-          <a class="header__logo" href="index.html">
+          <a class="header__logo" href="index.php">
             <img
               class="header__logo-img"
               src="assets/images/logo.jpg"
@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="login-card-footer">
               <div class="login-options">
-                <a href="index.html" class="back-to-site">
+                <a href="index.php" class="back-to-site">
                   <i class="fas fa-home"></i> Back to Website
                 </a>
               </div>
@@ -238,3 +238,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="js/breakpoint-indicator.js"></script>
   </body>
 </html>
+

@@ -458,11 +458,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const ratingOutOf10 = (product.rating.rate * 2).toFixed(1);
 
       productEl.innerHTML = `
-          <a href="product-detail.html?id=${product.id}" class="product-image-link">
+          <a href="product-detail.php?id=${product.id}" class="product-image-link">
             <img src="${product.image}" alt="${product.name}" />
           </a>
         <div class="product-info">
-          <a href="product-detail.html?id=${product.id}" class="product-title-link">
+          <a href="product-detail.php?id=${product.id}" class="product-title-link">
             <h3>${product.name}</h3>
           </a>
           <div class="product-meta">
