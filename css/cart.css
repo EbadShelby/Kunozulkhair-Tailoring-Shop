@@ -206,6 +206,11 @@
   transition: opacity 0.3s, transform 0.3s;
 }
 
+.cart-notification.error {
+  background-color: #f44336;
+  color: white;
+}
+
 .cart-notification.show {
   opacity: 1;
   transform: translateY(0);

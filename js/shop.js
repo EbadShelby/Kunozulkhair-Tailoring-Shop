@@ -1,5 +1,4 @@
 import { products } from '../data/products.js';
-import { addToCart } from '../data/cart.js';
 
 // Function to render products to the shop page
 document.addEventListener("DOMContentLoaded", () => {
@@ -477,26 +476,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listeners to all "Add to Cart" buttons
     document.querySelectorAll(".product-card button").forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
         const productId = button.dataset.productId;
-        const foundProduct = products.find((p) => p.id == productId);
 
-        if (foundProduct) {
-          const name = foundProduct.name;
-          const price = foundProduct.price;
-          addToCart(name, price);
+        // Add visual feedback immediately
+        const originalText = button.innerText;
+        button.innerText = "Adding...";
+        button.disabled = true;
 
-          // Add visual feedback
-          const originalText = button.innerText;
-          button.innerText = "Added!";
-          button.classList.add("added-to-cart");
+        try {
+          // Use the global addToCart function from cart.js
+          if (typeof window.addToCart === 'function') {
+            const result = await window.addToCart(productId);
 
-          // Reset button after 1.5 seconds
-          setTimeout(() => {
-            button.innerText = originalText;
-            button.classList.remove("added-to-cart");
-          }, 1500);
+            if (result.success) {
+              button.innerText = "Added!";
+              button.classList.add("added-to-cart");
+            } else {
+              button.innerText = "Error";
+              button.classList.add("error");
+            }
+          } else {
+            console.error('addToCart function not found');
+            button.innerText = "Error";
+            button.classList.add("error");
+          }
+        } catch (error) {
+          console.error('Error adding to cart:', error);
+          button.innerText = "Error";
+          button.classList.add("error");
         }
+
+        // Reset button after 1.5 seconds
+        setTimeout(() => {
+          button.innerText = originalText;
+          button.classList.remove("added-to-cart");
+          button.classList.remove("error");
+          button.disabled = false;
+        }, 1500);
       });
     });
 
