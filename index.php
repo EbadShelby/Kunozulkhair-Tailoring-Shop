@@ -7,6 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
 // Fetch featured products from the database (using latest products)
 $featured_query = "SELECT * FROM products ORDER BY created_at DESC LIMIT 8";
 $featured_result = mysqli_query($conn, $featured_query);
