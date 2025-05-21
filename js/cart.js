@@ -7,6 +7,7 @@
  * - Updating item quantities
  * - Removing items from cart
  * - Displaying cart in sidebar
+ * - Toggling cart visibility
  */
 
 // Cart state
@@ -15,6 +16,9 @@ let cart = {
   total: 0,
   count: 0
 };
+
+// Debug flag - set to true to enable console logging
+const DEBUG = true;
 
 // Load cart items from server
 async function loadCart() {
@@ -210,6 +214,8 @@ function showAddedToCartFeedback() {
 
 // Initialize cart functionality
 document.addEventListener('DOMContentLoaded', () => {
+  if (DEBUG) console.log('Cart.js: DOM loaded, initializing cart functionality');
+
   // Get DOM elements
   const cartIcon = document.getElementById('cart-icon');
   const cartSidebar = document.getElementById('cart-sidebar');
@@ -218,6 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartItemsContainer = document.getElementById('cart-items');
   const cartTotal = document.getElementById('cart-total');
   const checkoutBtn = document.querySelector('.checkout-btn');
+
+  // Debug element existence
+  if (DEBUG) {
+    console.log('Cart.js: Elements found:');
+    console.log('- cartIcon:', !!cartIcon);
+    console.log('- cartSidebar:', !!cartSidebar);
+    console.log('- closeCart:', !!closeCart);
+    console.log('- cartCount:', !!cartCount);
+    console.log('- cartItemsContainer:', !!cartItemsContainer);
+    console.log('- cartTotal:', !!cartTotal);
+    console.log('- checkoutBtn:', !!checkoutBtn);
+  }
 
   // Load cart items
   loadCart();
@@ -230,7 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       if (cartSidebar) {
         cartSidebar.classList.toggle('open');
-        console.log('Cart toggled:', cartSidebar.classList.contains('open'));
+        if (DEBUG) console.log('Cart.js: Cart toggled by cartIcon, open =', cartSidebar.classList.contains('open'));
+      } else {
+        if (DEBUG) console.error('Cart.js: cartSidebar not found when clicking cartIcon');
       }
     });
 
@@ -242,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         if (cartSidebar) {
           cartSidebar.classList.toggle('open');
+          if (DEBUG) console.log('Cart.js: Cart toggled by button inside cartIcon, open =', cartSidebar.classList.contains('open'));
         }
       });
     }
@@ -253,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         if (cartSidebar) {
           cartSidebar.classList.toggle('open');
+          if (DEBUG) console.log('Cart.js: Cart toggled by SVG inside cartIcon, open =', cartSidebar.classList.contains('open'));
         }
       });
     }
@@ -264,9 +286,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         if (cartSidebar) {
           cartSidebar.classList.toggle('open');
+          if (DEBUG) console.log('Cart.js: Cart toggled by cartCount inside cartIcon, open =', cartSidebar.classList.contains('open'));
         }
       });
     }
+  } else {
+    if (DEBUG) console.error('Cart.js: cartIcon element not found');
   }
 
   // Close cart button click event
@@ -274,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeCart.addEventListener('click', () => {
       if (cartSidebar) {
         cartSidebar.classList.remove('open');
+        if (DEBUG) console.log('Cart.js: Cart closed by closeCart button');
       }
     });
   }
@@ -284,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
         !cartSidebar.contains(e.target) &&
         (cartIcon && !cartIcon.contains(e.target))) {
       cartSidebar.classList.remove('open');
+      if (DEBUG) console.log('Cart.js: Cart closed by clicking outside');
     }
   });
 
@@ -291,14 +318,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
       window.location.href = 'checkout.php';
+      if (DEBUG) console.log('Cart.js: Checkout button clicked, redirecting to checkout.php');
     });
   }
 
   // Add to cart buttons on product cards
-  document.querySelectorAll('.product-card button[data-product-id]').forEach(button => {
+  const addToCartButtons = document.querySelectorAll('.product-card button[data-product-id]');
+  if (DEBUG) console.log('Cart.js: Found', addToCartButtons.length, 'add to cart buttons');
+
+  addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
       addToCart(productId);
+      if (DEBUG) console.log('Cart.js: Product added to cart, ID:', productId);
 
       // Add visual feedback
       const originalText = button.innerText;

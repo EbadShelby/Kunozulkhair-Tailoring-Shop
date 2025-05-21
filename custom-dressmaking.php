@@ -25,7 +25,7 @@
 
   <body>
     <?php include 'includes/header.php'; ?>
-    
+
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -321,6 +321,19 @@
       </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: ₱<span id="cart-total">0</span></p>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
     <script src="js/header.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/service-detail.js"></script>
@@ -329,7 +342,7 @@
     <script type="module" src="js/search.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
     <script type="module" src="data/products.js"></script>
-    <script type="module" src="data/cart.js"></script>
+    <script src="js/cart-test.js"></script>
   </body>
 </html>
 

@@ -313,6 +313,19 @@ $max_price = ceil($price_range['max_price'] ?? 5000);
       </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: ₱<span id="cart-total">0</span></p>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
     <script src="js/header.js"></script>
     <script src="js/cart.js"></script>
     <script type="module" src="js/shop-db.js"></script>
