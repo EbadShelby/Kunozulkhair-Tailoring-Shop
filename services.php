@@ -225,12 +225,12 @@
   <div class="container footer-grid">
     <!-- Contact Info -->
     <div class="footer-section">
-      <h3>Contact Us</h3>
-      <p>📍 Datu Liwa Candao Street, Cotabato City</p>
-      <p>📞 +639111111</p>
-      <p>📧 KunoZulkhair@gmail.com</p>
-      <p>⏰ Mon-Sat: 9am-6pm, Sun: 10am-4pm</p>
-    </div>
+          <h3>Contact Us</h3>
+          <p>📍 Datu Liwa Candao Street, Cotabato City</p>
+          <p>📞 +63 936 312 9673</p>
+          <p>📧 kunozulkhairtailoring@gmail.com</p>
+          <p>⏰ Mon-Sat: 9am-6pm, Sun: Close</p>
+        </div>
 
     <!-- Quick Links -->
     <div class="footer-section">

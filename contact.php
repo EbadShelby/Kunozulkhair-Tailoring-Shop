@@ -72,14 +72,14 @@
             <div class="contact-info__item">
               <h3 class="contact-info__title">📞 Call Us</h3>
               <p class="contact-info__text">
-                <a href="tel:+1234567890">+1 234 567 890</a>
+                <a href="tel:+639363129673">+63 936 312 9673</a>
               </p>
             </div>
             <div class="contact-info__item">
               <h3 class="contact-info__title">📧 Email Us</h3>
               <p class="contact-info__text">
-                <a href="mailto:KunoZulkhair@gmail.com"
-                  >KunoZulkhair@gmail.com</a
+                <a href="mailto:kunozulkhairtailoring@gmail.com"
+                  >kunozulkhairtailoring@gmail.com</a
                 >
               </p>
             </div>
@@ -179,9 +179,9 @@
         <div class="footer-section">
           <h3>Contact Us</h3>
           <p>📍 Datu Liwa Candao Street, Cotabato City</p>
-          <p>📞 +639111111</p>
-          <p>📧 KunoZulkhair@gmail.com</p>
-          <p>⏰ Mon-Sat: 9am-6pm, Sun: 10am-4pm</p>
+          <p>📞 +63 936 312 9673</p>
+          <p>📧 kunozulkhairtailoring@gmail.com</p>
+          <p>⏰ Mon-Sat: 9am-6pm, Sun: Close</p>
         </div>
 
         <!-- Quick Links -->
