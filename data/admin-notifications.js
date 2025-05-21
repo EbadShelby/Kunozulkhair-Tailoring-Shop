@@ -16,6 +16,7 @@ const adminNotifications = [
     time: "1 hour ago",
     read: false
   },
+  
   {
     id: 3,
     type: 'appointment',
