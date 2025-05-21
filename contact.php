@@ -86,9 +86,9 @@
             <div class="contact-info__item">
               <h3 class="contact-info__title">📱 Follow Us</h3>
               <div class="contact-info__socials">
-                <a href="#" aria-label="Facebook">Facebook</a>
-                <a href="#" aria-label="Instagram">Instagram</a>
-                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="https://www.facebook.com/profile.php?id=61575972894049" aria-label="Facebook">Facebook</a>
+                <a href="https://www.instagram.com/tailorshopdresses?igsh=MWt1d3QxeWpkdGRiNA==" aria-label="Instagram">Instagram</a>
+                <a href="https://x.com/Shopdress12?t=kadWcD_XQNlPQtizwPtjHQ&s=09" aria-label="Twitter">Twitter</a>
               </div>
             </div>
           </div>
