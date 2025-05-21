@@ -1,10 +1,6 @@
 import { products } from '../data/products.js';
 import { addToCart } from '../data/cart.js';
 
-document.querySelector('.cart-toggle-btn')?.addEventListener('click', function () {
-  document.querySelector('.cart')?.classList.toggle('show-cart');
-});
-
 // Function to render products to the shop page
 document.addEventListener("DOMContentLoaded", () => {
   // Check URL parameters for category and sort

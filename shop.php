@@ -54,7 +54,7 @@ $max_price = ceil($price_range['max_price'] ?? 5000);
 
   <body>
     <?php include 'includes/header.php'; ?>
-    
+
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -314,12 +314,13 @@ $max_price = ceil($price_range['max_price'] ?? 5000);
     </footer>
 
     <script src="js/header.js"></script>
-    <script type="module" src="js/shop-db.js"></script>
     <script src="js/cart.js"></script>
+    <script type="module" src="js/shop-db.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script type="module" src="js/search.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
+    <script src="js/cart-test.js"></script>
   </body>
 </html>
 

@@ -26,7 +26,7 @@
 
   <body>
     <?php include 'includes/header.php'; ?>
-    
+
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
       <div class="notification-header">
@@ -475,11 +475,11 @@
     <script src="js/cart.js"></script>
     <script src="js/orders.js"></script>
     <script type="module" src="data/products.js"></script>
-    <script type="module" src="data/cart.js"></script>
     <script type="module" src="data/notifications.js"></script>
     <script type="module" src="js/notifications.js"></script>
     <script type="module" src="js/search.js"></script>
     <script src="js/breakpoint-indicator.js"></script>
+    <script src="js/cart-test.js"></script>
   </body>
 </html>
 

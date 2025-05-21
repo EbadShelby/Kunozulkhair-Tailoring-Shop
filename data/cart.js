@@ -1,12 +1,9 @@
 export const cart = [];
 
-// Get DOM elements
-const cartIcon = document.getElementById('cart-icon');
-const cartSidebar = document.getElementById('cart-sidebar');
-const closeCart = document.getElementById('close-cart');
-const cartCount = document.getElementById('cart-count');
-const cartItemsContainer = document.getElementById('cart-items');
-const cartTotal = document.getElementById('cart-total');
+// These DOM elements will be accessed in the updateCart function
+let cartItemsContainer;
+let cartCount;
+let cartTotal;
 
 // Function to add product to cart
 export function addToCart(productName, price, image = 'assets/images/logo.jpg') {
@@ -51,7 +48,13 @@ export function decreaseQuantity(name) {
 }
 
 function updateCart() {
-  if (!cartItemsContainer) return; // Guard clause if element doesn't exist
+  // Get DOM elements if they haven't been set yet
+  if (!cartItemsContainer) cartItemsContainer = document.getElementById('cart-items');
+  if (!cartCount) cartCount = document.getElementById('cart-count');
+  if (!cartTotal) cartTotal = document.getElementById('cart-total');
+
+  // Guard clause if cart items container doesn't exist
+  if (!cartItemsContainer) return;
 
   cartItemsContainer.innerHTML = '';
   let total = 0;
@@ -90,67 +93,8 @@ function updateCart() {
   if (cartTotal) cartTotal.textContent = total.toFixed(2);
 }
 
-// Make sure the DOM is loaded before adding event listeners
+// Make sure the DOM is loaded before initializing
 document.addEventListener('DOMContentLoaded', () => {
-  // Enhanced cart icon click handling
-  if (cartIcon) {
-    // Make the entire cart icon clickable
-    cartIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      cartSidebar.classList.toggle('open');
-      console.log('Cart toggled:', cartSidebar.classList.contains('open'));
-    });
-
-    // Also make sure clicks on SVG and other elements inside the cart icon work
-    const cartSvg = cartIcon.querySelector('svg');
-    if (cartSvg) {
-      cartSvg.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        cartSidebar.classList.toggle('open');
-      });
-    }
-
-    const cartCount = cartIcon.querySelector('.cart-count');
-    if (cartCount) {
-      cartCount.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        cartSidebar.classList.toggle('open');
-      });
-    }
-  }
-
-  if (closeCart) {
-    closeCart.addEventListener('click', () => {
-      cartSidebar.classList.remove('open');
-    });
-  }
-
-  // Close cart when clicking outside
-  document.addEventListener('click', function(e) {
-    if (cartSidebar && cartSidebar.classList.contains('open') &&
-        !cartSidebar.contains(e.target) &&
-        !cartIcon.contains(e.target)) {
-      cartSidebar.classList.remove('open');
-    }
-  });
-
-  const checkoutBtn = document.querySelector('.checkout-btn');
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      location.href = 'checkout.php';
-    });
-  }
-
-  // Attach to all product buttons
-  document.querySelectorAll('.product-card button').forEach(button => {
-    button.addEventListener('click', () => {
-      const product = button.closest('.product-card');
-      const name = product.querySelector('h3').textContent;
-      const price = product.querySelector('p').textContent.replace('₱', '');
-      addToCart(name, price);
-    });
-  });
+  // Initialize cart elements
+  updateCart();
 });

@@ -9,15 +9,6 @@
  * - Displaying cart in sidebar
  */
 
-// DOM elements
-const cartIcon = document.getElementById('cart-icon');
-const cartSidebar = document.getElementById('cart-sidebar');
-const closeCart = document.getElementById('close-cart');
-const cartCount = document.getElementById('cart-count');
-const cartItemsContainer = document.getElementById('cart-items');
-const cartTotal = document.getElementById('cart-total');
-const checkoutBtn = document.querySelector('.checkout-btn');
-
 // Cart state
 let cart = {
   items: [],
@@ -219,22 +210,71 @@ function showAddedToCartFeedback() {
 
 // Initialize cart functionality
 document.addEventListener('DOMContentLoaded', () => {
+  // Get DOM elements
+  const cartIcon = document.getElementById('cart-icon');
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const closeCart = document.getElementById('close-cart');
+  const cartCount = document.getElementById('cart-count');
+  const cartItemsContainer = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  const checkoutBtn = document.querySelector('.checkout-btn');
+
   // Load cart items
   loadCart();
 
-  // Cart icon click event
+  // Cart icon click event - using event delegation for all elements inside the cart icon
   if (cartIcon) {
+    // Make the entire cart icon clickable
     cartIcon.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      cartSidebar.classList.toggle('open');
+      if (cartSidebar) {
+        cartSidebar.classList.toggle('open');
+        console.log('Cart toggled:', cartSidebar.classList.contains('open'));
+      }
     });
+
+    // Also make sure clicks on SVG and other elements inside the cart icon work
+    const cartButton = cartIcon.querySelector('button');
+    if (cartButton) {
+      cartButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cartSidebar) {
+          cartSidebar.classList.toggle('open');
+        }
+      });
+    }
+
+    const cartSvg = cartIcon.querySelector('svg');
+    if (cartSvg) {
+      cartSvg.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cartSidebar) {
+          cartSidebar.classList.toggle('open');
+        }
+      });
+    }
+
+    const cartCountElement = cartIcon.querySelector('.cart-count');
+    if (cartCountElement) {
+      cartCountElement.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cartSidebar) {
+          cartSidebar.classList.toggle('open');
+        }
+      });
+    }
   }
 
   // Close cart button click event
   if (closeCart) {
     closeCart.addEventListener('click', () => {
-      cartSidebar.classList.remove('open');
+      if (cartSidebar) {
+        cartSidebar.classList.remove('open');
+      }
     });
   }
 
@@ -242,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     if (cartSidebar && cartSidebar.classList.contains('open') &&
         !cartSidebar.contains(e.target) &&
-        !cartIcon.contains(e.target)) {
+        (cartIcon && !cartIcon.contains(e.target))) {
       cartSidebar.classList.remove('open');
     }
   });
