@@ -124,7 +124,7 @@ if ($featured_result) {
                 <a href="#">
                   <img
                     class="ads-carousel__image"
-                    src="assets/images/logo.jpg"
+                    src="assets/images/shop.jpg"
                     alt=""
                   />
                 </a>
@@ -133,7 +133,7 @@ if ($featured_result) {
                 <a href="#">
                   <img
                     class="ads-carousel__image"
-                    src="assets/images/logo.jpg"
+                    src="assets/images/Hero-home.jpg"
                     alt=""
                   />
                 </a>
@@ -174,23 +174,23 @@ if ($featured_result) {
           <h2 class="section-title">Explore Our Dresses & Services</h2>
           <div class="categories-grid">
             <a href="shop.php?category=formal" class="category-card">
-              <img src="assets\images\Journey\21.jpg" alt="Formal Dresses" />
+              <img src="assets\images\Formal.jpg" alt="Formal Dresses" />
               <span>Formal Dresses</span>
             </a>
             <a href="shop.php?category=casual" class="category-card">
-              <img src="assets\images\Journey\17.jpg" alt="Casual Dresses" />
+              <img src="assets\images\Casual.jpg" alt="Casual Dresses" />
               <span>Casual Dresses</span>
             </a>
             <a href="appointments.php" class="category-card">
-              <img src="assets\images\Journey\18.jpg" alt="Book an Appointment" />
+              <img src="assets\images\Book-appointment.jpg" alt="Book an Appointment" />
               <span>Book an Appointment</span>
             </a>
             <a href="shop.php?sort=newest" class="category-card">
-              <img src="assets/images/logo.jpg" alt="New Arrivals" />
+              <img src="assets/images/New arrivals.jpg" alt="New Arrivals" />
               <span>New Arrivals</span>
             </a>
             <a href="shop.php?sort=popularity" class="category-card">
-              <img src="assets/images/logo.jpg" alt="Best Sellers" />
+              <img src="assets/images/Popular Dresses.jpg" alt="Best Sellers" />
               <span>Popular Dresses</span>
             </a>
           </div>

@@ -69,7 +69,7 @@
         <div class="services-overview__grid">
           <div class="service-card">
             <img
-              src="assets/images/Sample1.png"
+              src="assets/images/Custom-dressmaking.jpg"
               alt="Custom Dressmaking"
               class="service-card__img"
             />
@@ -84,7 +84,7 @@
 
           <div class="service-card">
             <img
-              src="assets/images/Sample2.png"
+              src="assets/images/Alteration.jpg"
               alt="Alterations & Repairs"
               class="service-card__img"
             />
