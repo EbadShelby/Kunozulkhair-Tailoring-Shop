@@ -1,3 +1,5 @@
+<!-- continue this project when i learn more about backend -->
+ 
 <?php
 // Include database connection
 require_once 'config/db_connect.php';
